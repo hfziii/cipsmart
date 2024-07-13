@@ -1,0 +1,636 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background: url("/img/dashboard/bg-dashboard.png") no-repeat center center/cover;
+    position: relative;
+}
+
+.icon-sidebar{
+    width: 250px;
+    height: 800px;
+    background-color: powderblue;
+    border-top-right-radius: 50px;
+}
+
+.icon-sidebar .logo {
+    margin-top: 20px;
+    margin-right: 50px;
+    margin-bottom: 10px;
+    margin-left: 60px;
+    z-index: 1;
+    width: 26.153px;
+    height: 26.191px;
+    flex-shrink: 0; 
+}
+
+.icon-sidebar .menu-1 {
+    margin-top: 80px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 30px;
+    flex-shrink: 0;
+}
+
+.menu-1 .title-1 {
+    margin-top: -25px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 50px;
+}
+
+.icon-sidebar .menu-2 {
+    margin-top: -185px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 27px;
+    flex-shrink: 0;
+}
+
+.menu-2 .title-2 {
+    margin-top: -30px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 55px;
+}
+
+.icon-sidebar .menu-3 {
+    margin-top: -185px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 27px;
+    flex-shrink: 0;
+}
+
+.menu-3 .title-3 {
+    margin-top: -30px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 55px;
+}
+.icon-sidebar .menu-4 {
+    margin-top: -185px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 30px;
+    flex-shrink: 0;
+}
+
+.menu-4 .title-4 {
+    margin-top: -30px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 55px;
+}
+.icon-sidebar .menu-5 {
+    margin-top: -185px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 30px;
+    flex-shrink: 0;
+}
+
+.menu-5 .title-5 {
+    margin-top: -30px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 55px;
+}
+.icon-sidebar .menu-6 {
+    margin-top: -185px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 30px;
+    flex-shrink: 0;
+}
+
+.menu-6 .title-6 {
+    margin-top: -30px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 55px;
+}
+.icon-sidebar .menu-7 {
+    margin-top: -185px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 34px;
+    flex-shrink: 0;
+}
+
+.menu-7 .title-7 {
+    margin-top: -30px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 55px;
+}
+.icon-sidebar .menu-8 {
+    margin-top: -185px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 32px;
+    flex-shrink: 0;
+}
+
+.menu-8 .title-8 {
+    margin-top: -30px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 55px;
+}
+.icon-sidebar .menu-9 {
+    margin-top: -185px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 32px;
+    flex-shrink: 0;
+}
+
+.menu-9 .title-9 {
+    margin-top: -30px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 55px;
+}
+.icon-sidebar .menu-10 {
+    margin-top: -185px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 35px;
+    flex-shrink: 0;
+}
+
+.menu-10 .title-10 {
+    margin-top: -30px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 55px;
+}
+.icon-sidebar .menu-11 {
+    margin-top: -185px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 40px;
+    flex-shrink: 0;
+}
+
+.menu-11 .title-11 {
+    margin-top: -30px;
+    margin-right: 1000px;
+    margin-bottom: 200px;
+    margin-left: 55px;
+}
+
+.title-1,
+.title-2,
+.title-3,
+.title-4,
+.title-5,
+.title-6,
+.title-7,
+.title-8,
+.title-9,
+.title-10,
+.title-11 {
+    display: inline-block;
+    position: absolute; 
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    width: calc(100% - 250px);
+}
+
+.content .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    color: powderblue;
+    font-size: 15px;
+}
+
+.content .header .h1 {
+    font-size: 15px;
+}
+
+.content .header-icons {
+    font-size: 30px;
+    margin-left: 700px;
+    margin-top: -70px;
+    color: #63AFBD;
+}
+
+.content .header-icons i {
+    margin-left: 50px;
+}
+
+.content .widgets {
+    padding-top: 50px;
+    padding-right: 30px;
+}
+
+.content .widgets .widget-1 {
+    width: 335px;
+    height: 246px;
+    flex-shrink: 0;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 470px;
+    margin-left: -5px;
+    border-radius: 20px;
+    background: #63AFBD;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.content .widget-1 .atasan {
+    color: #FFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    margin-top: 0px;
+    margin-left: 60px;
+    line-height: normal;
+}
+
+.content .widget-1 .padding-1{
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 20px;
+}
+
+.padding-1 .profil-1 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.padding-1 .profil-2 {
+    width: 70px;
+    height: 20px;
+    color: #63AFBD;
+    flex-shrink: 0;
+    margin-left: 220px;
+    margin-top: -19px;
+    border-radius: 20px;
+    background: #ffffff;
+}
+
+.content .widget-1 .padding-2{
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 20px;
+}
+
+.padding-2 .profil-3 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.padding-2 .profil-4 {
+    width: 70px;
+    height: 20px;
+    color: #63AFBD;
+    flex-shrink: 0;
+    margin-left: 220px;
+    margin-top: -19px;
+    border-radius: 20px;
+    background: #ffffff;
+}
+
+.content .widget-1 .padding-3{
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 20px;
+}
+
+.padding-3 .profil-5 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.padding-3 .profil-6 {
+    width: 70px;
+    height: 20px;
+    color: #63AFBD;
+    flex-shrink: 0;
+    margin-left: 220px;
+    margin-top: -19px;
+    border-radius: 20px;
+    background: #ffffff;
+}
+
+.content .widget-1 .padding-4{
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 20px;
+}
+
+.padding-4 .profil-7 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.padding-4 .profil-8 {
+    width: 70px;
+    height: 20px;
+    color: #63AFBD;
+    flex-shrink: 0;
+    margin-left: 220px;
+    margin-top: -19px;
+    border-radius: 20px;
+    background: #ffffff;
+}
+
+.widget-2 {
+    width: 700px;
+    height: 246px;
+    flex-shrink: 0;
+    padding: 20px;
+    margin-top: -715px;
+    margin-right: 247px;
+    margin-bottom: 500px;
+    margin-left: 370px;
+    border-radius: 20px;
+    background: #63AFBD;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.content .widget-2 .atasan-2 {
+    color: #FFF;
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    width: 700px;
+    height: 50px;
+    flex-shrink: 0;
+}
+
+.content .widget-2 .bungkus-1 {
+    width: 126.66px;
+    height: 142px;
+    margin-top: -10px;
+    margin-left: 20px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.bungkus-1 .teks-1 {
+    color: #63AFBD;
+    font-family: Montserrat;
+    font-size: 15px;
+    margin-left: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.bungkus-1 .total-1 {
+    color: #63AFBD;
+    font-family: Montserrat;
+    margin-top: 20px;
+    margin-left: 25px;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.content .widget-2 .bungkus-2 {
+    width: 126.66px;
+    height: 142px;
+    margin-top: -142px;
+    margin-left: 180px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.bungkus-2 .teks-2 {
+    color: #63AFBD;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    margin-left: 38px;
+    font-weight: 600;
+    line-height: normal;
+
+}
+
+.bungkus-2 .total-2 {
+    color: #63AFBD;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 20px;
+    margin-left: 52px;
+}
+
+.content .widget-2 .bungkus-3 {
+    width: 126.66px;
+    height: 142px;
+    margin-top: -142px;
+    margin-left: 345px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.bungkus-3 .teks-3 {
+    color: #63AFBD;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-left: 22px;
+}
+
+.bungkus-3 .total-3 {
+    color: #63AFBD;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 20px;
+    margin-left: 28px;
+}
+
+.content .widget-2 .bungkus-4 {
+    width: 126.66px;
+    height: 142px;
+    margin-top: -142px;
+    margin-left: 510px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.bungkus-4 .teks-4 {
+    color: #63AFBD;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-left: 16px;
+}
+
+.bungkus-4 .total-4 {
+    color: #63AFBD;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 20px;
+    margin-left: 34px;
+}
+
+.content .widget-3 {
+    border-radius: 20px;
+    background: #63AFBD;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 335px;
+    height: 246px;
+    flex-shrink: 0;
+    padding: 20px;
+    margin-top: -450px;
+    margin-right: 300px;
+    margin-bottom: 500px;
+    margin-left: -5px;
+}
+
+.content .widget-3 .atasan-3 {
+    color: #FFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    width: 700px;
+    height: 50px;
+    flex-shrink: 0;
+    margin-top: 0px;
+    margin-left: 100px;
+}
+
+.content .widget-3 .ebook-1 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.ebook-1 .ebook-teks-1 {
+    margin-top: -15px;
+    margin-left: 85px;
+}
+.ebook-1 .ebook-no-1{
+    color: #FFF;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-left: 103px;
+}
+
+.content .widget-3 .ebook-2 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.ebook-2 .ebook-teks-2 {
+    margin-top: 10px;
+    margin-left: 75px;
+}
+
+.ebook-2 .ebook-no-2 {
+    color: #FFF;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-left: 67px;
+}
+
+.content .widget-4 {
+    width: 419px;
+    height: 246px;
+    flex-shrink: 0;
+    padding: 20px;
+    margin-top: -746px;
+    margin-right: 300px;
+    margin-bottom: 500px;
+    margin-left: 425px;
+    border-radius: 20px;
+    background: #63AFBD;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}

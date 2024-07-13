@@ -1,0 +1,528 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #63AFBD;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.bg-base-body {
+    background: #63AFBD;
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* Ensure it takes at least the full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
+.head-homepage{
+    width: 1360px;
+    height: 663px;
+}
+
+.bg-body-item{
+    grid-template-columns: 0.8fr 4fr;
+    display: grid;
+}
+
+.nav {
+    background-color: #63AFBD;
+    padding: 10px 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px; /* Adjust the gap as needed */
+}
+
+.navigation {
+    display: flex;
+    gap: 20px; /* Adjust the gap as needed */
+}
+
+.navigation a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.navigation a p {
+    margin: 0;
+    padding: 0;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #FFFEFE;
+    background: #63AFBD;
+    width: 65px;
+    height: 20px;
+    text-align: center;
+}
+
+.login a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.login a p {
+    margin: 0;
+    padding: 0;
+}
+
+.main-content {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 110.000px;
+    height: 490.000px;
+    flex-shrink: 0;
+    border-radius: 50px;
+    border: 1px solid #FFF;
+    margin-left: 60px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Adjust the gap between icons as needed */
+}
+
+.sidebar a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+.sidebar a img {
+    height: 100%; /* Adjust based on the actual icon size */
+    object-fit: cover;
+}
+
+.perpustext{
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.ebooktext{
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.umkmtext{
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* VILLAGE */
+
+.isometric-village {
+    max-width: 740px;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.content {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.corner {
+    position: absolute;
+}
+
+.corner-1 {
+    margin: 150px 850px 0px 98px;
+    position: absolute;
+}
+
+.corner-2 {
+    margin: 215px 850px 0px 200px;
+    position: absolute;
+}
+
+.corner-3 {
+    margin: 130px 850px 0px 370px;
+    position: absolute;
+}
+
+.corner-4 {
+    margin: 30px 850px 0px 415px;
+    position: absolute;
+}
+
+.corner-5 {
+    margin: 140px 850px 0px 570px;
+    position: absolute;
+}
+
+.cornerteks-1 {
+    margin: 110px 850px 0px 90px;
+    position: absolute;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.cornerteks-2 {
+    margin: 180px 850px 0px 200px;
+    position: absolute;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.cornerteks-3 {
+    margin: 90px 850px 0px 370px;
+    position: absolute;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.cornerteks-4 {
+    margin: -25px 850px 0px 405px;
+    position: absolute;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.cornerteks-5 {
+    margin: 85px 850px 0px 563px;
+    position: absolute;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+/* PROFILE CIPSMART */
+.btn-detail{
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    width: 210.000px;
+    height: 50.000px;
+    border-radius: 10px;
+    background: #3EB9F7;
+}
+
+.profilecipsmart {
+    background-image: url('../img/homepage/bg-1.png');
+    width: 1360px;
+    height: 448px;
+    grid-template-columns: 3fr 1fr;
+    display: grid;
+}
+
+.desc1{
+    padding: 0px 100px 0px 60px;
+}
+
+.titlecipsmart{
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.tekscipsmart{
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.logocipsmart{
+    width: 239px;
+    height: 303px;
+    margin-top: 75px;
+    margin-left: 40px;
+}
+
+/* PROFILE CIPAKU */
+.profilecipaku {
+    width: 1360px;
+    height: 448px;
+    grid-template-columns: 1fr 3fr;
+    display: grid;
+}
+
+.desc2{
+    padding: 0px 100px 0px 90px;
+}
+
+.logocipaku{
+    width: 171px;
+    height: 214px;
+    margin-top: 60px;
+    margin-left: 30px;
+}
+
+.titlecipaku{
+    color: #FFF;
+    text-align: right;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.tekscipaku{
+    color: #FFF;
+    text-align: right;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-left: 100px;
+}
+
+.detail-cipaku{
+    margin-left: 815px;
+}
+
+/*  */
+.titledocmitloc{
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/* DOC CIPSMART */
+.documentation{
+    background-image: url(../img/homepage/bg-2.png);
+    width: 1360px;
+    height: 600px;
+}
+
+
+.pic-doc-1{
+    margin-left: 50px;
+    margin-bottom: 25px;
+}
+
+.pic-doc-3{
+    margin-bottom: 25px;
+}
+
+.back, .next{
+    margin-bottom: 100px;
+}
+
+/* MITRA CIPSMART */
+.mitra {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-mit{
+    margin-top: 0;
+}
+
+.boxmit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.boxmit img {
+    display: block;
+}
+
+/* LOKASI CIPSMART */
+.loc {
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../img/homepage/bg-3.png);
+}
+
+.maps iframe {
+    width: 862px;
+    height: 323px;
+    border-radius: 25px;
+    border: 0; /* Ensure no border */
+}
+
+/* FOOTER */
+.footer {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    margin-top: 50px;
+}
+
+.linked {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px; /* Adjust gap between columns as needed */
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px; /* Space between columns and copyright */
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.linked a, .linked p {
+    margin: 5px 0;
+}
+
+.linked a {
+    color: #FFF;
+    text-decoration: none; /* Remove underline */
+}
+
+.linked a:hover {
+    color: #FFF; /* Ensure hover color stays white */
+    text-decoration: underline; /* Optional: underline on hover */
+}
+
+.callfot img {
+    width: 30px; /* Adjust icon size as needed */
+}
+
+.copyright {
+    text-align: center;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 30px;
+}
+
+.copy {
+    margin: 0;
+}
+
+/* BUTTON USERNAME */
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 90px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    margin: 10px 0px 0px -30px;
+    border-radius: 10px;
+}
+
+.dropdown-content a {
+    color: #3EB9F7;
+    padding: 0px 15px;
+    text-decoration: none;
+    display: block;
+    height: 25px;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+}
+
+.show {
+    display: block;
+}
+

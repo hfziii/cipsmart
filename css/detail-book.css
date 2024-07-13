@@ -1,0 +1,581 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #63AFBD;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.bg-base-body {
+    background: #63AFBD;
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* Ensure it takes at least the full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
+/* NAVBAR */
+.bg-navbar {
+    width: 100%; /* Make the navbar take the full width */
+    height: 86px;
+    background-color: #63AFBD;
+}
+
+.navbar {
+    width: 100%;
+    height: 71px;
+    background-color: #FFF;
+    margin-top: 15px;
+    display: flex;
+    align-items: center; /* Align items vertically in the center */
+    justify-content: space-between; /* Space out items evenly */
+    padding: 0 85px; /* Add padding for spacing */
+    box-sizing: border-box;
+}
+
+.corner-lib {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    position: relative; 
+    color: #63AFBD;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.corner {
+    margin: 0;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #FFF;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #63AFBD;
+    min-width: 0px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 2;
+    margin: 90px 0px 0px 0px;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: #3EB9F7;
+    padding: 0px 15px;
+    text-decoration: none;
+    display: block;
+    height: 25px;
+}
+
+.dropdown-content a:hover {
+    background-color: yellow;
+    border-radius: 10px;
+}
+
+.show {
+    display: block;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 639px;
+    height: 43px;
+    background: #E4E4E4;
+    border: 0px solid #0D344B;
+    border-radius: 30px;
+    overflow: hidden; /* Ensure elements do not overflow the rounded corners */
+}
+
+.search-bar input {
+    flex-grow: 1; /* Allow input to take up available space */
+    height: 100%;
+    border: none;
+    padding: 0 20px;
+    border-radius: 30px 0 0 30px;
+    background: #E4E4E4;
+    outline: none; /* Remove default outline */
+}
+
+.search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 100%;
+    background: #E4E4E4;
+}
+
+.navigator {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navigator a {
+    text-decoration: none;
+}
+
+.navigator p {
+    font-size: 16px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.home {
+    color: #63AFBD;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal; 
+}
+
+.login {
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    width: 65px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #FFFEFE;
+    background: #63AFBD;
+    margin-right: 53px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.login a p {
+    margin: 0;
+    padding: 0;
+}
+
+/* CONTENT */
+
+.content{
+    background-image: url('../img/catalog/bg-catalog.png');
+    width: 1360px;
+    height: 1155px;
+    grid-template-columns: 0.5fr 3fr;
+    display: grid;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 115px;
+    height: 385px;
+    flex-shrink: 0;
+    border-radius: 50px;
+    border: 1px solid #63AFBD;
+    margin-left: 60px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Adjust the gap between icons as needed */
+}
+
+.sidebar a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+.sidebar a img {
+    height: 100%; /* Adjust based on the actual icon size */
+    object-fit: cover;
+}
+
+.perpustext{
+    color: #63AFBD;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.ebooktext{
+    color: #63AFBD;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.umkmtext{
+    color: #63AFBD;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.front-sidebar{
+    z-index: 1;
+}
+
+.box-bg{
+    width: 211px;
+    height: 120px;
+    position: absolute;
+    border-radius: 20px;
+    background: #FFF;
+    z-index: 0;
+    margin-bottom: 215px;
+    margin-left: 70px;
+}
+
+/* DETAIL */
+.detailframe{
+    grid-template-columns: 1fr 3fr;
+    display: grid;
+    border-radius: 20px;
+    background: #63AFBD;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);  
+    width: 1100px;
+    height: 750px;
+    z-index: 1;
+    margin-top: 15px;
+}
+
+.title-detail{
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+    margin: 20px 0px 0px 50px;
+}
+
+.picbook{
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+.title-book{
+    color: #FFF;
+    font-family: MMontserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.name-author{
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.status{
+    color: #000;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.book-desc{
+    grid-template-columns: 2fr 2fr;
+    display: grid;
+}
+
+.detail-2 p{
+    color: #FFF;
+    font-family: Montserrat;
+    padding: 10px;
+}
+
+/* Add the following CSS to style the white line */
+.white-line {
+    border: none; /* Remove default border style */
+    background-color: white; /* Set the color to white */
+    margin: -20px 0 0 12px; /* Adjust the margin as needed */
+    width: 715px;
+    height: 1px;
+}
+
+.sb{
+    width: 145px;
+    height: 33px;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+    justify-content: center;
+    margin-top: 7px;
+}
+
+.sb-none{
+    width: 145px;
+    height: 33px;
+    border-radius: 10px;
+    border: 2px solid yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 7px;
+}
+
+.wa-disabled{
+    width: 145px;
+    height: 35px;
+    border-radius: 10px;
+    background-color: #17a2b8;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+    justify-content: center;
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+    margin-top: 7px;
+}
+
+/* .wa-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+    margin-top: -20px;
+} */
+
+.chatwa{
+    margin-left: 2px;
+    max-width: 30px;
+}
+
+/* REKOMENASI */
+
+/* FOOTER */
+.footer {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    margin-top: 50px;
+}
+
+.linked {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px; /* Adjust gap between columns as needed */
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px; /* Space between columns and copyright */
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.linked a, .linked p {
+    margin: 5px 0;
+}
+
+.linked a {
+    color: #FFF;
+    text-decoration: none; /* Remove underline */
+}
+
+.linked a:hover {
+    color: #FFF; /* Ensure hover color stays white */
+    text-decoration: underline; /* Optional: underline on hover */
+}
+
+.callfot img {
+    width: 30px; /* Adjust icon size as needed */
+}
+
+.copyright {
+    text-align: center;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 30px;
+}
+
+.copy {
+    margin: 0;
+}
+
+/* POP UP PINJAM */
+.popup-form {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 425px;
+    border-radius: 20px;
+    background: #1C7EA5;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.popup-form h2 {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.popup-form p {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-bottom: 40px;
+}
+
+.popup-form input[type="text"], .popup-form input[type="date"] {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+}
+.popup-form .close-btn {
+    position: absolute;
+    right: 15px;
+    top: 0px;
+    cursor: pointer;
+    font-size: 50px;
+    color: #fff;
+}
+
+.popup-form .submit-btn {
+    position: absolute;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 150px;
+    height: 40px;
+    margin: 220px 0px 0px 250px; /* Mengatur margin auto untuk pusat secara horizontal */
+    display: block; /* Membuat tombol menjadi blok untuk menggunakan margin auto */
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Membagi form menjadi 2 kolom dengan lebar yang sama */
+    grid-gap: 10px; /* Jarak antara grid items */
+    width: 100%;
+    max-width: 600px; /* Atur lebar maksimum form sesuai kebutuhan */
+    margin: 0 auto; /* Pusatkan form secara horizontal */
+}
+
+form label {
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="submit"] {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%; /* Biarkan input mengisi lebar grid item */
+    box-sizing: border-box; /* Pastikan padding tidak mempengaruhi lebar total */
+}
+
+.labelborrow{
+    margin-top: 10px;
+    color: #fff;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+/*  */
+
+.rentbutton{
+    text-decoration: none;
+    background-color: transparent;
+    color: #fff; 
+    width: 177px;
+    height: 35px;
+    border-radius: 10px;
+    border-color: #fff;
+    background-color: #17a2b8;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+    justify-content: center;
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+.rentbutton:hover {
+    text-decoration: none; /* Menghilangkan garis bawah pada teks saat dihover */
+    background-color: #127a8e; /* Ubah warna latar belakang saat dihover */
+    border-color: #127a8e; /* Ubah warna border saat dihover */
+}
+
+.rentbutton:hover span {
+    text-decoration: none; /* Menghilangkan garis bawah pada teks saat dihover */
+}
