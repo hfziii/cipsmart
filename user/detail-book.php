@@ -2,6 +2,8 @@
 session_start();
 include 'koneksi.php';
 
+$showSuccessPopup = false; // Tambahkan variabel untuk menampilkan popup sukses
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
     $id_book = $_POST['id_book'];
     $id_user = $_POST['id_user'];
@@ -10,21 +12,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
     $borrow_date = $_POST['borrow_date'];
     $return_date = $_POST['return_date'];
 
-    // Query untuk memasukkan data peminjaman ke tabel book_borrowing
     $sql_insert = "INSERT INTO book_borrowing (id_book, id_user, name, title_book, borrow_date, return_date) 
             VALUES ('$id_book', '$id_user', '$borrower_name', '$title_book', '$borrow_date', '$return_date')";
 
     if (mysqli_query($connection, $sql_insert)) {
-        // Update status buku menjadi "Dipinjam" di tabel book
         $sql_update = "UPDATE book SET status = 'Dipinjam' WHERE id_book = '$id_book'";
+
         if (mysqli_query($connection, $sql_update)) {
-            echo "Peminjaman berhasil!";
+            $showSuccessPopup = true; // Set variabel untuk menampilkan popup sukses
         } else {
-            echo "Error updating book status: " . mysqli_error($connection);
+            echo "<script>alert('Data insertion failed: " . mysqli_error($connection) . "');</script>";
         }
-    } else {
-        echo "Error: " . $sql_insert . "<br>" . mysqli_error($connection);
-    }
+    } 
 }
 
 if (!isset($_GET['id_book'])) {
@@ -82,88 +81,112 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
     ?>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var loginBtn = document.getElementById("loginBtn");
-        var dropdownContent = document.getElementById("dropdownContent");
-        var borrowForm = document.getElementById("borrowForm");
+        document.addEventListener("DOMContentLoaded", function () {
+            <?php if ($showSuccessPopup): ?>
+                document.querySelector('#successPopupForm').style.display = 'block';
+            <?php endif; ?>
 
-        <?php if (isset($_SESSION['username'])): ?>
-            loginBtn.classList.add("username-btn");
-            loginBtn.style.cursor = "pointer";
-
-            // Tambahkan event listener untuk menampilkan dropdown
-            loginBtn.addEventListener("click", function (event) {
-                event.preventDefault();
-                dropdownContent.classList.toggle("show");
-            });
-
-            // Event listener untuk logout
-            var logoutItem = document.createElement('a');
-            logoutItem.textContent = "Logout";
-            logoutItem.href = "../logout.php";
-            logoutItem.onclick = function(event) {
-                if (!confirm("Anda Yakin Ingin Logout?")) {
-                    event.preventDefault();
-                }
-            };
-            dropdownContent.appendChild(logoutItem);
-
-            // Event listener untuk pinjam buku
-            var borrowBtn = document.querySelector('.wa');
-            if (borrowBtn) {
-                borrowBtn.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    document.querySelector('.popup-form').style.display = 'block';
+            var okBtn = document.querySelector('#successPopupForm .success-ok-btn');
+            if (okBtn) {
+                okBtn.addEventListener('click', function () {
+                    document.getElementById('successPopupForm').style.display = 'none';
                 });
             }
-        <?php else: ?>
-            loginBtn.href = "../login.php"; // Link ke halaman login.php jika belum login
-        <?php endif; ?>
 
-        window.onclick = function (event) {
-            if (!event.target.matches('.login-btn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
+            var loginBtn = document.getElementById("loginBtn");
+            var dropdownContent = document.getElementById("dropdownContent");
+            var borrowForm = document.getElementById("borrowForm");
+
+            <?php if (isset($_SESSION['username'])): ?>
+                loginBtn.classList.add("username-btn");
+                loginBtn.style.cursor = "pointer";
+
+                // Tambahkan event listener untuk menampilkan dropdown
+                loginBtn.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    dropdownContent.classList.toggle("show");
+                });
+
+                // Event listener untuk logout
+                var logoutItem = document.createElement('a');
+                logoutItem.textContent = "Logout";
+                logoutItem.href = "../logout.php";
+                logoutItem.onclick = function(event) {
+                    if (!confirm("Anda Yakin Ingin Logout?")) {
+                        event.preventDefault();
+                    }
+                };
+                dropdownContent.appendChild(logoutItem);
+
+                // Event listener untuk pinjam buku
+                var borrowBtn = document.querySelector('.wa');
+                if (borrowBtn) {
+                    borrowBtn.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        document.querySelector('.popup-form').style.display = 'block';
+                    });
+                }
+            <?php else: ?>
+                loginBtn.href = "../login.php"; // Link ke halaman login.php jika belum login
+            <?php endif; ?>
+
+            window.onclick = function (event) {
+                if (!event.target.matches('.login-btn')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    for (var i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
                     }
                 }
+                if (event.target.matches('.popup-form .close-btn')) {
+                    document.querySelector('.popup-form').style.display = 'none';
+                }
             }
-            if (event.target.matches('.popup-form .close-btn')) {
-                document.querySelector('.popup-form').style.display = 'none';
+
+            var okBtn = document.querySelector('#successPopupForm .success-ok-btn');
+            if (okBtn) {
+                okBtn.addEventListener('click', function () {
+                    document.getElementById('successPopupForm').style.display = 'none';
+                });
             }
-        }
-    });
+        });
     </script>
 
 </head>
 <body>
     <div class="bg-base-body">
 
-    <!-- Pop-up form -->
-    <div class="popup-form" id="popupForm">
-        <span class="close-btn">&times;</span>
-        <h2>Pinjam Buku</h2>
-        <p><?php echo $data['title_book']; ?></p>
-        <form action="detail-book.php?id_book=<?php echo $id_book; ?>" method="POST">
-
-            <input type="hidden" name="id_book" value="<?php echo $id_book; ?>">
-            <input type="hidden" name="id_user" value="<?php echo $id_user; ?>">
-
-            <label for="borrow_date" class="labelborrow">Nama Peminjam</label>
-            <input type="text" id="borrower_name" name="borrower_name" placeholder="Nama Peminjam" required>
-            <input type="hidden" name="title_book" value="<?php echo $data['title_book']; ?>">
-            <label for="borrow_date" class="labelborrow">Tanggal Pinjam</label>
-            <input type="date" id="borrow_date" name="borrow_date" required>
-            <label for="return_date" class="labelborrow">Tanggal Kembali</label>
-            <input type="date" id="return_date" name="return_date" required>
-            <input type="submit" class="submit-btn" name="borrow" value="Pinjam">
-
-        </form>
-    </div>
-
+        <!-- Pop-up form -->
+        <div class="popup-form" id="popupForm">
+            <span class="close-btn">&times;</span>
+            <h2>Pinjam Buku</h2>
+            <p><?php echo $data['title_book']; ?></p>
+            <form action="detail-book.php?id_book=<?php echo $id_book; ?>" method="POST">
+                <input type="hidden" name="id_book" value="<?php echo $id_book; ?>">
+                <input type="hidden" name="id_user" value="<?php echo $id_user; ?>">
+                <label for="borrow_date" class="labelborrow">Nama Peminjam</label>
+                <input type="text" id="borrower_name" name="borrower_name" placeholder="Nama Peminjam" required>
+                <input type="hidden" name="title_book" value="<?php echo $data['title_book']; ?>">
+                <label for="borrow_date" class="labelborrow">Tanggal Pinjam</label>
+                <input type="date" id="borrow_date" name="borrow_date" required>
+                <label for="return_date" class="labelborrow">Tanggal Kembali</label>
+                <input type="date" id="return_date" name="return_date" required>
+                <input type="submit" class="submit-btn" name="borrow" value="Pinjam">
+            </form>
+        </div>
         
+        <!-- Success Pop-up form -->
+        <div class="success-popup-form" id="successPopupForm" style="display:none;">
+            <div class="center-image-container">
+                <img src="../img/catalog/ep_success-filled.png" alt="Success Image">
+            </div>
+            <h2>Peminjaman Buku</h2>
+            <h2>Berhasil!</h2>
+            <button class="ok-btn success-ok-btn">Oke</button>
+        </div>
+
         <header class="bg-navbar">
             <nav class="navbar">
                 <div class="logo-nav">
@@ -225,7 +248,7 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
                             Perpustakaan
                         </p>
                     </div>
-    
+
                     <div class="ebook">
                         <a href="#">
                             <img src="../img/catalog/ebook-btn.png" alt="">
@@ -234,7 +257,7 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
                             E-Book
                         </p>
                     </div>
-    
+
                     <div class="umkm">
                         <a href="#">
                             <img src="../img/catalog/umkm-btn.png" alt="">
@@ -250,13 +273,13 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
 
             <div class="detailframe">
 
-               <div class="detail-1">
+                <div class="detail-1">
                     <div class="photobook">
                         <img src="<?php echo '../' . $data['photo']; ?>" alt="<?php echo $data['title_book']; ?>" style="width: 200px; height: 280px; margin: 10px 0px 0px 30px">
                     </div>
-               </div> 
+                </div> 
 
-               <div class="detail-2">
+                <div class="detail-2">
                     <h2 style="color: #fff;"><?php echo $data['author_name']; ?></h2>
                     <h1 style="color: #fff;"><?php echo $data['title_book']; ?></h1>
 
@@ -285,7 +308,7 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
                                     <span class="rentbutton">Login untuk Pinjam</span>
                                 </a>
                             <?php endif; ?>
-                           
+                            
                         <?php endif; ?>
                     </div>
 

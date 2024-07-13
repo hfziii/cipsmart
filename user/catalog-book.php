@@ -9,7 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
     $query = "INSERT INTO absen (name_member, name_corner, date) VALUES ('$name_member', '$name_corner', '$date')";
 
     if (mysqli_query($connection, $query)) {
-        echo "<script>alert('Data successfully inserted');</script>";
+        // Redirect to the same page with a success flag
+        header("Location: catalog-book.php?success=1");
+        exit();
     } else {
         echo "<script>alert('Data insertion failed: " . mysqli_error($connection) . "');</script>";
     }
@@ -27,9 +29,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
     <?php
     session_start();
     ?>
-    <script>
 
+    <script>
     document.addEventListener("DOMContentLoaded", function () {
+        // Show success popup if URL contains success flag
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('success')) {
+            document.querySelector('#successPopupForm').style.display = 'block';
+
+            // Remove the success flag from the URL
+            const newURL = window.location.origin + window.location.pathname;
+            window.history.replaceState({}, document.title, newURL);
+        }
+
         var loginBtn = document.getElementById("loginBtn");
         var dropdownContent = document.getElementById("dropdownContent");
 
@@ -37,13 +49,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
             loginBtn.classList.add("username-btn");
             loginBtn.style.cursor = "pointer";
 
-            // Tambahkan event listener untuk menampilkan dropdown
             loginBtn.addEventListener("click", function (event) {
                 event.preventDefault();
                 dropdownContent.classList.toggle("show");
             });
 
-            // Event listener untuk logout
             var logoutItem = document.createElement('a');
             logoutItem.textContent = "Logout";
             logoutItem.href = "../logout.php";
@@ -54,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
             };
             dropdownContent.appendChild(logoutItem);
 
-            // Event listener untuk absen
             var borrowBtn = document.querySelector('.absen-pb');
             if (borrowBtn) {
                 borrowBtn.addEventListener('click', function(event) {
@@ -64,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
             }
 
         <?php else: ?>
-            loginBtn.href = "../login.php"; // Link ke halaman login.php jika belum login
+            loginBtn.href = "../login.php";
         <?php endif; ?>
 
         window.onclick = function (event) {
@@ -79,15 +88,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
             }
         }
 
-        var closeBtn = document.querySelector('.popup-form .close-btn');
-        if (closeBtn) {
+        var closeBtns = document.querySelectorAll('.popup-form .close-btn');
+        closeBtns.forEach(function (closeBtn) {
             closeBtn.addEventListener('click', function () {
-                document.querySelector('.popup-form').style.display = 'none';
+                closeBtn.parentElement.style.display = 'none';
+            });
+        });
+
+        var okBtn = document.querySelector('#successPopupForm .success-ok-btn');
+        if (okBtn) {
+            okBtn.addEventListener('click', function () {
+                document.getElementById('successPopupForm').style.display = 'none';
             });
         }
-
     });
     </script>
+
 </head>
 <body>
     <div class="bg-base-body">
@@ -116,7 +132,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                 <input type="submit" class="submit-btn" name="borrow" value="Absen">
             </form>
         </div>
-        
+
+        <!-- Success Pop-up form -->
+        <div class="success-popup-form" id="successPopupForm" style="display:none;">
+            <div class="center-image-container">
+                <img src="../img/catalog/ep_success-filled.png" alt="Success Image">
+            </div>
+            <h2>Absen Kamu</h2>
+            <h2>Berhasil!</h2>
+            <button class="ok-btn success-ok-btn">Oke</button>
+        </div>
+
         <header class="bg-navbar">
             <nav class="navbar">
                 <div class="logo-nav">

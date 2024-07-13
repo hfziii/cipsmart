@@ -484,7 +484,32 @@ body, html {
     z-index: 1000;
 }
 
+.success-popup-form{
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 300px;
+    border-radius: 20px;
+    background: #1C7EA5;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
 .popup-form h2 {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.success-popup-form h2{
     color: #FFF;
     text-align: center;
     font-family: Montserrat;
@@ -505,6 +530,17 @@ body, html {
     margin-bottom: 40px;
 }
 
+.success-popup-form .center-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-image-container img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 .popup-form input[type="text"], .popup-form input[type="date"] {
     width: calc(100% - 22px);
     padding: 10px;
@@ -512,6 +548,7 @@ body, html {
     border: none;
     border-radius: 5px;
 }
+
 .popup-form .close-btn {
     position: absolute;
     right: 15px;
@@ -525,14 +562,30 @@ body, html {
     position: absolute;
     background-color: #4CAF50;
     color: white;
-    padding: 10px 20px;
+    padding: 0px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     width: 150px;
     height: 40px;
-    margin: 220px 0px 0px 250px; /* Mengatur margin auto untuk pusat secara horizontal */
-    display: block; /* Membuat tombol menjadi blok untuk menggunakan margin auto */
+    margin: 220px 0px 0px 230px;
+    display: block;
+    font-size: 20px;
+}
+
+.success-popup-form .ok-btn {
+    position: absolute;
+    background-color: #7CFF00;
+    color: white;
+    padding: 0px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 150px;
+    height: 40px;
+    margin: 30px 0px 0px 275px;
+    display: block;
+    font-size: 20px;
 }
 
 form {
