@@ -1,3 +1,21 @@
+<?php
+include("koneksi.php");
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
+    $name_member = mysqli_real_escape_string($connection, $_POST['name_member']);
+    $name_corner = mysqli_real_escape_string($connection, $_POST['name_corner']);
+    $date = mysqli_real_escape_string($connection, $_POST['date']);
+
+    $query = "INSERT INTO absen (name_member, name_corner, date) VALUES ('$name_member', '$name_corner', '$date')";
+
+    if (mysqli_query($connection, $query)) {
+        echo "<script>alert('Data successfully inserted');</script>";
+    } else {
+        echo "<script>alert('Data insertion failed: " . mysqli_error($connection) . "');</script>";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +28,7 @@
     session_start();
     ?>
     <script>
+
     document.addEventListener("DOMContentLoaded", function () {
         var loginBtn = document.getElementById("loginBtn");
         var dropdownContent = document.getElementById("dropdownContent");
@@ -34,6 +53,16 @@
                 }
             };
             dropdownContent.appendChild(logoutItem);
+
+            // Event listener untuk absen
+            var borrowBtn = document.querySelector('.absen-pb');
+            if (borrowBtn) {
+                borrowBtn.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    document.querySelector('.popup-form').style.display = 'block';
+                });
+            }
+
         <?php else: ?>
             loginBtn.href = "../login.php"; // Link ke halaman login.php jika belum login
         <?php endif; ?>
@@ -49,11 +78,44 @@
                 }
             }
         }
+
+        var closeBtn = document.querySelector('.popup-form .close-btn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function () {
+                document.querySelector('.popup-form').style.display = 'none';
+            });
+        }
+
     });
     </script>
 </head>
 <body>
     <div class="bg-base-body">
+
+         <!-- Pop-up form -->
+        <div class="popup-form" id="popupForm">
+            <span class="close-btn">&times;</span>
+            <h2>Absen</h2>
+            <p>Pojok Baca</p>
+            <form action="catalog-book.php" method="POST">
+                <label for="name_member" class="labelborrow">Nama</label>
+                <input type="text" id="name_member" name="name_member" placeholder="Nama" required>
+
+                <label for="name_corner" class="labelborrow">Pojok Baca</label>
+                <select name="name_corner" class="form-control" required>
+                    <option value="Literasi Imajinatif">Literasi Imajinatif</option>
+                    <option value="Social Connect">Social Connect</option>
+                    <option value="Bisnis Berdaya">Bisnis Berdaya</option>
+                    <option value="Kreatif Kids Corner">Kreatif Kids Corner</option>
+                    <option value="Pena Inspirasi Gemilang">Pena Inspirasi Gemilang</option>
+                </select>
+
+                <label for="date" class="labelborrow">Tanggal</label>
+                <input type="date" id="date" name="date" required>
+
+                <input type="submit" class="submit-btn" name="borrow" value="Absen">
+            </form>
+        </div>
         
         <header class="bg-navbar">
             <nav class="navbar">
@@ -99,7 +161,18 @@
                             </div>
                         <?php endif; ?>
                     </div>
-                    <a href="#"><p class="absen-btn">Absen</p></a>
+
+                    <div class="absen">
+                        <?php if (isset($_SESSION['username'])): ?>
+                            <a href="#" class="absen-pb">
+                                <span class="absen-btn">Absen</span>
+                            </a>
+                        <?php else: ?>
+                            <a href="#" class="absen-none">
+                                <span class="absen-btn-disable">Absen</span>
+                            </a>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </nav>
         </header>        

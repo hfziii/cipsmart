@@ -329,6 +329,22 @@ body, html {
     display: grid;
 }
 
+.desc-1{
+    margin-bottom: -20px;
+}
+
+.desc-2{
+    margin-bottom: -20px;
+}
+
+.desc-3{
+    margin-bottom: -20px;
+}
+
+.desc-4{
+    margin-bottom: -20px;
+}
+
 .detail-2 p{
     color: #FFF;
     font-family: Montserrat;
@@ -392,7 +408,7 @@ body, html {
     max-width: 30px;
 }
 
-/* REKOMENASI */
+/* REKOMENDASI */
 
 /* FOOTER */
 .footer {

@@ -141,7 +141,7 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
 <body>
     <div class="bg-base-body">
 
-       <!-- Pop-up form -->
+    <!-- Pop-up form -->
     <div class="popup-form" id="popupForm">
         <span class="close-btn">&times;</span>
         <h2>Pinjam Buku</h2>
@@ -218,7 +218,7 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
             <div class="sidebar">
                 <div class="front-sidebar">
                     <div class="perpus">
-                        <a href="#">
+                        <a href="./catalog-book.php">
                             <img src="../img/catalog/lib-btn.png" alt="">
                         </a>
                         <p class="perpustext">
@@ -302,12 +302,12 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
                     </div>
                     <div class="book-desc">
                         <div class="bd1">
-                            <p>Penerbit <br><p><?php echo $data['publisher_name']; ?></p></p>
-                            <p>Tahun Terbit <br><p><?php echo $data['year_publish']; ?></p></p>
+                            <p class="desc-1">Penerbit <br><p><?php echo $data['publisher_name']; ?></p></p>
+                            <p class="desc-2">Tahun Terbit <br><p><?php echo $data['year_publish']; ?></p></p>
                         </div>
                         <div class="bd-2">
-                            <p>ISBN <br><p><?php echo $data['isbn']; ?></p></p>
-                            <p>Total Page <br><p><?php echo $data['total_page']; ?></p></p>
+                            <p class="desc-3">ISBN <br><p><?php echo $data['isbn']; ?></p></p>
+                            <p class="desc-4">Total Page <br><p><?php echo $data['total_page']; ?></p></p>
                         </div>
                     </div>
                 </div>

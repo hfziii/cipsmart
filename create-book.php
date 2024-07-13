@@ -169,7 +169,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label>Total Halaman</label>
                     <input type="text" name="total_page" class="form-control" required />
                 </div>
-
                 
                 <div class="form-group">
                     <label>Status</label>

@@ -199,6 +199,24 @@ html {
     justify-content: center;
 }
 
+.absen-btn-disable{
+    color: #fff;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    width: 65px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #FFFEFE;
+    background: #63AFBD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+}
+
 /* CONTENT */
 .content {
     background-image: url('../img/catalog/bg-catalog.png');
@@ -461,4 +479,132 @@ html {
         padding: 5px;
         font-size: 12px;
     }
+}
+
+/* POP UP PINJAM */
+.popup-form {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 425px;
+    border-radius: 20px;
+    background: #1C7EA5;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.popup-form h2 {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.popup-form p {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-bottom: 40px;
+}
+
+.popup-form input select[type="text"], .popup-form input[type="date"]{
+    width: calc(100% - 0px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+}
+.popup-form .close-btn {
+    position: absolute;
+    right: 15px;
+    top: 0px;
+    cursor: pointer;
+    font-size: 50px;
+    color: #fff;
+}
+
+.popup-form .submit-btn {
+    position: absolute;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 150px;
+    height: 40px;
+    margin: 220px 0px 0px 250px; /* Mengatur margin auto untuk pusat secara horizontal */
+    display: block; /* Membuat tombol menjadi blok untuk menggunakan margin auto */
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Membagi form menjadi 2 kolom dengan lebar yang sama */
+    grid-gap: 10px; /* Jarak antara grid items */
+    width: 100%;
+    max-width: 600px; /* Atur lebar maksimum form sesuai kebutuhan */
+    margin: 0 auto; /* Pusatkan form secara horizontal */
+}
+
+form label {
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="submit"] {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%; /* Biarkan input mengisi lebar grid item */
+    box-sizing: border-box; /* Pastikan padding tidak mempengaruhi lebar total */
+}
+
+.labelborrow{
+    margin-top: 10px;
+    color: #fff;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+/*  */
+
+.rentbutton{
+    text-decoration: none;
+    background-color: transparent;
+    color: #fff; 
+    width: 177px;
+    height: 35px;
+    border-radius: 10px;
+    border-color: #fff;
+    background-color: #17a2b8;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+    justify-content: center;
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+.rentbutton:hover {
+    text-decoration: none; /* Menghilangkan garis bawah pada teks saat dihover */
+    background-color: #127a8e; /* Ubah warna latar belakang saat dihover */
+    border-color: #127a8e; /* Ubah warna border saat dihover */
+}
+
+.rentbutton:hover span {
+    text-decoration: none; /* Menghilangkan garis bawah pada teks saat dihover */
 }
