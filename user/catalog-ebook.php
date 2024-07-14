@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Katalog E-Book-Cipsmart</title>
-    <link href="../css/catalog-book.css" rel="stylesheet">
+    <link href="../css/catalog-ebook.css" rel="stylesheet">
     <link rel="icon" href="../img/favicon/android-chrome-192x192.png" type="image/png">
     <?php
     session_start();
@@ -108,7 +108,7 @@
             <div class="sidebar">
                 <div class="front-sidebar">
                     <div class="perpus">
-                        <a href="#">
+                        <a href="../user/catalog-book.php">
                             <img src="../img/catalog/lib-btn.png" alt="">
                         </a>
                         <p class="perpustext">
@@ -141,7 +141,7 @@
             <div class="catalog">
 
                 <p class="title-catalog">
-                    Katalog Buku
+                    Katalog E-Book
                 </p>
 
                 <div class="frame-container">

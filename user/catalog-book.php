@@ -216,7 +216,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                     </div>
     
                     <div class="ebook">
-                        <a href="#">
+                        <a href="../user/catalog-ebook.php">
                             <img src="../img/catalog/ebook-btn.png" alt="">
                         </a>
                         <p class="ebooktext">
