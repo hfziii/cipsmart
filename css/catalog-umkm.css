@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,14 +13,14 @@ body, html {
     background: #63AFBD;
     position: relative;
     width: 100%;
-    min-height: 100vh; /* Ensure it takes at least the full viewport height */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-/* NAVBAR */
+
 .bg-navbar {
-    width: 100%; /* Make the navbar take the full width */
+    width: 100%;
     height: 86px;
     background-color: #63AFBD;
 }
@@ -30,15 +31,13 @@ body, html {
     background-color: #FFF;
     margin-top: 15px;
     display: flex;
-    align-items: center; /* Align items vertically in the center */
-    justify-content: space-between; /* Space out items evenly */
-    padding: 0 85px; /* Add padding for spacing */
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 85px;
     box-sizing: border-box;
-    gap: 15px;
 }
-/* Apply styles to the select element */
-select.corner-lib {
-    border: none; /* Removes the border */
+
+.corner-lib {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -50,30 +49,20 @@ select.corner-lib {
     font-style: normal;
     font-weight: 800;
     line-height: normal;
-    cursor: pointer; /* Change cursor to pointer */
-}
-
-/* Add a custom dropdown arrow */
-select.corner-lib::after {
-    content: '\25BC'; /* Unicode character for down arrow */
-    position: absolute;
-    right: 10px;
-    pointer-events: none; /* Allows clicking through the arrow */
-}
-
-/* Optional: style the container to position the custom arrow */
-.select-container {
-    position: relative;
-    display: inline-block;
-}
-
-/* Remove outline on focus */
-select.corner-lib:focus {
-    outline: none;
 }
 
 .corner {
     margin: 0;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #FFF;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 2;
 }
 
 .dropdown-content {
@@ -107,22 +96,24 @@ select.corner-lib:focus {
 .search-bar {
     display: flex;
     align-items: center;
-    width: 639px;
+    width: 845px;
     height: 43px;
     background: #E4E4E4;
     border: 0px solid #0D344B;
     border-radius: 30px;
-    overflow: hidden; /* Ensure elements do not overflow the rounded corners */
+    overflow: hidden;
+
 }
 
 .search-bar input {
-    flex-grow: 1; /* Allow input to take up available space */
+    flex-grow: 1;
+
     height: 100%;
     border: none;
     padding: 0 20px;
     border-radius: 30px 0 0 30px;
     background: #E4E4E4;
-    outline: none; /* Remove default outline */
+    outline: none;
 }
 
 .search-icon {
@@ -157,7 +148,7 @@ select.corner-lib:focus {
     font-size: 16px;
     font-style: normal;
     font-weight: 800;
-    line-height: normal; 
+    line-height: normal;
 }
 
 .login {
@@ -171,7 +162,7 @@ select.corner-lib:focus {
     border-radius: 5px;
     border: 1px solid #FFFEFE;
     background: #63AFBD;
-    margin-right: 53px;
+    /* margin-right: 53px; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -191,21 +182,50 @@ select.corner-lib:focus {
     padding: 0;
 }
 
-/* CONTENT */
-.main{
-    background-image: url('../img/catalog/bg-catalog.png');
-    height: 1400px;
-    background-size: cover;
+.absen-btn{
+    color: #fff;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    width: 65px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #FFFEFE;
+    background: #63AFBD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.content{
+.absen-btn-disable{
+    color: #fff;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    width: 65px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #FFFEFE;
+    background: #63AFBD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+}
+
+/* CONTENT */
+.content {
+    background-image: url('../img/catalog/bg-catalog.png');
     width: 1360px;
     height: 1155px;
     grid-template-columns: 0.5fr 3fr;
     display: grid;
 }
 
-/* SIDEBAR */
 .sidebar {
     width: 115px;
     height: 385px;
@@ -218,7 +238,7 @@ select.corner-lib:focus {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px; /* Adjust the gap between icons as needed */
+    gap: 10px;
 }
 
 .sidebar a {
@@ -230,11 +250,12 @@ select.corner-lib:focus {
 }
 
 .sidebar a img {
-    height: 100%; /* Adjust based on the actual icon size */
+    height: 100%;
+    /* Adjust based on the actual icon size */
     object-fit: cover;
 }
 
-.perpustext{
+.perpustext {
     color: #63AFBD;
     text-align: center;
     font-family: Montserrat;
@@ -246,7 +267,7 @@ select.corner-lib:focus {
     margin-bottom: 15px;
 }
 
-.ebooktext{
+.ebooktext {
     color: #63AFBD;
     text-align: center;
     font-family: Montserrat;
@@ -258,7 +279,7 @@ select.corner-lib:focus {
     margin-bottom: 15px;
 }
 
-.umkmtext{
+.umkmtext {
     color: #63AFBD;
     text-align: center;
     font-family: Montserrat;
@@ -270,151 +291,83 @@ select.corner-lib:focus {
     margin-bottom: 0;
 }
 
-.front-sidebar{
+.front-sidebar {
     z-index: 1;
 }
 
-.box-bg{
+.box-bg {
     width: 211px;
     height: 120px;
     position: absolute;
     border-radius: 20px;
     background: #FFF;
     z-index: 0;
-    margin-bottom: 235px;
+    margin-bottom: -245px;
     margin-left: 70px;
 }
 
-/* DETAIL */
-.detailframe{
-    grid-template-columns: 1fr 3fr;
-    display: grid;
+/* CATALOG */
+.catalog {
+    flex: 1;
+    background-color: #63AFBD;
     border-radius: 20px;
-    background: #63AFBD;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);  
-    width: 1100px;
-    height: 750px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    max-height: 160vh;
+    overflow-y: auto;
+    margin-top: 15px;
+    margin-right: 15px;
+    padding: 20px;
     z-index: 1;
+}
+       
+.title-catalog {
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 25px;
     margin-top: 15px;
 }
 
-.title-detail{
-    color: #FFF;
-    font-family: Montserrat;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 200;
-    line-height: normal;
-    margin: 20px 0px 0px 50px;
-}
-
-.picbook{
-    margin-top: 10px;
-    margin-left: 50px;
-}
-
-.title-book{
-    color: #FFF;
-    font-family: MMontserrat;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-}
-
-.name-author{
-    color: #FFF;
-    font-family: Montserrat;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.status{
-    color: #000;
-    font-family: Montserrat;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-}
-
-.book-desc{
-    grid-template-columns: 2fr 2fr;
+.frame-container {
     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
 }
 
-.desc-1{
-    margin-bottom: -20px;
-}
-
-.desc-2{
-    margin-bottom: -20px;
-}
-
-.desc-3{
-    margin-bottom: -20px;
-}
-
-.desc-4{
-    margin-bottom: -20px;
-}
-
-.detail-2 p{
-    color: #FFF;
-    font-family: Montserrat;
+.frame-card {
+    background-color: #ffffff;
+    border-radius: 10px;
     padding: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-align: center;
 }
 
-/* Add the following CSS to style the white line */
-.white-line {
-    border: none; /* Remove default border style */
-    background-color: white; /* Set the color to white */
-    margin: -20px 0 0 12px; /* Adjust the margin as needed */
-    width: 715px;
-    height: 1px;
+.frame-card a {
+    text-decoration: none;
+    color: inherit;
 }
 
-.sb{
-    width: 145px;
-    height: 33px;
+.img-p {
+    max-width: 100%;
+    height: auto;
     border-radius: 10px;
-    border: 2px solid #fff;
-    display: flex; /* Use flexbox */
-    align-items: center; /* Center items vertically */
-    justify-content: center;
-    margin-top: 7px;
 }
 
-.sb-none{
-    width: 145px;
-    height: 33px;
-    border-radius: 10px;
-    border: 2px solid yellow;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 7px;
+.name-book {
+    font-size: 16px;
+    margin-top: 10px;
+    font-weight: bold;
 }
 
-.wa-disabled{
-    width: 145px;
-    height: 35px;
-    border-radius: 10px;
-    background-color: #17a2b8;
-    display: flex; /* Use flexbox */
-    align-items: center; /* Center items vertically */
-    justify-content: center;
-    opacity: 0.5;
-    pointer-events: none;
-    cursor: not-allowed;
-    margin-top: 7px;
+.name-author {
+    font-size: 14px;
+    margin-top: 5px;
 }
 
-.chatwa{
-    margin-left: 2px;
-    max-width: 30px;
+.status {
+    font-size: 12px;
+    margin-top: 5px;
+    color: #888888;
 }
 
 /* FOOTER */
@@ -424,16 +377,17 @@ select.corner-lib:focus {
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
-    margin-top: 125px;
+    background: #63AFBD;
+    margin-top: 50px;
 }
 
 .linked {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 20px; /* Adjust gap between columns as needed */
+    gap: 20px;
     width: 100%;
     max-width: 1200px;
-    margin-bottom: 20px; /* Space between columns and copyright */
+    margin-bottom: 20px;
     color: #FFF;
     font-family: Montserrat;
     font-size: 15px;
@@ -442,25 +396,26 @@ select.corner-lib:focus {
     line-height: normal;
 }
 
-.linked a, .linked p {
+.linked a,
+.linked p {
     margin: 5px 0;
 }
 
 .linked a {
     color: #FFF;
-    text-decoration: none; /* Remove underline */
+    text-decoration: none;
 }
 
-.linked a:hover {
-    color: #FFF; /* Ensure hover color stays white */
-    text-decoration: underline; /* Optional: underline on hover */
+.linked a {
+    color: #FFF;
+    text-decoration: underline;
 }
 
 .callfot img {
-    width: 30px; /* Adjust icon size as needed */
+    width: 30px;
 }
 
-.copyright {
+.copy {
     text-align: center;
     color: #FFF;
     font-family: Montserrat;
@@ -469,10 +424,60 @@ select.corner-lib:focus {
     font-weight: 600;
     line-height: normal;
     margin-top: 30px;
+    margin-bottom: 0;
 }
 
-.copy {
-    margin: 0;
+/* Responsive styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    css Salin kode .sidebar ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sidebar ul li {
+        width: auto;
+    }
+
+    .sidebar ul li a {
+        padding: 10px;
+        font-size: 12px;
+        text-align: left;
+    }
+
+    .main-content {
+        margin-top: 200px;
+        /* Adjust if needed */
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 18px;
+    }
+
+    .header-icons i {
+        font-size: 18px;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    table th,
+    table td {
+        padding: 5px;
+        font-size: 12px;
+    }
 }
 
 /* POP UP PINJAM */
@@ -483,7 +488,7 @@ select.corner-lib:focus {
     top: 50%;
     transform: translate(-50%, -50%);
     width: 700px;
-    height: 425px;
+    height: 340px;
     border-radius: 20px;
     background: #1C7EA5;
     padding: 20px;
@@ -506,7 +511,7 @@ select.corner-lib:focus {
     z-index: 1000;
 }
 
-.popup-form h2 {
+.popup-form h2{
     color: #FFF;
     text-align: center;
     font-family: Montserrat;
@@ -534,7 +539,7 @@ select.corner-lib:focus {
     font-style: normal;
     font-weight: 800;
     line-height: normal;
-    margin-bottom: 40px;
+    margin: -15px 0px 30px 0px;
 }
 
 .success-popup-form .center-image-container {
@@ -548,8 +553,8 @@ select.corner-lib:focus {
     max-height: 100%;
 }
 
-.popup-form input[type="text"], .popup-form input[type="date"] {
-    width: calc(100% - 22px);
+.popup-form input select[type="text"], .popup-form input[type="date"]{
+    width: calc(100% - 0px);
     padding: 10px;
     margin-bottom: 20px;
     border: none;
@@ -563,11 +568,12 @@ select.corner-lib:focus {
     cursor: pointer;
     font-size: 50px;
     color: #fff;
+
 }
 
 .popup-form .submit-btn {
     position: absolute;
-    background-color: #4CAF50;
+    background-color: #7CFF00;
     color: white;
     padding: 0px 20px;
     border: none;
@@ -575,7 +581,7 @@ select.corner-lib:focus {
     cursor: pointer;
     width: 150px;
     height: 40px;
-    margin: 220px 0px 0px 230px;
+    margin: 170px 0px 0px 230px;
     display: block;
     font-size: 20px;
 }
@@ -595,6 +601,7 @@ select.corner-lib:focus {
     font-size: 20px;
 }
 
+/*  */
 form {
     display: grid;
     grid-template-columns: 1fr 2fr; /* Membagi form menjadi 2 kolom dengan lebar yang sama */
@@ -654,138 +661,4 @@ form input[type="submit"] {
 
 .rentbutton:hover span {
     text-decoration: none; /* Menghilangkan garis bawah pada teks saat dihover */
-}
-
-/* BOX REKOMENDASI */
-.frame-container-wrapper {
-    width: 100%;
-    overflow: hidden;
-}
-
-.frame-container {
-    gap: 20px;
-    display: flex;
-    transition: transform 0.3s ease-in-out;
-    margin:  0px 25px 25px;
-}
-
-.frame-card {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    text-align: center;
-    flex: 0 0 20%; /* 100% / 5 cards = 20% per card */
-}
-
-.frame-card a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.img-p {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-.name-book {
-    color: #000;
-    font-family: Montserrat;
-    font-size: 16px;
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-.name-author {
-    color: #000;
-    font-family: Montserrat;
-    font-size: 14px;
-    margin-top: 5px;
-}
-
-.status {
-    font-size: 12px;
-    margin-top: 5px;
-    color: #888888;
-}
-
-.other-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    z-index: 1;
-}
-
-.other-btn.other-btn-1 {
-    left: 25px;
-}
-
-.other-btn.other-btn-2 {
-    right: 25px;
-}
-
-/* BOX RECOMEND */
-.title-rec{
-    color: #FFF;
-    font-family: Nunito;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    margin: 25px 0px 15px 25px;    
-}
-
-.recomend {
-    display: grid;
-    grid-template-columns: 0.7fr 4fr;
-    position: relative;
-    margin-top: -570px;
-}
-
-.box-2 {
-    width: 1100px;
-    height: 450px;
-    border-radius: 20px;
-    background: #63AFBD;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    margin-bottom: 20px;
-    position: relative; /* Add this line to position arrows */
-}
-
-.box-4 {
-    width: 1100px;
-    height: 270px;
-    border-radius: 20px;
-    background: #63AFBD;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    margin-bottom: 20px;
-    position: relative; /* Add this line to position arrows */
-}
-
-/* Styles for the arrow icons */
-.box-2 i,
-.box-4 i {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 24px; /* Adjust the size as needed */
-    color: white; /* Adjust the color */
-}
-
-.box-2 .fas.fa-arrow-left {
-    left: 20px; /* Adjust the position */
-}
-
-.box-2 .fas.fa-arrow-right {
-    right: 20px; /* Adjust the position */
-}
-
-.box-4 .fas.fa-arrow-left {
-    left: 20px; /* Adjust the position */
-}
-
-.box-4 .fas.fa-arrow-right {
-    right: 20px; /* Adjust the position */
 }

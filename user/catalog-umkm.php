@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog E-Book-Cipsmart</title>
-    <link href="../css/catalog-ebook.css" rel="stylesheet">
+    <title>Katalog Produk UMKM-Cipsmart</title>
+    <link href="../css/catalog-umkm.css" rel="stylesheet">
     <link rel="icon" href="../img/favicon/android-chrome-192x192.png" type="image/png">
     <?php
     session_start();
@@ -93,7 +93,7 @@
         </header>        
 
         <div class="content">
-        <div class="sidebar">
+            <div class="sidebar">
                 <div class="front-sidebar">
                     <div class="perpus">
                         <a href="../user/catalog-book.php">
