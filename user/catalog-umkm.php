@@ -129,7 +129,7 @@
             <div class="catalog">
 
                 <p class="title-catalog">
-                    Katalog E-Book
+                    Katalog Produk UMKM
                 </p>
 
                 <div class="frame-container">

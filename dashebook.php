@@ -21,13 +21,12 @@
     ob_end_flush();
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog E Book-Cipsmart</title>
+    <title>Katalog E-Book Cipsmart</title>
     <link rel="stylesheet" href="./css/dashcorner.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="img/favicon/android-chrome-192x192.png" type="image/png">
@@ -112,7 +111,7 @@
                         <a href="update-ebook.php?id_ebook=<?php echo htmlspecialchars($data['id_ebook']); ?>">
                             <i class="fa fa-pencil edit-btn"></i>
                         </a>
-                        <a href="#" onclick="confirmDelete('<?php echo $data['id_ebook']; ?>');">
+                        <a href="#" onclick="confirmDeleteEbook('<?php echo $data['id_ebook']; ?>');">
                             <i class="fa fa-trash delete-btn"></i>
                         </a>    
                         </td>
@@ -132,7 +131,13 @@
             integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
             crossorigin="anonymous">
     </script>
-    <script src="./js/delete.js"></script>
-
+    <script>
+        // KONFIRMASI HAPUS DATA E-BOOK
+        function confirmDeleteEbook(id_ebook) {
+            if (confirm("Anda yakin ingin Hapus Data E-Book ini?")) {
+                window.location.href = "dashebook.php?id_ebook=" + id_ebook;
+            }
+        }
+    </script>
 </body>
 </html>

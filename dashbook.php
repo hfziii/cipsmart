@@ -132,7 +132,14 @@
             integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
             crossorigin="anonymous">
     </script>
-    <script src="./js/delete.js"></script>
+    <script>            
+        // KONFIRMASI HAPUS DATA BUKU
+        function confirmDelete(id_book) {
+            if (confirm("Anda yakin ingin Hapus Data Buku ini?")) {
+                window.location.href = "dashbook.php?id_book=" + id_book;
+            }
+        }
+    </script>
 
 </body>
 </html>
