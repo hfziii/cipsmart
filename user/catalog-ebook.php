@@ -136,20 +136,20 @@
                     <?php
                         include("koneksi.php");
 
-                        $query = mysqli_query($connection, "SELECT * FROM book");
+                        $query = mysqli_query($connection, "SELECT * FROM ebook");
                         if ($query && mysqli_num_rows($query) > 0) {
                             while ($data = mysqli_fetch_assoc($query)) {
-                                $imagePath = '../' . $data["photo"];
+                                $imagePath = '../' . $data["sampul_ebook"];
                                 echo '<div class="frame-card">
-                                    <a href="detail-book.php?id_book=' . $data['id_book'] . '">
+                                    <a href="detail-ebook.php?id_ebook=' . $data['id_ebook'] . '">
                                         <div class="cardd">
-                                            <img class="img-p" src="' . $imagePath . '" alt="' . $data["title_book"] . '">
+                                            <img class="img-p" src="' . $imagePath . '" alt="' . $data["judul_ebook"] . '">
                                         </div>
                                     </a>
                             
-                                    <h1 class="name-book">' . $data["title_book"] . '</h1>
-                                    <h1 class="name-author">' . $data["author_name"] . '</h1>
-                                    <h1 class="status">' . $data["status"] . '</h1>
+                                    <h1 class="name-ebook" style="font-size: 20px;">' . $data["judul_ebook"] . '</h1>
+                                    <h1 class="name-author">' . $data["penulis_ebook"] . '</h1>
+                                    <h1 class="status">' . $data["kategori_ebook"] . '</h1>
                                 </div>';
                             }
                         } else {

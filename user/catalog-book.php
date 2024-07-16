@@ -271,7 +271,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                                         </div>
                                     </a>
                             
-                                    <h1 class="name-book">' . $data["title_book"] . '</h1>
+                                    <h1 class="name-book" style="font-size: 22px;">' . $data["title_book"] . '</h1>
                                     <h1 class="name-author">' . $data["author_name"] . '</h1>
                                     <h1 class="status">' . $data["status"] . '</h1>
                                 </div>';

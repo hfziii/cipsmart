@@ -290,6 +290,24 @@ table th, table td {
     font-size: 10px !important;
 }
 
+.link-read{
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    color: #FFF;
+    background-color: #85d23d;
+    border-radius: 10px;
+    width: 180px;
+    height: 40px;
+    border: none;
+    display: block;
+    transition: background-color 0.3s ease;
+    padding: 3px 2px 1px 20px;
+    margin-top: 10px;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
     .sidebar {

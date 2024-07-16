@@ -352,9 +352,7 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
             </div>
 
             <div class="box-2">
-                <h1 class="title-rec">
-                    Rekomendasi Buku
-                </h1>
+                <h1 class="title-rec">Rekomendasi Buku</h1>
 
                 <a href="#" class="other-btn other-btn-1">
                     <img src="../img/detail/prev-recommend.png" alt="" class="other-btn-1">
@@ -363,12 +361,14 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
                 <div class="frame-container-wrapper">
                     <div class="frame-container">
                         <?php while ($book = mysqli_fetch_assoc($recommendationResult)): ?>
-                            <div class="frame-card">
-                                <img src="<?php echo '../' . $book['photo']; ?>" alt="<?php echo $book['title_book']; ?>" class="img-p">
-                                <h1 class="name-book"><?php echo $book['title_book']; ?></h1>
-                                <h1 class="name-author"><?php echo $book['author_name']; ?></h1>
-                                <h1 class="status"><?php echo $book['status']; ?></h1>
-                            </div>
+                            <a href="detail-book.php?id_book=<?php echo $book['id_book']; ?>" class="frame-card-link">
+                                <div class="frame-card">
+                                    <img src="<?php echo '../' . $book['photo']; ?>" alt="<?php echo $book['title_book']; ?>" class="img-p">
+                                    <h1 class="name-book"><?php echo $book['title_book']; ?></h1>
+                                    <h1 class="name-author"><?php echo $book['author_name']; ?></h1>
+                                    <h1 class="status"><?php echo $book['status']; ?></h1>
+                                </div>
+                            </a>
                         <?php endwhile; ?>
                     </div>
                 </div>
@@ -378,6 +378,7 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
                 </a>
             </div>
         </div>
+
 
         <!--  -->
         <div class="footer">

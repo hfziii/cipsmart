@@ -417,64 +417,6 @@ select.corner-lib:focus {
     max-width: 30px;
 }
 
-/* FOOTER */
-.footer {
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    margin-top: 125px;
-}
-
-.linked {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px; /* Adjust gap between columns as needed */
-    width: 100%;
-    max-width: 1200px;
-    margin-bottom: 20px; /* Space between columns and copyright */
-    color: #FFF;
-    font-family: Montserrat;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-}
-
-.linked a, .linked p {
-    margin: 5px 0;
-}
-
-.linked a {
-    color: #FFF;
-    text-decoration: none; /* Remove underline */
-}
-
-.linked a:hover {
-    color: #FFF; /* Ensure hover color stays white */
-    text-decoration: underline; /* Optional: underline on hover */
-}
-
-.callfot img {
-    width: 30px; /* Adjust icon size as needed */
-}
-
-.copyright {
-    text-align: center;
-    color: #FFF;
-    font-family: Montserrat;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    margin-top: 30px;
-}
-
-.copy {
-    margin: 0;
-}
-
 /* POP UP PINJAM */
 .popup-form {
     display: none;
@@ -666,7 +608,7 @@ form input[type="submit"] {
     gap: 20px;
     display: flex;
     transition: transform 0.3s ease-in-out;
-    margin:  0px 25px 25px;
+    margin: 0px 25px 25px;
 }
 
 .frame-card {
@@ -675,12 +617,27 @@ form input[type="submit"] {
     padding: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     text-align: center;
-    flex: 0 0 20%; /* 100% / 5 cards = 20% per card */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.frame-card:hover {
+    transform: scale(1.02); /* Scale up on hover */
+}
+
+.frame-card-link {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit text color */
+    /* display: block; */
+    flex: 0 0 20%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 20px;
 }
 
 .frame-card a {
     text-decoration: none;
     color: inherit;
+    display: block; /* Ensure link fills the card */
 }
 
 .img-p {
@@ -726,10 +683,9 @@ form input[type="submit"] {
     right: 25px;
 }
 
-/* BOX RECOMEND */
 .title-rec{
     color: #FFF;
-    font-family: Nunito;
+    font-family: Montserrat;
     font-size: 20px;
     font-style: normal;
     font-weight: 600;
@@ -746,10 +702,11 @@ form input[type="submit"] {
 
 .box-2 {
     width: 1100px;
-    height: 450px;
+    height: 500px;
     border-radius: 20px;
     background: #63AFBD;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-top: 20px;
     margin-bottom: 20px;
     position: relative; /* Add this line to position arrows */
 }
@@ -788,4 +745,62 @@ form input[type="submit"] {
 
 .box-4 .fas.fa-arrow-right {
     right: 20px; /* Adjust the position */
+}
+
+/* FOOTER */
+.footer {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    margin-top: 125px;
+}
+
+.linked {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px; /* Adjust gap between columns as needed */
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px; /* Space between columns and copyright */
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.linked a, .linked p {
+    margin: 5px 0;
+}
+
+.linked a {
+    color: #FFF;
+    text-decoration: none; /* Remove underline */
+}
+
+.linked a:hover {
+    color: #FFF; /* Ensure hover color stays white */
+    text-decoration: underline; /* Optional: underline on hover */
+}
+
+.callfot img {
+    width: 30px; /* Adjust icon size as needed */
+}
+
+.copyright {
+    text-align: center;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 30px;
+}
+
+.copy {
+    margin: 0;
 }
