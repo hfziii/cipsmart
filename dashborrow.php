@@ -43,7 +43,7 @@
             <li><a href="./dashcorner.html"><i class="fa fa-book"></i> Pojok Baca</a></li>
             <li><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
             <li class="active"><a href=""><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
-            <li><a href="#"><i class="fa fa-book"></i> E-Book</a></li>
+            <li><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
             <li><a href="#"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
             <li><a href="#"><i class="fa fa-users"></i> Penjual UMKM</a></li>
             <li><a href="./dashuser.html"><i class="fa fa-users"></i> Pengguna</a></li>

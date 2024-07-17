@@ -34,13 +34,15 @@ body, html {
     justify-content: space-between; /* Space out items evenly */
     padding: 0 85px; /* Add padding for spacing */
     box-sizing: border-box;
+    gap: 15px;
 }
-
-.corner-lib {
+/* Apply styles to the select element */
+select.corner-lib {
+    border: none; /* Removes the border */
     display: flex;
     align-items: center;
-    gap: 10px; 
-    position: relative; 
+    gap: 10px;
+    position: relative;
     color: #63AFBD;
     text-align: center;
     font-family: Montserrat;
@@ -48,20 +50,30 @@ body, html {
     font-style: normal;
     font-weight: 800;
     line-height: normal;
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+/* Add a custom dropdown arrow */
+select.corner-lib::after {
+    content: '\25BC'; /* Unicode character for down arrow */
+    position: absolute;
+    right: 10px;
+    pointer-events: none; /* Allows clicking through the arrow */
+}
+
+/* Optional: style the container to position the custom arrow */
+.select-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Remove outline on focus */
+select.corner-lib:focus {
+    outline: none;
 }
 
 .corner {
     margin: 0;
-}
-
-.dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #FFF;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 2;
 }
 
 .dropdown-content {
@@ -180,9 +192,13 @@ body, html {
 }
 
 /* CONTENT */
+.main{
+    background-image: url('../img/catalog/bg-catalog.png');
+    height: 1400px;
+    background-size: cover;
+}
 
 .content{
-    background-image: url('../img/catalog/bg-catalog.png');
     width: 1360px;
     height: 1155px;
     grid-template-columns: 0.5fr 3fr;
@@ -227,7 +243,7 @@ body, html {
     font-weight: 800;
     line-height: normal;
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 15px;
 }
 
 .ebooktext{
@@ -239,7 +255,7 @@ body, html {
     font-weight: 800;
     line-height: normal;
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 15px;
 }
 
 .umkmtext{
@@ -265,7 +281,7 @@ body, html {
     border-radius: 20px;
     background: #FFF;
     z-index: 0;
-    margin-bottom: 215px;
+    margin-bottom: 235px;
     margin-left: 70px;
 }
 
@@ -396,76 +412,9 @@ body, html {
     margin-top: 7px;
 }
 
-/* .wa-disabled {
-    opacity: 0.5;
-    pointer-events: none;
-    cursor: not-allowed;
-    margin-top: -20px;
-} */
-
 .chatwa{
     margin-left: 2px;
     max-width: 30px;
-}
-
-/* REKOMENDASI */
-
-/* FOOTER */
-.footer {
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    margin-top: 50px;
-}
-
-.linked {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px; /* Adjust gap between columns as needed */
-    width: 100%;
-    max-width: 1200px;
-    margin-bottom: 20px; /* Space between columns and copyright */
-    color: #FFF;
-    font-family: Montserrat;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-}
-
-.linked a, .linked p {
-    margin: 5px 0;
-}
-
-.linked a {
-    color: #FFF;
-    text-decoration: none; /* Remove underline */
-}
-
-.linked a:hover {
-    color: #FFF; /* Ensure hover color stays white */
-    text-decoration: underline; /* Optional: underline on hover */
-}
-
-.callfot img {
-    width: 30px; /* Adjust icon size as needed */
-}
-
-.copyright {
-    text-align: center;
-    color: #FFF;
-    font-family: Montserrat;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    margin-top: 30px;
-}
-
-.copy {
-    margin: 0;
 }
 
 /* POP UP PINJAM */
@@ -647,4 +596,211 @@ form input[type="submit"] {
 
 .rentbutton:hover span {
     text-decoration: none; /* Menghilangkan garis bawah pada teks saat dihover */
+}
+
+/* BOX REKOMENDASI */
+.frame-container-wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.frame-container {
+    gap: 20px;
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    margin: 0px 25px 25px;
+}
+
+.frame-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.frame-card:hover {
+    transform: scale(1.02); /* Scale up on hover */
+}
+
+.frame-card-link {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit text color */
+    /* display: block; */
+    flex: 0 0 20%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 20px;
+}
+
+.frame-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block; /* Ensure link fills the card */
+}
+
+.img-p {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.name-book {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 16px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.name-author {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.status {
+    font-size: 12px;
+    margin-top: 5px;
+    color: #888888;
+}
+
+.other-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 1;
+}
+
+.other-btn.other-btn-1 {
+    left: 25px;
+}
+
+.other-btn.other-btn-2 {
+    right: 25px;
+}
+
+.title-rec{
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 25px 0px 15px 25px;    
+}
+
+.recomend {
+    display: grid;
+    grid-template-columns: 0.7fr 4fr;
+    position: relative;
+    margin-top: -570px;
+}
+
+.box-2 {
+    width: 1100px;
+    height: 500px;
+    border-radius: 20px;
+    background: #63AFBD;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative; /* Add this line to position arrows */
+}
+
+.box-4 {
+    width: 1100px;
+    height: 270px;
+    border-radius: 20px;
+    background: #63AFBD;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-bottom: 20px;
+    position: relative; /* Add this line to position arrows */
+}
+
+/* Styles for the arrow icons */
+.box-2 i,
+.box-4 i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px; /* Adjust the size as needed */
+    color: white; /* Adjust the color */
+}
+
+.box-2 .fas.fa-arrow-left {
+    left: 20px; /* Adjust the position */
+}
+
+.box-2 .fas.fa-arrow-right {
+    right: 20px; /* Adjust the position */
+}
+
+.box-4 .fas.fa-arrow-left {
+    left: 20px; /* Adjust the position */
+}
+
+.box-4 .fas.fa-arrow-right {
+    right: 20px; /* Adjust the position */
+}
+
+/* FOOTER */
+.footer {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    margin-top: 125px;
+}
+
+.linked {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px; /* Adjust gap between columns as needed */
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px; /* Space between columns and copyright */
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.linked a, .linked p {
+    margin: 5px 0;
+}
+
+.linked a {
+    color: #FFF;
+    text-decoration: none; /* Remove underline */
+}
+
+.linked a:hover {
+    color: #FFF; /* Ensure hover color stays white */
+    text-decoration: underline; /* Optional: underline on hover */
+}
+
+.callfot img {
+    width: 30px; /* Adjust icon size as needed */
+}
+
+.copyright {
+    text-align: center;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 30px;
+}
+
+.copy {
+    margin: 0;
 }

@@ -194,18 +194,17 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
                         <img src="../img/navbar/logo-cipsmart-nav.png" alt="" class="logonav">
                     </a>
                 </div>
-                <div class="corner-lib">
-                    <p class="corner">Literasi Imajinatif</p>
-                    <img src="../img/navbar/chevron.png" alt="">
-                    <div class="dropdown">
-                        <ul>
-                            <li><a href="#">Social Connect</a></li>
-                            <li><a href="#">Bisnis Berdaya</a></li>
-                            <li><a href="#">Kreatifitas Kids Corner</a></li>
-                            <li><a href="#">Pena Inspirasi Gemilang</a></li>
-                        </ul>
-                    </div>
+                
+                <div class="select-container">
+                    <select name="corner" class="corner-lib" required>
+                        <option value="Literasi Imajinatif">Literasi Imajinatif</option>
+                        <option value="Social Connect">Social Connect</option>
+                        <option value="Bisnis Berdaya">Bisnis Berdaya</option>
+                        <option value="Kreatif Kids Corner">Kreatif Kids Corner</option>
+                        <option value="Pena Inspirasi Gemilang">Pena Inspirasi Gemilang</option>
+                    </select>
                 </div>
+                
                 <div class="search-bar">
                     <input type="text">
                     <div class="search-icon">
@@ -236,107 +235,150 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
             </nav>
         </header>        
 
-        <div class="content">
+        <div class="main">
 
-            <div class="sidebar">
-                <div class="front-sidebar">
-                    <div class="perpus">
-                        <a href="./catalog-book.php">
-                            <img src="../img/catalog/lib-btn.png" alt="">
-                        </a>
-                        <p class="perpustext">
-                            Perpustakaan
-                        </p>
-                    </div>
+            <div class="content">
 
-                    <div class="ebook">
-                        <a href="#">
-                            <img src="../img/catalog/ebook-btn.png" alt="">
-                        </a>
-                        <p class="ebooktext">
-                            E-Book
-                        </p>
-                    </div>
+                <div class="sidebar">
+                    <div class="front-sidebar">
+                        <div class="perpus">
+                            <a href="../user/catalog-book.php">
+                                <img src="../img/catalog/lib-btn.png" alt="">
+                            </a>
+                            <p class="perpustext">
+                                Perpustakaan
+                            </p>
+                        </div>
 
-                    <div class="umkm">
-                        <a href="#">
-                            <img src="../img/catalog/umkm-btn.png" alt="">
-                        </a>
-                        <p class="umkmtext">
-                            UMKM
-                        </p>
+                        <div class="ebook">
+                            <a href="../user/catalog-ebook.php">
+                                <img src="../img/catalog/ebook-btn.png" alt="">
+                            </a>
+                            <p class="ebooktext">
+                                E-Book
+                            </p>
+                        </div>
+
+                        <div class="umkm">
+                            <a href="../user/catalog-umkm.php">
+                                <img src="../img/catalog/umkm-btn.png" alt="">
+                            </a>
+                            <p class="umkmtext">
+                                UMKM
+                            </p>
+                        </div>
                     </div>
+                    
+                    <div class="box-bg"></div>
                 </div>
-                
-                <div class="box-bg"></div>
-            </div>
 
-            <div class="detailframe">
+                <div class="detailframe">
 
-                <div class="detail-1">
-                    <div class="photobook">
-                        <img src="<?php echo '../' . $data['photo']; ?>" alt="<?php echo $data['title_book']; ?>" style="width: 200px; height: 280px; margin: 10px 0px 0px 30px">
-                    </div>
-                </div> 
+                    <div class="detail-1">
+                        <div class="photobook">
+                            <img src="<?php echo '../' . $data['photo']; ?>" alt="<?php echo $data['title_book']; ?>" style="width: 200px; height: 280px; margin: 10px 0px 0px 30px">
+                        </div>
+                    </div> 
 
-                <div class="detail-2">
-                    <h2 style="color: #fff;"><?php echo $data['author_name']; ?></h2>
-                    <h1 style="color: #fff;"><?php echo $data['title_book']; ?></h1>
+                    <div class="detail-2">
+                        <h2 style="color: #fff;"><?php echo $data['author_name']; ?></h2>
+                        <h1 style="color: #fff;"><?php echo $data['title_book']; ?></h1>
 
-                    <div class="linked">
-                        <p class="sipnopsis">Sipnopsis Buku</p>
-                        <p class="detailbook">Detail Buku</p>
+                        <div class="linked">
+                            <p class="sipnopsis">Sipnopsis Buku</p>
+                            <p class="detailbook">Detail Buku</p>
 
-                        <?php if ($data['status'] == 'Tersedia') : ?>
-                            <div class="sb">
-                            <p class="stasusbook" style="align-text: center; color:#fff;"><?php echo $data['status']; ?></p>
-                            </div>
-                        <?php else : ?>
-                            <div class="sb-none">
-                                <p class="stasusbook" style="align-text: center; center; color: yellow;"><?php echo $data['status']; ?></p>
-                            </div>
-                        <?php endif; ?>
-
-                        <!-- ------------------------------------------------------ -->
-                        <?php if ($data['status'] == 'Tersedia') : ?>
-                            <?php if (isset($_SESSION['username'])): ?>
-                                <a href="#" class="wa">
-                                    <span class="rentbutton">Pinjam Buku</span>
-                                </a>
-                            <?php else: ?>
-                                <a href="../login.php" class="wa">
-                                    <span class="rentbutton">Login untuk Pinjam</span>
-                                </a>
+                            <?php if ($data['status'] == 'Tersedia') : ?>
+                                <div class="sb">
+                                <p class="stasusbook" style="align-text: center; color:#fff;"><?php echo $data['status']; ?></p>
+                                </div>
+                            <?php else : ?>
+                                <div class="sb-none">
+                                    <p class="stasusbook" style="align-text: center; center; color: yellow;"><?php echo $data['status']; ?></p>
+                                </div>
                             <?php endif; ?>
-                            
-                        <?php endif; ?>
-                    </div>
 
-                    <hr class="white-line">
-
-                    <div class="title-1">
-                        <h2 class="t1" style="color: #fff;">Sipnopsis Buku</h2>
-                    </div>
-                    <div class="sipnopsis-desc">
-                        <p><?php echo $data['sipnopsis']; ?></p>
-                    </div>
-                    <div class="title-1">
-                        <h2 class="t1" style="color: #fff;">Detail Buku</h2>
-                    </div>
-                    <div class="book-desc">
-                        <div class="bd1">
-                            <p class="desc-1">Penerbit <br><p><?php echo $data['publisher_name']; ?></p></p>
-                            <p class="desc-2">Tahun Terbit <br><p><?php echo $data['year_publish']; ?></p></p>
+                            <!-- ------------------------------------------------------ -->
+                            <?php if ($data['status'] == 'Tersedia') : ?>
+                                <?php if (isset($_SESSION['username'])): ?>
+                                    <a href="#" class="wa">
+                                        <span class="rentbutton">Pinjam Buku</span>
+                                    </a>
+                                <?php else: ?>
+                                    <a href="../login.php" class="wa">
+                                        <span class="rentbutton">Login untuk Pinjam</span>
+                                    </a>
+                                <?php endif; ?>
+                                
+                            <?php endif; ?>
                         </div>
-                        <div class="bd-2">
-                            <p class="desc-3">ISBN <br><p><?php echo $data['isbn']; ?></p></p>
-                            <p class="desc-4">Total Page <br><p><?php echo $data['total_page']; ?></p></p>
+
+                        <hr class="white-line">
+
+                        <div class="title-1">
+                            <h2 class="t1" style="color: #fff;">Sipnopsis Buku</h2>
+                        </div>
+                        <div class="sipnopsis-desc">
+                            <p><?php echo $data['sipnopsis']; ?></p>
+                        </div>
+                        <div class="title-1">
+                            <h2 class="t1" style="color: #fff;">Detail Buku</h2>
+                        </div>
+                        <div class="book-desc">
+                            <div class="bd1">
+                                <p class="desc-1">Penerbit <br><p><?php echo $data['publisher_name']; ?></p></p>
+                                <p class="desc-2">Tahun Terbit <br><p><?php echo $data['year_publish']; ?></p></p>
+                            </div>
+                            <div class="bd-2">
+                                <p class="desc-3">ISBN <br><p><?php echo $data['isbn']; ?></p></p>
+                                <p class="desc-4">Total Halaman <br><p><?php echo $data['total_page']; ?></p></p>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+            </div>
+        </div>
+
+        <?php
+        // Mengambil 10 buku secara acak dari tabel book
+        $recommendationQuery = "SELECT * FROM book ORDER BY RAND() LIMIT 10";
+        $recommendationResult = mysqli_query($connection, $recommendationQuery);
+        ?>
+
+        <div class="recomend">
+            <div class="box-1">
+                <!-- Content for the first box -->
             </div>
 
+            <div class="box-2">
+                <h1 class="title-rec">Rekomendasi Buku</h1>
+
+                <a href="#" class="other-btn other-btn-1">
+                    <img src="../img/detail/prev-recommend.png" alt="" class="other-btn-1">
+                </a>
+
+                <div class="frame-container-wrapper">
+                    <div class="frame-container">
+                        <?php while ($book = mysqli_fetch_assoc($recommendationResult)): ?>
+                            <a href="detail-book.php?id_book=<?php echo $book['id_book']; ?>" class="frame-card-link">
+                                <div class="frame-card">
+                                    <img src="<?php echo '../' . $book['photo']; ?>" alt="<?php echo $book['title_book']; ?>" class="img-p">
+                                    <h1 class="name-book"><?php echo $book['title_book']; ?></h1>
+                                    <h1 class="name-author"><?php echo $book['author_name']; ?></h1>
+                                    <h1 class="status"><?php echo $book['status']; ?></h1>
+                                </div>
+                            </a>
+                        <?php endwhile; ?>
+                    </div>
+                </div>
+
+                <a href="#" class="other-btn other-btn-2">
+                    <img src="../img/detail/next-recommend.png" alt="" class="other-btn-2">
+                </a>
+            </div>
         </div>
+
 
         <!--  -->
         <div class="footer">
@@ -445,6 +487,8 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
         <input type="hidden" name="name" value="<?php echo $name; ?>">
         <input type="hidden" name="title_book" value="<?php echo $data['title_book']; ?>">
     </form>
+
+    <script src="../js/carousel.js"></script>
 
 </body>
 </html>

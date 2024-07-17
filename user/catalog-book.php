@@ -1,4 +1,5 @@
 <?php
+session_start(); // Pindahkan ini ke baris paling awal
 include("koneksi.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
@@ -26,54 +27,77 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
     <title>Katalog Buku-Cipsmart</title>
     <link href="../css/catalog-book.css" rel="stylesheet">
     <link rel="icon" href="../img/favicon/android-chrome-192x192.png" type="image/png">
-    <?php
-    session_start();
-    ?>
 
     <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Show success popup if URL contains success flag
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('success')) {
             document.querySelector('#successPopupForm').style.display = 'block';
 
-            // Remove the success flag from the URL
             const newURL = window.location.origin + window.location.pathname;
             window.history.replaceState({}, document.title, newURL);
+        }
+
+        var dropdownToggle = document.getElementById("dropdownToggle");
+        var dropdownMenu = document.getElementById("dropdownMenu");
+        var chevronIcon = document.getElementById("chevronIcon");
+
+        if (dropdownToggle && dropdownMenu) {
+            dropdownToggle.addEventListener("click", function() {
+                dropdownMenu.classList.toggle("show");
+            });
+
+            if (chevronIcon) {
+                chevronIcon.addEventListener("click", function() {
+                    dropdownMenu.classList.toggle("show");
+                });
+            }
+
+            document.querySelectorAll('.dropdown-item').forEach(function(item) {
+                item.addEventListener("click", function() {
+                    dropdownToggle.textContent = this.textContent;
+                    dropdownMenu.classList.remove("show");
+                });
+            });
         }
 
         var loginBtn = document.getElementById("loginBtn");
         var dropdownContent = document.getElementById("dropdownContent");
 
         <?php if (isset($_SESSION['username'])): ?>
-            loginBtn.classList.add("username-btn");
-            loginBtn.style.cursor = "pointer";
+            if (loginBtn) {
+                loginBtn.classList.add("username-btn");
+                loginBtn.style.cursor = "pointer";
 
-            loginBtn.addEventListener("click", function (event) {
-                event.preventDefault();
-                dropdownContent.classList.toggle("show");
-            });
-
-            var logoutItem = document.createElement('a');
-            logoutItem.textContent = "Logout";
-            logoutItem.href = "../logout.php";
-            logoutItem.onclick = function(event) {
-                if (!confirm("Anda Yakin Ingin Logout?")) {
+                loginBtn.addEventListener("click", function (event) {
                     event.preventDefault();
-                }
-            };
-            dropdownContent.appendChild(logoutItem);
-
-            var borrowBtn = document.querySelector('.absen-pb');
-            if (borrowBtn) {
-                borrowBtn.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    document.querySelector('.popup-form').style.display = 'block';
+                    dropdownContent.classList.toggle("show");
                 });
-            }
 
+                var logoutItem = document.createElement('a');
+                logoutItem.textContent = "Logout";
+                logoutItem.href = "../logout.php";
+                logoutItem.onclick = function(event) {
+                    if (!confirm("Anda Yakin Ingin Logout?")) {
+                        event.preventDefault();
+                    }
+                };
+                if (dropdownContent) {
+                    dropdownContent.appendChild(logoutItem);
+                }
+
+                var borrowBtn = document.querySelector('.absen-pb');
+                if (borrowBtn) {
+                    borrowBtn.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        document.querySelector('.popup-form').style.display = 'block';
+                    });
+                }
+            }
         <?php else: ?>
-            loginBtn.href = "../login.php";
+            if (loginBtn) {
+                loginBtn.href = "../login.php";
+            }
         <?php endif; ?>
 
         window.onclick = function (event) {
@@ -150,18 +174,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                         <img src="../img/navbar/logo-cipsmart-nav.png" alt="" class="logonav">
                     </a>
                 </div>
-                <div class="corner-lib">
-                    <p class="corner">Literasi Imajinatif</p>
-                    <img src="../img/navbar/chevron.png" alt="">
-                    <div class="dropdown">
-                        <ul>
-                        <li><a href="#">Social Connect</a></li>
-                            <li><a href="#">Bisnis Berdaya</a></li>
-                            <li><a href="#">Kreatifitas Kids Corner</a></li>
-                            <li><a href="#">Pena Inspirasi Gemilang</a></li>
-                        </ul>
-                    </div>
+
+                <div class="select-container">
+                    <select name="corner" class="corner-lib" required>
+                        <option value="Literasi Imajinatif">Literasi Imajinatif</option>
+                        <option value="Social Connect">Social Connect</option>
+                        <option value="Bisnis Berdaya">Bisnis Berdaya</option>
+                        <option value="Kreatif Kids Corner">Kreatif Kids Corner</option>
+                        <option value="Pena Inspirasi Gemilang">Pena Inspirasi Gemilang</option>
+                    </select>
                 </div>
+
                 <div class="search-bar">
                     <input type="text">
                     <div class="search-icon">
@@ -170,14 +193,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                         </a>
                     </div>
                 </div>
-                <div class="navigator">
+
+               <div class="navigator">
                     <a href="../homepage.php"><p class="home">Beranda</p></a>
                     <div class="login user-dropdown">
                         <?php if (!isset($_SESSION['username'])): ?>
-                            <a href="login.php" class="login-btn" id="loginBtn">
-                            <p style="color: #fff">
-                            Login    
-                            </p>    
+                            <a href="../login.php" class="login-btn" id="loginBtn">
+                                <p style="color: #fff">Login</p>
                             </a>
                         <?php else: ?>
                             <a href="#" class="login-btn username-btn" id="loginBtn"><?php echo $_SESSION['username']; ?></a>
@@ -188,18 +210,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                         <?php endif; ?>
                     </div>
 
-                    <div class="absen">
-                        <?php if (isset($_SESSION['username'])): ?>
-                            <a href="#" class="absen-pb">
-                                <span class="absen-btn">Absen</span>
-                            </a>
-                        <?php else: ?>
-                            <a href="#" class="absen-none">
-                                <span class="absen-btn-disable">Absen</span>
-                            </a>
-                        <?php endif; ?>
-                    </div>
+                    <a href="#" class="absen-btn absen-pb"><p>Absen</p></a>
                 </div>
+
             </nav>
         </header>        
 
@@ -207,7 +220,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
             <div class="sidebar">
                 <div class="front-sidebar">
                     <div class="perpus">
-                        <a href="#">
+                        <a href="../user/catalog-book.php">
                             <img src="../img/catalog/lib-btn.png" alt="">
                         </a>
                         <p class="perpustext">
@@ -225,7 +238,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                     </div>
     
                     <div class="umkm">
-                        <a href="#">
+                        <a href="../user/catalog-umkm.php">
                             <img src="../img/catalog/umkm-btn.png" alt="">
                         </a>
                         <p class="umkmtext">
@@ -258,7 +271,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                                         </div>
                                     </a>
                             
-                                    <h1 class="name-book">' . $data["title_book"] . '</h1>
+                                    <h1 class="name-book" style="font-size: 22px;">' . $data["title_book"] . '</h1>
                                     <h1 class="name-author">' . $data["author_name"] . '</h1>
                                     <h1 class="status">' . $data["status"] . '</h1>
                                 </div>';

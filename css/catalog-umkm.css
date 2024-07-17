@@ -1,0 +1,664 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #63AFBD;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.bg-base-body {
+    background: #63AFBD;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.bg-navbar {
+    width: 100%;
+    height: 86px;
+    background-color: #63AFBD;
+}
+
+.navbar {
+    width: 100%;
+    height: 71px;
+    background-color: #FFF;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 85px;
+    box-sizing: border-box;
+}
+
+.corner-lib {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    color: #63AFBD;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.corner {
+    margin: 0;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #FFF;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #63AFBD;
+    min-width: 0px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 2;
+    margin: 90px 0px 0px 0px;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: #3EB9F7;
+    padding: 0px 15px;
+    text-decoration: none;
+    display: block;
+    height: 25px;
+}
+
+.dropdown-content a:hover {
+    background-color: yellow;
+    border-radius: 10px;
+}
+
+.show {
+    display: block;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 845px;
+    height: 43px;
+    background: #E4E4E4;
+    border: 0px solid #0D344B;
+    border-radius: 30px;
+    overflow: hidden;
+
+}
+
+.search-bar input {
+    flex-grow: 1;
+
+    height: 100%;
+    border: none;
+    padding: 0 20px;
+    border-radius: 30px 0 0 30px;
+    background: #E4E4E4;
+    outline: none;
+}
+
+.search-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 100%;
+    background: #E4E4E4;
+}
+
+.navigator {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navigator a {
+    text-decoration: none;
+}
+
+.navigator p {
+    font-size: 16px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.home {
+    color: #63AFBD;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.login {
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    width: 65px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #FFFEFE;
+    background: #63AFBD;
+    /* margin-right: 53px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.login a p {
+    margin: 0;
+    padding: 0;
+}
+
+.absen-btn{
+    color: #fff;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    width: 65px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #FFFEFE;
+    background: #63AFBD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.absen-btn-disable{
+    color: #fff;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    width: 65px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #FFFEFE;
+    background: #63AFBD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+}
+
+/* CONTENT */
+.content {
+    background-image: url('../img/catalog/bg-catalog.png');
+    width: 1360px;
+    height: 1155px;
+    grid-template-columns: 0.5fr 3fr;
+    display: grid;
+}
+
+.sidebar {
+    width: 115px;
+    height: 385px;
+    flex-shrink: 0;
+    border-radius: 50px;
+    border: 1px solid #63AFBD;
+    margin-left: 60px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+.sidebar a img {
+    height: 100%;
+    /* Adjust based on the actual icon size */
+    object-fit: cover;
+}
+
+.perpustext {
+    color: #63AFBD;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.ebooktext {
+    color: #63AFBD;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.umkmtext {
+    color: #63AFBD;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.front-sidebar {
+    z-index: 1;
+}
+
+.box-bg {
+    width: 211px;
+    height: 120px;
+    position: absolute;
+    border-radius: 20px;
+    background: #FFF;
+    z-index: 0;
+    margin-bottom: -245px;
+    margin-left: 70px;
+}
+
+/* CATALOG */
+.catalog {
+    flex: 1;
+    background-color: #63AFBD;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    max-height: 160vh;
+    overflow-y: auto;
+    margin-top: 15px;
+    margin-right: 15px;
+    padding: 20px;
+    z-index: 1;
+}
+       
+.title-catalog {
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    margin-top: 15px;
+}
+
+.frame-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.frame-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.frame-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.img-p {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.name-book {
+    font-size: 16px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.name-author {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.status {
+    font-size: 12px;
+    margin-top: 5px;
+    color: #888888;
+}
+
+/* FOOTER */
+.footer {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    background: #63AFBD;
+    margin-top: 50px;
+}
+
+.linked {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.linked a,
+.linked p {
+    margin: 5px 0;
+}
+
+.linked a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.linked a {
+    color: #FFF;
+    text-decoration: underline;
+}
+
+.callfot img {
+    width: 30px;
+}
+
+.copy {
+    text-align: center;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 30px;
+    margin-bottom: 0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    css Salin kode .sidebar ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sidebar ul li {
+        width: auto;
+    }
+
+    .sidebar ul li a {
+        padding: 10px;
+        font-size: 12px;
+        text-align: left;
+    }
+
+    .main-content {
+        margin-top: 200px;
+        /* Adjust if needed */
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 18px;
+    }
+
+    .header-icons i {
+        font-size: 18px;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    table th,
+    table td {
+        padding: 5px;
+        font-size: 12px;
+    }
+}
+
+/* POP UP PINJAM */
+.popup-form {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 340px;
+    border-radius: 20px;
+    background: #1C7EA5;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.success-popup-form{
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 300px;
+    border-radius: 20px;
+    background: #1C7EA5;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.popup-form h2{
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.success-popup-form h2{
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.popup-form p {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin: -15px 0px 30px 0px;
+}
+
+.success-popup-form .center-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-image-container img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.popup-form input select[type="text"], .popup-form input[type="date"]{
+    width: calc(100% - 0px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+.popup-form .close-btn {
+    position: absolute;
+    right: 15px;
+    top: 0px;
+    cursor: pointer;
+    font-size: 50px;
+    color: #fff;
+
+}
+
+.popup-form .submit-btn {
+    position: absolute;
+    background-color: #7CFF00;
+    color: white;
+    padding: 0px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 150px;
+    height: 40px;
+    margin: 170px 0px 0px 230px;
+    display: block;
+    font-size: 20px;
+}
+
+.success-popup-form .ok-btn {
+    position: absolute;
+    background-color: #7CFF00;
+    color: white;
+    padding: 0px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 150px;
+    height: 40px;
+    margin: 30px 0px 0px 275px;
+    display: block;
+    font-size: 20px;
+}
+
+/*  */
+form {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Membagi form menjadi 2 kolom dengan lebar yang sama */
+    grid-gap: 10px; /* Jarak antara grid items */
+    width: 100%;
+    max-width: 600px; /* Atur lebar maksimum form sesuai kebutuhan */
+    margin: 0 auto; /* Pusatkan form secara horizontal */
+}
+
+form label {
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="submit"] {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%; /* Biarkan input mengisi lebar grid item */
+    box-sizing: border-box; /* Pastikan padding tidak mempengaruhi lebar total */
+}
+
+.labelborrow{
+    margin-top: 10px;
+    color: #fff;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+/*  */
+
+.rentbutton{
+    text-decoration: none;
+    background-color: transparent;
+    color: #fff; 
+    width: 177px;
+    height: 35px;
+    border-radius: 10px;
+    border-color: #fff;
+    background-color: #17a2b8;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+    justify-content: center;
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+.rentbutton:hover {
+    text-decoration: none; /* Menghilangkan garis bawah pada teks saat dihover */
+    background-color: #127a8e; /* Ubah warna latar belakang saat dihover */
+    border-color: #127a8e; /* Ubah warna border saat dihover */
+}
+
+.rentbutton:hover span {
+    text-decoration: none; /* Menghilangkan garis bawah pada teks saat dihover */
+}
