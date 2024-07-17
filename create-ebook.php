@@ -4,6 +4,9 @@ include "koneksi.php";
 
 // Fungsi untuk mencegah inputan karakter yang tidak sesuai
 function input($data) {
+    if (!isset($data)) {
+        return '';
+    }
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
@@ -13,7 +16,6 @@ function input($data) {
 // Cek kiriman form dari method post
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $id_ebook = input($_POST["id_ebook"]);
     $judul_ebook = input($_POST["judul_ebook"]);
     $kategori_ebook = input($_POST["kategori_ebook"]);
     $penulis_ebook = input($_POST["penulis_ebook"]);
@@ -56,8 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Proses upload file ebook
-    $target_dir_file = "uploads/ebook/";
-    $target_file_file = $target_dir_file . basename($_FILES["file_ebook"]["name"]);
+    $target_file_file = $target_dir_sampul . basename($_FILES["file_ebook"]["name"]);
     $uploadOkFile = 1;
     $fileFileType = strtolower(pathinfo($target_file_file, PATHINFO_EXTENSION));
 
@@ -89,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $file_ebook = $target_file_file;
 
             // Query input menginput data kedalam tabel
-            $sql = "INSERT INTO ebook (id_ebook, sampul_ebook, file_ebook, judul_ebook, kategori_ebook, penulis_ebook, penerbit_ebook, jumlah_halaman_ebook, tahun_ebook, isbn_ebook, sipnopsis_ebook) VALUES ('$id_ebook', '$sampul_ebook', '$file_ebook', '$judul_ebook', '$kategori_ebook', '$penulis_ebook', '$penerbit_ebook', '$jumlah_halaman_ebook', '$tahun_ebook', '$isbn_ebook', '$sipnopsis_ebook')";
+            $sql = "INSERT INTO ebook (sampul_ebook, file_ebook, judul_ebook, kategori_ebook, penulis_ebook, penerbit_ebook, jumlah_halaman_ebook, tahun_ebook, isbn_ebook, sipnopsis_ebook) VALUES ('$sampul_ebook', '$file_ebook', '$judul_ebook', '$kategori_ebook', '$penulis_ebook', '$penerbit_ebook', '$jumlah_halaman_ebook', '$tahun_ebook', '$isbn_ebook', '$sipnopsis_ebook')";
 
             // Mengeksekusi query
             $hasil = mysqli_query($connection, $sql);
@@ -155,11 +156,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-group-container">
 
                 <div class="form-group">
-                    <label>ID E-Book</label>
-                    <input type="text" name="id_ebook" class="form-control" required />
-                </div>
-
-                <div class="form-group">
                     <label>Judul</label>
                     <input type="text" name="judul_ebook" class="form-control" required />
                 </div>
@@ -218,8 +214,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </form>
     </div>
-
-           
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">

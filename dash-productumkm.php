@@ -65,7 +65,7 @@
 
             <div class="titletable">
                 <h2>Katalog E-Book</h2>
-                <a href="create-ebook.php">
+                <a href="create-productumkm.php">
                     <img src="./img/dashboard/add-btn.png" alt="" class="add-data-btn">
                 </a>
             </div>
@@ -94,7 +94,12 @@
                     <tr>
                         <td><?php echo $data['id_product']; ?></td>
                         <td><?php echo $data['product_photo']; ?></td>
-                        <td><img src="<?php echo $data['product_photo']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 50px; height: auto;"></td>
+                        <td>
+                            <img src="<?php echo $data['product_photo_1']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 50px; height: auto;">
+                            <img src="<?php echo $data['product_photo_2']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 50px; height: auto;">
+                            <img src="<?php echo $data['product_photo_3']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 50px; height: auto;">
+                            <img src="<?php echo $data['product_photo_4']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 50px; height: auto;">
+                        </td>
                         <td><?php echo $data['product_category']; ?></td>
                         <td><?php echo $data['product_name']; ?></td>
                         <td><?php echo $data['product_price']; ?></td>
