@@ -41,10 +41,10 @@
             <li><a href="./dashadmin.html"><i class="fa fa-user"></i> Admin</a></li>
             <li><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.html"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
+            <li><a href="#"><i class="fa fa-book"></i> Buku</a></li>
             <li><a href="./dashborrow.php"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
-            <li class="active"><a href="#"><i class="fa fa-book"></i> E-Book</a></li>
-            <li><a href="#"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
+            <li class="active"><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
+            <li><a href="./dash-productumkm.php"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
             <li><a href="#"><i class="fa fa-users"></i> Penjual UMKM</a></li>
             <li><a href="./dashuser.html"><i class="fa fa-users"></i> Pengguna</a></li>
             <li><a href="./logout.php"><i class="fa fa-sign-out"></i> Keluar</a></li>

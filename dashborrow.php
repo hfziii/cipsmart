@@ -5,7 +5,7 @@
 
     // Cek apakah ada kiriman form dari method GET
     if (isset($_GET['id_borrow'])) {
-        $id_borrow = mysqli_real_escape_string($connection, htmlspecialchars(var_dump($_GET['id_borrow'])));
+        $id_borrow = mysqli_real_escape_string($connection, htmlspecialchars(($_GET['id_borrow'])));
 
         $sql = "DELETE FROM book_borrowing WHERE id_borrow='$id_borrow'";
         $hasil = mysqli_query($connection, $sql);
@@ -41,10 +41,10 @@
             <li><a href="./dashadmin.html"><i class="fa fa-user"></i> Admin</a></li>
             <li><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.html"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
-            <li class="active"><a href=""><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
+            <li><a href="#"><i class="fa fa-book"></i> Buku</a></li>
+            <li class="active"><a href="./dashborrow.php"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
-            <li><a href="#"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
+            <li><a href="./dash-productumkm.php"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
             <li><a href="#"><i class="fa fa-users"></i> Penjual UMKM</a></li>
             <li><a href="./dashuser.html"><i class="fa fa-users"></i> Pengguna</a></li>
             <li><a href="./logout.php"><i class="fa fa-sign-out"></i> Keluar</a></li>
