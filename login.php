@@ -20,8 +20,8 @@
             <!-- CONTAINER FORM LOGIN -->
             <div class="formlogin">
                 <div class="switch-button">
-                    <button id="loginBtn" class="active" onclick="showLogin()">Log in</button>
-                    <button id="signupBtn" onclick="showSignup()">Sign up</button>
+                    <button id="loginBtn" class="active" onclick="showLogin()">Login Admin</button>
+                    <!-- <button id="signupBtn" onclick="showSignup()">Sign up</button> -->
                 </div>
 
                 <div class="form-container">
@@ -54,34 +54,6 @@
 
                     </form>
 
-                    <!-- SIGN-UP -->
-                    <form id="signupForm" class="form hidden form-sign" action="register.php" method="post">
-
-                        <!-- FORM USERNAME, EMAIL, PASSWORD -->
-                        <div class="input-container">
-                            <i class="fa fa-user"></i>
-                            <input type="text" name="name" placeholder="Name" required>
-                        </div>
-                        <div class="input-container">
-                            <i class="fa fa-user"></i>
-                            <input type="text" name="username" placeholder="Username" required>
-                        </div>
-                        <div class="input-container">
-                            <i class="fa fa-envelope"></i>
-                            <input type="email" name="email" placeholder="Email" required>
-                        </div>
-                        <div class="input-container password-container">
-                            <i class="fa fa-lock"></i>
-                            <input type="password" id="signupPassword" class="input-pw" name="password"
-                                placeholder="Password" required>
-                            <span class="toggle-password" onclick="togglePassword()">
-                                <i class="fa fa-eye-slash" id="toggleSignupPasswordIcon"></i>
-                            </span>
-                        </div>
-
-                        <!-- BUTTON SUBMIT -->
-                        <button type="submit">Sign up</button>
-                    </form>
                 </div>
             </div>
         </div>
