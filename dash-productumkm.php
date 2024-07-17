@@ -79,6 +79,7 @@
                         <th>Nama Product</th>
                         <th>Harga</th>
                         <th>Deskripsi</th>
+                        <th>ID Penjual</th>
                         <th>Penjual</th>
                         <th>No Whatsapp</th>
                         <th>Tindakan</th>
@@ -91,9 +92,8 @@
                         $query = mysqli_query($connection, "SELECT * FROM product_umkm");
                         while ($data = mysqli_fetch_array ($query)) {
                     ?>
-                    <tr>
+                   <tr>
                         <td><?php echo $data['id_product']; ?></td>
-                        <td><?php echo $data['product_photo']; ?></td>
                         <td>
                             <img src="<?php echo $data['product_photo_1']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 50px; height: auto;">
                             <img src="<?php echo $data['product_photo_2']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 50px; height: auto;">
@@ -102,20 +102,22 @@
                         </td>
                         <td><?php echo $data['product_category']; ?></td>
                         <td><?php echo $data['product_name']; ?></td>
-                        <td><?php echo $data['product_price']; ?></td>
+                        <td><?php echo 'Rp' . number_format($data['product_price'], 0, ',', '.'); ?></td>
                         <td><?php echo $data['product_description']; ?></td>
+                        <td><?php echo $data['id_seller']; ?></td>
                         <td><?php echo $data['seller_name']; ?></td>
                         <td><?php echo $data['no_whatsapp']; ?></td>
                         
                         <td>
-                        <a href="update-productumkm.php?id_product=<?php echo htmlspecialchars($data['id_product']); ?>">
-                            <i class="fa fa-pencil edit-btn"></i>
-                        </a>
-                        <a href="#" onclick="confirmDeleteEbook('<?php echo $data['id_product']; ?>');">
-                            <i class="fa fa-trash delete-btn"></i>
-                        </a>    
+                            <a href="update-productumkm.php?id_product=<?php echo htmlspecialchars($data['id_product']); ?>">
+                                <i class="fa fa-pencil edit-btn"></i>
+                            </a>
+                            <a href="#" onclick="confirmDeleteEbook('<?php echo $data['id_product']; ?>');">
+                                <i class="fa fa-trash delete-btn"></i>
+                            </a>    
                         </td>
                     </tr>
+
 
                     <?php 
                       }

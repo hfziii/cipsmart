@@ -13,79 +13,82 @@ function input($data) {
     return $data;
 }
 
-
 // Cek kiriman form dari method post
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $product_photo = input($_POST["product_photo_1"]);
-    $product_photo = input($_POST["product_photo_2"]);
-    $product_photo = input($_POST["product_photo_3"]);
-    $product_photo = input($_POST["product_photo_4"]);
+    $product_photo_1 = $_FILES["product_photo_1"];
+    $product_photo_2 = $_FILES["product_photo_2"];
+    $product_photo_3 = $_FILES["product_photo_3"];
+    $product_photo_4 = $_FILES["product_photo_4"];
     $product_category = input($_POST["product_category"]);
     $product_name = input($_POST["product_name"]);
     $product_price = input($_POST["product_price"]);
     $product_description = input($_POST["product_description"]);
-    $id_seller = input($_POST["seller_name"]);
-    $id_seller = input($_POST["no_whatsapp"]);
+    $id_seller = input($_POST["id_seller"]);
 
-   // Proses upload photo
-   $target_dir = "uploads/umkm/";
-   $target_file = $target_dir . basename($_FILES["product_photo"]["product_name"]);
-   $uploadOk = 1;
-   $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    // Proses upload photo
+    $allowed_formats = array("jpg", "jpeg", "png", "gif");
+    $photos = array($product_photo_1, $product_photo_2, $product_photo_3, $product_photo_4);
+    $photo_paths = array();
 
-   // Check if image file is a actual image or fake image
-   $check = getimagesize($_FILES["product_photo"]["tmp_name"]);
-   if ($check === false) {
-       echo "File is not an image.";
-       $uploadOk = 0;
-   }
+    foreach ($photos as $photo) {
+        if (isset($photo) && $photo["error"] == 0) {
+            $target_dir = "uploads/umkm/";
+            $target_file = $target_dir . basename($photo["name"]);
+            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-   // Check if file already exists
-   if (file_exists($target_file)) {
-       echo "Sorry, file already exists.";
-       $uploadOk = 0;
-   }
+            // Check if image file is a actual image or fake image
+            $check = getimagesize($photo["tmp_name"]);
+            if ($check === false) {
+                echo "File is not an image.";
+                continue;
+            }
 
-   // Check file size
-   if ($_FILES["photo"]["size"] > 5000000) {
-       echo "Sorry, your file is too large.";
-       $uploadOk = 0;
-   }
+            // Check if file already exists
+            if (file_exists($target_file)) {
+                echo "Sorry, file already exists.";
+                continue;
+            }
 
-   // Allow certain file formats
-   $allowed_formats = array("jpg", "jpeg", "png", "gif");
-   if (!in_array($imageFileType, $allowed_formats)) {
-       echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-       $uploadOk = 0;
-   }
+            // Check file size
+            if ($photo["size"] > 5000000) {
+                echo "Sorry, your file is too large.";
+                continue;
+            }
 
-   // Check if $uploadOk is set to 0 by an error
-   if ($uploadOk == 0) {
-       echo "Sorry, your file was not uploaded.";
-   // if everything is ok, try to upload file
-   } else {
-       if (move_uploaded_file($_FILES["product_photo"]["tmp_name"], $target_file)) {
-           $photo = $target_file;
+            // Allow certain file formats
+            if (!in_array($imageFileType, $allowed_formats)) {
+                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                continue;
+            }
 
-           // Query input menginput data kedalam tabel
-           $sql = "INSERT INTO book (product_photo_1, product_photo_2, product_photo_3, product_photo_4, product_category, product_name, product_price, product_description, seller_name, no_whatsapp) VALUES ('$product_photo', '$product_category', '$product_name', '$product_price', '$product_description', '$seller_name', '$no_whatsapp')";
+            // if everything is ok, try to upload file
+            if (move_uploaded_file($photo["tmp_name"], $target_file)) {
+                $photo_paths[] = $target_file;
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+    }
 
-           // Mengeksekusi query
-           $hasil = mysqli_query($connection, $sql);
+    if (count($photo_paths) == 4) {
+        // Query input menginput data kedalam tabel
+        $sql = "INSERT INTO product_umkm (product_photo_1, product_photo_2, product_photo_3, product_photo_4, product_category, product_name, product_price, product_description, id_seller) 
+                VALUES ('$photo_paths[0]', '$photo_paths[1]', '$photo_paths[2]', '$photo_paths[3]', '$product_category', '$product_name', '$product_price', '$product_description', '$id_seller')";
 
-           // Kondisi apakah berhasil atau tidak dalam mengeksekusi query
-           if ($hasil) {
-               header("Location: dash-productumkm.php");
-               exit(); // untuk menghentikan eksekusi skrip
-           } else {
-               echo "<div class='alert alert-danger'> Data Gagal disimpan. Error: " . mysqli_error($connection) . "</div>";
-           }
+        // Mengeksekusi query
+        $hasil = mysqli_query($connection, $sql);
 
-       } else {
-           echo "Sorry, there was an error uploading your file.";
-       }
-   }
+        // Kondisi apakah berhasil atau tidak dalam mengeksekusi query
+        if ($hasil) {
+            header("Location: dash-productumkm.php");
+            exit(); // untuk menghentikan eksekusi skrip
+        } else {
+            echo "<div class='alert alert-danger'> Data Gagal disimpan. Error: " . mysqli_error($connection) . "</div>";
+        }
+    } else {
+        echo "<div class='alert alert-danger'> Upload foto gagal. Pastikan semua file foto diunggah dengan benar.</div>";
+    }
 }
 ?>
 
@@ -159,11 +162,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="text" name="id_seller" class="form-control" required />
                 </div>
 
-                <div class="form-group">
-                    <label>Tahun Terbit</label>
-                    <input type="text" name="tahun_ebook" class="form-control" required />
-                </div>
-                
                 <div class="form-group">
                     <label>Foto Produk 1 (jpg/jpeg/png/gif)</label>
                     <input type="file" name="product_photo_1" class="form-control" required />
