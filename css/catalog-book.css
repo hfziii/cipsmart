@@ -35,9 +35,12 @@ html {
     justify-content: space-between;
     padding: 0 85px;
     box-sizing: border-box;
+    gap: 15px;
 }
 
-.corner-lib {
+/* Apply styles to the select element */
+select.corner-lib {
+    border: none; /* Removes the border */
     display: flex;
     align-items: center;
     gap: 10px;
@@ -49,20 +52,30 @@ html {
     font-style: normal;
     font-weight: 800;
     line-height: normal;
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+/* Add a custom dropdown arrow */
+select.corner-lib::after {
+    content: '\25BC'; /* Unicode character for down arrow */
+    position: absolute;
+    right: 10px;
+    pointer-events: none; /* Allows clicking through the arrow */
+}
+
+/* Optional: style the container to position the custom arrow */
+.select-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Remove outline on focus */
+select.corner-lib:focus {
+    outline: none;
 }
 
 .corner {
     margin: 0;
-}
-
-.dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #FFF;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 2;
 }
 
 .dropdown-content {
@@ -302,7 +315,7 @@ html {
     border-radius: 20px;
     background: #FFF;
     z-index: 0;
-    margin-bottom: 215px;
+    margin-bottom: 235px;
     margin-left: 70px;
 }
 
@@ -322,9 +335,10 @@ html {
 
 .title-catalog {
     color: #ffffff;
-    font-size: 24px;
+    font-size: 25px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
+    margin-top: 15px;
 }
 
 .frame-container {

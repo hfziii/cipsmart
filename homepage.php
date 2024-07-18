@@ -116,7 +116,7 @@
                     </div>
     
                     <div class="ebook">
-                        <a href="#">
+                        <a href="./user/catalog-ebook.php">
                             <img src="./img/homepage/btn-ebook.png" alt="">
                         </a>
                         <p class="ebooktext">
@@ -125,7 +125,7 @@
                     </div>
     
                     <div class="umkm">
-                        <a href="#">
+                        <a href="./user/catalog-umkm.php">
                             <img src="./img/homepage/btn-umkm.png" alt="">
                         </a>
                         <p class="umkmtext">

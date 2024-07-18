@@ -2,40 +2,16 @@
 session_start();
 include 'koneksi.php';
 
-$showSuccessPopup = false; // Tambahkan variabel untuk menampilkan popup sukses
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
-    $id_book = $_POST['id_book'];
-    $id_user = $_POST['id_user'];
-    $borrower_name = $_POST['borrower_name'];
-    $title_book = $_POST['title_book'];
-    $borrow_date = $_POST['borrow_date'];
-    $return_date = $_POST['return_date'];
-
-    $sql_insert = "INSERT INTO book_borrowing (id_book, id_user, name, title_book, borrow_date, return_date) 
-            VALUES ('$id_book', '$id_user', '$borrower_name', '$title_book', '$borrow_date', '$return_date')";
-
-    if (mysqli_query($connection, $sql_insert)) {
-        $sql_update = "UPDATE book SET status = 'Dipinjam' WHERE id_book = '$id_book'";
-
-        if (mysqli_query($connection, $sql_update)) {
-            $showSuccessPopup = true; // Set variabel untuk menampilkan popup sukses
-        } else {
-            echo "<script>alert('Data insertion failed: " . mysqli_error($connection) . "');</script>";
-        }
-    } 
-}
-
-if (!isset($_GET['id_book'])) {
-    header("Location: catalog-book.php");
+if (!isset($_GET['id_ebook'])) {
+    header("Location: catalog-ebook.php");
     exit();
 }
-$id_book = $_GET['id_book'];
-$sql = "SELECT * FROM book WHERE id_book='$id_book'";
+$id_ebook = $_GET['id_ebook'];
+$sql = "SELECT * FROM ebook WHERE id_ebook='$id_ebook'";
 $query = mysqli_query($connection, $sql);
 $data = mysqli_fetch_assoc($query);
 if (!$data) {
-    echo "Buku tidak ditemukan";
+    echo "E-Book tidak ditemukan";
     exit();
 }
 
@@ -45,6 +21,7 @@ $userNameResult = mysqli_query($connection, $userNameQuery);
 $userData = mysqli_fetch_assoc($userNameResult);
 $name = isset($userData['name']) ? $userData['name'] : 'Guest';
 $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
+$pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';  
 ?>
 
 <!DOCTYPE html>
@@ -52,22 +29,22 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Buku</title>
-    <link rel="stylesheet" href="../css/detail-book.css">
+    <title>Detail E-Book</title>
+    <link rel="stylesheet" href="../css/detail-ebook.css">
     <link rel="icon" href="../img/favicon/android-chrome-192x192.png" type="image/png">
     <?php
     // session_start();
     // include 'koneksi.php';
-    if (!isset($_GET['id_book'])) {
-        header("Location: catalog-book.php");
+    if (!isset($_GET['id_ebook'])) {
+        header("Location: catalog-ebook.php");
         exit();
     }
-    $id_book = $_GET['id_book'];
-    $sql = "SELECT * FROM book WHERE id_book='$id_book'";
+    $id_ebook = $_GET['id_ebook'];
+    $sql = "SELECT * FROM ebook WHERE id_ebook='$id_ebook'";
     $query = mysqli_query($connection, $sql);
     $data = mysqli_fetch_assoc($query);
     if (!$data) {
-        echo "Buku tidak ditemukan";
+        echo "E-Book tidak ditemukan";
         exit;
     }    
     ?>
@@ -118,7 +95,7 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
                 };
                 dropdownContent.appendChild(logoutItem);
 
-                // Event listener untuk pinjam buku
+                // Event listener untuk pinjam ebook
                 var borrowBtn = document.querySelector('.wa');
                 if (borrowBtn) {
                     borrowBtn.addEventListener('click', function(event) {
@@ -145,47 +122,13 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
                 }
             }
 
-            var okBtn = document.querySelector('#successPopupForm .success-ok-btn');
-            if (okBtn) {
-                okBtn.addEventListener('click', function () {
-                    document.getElementById('successPopupForm').style.display = 'none';
-                });
-            }
+            
         });
     </script>
 
 </head>
 <body>
     <div class="bg-base-body">
-
-        <!-- Pop-up form -->
-        <div class="popup-form" id="popupForm">
-            <span class="close-btn">&times;</span>
-            <h2>Pinjam Buku</h2>
-            <p><?php echo $data['title_book']; ?></p>
-            <form action="detail-book.php?id_book=<?php echo $id_book; ?>" method="POST">
-                <input type="hidden" name="id_book" value="<?php echo $id_book; ?>">
-                <input type="hidden" name="id_user" value="<?php echo $id_user; ?>">
-                <label for="borrow_date" class="labelborrow">Nama Peminjam</label>
-                <input type="text" id="borrower_name" name="borrower_name" placeholder="Nama Peminjam" required>
-                <input type="hidden" name="title_book" value="<?php echo $data['title_book']; ?>">
-                <label for="borrow_date" class="labelborrow">Tanggal Pinjam</label>
-                <input type="date" id="borrow_date" name="borrow_date" required>
-                <label for="return_date" class="labelborrow">Tanggal Kembali</label>
-                <input type="date" id="return_date" name="return_date" required>
-                <input type="submit" class="submit-btn" name="borrow" value="Pinjam">
-            </form>
-        </div>
-        
-        <!-- Success Pop-up form -->
-        <div class="success-popup-form" id="successPopupForm" style="display:none;">
-            <div class="center-image-container">
-                <img src="../img/catalog/ep_success-filled.png" alt="Success Image">
-            </div>
-            <h2>Peminjaman Buku</h2>
-            <h2>Berhasil!</h2>
-            <button class="ok-btn success-ok-btn">Oke</button>
-        </div>
 
         <header class="bg-navbar">
             <nav class="navbar">
@@ -276,62 +219,48 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
 
                     <div class="detail-1">
                         <div class="photobook">
-                            <img src="<?php echo '../' . $data['photo']; ?>" alt="<?php echo $data['title_book']; ?>" style="width: 200px; height: 280px; margin: 10px 0px 0px 30px">
+                            <img src="<?php echo '../' . $data['sampul_ebook']; ?>" alt="<?php echo $data['judul_ebook']; ?>" style="width: 200px; height: 280px; margin: 10px 0px 0px 30px">
                         </div>
                     </div> 
 
                     <div class="detail-2">
-                        <h2 style="color: #fff;"><?php echo $data['author_name']; ?></h2>
-                        <h1 style="color: #fff;"><?php echo $data['title_book']; ?></h1>
+                        <h2 style="color: #fff;"><?php echo $data['penulis_ebook']; ?></h2>
+                        <h1 style="color: #fff;"><?php echo $data['judul_ebook']; ?></h1>
 
                         <div class="linked">
-                            <p class="sipnopsis">Sipnopsis Buku</p>
-                            <p class="detailbook">Detail Buku</p>
+                            <p class="sipnopsis">Sipnopsis E-Book</p>
+                            <p class="detailbook">Detail E-Bbook</p>
 
-                            <?php if ($data['status'] == 'Tersedia') : ?>
-                                <div class="sb">
-                                <p class="stasusbook" style="align-text: center; color:#fff;"><?php echo $data['status']; ?></p>
-                                </div>
-                            <?php else : ?>
-                                <div class="sb-none">
-                                    <p class="stasusbook" style="align-text: center; center; color: yellow;"><?php echo $data['status']; ?></p>
-                                </div>
-                            <?php endif; ?>
-
-                            <!-- ------------------------------------------------------ -->
-                            <?php if ($data['status'] == 'Tersedia') : ?>
-                                <?php if (isset($_SESSION['username'])): ?>
-                                    <a href="#" class="wa">
-                                        <span class="rentbutton">Pinjam Buku</span>
-                                    </a>
-                                <?php else: ?>
-                                    <a href="../login.php" class="wa">
-                                        <span class="rentbutton">Login untuk Pinjam</span>
-                                    </a>
-                                <?php endif; ?>
-                                
-                            <?php endif; ?>
+                            <a href="<?php echo $pdf_url; ?>" class="download-btn" download>
+                                <img src="../img/detail/download-pdf.png" alt="Download">
+                                <span class="rentbutton">Download</span>
+                            </a>
+                            <a href="<?php echo $pdf_url; ?>" class="read-btn" target="_blank">
+                                <img src="../img/detail/read-pdf.png" alt="Read">
+                                <span class="rentbutton">Baca Online</span>
+                            </a>
+                            
                         </div>
 
                         <hr class="white-line">
 
                         <div class="title-1">
-                            <h2 class="t1" style="color: #fff;">Sipnopsis Buku</h2>
+                            <h2 class="t1" style="color: #fff;">Sipnopsis E-Book</h2>
                         </div>
                         <div class="sipnopsis-desc">
-                            <p><?php echo $data['sipnopsis']; ?></p>
+                            <p><?php echo $data['sipnopsis_ebook']; ?></p>
                         </div>
                         <div class="title-1">
-                            <h2 class="t1" style="color: #fff;">Detail Buku</h2>
+                            <h2 class="t1" style="color: #fff;">Detail E-Book</h2>
                         </div>
                         <div class="book-desc">
                             <div class="bd1">
-                                <p class="desc-1">Penerbit <br><p><?php echo $data['publisher_name']; ?></p></p>
-                                <p class="desc-2">Tahun Terbit <br><p><?php echo $data['year_publish']; ?></p></p>
+                                <p class="desc-1">Penerbit <br><p><?php echo $data['penerbit_ebook']; ?></p></p>
+                                <p class="desc-2">Tahun Terbit <br><p><?php echo $data['tahun_ebook']; ?></p></p>
                             </div>
                             <div class="bd-2">
-                                <p class="desc-3">ISBN <br><p><?php echo $data['isbn']; ?></p></p>
-                                <p class="desc-4">Total Halaman <br><p><?php echo $data['total_page']; ?></p></p>
+                                <p class="desc-3">ISBN <br><p><?php echo $data['isbn_ebook']; ?></p></p>
+                                <p class="desc-4">Total Halaman <br><p><?php echo $data['jumlah_halaman_ebook']; ?></p></p>
                             </div>
                         </div>
                     </div>
@@ -341,8 +270,8 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
         </div>
 
         <?php
-        // Mengambil 10 buku secara acak dari tabel book
-        $recommendationQuery = "SELECT * FROM book ORDER BY RAND() LIMIT 10";
+        // Mengambil 10 ebook secara acak dari tabel book
+        $recommendationQuery = "SELECT * FROM ebook ORDER BY RAND() LIMIT 10";
         $recommendationResult = mysqli_query($connection, $recommendationQuery);
         ?>
 
@@ -352,7 +281,7 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
             </div>
 
             <div class="box-2">
-                <h1 class="title-rec">Rekomendasi Buku</h1>
+                <h1 class="title-rec">Rekomendasi E-Book</h1>
 
                 <a href="#" class="other-btn other-btn-1">
                     <img src="../img/detail/prev-recommend.png" alt="" class="other-btn-1">
@@ -360,13 +289,13 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
 
                 <div class="frame-container-wrapper">
                     <div class="frame-container">
-                        <?php while ($book = mysqli_fetch_assoc($recommendationResult)): ?>
-                            <a href="detail-book.php?id_book=<?php echo $book['id_book']; ?>" class="frame-card-link">
+                        <?php while ($ebook = mysqli_fetch_assoc($recommendationResult)): ?>
+                            <a href="detail-ebook.php?id_ebook=<?php echo $ebook['id_ebook']; ?>" class="frame-card-link">
                                 <div class="frame-card">
-                                    <img src="<?php echo '../' . $book['photo']; ?>" alt="<?php echo $book['title_book']; ?>" class="img-p">
-                                    <h1 class="name-book"><?php echo $book['title_book']; ?></h1>
-                                    <h1 class="name-author"><?php echo $book['author_name']; ?></h1>
-                                    <h1 class="status"><?php echo $book['status']; ?></h1>
+                                    <img src="<?php echo '../' . $ebook['sampul_ebook']; ?>" alt="<?php echo $ebook['judul_ebook']; ?>" class="img-p">
+                                    <h1 class="judul_ebook"><?php echo $ebook['judul_ebook']; ?></h1>
+                                    <h1 class="penulis_ebook"><?php echo $ebook['penulis_ebook']; ?></h1>
+                                    <h1 class="kategori_ebook"><?php echo $ebook['kategori_ebook']; ?></h1>
                                 </div>
                             </a>
                         <?php endwhile; ?>
@@ -479,14 +408,6 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
         </div>
 
     </div>
-
-    <!-- Tambahkan Form untuk Pinjam Buku -->
-    <form id="borrowForm" method="POST" action="detail-book.php" style="display:none;">
-        <input type="hidden" name="id_book" value="<?php echo $data['id_book']; ?>">
-        <input type="hidden" name="id_user" value="<?php echo $id_user; ?>">
-        <input type="hidden" name="name" value="<?php echo $name; ?>">
-        <input type="hidden" name="title_book" value="<?php echo $data['title_book']; ?>">
-    </form>
 
     <script src="../js/carousel.js"></script>
 

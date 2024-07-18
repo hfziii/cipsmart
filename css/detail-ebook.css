@@ -281,7 +281,7 @@ select.corner-lib:focus {
     border-radius: 20px;
     background: #FFF;
     z-index: 0;
-    margin-bottom: 235px;
+    margin-bottom: -10px;
     margin-left: 70px;
 }
 
@@ -417,185 +417,39 @@ select.corner-lib:focus {
     max-width: 30px;
 }
 
-/* POP UP PINJAM */
-.popup-form {
-    display: none;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 700px;
-    height: 425px;
-    border-radius: 20px;
-    background: #1C7EA5;
-    padding: 20px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-}
-
-.success-popup-form{
-    display: none;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 700px;
-    height: 300px;
-    border-radius: 20px;
-    background: #1C7EA5;
-    padding: 20px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-}
-
-.popup-form h2 {
-    color: #FFF;
-    text-align: center;
-    font-family: Montserrat;
-    font-size: 25px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-}
-
-.success-popup-form h2{
-    color: #FFF;
-    text-align: center;
-    font-family: Montserrat;
-    font-size: 25px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-}
-
-.popup-form p {
-    color: #FFF;
-    text-align: center;
-    font-family: Montserrat;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-    margin-bottom: 40px;
-}
-
-.success-popup-form .center-image-container {
-    display: flex;
-    justify-content: center;
+/* CSS untuk menata tombol */
+.download-btn {
+    width: 145px;
+    height: 25px;
+    display: inline-flex;
     align-items: center;
-}
-
-.center-image-container img {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.popup-form input[type="text"], .popup-form input[type="date"] {
-    width: calc(100% - 22px);
-    padding: 10px;
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 5px;
-}
-
-.popup-form .close-btn {
-    position: absolute;
-    right: 15px;
-    top: 0px;
-    cursor: pointer;
-    font-size: 50px;
-    color: #fff;
-}
-
-.popup-form .submit-btn {
-    position: absolute;
-    background-color: #4CAF50;
-    color: white;
-    padding: 0px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 150px;
-    height: 40px;
-    margin: 220px 0px 0px 230px;
-    display: block;
-    font-size: 20px;
-}
-
-.success-popup-form .ok-btn {
-    position: absolute;
-    background-color: #7CFF00;
-    color: white;
-    padding: 0px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 150px;
-    height: 40px;
-    margin: 30px 0px 0px 275px;
-    display: block;
-    font-size: 20px;
-}
-
-form {
-    display: grid;
-    grid-template-columns: 1fr 2fr; /* Membagi form menjadi 2 kolom dengan lebar yang sama */
-    grid-gap: 10px; /* Jarak antara grid items */
-    width: 100%;
-    max-width: 600px; /* Atur lebar maksimum form sesuai kebutuhan */
-    margin: 0 auto; /* Pusatkan form secara horizontal */
-}
-
-form label {
-    color: #fff;
-    margin-bottom: 8px;
-}
-
-form input[type="text"],
-form input[type="date"],
-form input[type="submit"] {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 100%; /* Biarkan input mengisi lebar grid item */
-    box-sizing: border-box; /* Pastikan padding tidak mempengaruhi lebar total */
-}
-
-.labelborrow{
-    margin-top: 10px;
-    color: #fff;
-    font-family: Montserrat;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-/*  */
-
-.rentbutton{
-    text-decoration: none;
-    background-color: transparent;
-    color: #fff; 
-    width: 177px;
-    height: 35px;
+    padding: 10px 15px;
     border-radius: 10px;
-    border-color: #fff;
-    background-color: #17a2b8;
-    display: flex; /* Use flexbox */
-    align-items: center; /* Center items vertically */
-    justify-content: center;
-    margin-top: 2px;
-    cursor: pointer;
+    background: #21BBB9;
+    transition: background-color 0.3s ease;
 }
 
-.rentbutton:hover {
-    text-decoration: none; /* Menghilangkan garis bawah pada teks saat dihover */
-    background-color: #127a8e; /* Ubah warna latar belakang saat dihover */
-    border-color: #127a8e; /* Ubah warna border saat dihover */
+.read-btn {
+    width: 145px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center; 
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 3px solid #FFF;
+    transition: background-color 0.3s ease; 
 }
 
-.rentbutton:hover span {
-    text-decoration: none; /* Menghilangkan garis bawah pada teks saat dihover */
+.download-btn img {
+    margin-right: 10px; 
+    width: 24px;
+    height: 24px; 
+}
+
+.read-btn img {
+    margin-right: 10px; 
+    width: 24px;
+    height: 24px; 
 }
 
 /* BOX REKOMENDASI */
@@ -608,7 +462,7 @@ form input[type="submit"] {
     gap: 20px;
     display: flex;
     transition: transform 0.3s ease-in-out;
-    margin: 0px 25px 25px;
+    margin: 10px 25px 25px;
 }
 
 .frame-card {
@@ -625,19 +479,19 @@ form input[type="submit"] {
 }
 
 .frame-card-link {
-    text-decoration: none; /* Remove underline from links */
-    color: inherit; /* Inherit text color */
-    /* display: block; */
+    text-decoration: none; 
+    color: inherit; 
     flex: 0 0 20%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: 20px;
+    margin-top: 25px;
 }
 
 .frame-card a {
     text-decoration: none;
     color: inherit;
-    display: block; /* Ensure link fills the card */
+    display: block; 
 }
 
 .img-p {
@@ -646,7 +500,7 @@ form input[type="submit"] {
     border-radius: 10px;
 }
 
-.name-book {
+.judul_ebook {
     color: #000;
     font-family: Montserrat;
     font-size: 16px;
@@ -654,14 +508,14 @@ form input[type="submit"] {
     font-weight: bold;
 }
 
-.name-author {
+.penulis_ebook {
     color: #000;
     font-family: Montserrat;
     font-size: 14px;
     margin-top: 5px;
 }
 
-.status {
+.kategori_ebook {
     font-size: 12px;
     margin-top: 5px;
     color: #888888;
@@ -690,7 +544,7 @@ form input[type="submit"] {
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    margin: 25px 0px 15px 25px;    
+    margin: 35px 0px 15px 25px;    
 }
 
 .recomend {
@@ -761,7 +615,7 @@ form input[type="submit"] {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 20px; /* Adjust gap between columns as needed */
-    width: 100%;
+    width: 110%;
     max-width: 1200px;
     margin-bottom: 20px; /* Space between columns and copyright */
     color: #FFF;

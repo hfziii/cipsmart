@@ -302,7 +302,7 @@ html {
     border-radius: 20px;
     background: #FFF;
     z-index: 0;
-    margin-bottom: -10px;
+    margin-bottom: -245px;
     margin-left: 70px;
 }
 
@@ -368,6 +368,63 @@ html {
     font-size: 12px;
     margin-top: 5px;
     color: #888888;
+}
+
+/* FOOTER */
+.footer {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    background: #63AFBD;
+    margin-top: 50px;
+}
+
+.linked {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.linked a,
+.linked p {
+    margin: 5px 0;
+}
+
+.linked a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.linked a {
+    color: #FFF;
+    text-decoration: underline;
+}
+
+.callfot img {
+    width: 30px;
+}
+
+.copy {
+    text-align: center;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 30px;
+    margin-bottom: 0;
 }
 
 /* Responsive styles */
@@ -604,63 +661,4 @@ form input[type="submit"] {
 
 .rentbutton:hover span {
     text-decoration: none; /* Menghilangkan garis bawah pada teks saat dihover */
-}
-
-
-/* FOOTER */
-.footer {
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    margin-top: 125px;
-}
-
-.linked {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px; /* Adjust gap between columns as needed */
-    width: 100%;
-    max-width: 1200px;
-    margin-bottom: 20px; /* Space between columns and copyright */
-    color: #FFF;
-    font-family: Montserrat;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-}
-
-.linked a, .linked p {
-    margin: 5px 0;
-}
-
-.linked a {
-    color: #FFF;
-    text-decoration: none; /* Remove underline */
-}
-
-.linked a:hover {
-    color: #FFF; /* Ensure hover color stays white */
-    text-decoration: underline; /* Optional: underline on hover */
-}
-
-.callfot img {
-    width: 30px; /* Adjust icon size as needed */
-}
-
-.copyright {
-    text-align: center;
-    color: #FFF;
-    font-family: Montserrat;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    margin-top: 30px;
-}
-
-.copy {
-    margin: 0;
 }
