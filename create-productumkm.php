@@ -154,17 +154,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="form-group">
                     <label>Deskripsi</label>
-                    <input type="text" name="product_description" class="form-control" required />
+                    <textarea name="product_description" class="form-control" style="height: 150px; width: 100%; border-radius: 15px;" required ></textarea>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" style="margin-top: -105px">
                     <label>Id Seller</label>
                     <input type="text" name="id_seller" class="form-control" required />
-                </div>
-
-                <div class="form-group">
-                    <label>Foto Produk 1 (jpg/jpeg/png/gif)</label>
-                    <input type="file" name="product_photo_1" class="form-control" required />
                 </div>
 
                 <div class="form-group">
@@ -172,14 +167,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="file" name="product_photo_2" class="form-control" required />
                 </div>
 
-                <div class="form-group">
-                    <label>Foto Produk 3 (jpg/jpeg/png/gif)</label>
-                    <input type="file" name="product_photo_3" class="form-control" required />
+                <div class="form-group" style="margin-top: -105px">
+                    <label>Foto Produk 1 (jpg/jpeg/png/gif)</label>
+                    <input type="file" name="product_photo_1" class="form-control" required />
                 </div>
 
                 <div class="form-group">
                     <label>Foto Produk 4 (jpg/jpeg/png/gif)</label>
                     <input type="file" name="product_photo_4" class="form-control" required />
+                </div>
+
+                <div class="form-group" style="margin-top: -105px">
+                    <label>Foto Produk 3 (jpg/jpeg/png/gif)</label>
+                    <input type="file" name="product_photo_3" class="form-control" required />
                 </div>
 
             </div>
