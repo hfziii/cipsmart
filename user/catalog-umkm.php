@@ -142,7 +142,7 @@
                             $imagePath = '../' . $data["product_photo_1"];
                             $formattedPrice = 'Rp' . number_format($data["product_price"], 0, ',', '.');
                             echo '<div class="frame-card">
-                                <a href="detail-productumkm.php?id_product=' . $data['id_product'] . '">
+                                <a href="detail-umkm.php?id_product=' . $data['id_product'] . '">
                                     <div class="cardd">
                                         <img class="img-p" src="' . $imagePath . '" alt="' . $data["product_name"] . '">
                                     </div>
