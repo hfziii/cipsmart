@@ -1,0 +1,234 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background: url('../img/dashboard/bg-dashboard.png') no-repeat center center/cover;
+    position: relative;
+}
+
+/* Scrollbar */
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background: rgb(118, 118, 118);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #FFF;
+    border-radius: 20px;
+    border: 3px solid rgb(118, 118, 118);
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 250px;
+    background-color: rgba(99, 175, 189, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top-right-radius: 50px;
+}
+
+.sidebar .logo img {
+    width: 80px;
+    margin-bottom: 5px;
+}
+
+.sidebar ul {
+    list-style: none;
+    width: 100%;
+    padding-left: 0;
+}
+
+.sidebar ul li {
+    width: 100%;
+    text-align: center;
+}
+
+.sidebar ul li a {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.sidebar ul li a:hover, .sidebar ul li.active a {
+    background-color: white;
+    color: #63AFBD;
+    border-radius: 50px;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 24px;
+}
+
+.header-icons i {
+    font-size: 24px;
+    margin-left: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #1CB1D6;
+}
+
+.content {
+    padding: 20px;
+}
+
+.form-title {
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.admin-form {
+       display: flex;
+       flex-wrap: wrap;
+       justify-content: space-between;
+       padding: 20px;
+       /* background-color: rgba(255, 255, 255, 1); */ /* Hapus atau comment out baris ini */
+       border-radius: 10px;
+       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+   }
+   
+
+.form-row {
+    width: 48%;
+    margin-bottom: 20px;
+}
+
+.form-row label {
+    display: block;
+    margin-bottom: 5px;
+    color: #63AFBD;
+    text-align: left;
+}
+
+.form-row input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #63AFBD;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.back-button, .save-button {
+    width: 100px;
+    padding: 10px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.back-button {
+    background-color: #FF4D4D;
+    color: white;
+}
+
+.save-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sidebar ul li {
+        width: auto;
+    }
+
+    .sidebar ul li a {
+        padding: 10px;
+        font-size: 12px;
+        text-align: left;
+    }
+
+    .main-content {
+        margin-top: 200px;
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 18px;
+    }
+
+    .header-icons i {
+        font-size: 18px;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    .admin-form {
+        flex-direction: column;
+    }
+
+    .form-row {
+        width: 100%;
+    }
+
+    .back-button, .save-button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
