@@ -124,6 +124,10 @@ body, html {
     object-fit: cover;
 }
 
+.content {
+    background-color: #FFEC00;
+}
+
 .logotext{
     color: #FFF;
     text-align: center;
@@ -148,19 +152,26 @@ body, html {
     margin-bottom: 0;
 }
 
+.tim-ppk {
+    width: 87.501px;
+    height: 87.501px;
+    flex-shrink: 0;
+    fill: #FFF;
+}
+
 .title {
     font-family: Montserrat;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin-top: 50px;
+    margin-left: -900px;
 }
 
 .titleppk {
     width: 204px;
-    height: 18px;
+    height: 10px;
     font-size: 12px;
-    margin-top: -250px;
-    margin-left: 500px;
     color: #FFEC00;
 }
 
@@ -168,46 +179,120 @@ body, html {
     width: 318px;
     height: 36px;
     font-size: 15px;
-    margin-top: -15px;
-    margin-left: 500px;
     color: #FFF;
 }
 
 .anggota {
-    height: 20px;
+    height: 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 620px;
+    margin-left: 200px;
+    padding: 0%;
+    row-gap: 50px;
 }
+
 
 .box1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
 }
 
 .box1 img {
     display: block;
-    margin-top: 180px;
-    margin-left: 1100px;
     border-radius: 20px;
     background: #FFF;
+    margin-left: 50px;
+    width: 250px;
+    height: 234px;
+    flex-shrink: 0;
 }
 
 .box2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: -1200px;
 }
 
 .box2 img {
     display: block;
-    margin-top: 30px;
-    margin-left: 100px;
     border-radius: 20px;
     background: #FFF;
+    margin-left: 50px;
+    width: 250px;
+    height: 234px;
+    flex-shrink: 0;
 }
+
+.box3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box3 img {
+    display: block;
+    border-radius: 20px;
+    background: #FFF;
+    margin-left: 50px;
+    width: 250px;
+    height: 234px;
+    flex-shrink: 0;
+}
+
+.box4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box4 img {
+    display: block;
+    border-radius: 20px;
+    background: #FFF;
+    margin-left: 50px;
+    width: 250px;
+    height: 234px;
+    flex-shrink: 0;
+}
+
+.box5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box5 img {
+    display: block;
+    border-radius: 20px;
+    background: #FFF;
+    margin-left: 50px;
+    width: 250px;
+    height: 234px;
+    flex-shrink: 0;
+}
+
+.box6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box6 img {
+    display: block;
+    border-radius: 20px;
+    background: #FFF;
+    margin-left: 50px;
+    width: 250px;
+    height: 234px;
+    flex-shrink: 0;
+}
+
+
+
+
+
 
