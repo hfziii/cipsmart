@@ -133,29 +133,31 @@
                 </p>
 
                 <div class="frame-container">
-                    <?php
-                        include("koneksi.php");
+                <?php
+                    include("koneksi.php");
 
-                        $query = mysqli_query($connection, "SELECT * FROM product_umkm");
-                        if ($query && mysqli_num_rows($query) > 0) {
-                            while ($data = mysqli_fetch_assoc($query)) {
-                                $imagePath = '../' . $data["product_photo"];
-                                echo '<div class="frame-card">
-                                    <a href="detail-productumkm.php?id_product=' . $data['id_product'] . '">
-                                        <div class="cardd">
-                                            <img class="img-p" src="' . $imagePath . '" alt="' . $data["product_name"] . '">
-                                        </div>
-                                    </a>
-                            
-                                    <h1 class="name-book">' . $data["product_name"] . '</h1>
-                                    <h1 class="name-author">' . $data["seller_name"] . '</h1>
-                                    <h1 class="status">' . $data["product_category"] . '</h1>
-                                </div>';
-                            }
-                        } else {
-                            echo "0 results";
+                    $query = mysqli_query($connection, "SELECT * FROM product_umkm");
+                    if ($query && mysqli_num_rows($query) > 0) {
+                        while ($data = mysqli_fetch_assoc($query)) {
+                            $imagePath = '../' . $data["product_photo_1"];
+                            $formattedPrice = 'Rp' . number_format($data["product_price"], 0, ',', '.');
+                            echo '<div class="frame-card">
+                                <a href="detail-productumkm.php?id_product=' . $data['id_product'] . '">
+                                    <div class="cardd">
+                                        <img class="img-p" src="' . $imagePath . '" alt="' . $data["product_name"] . '">
+                                    </div>
+                                </a>
+                        
+                                <h1 class="name-book">' . $data["product_name"] . '</h1>
+                                <h1 class="name-author">' . $formattedPrice . '</h1>
+                                <h1 class="status">' . $data["product_category"] . '</h1>
+                            </div>';
                         }
-                    ?>
+                    } else {
+                        echo "0 results";
+                    }
+                ?>
+
                 </div>
             </div>
                 

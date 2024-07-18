@@ -183,7 +183,7 @@
                     Cipsmart dilaksanakan di Kelurahan Cipaku, Bogor Selatan, Kota Bogor, Jawa Barat. 
                 </p>
 
-                <a href="#">
+                <a href="./user/aboutppk.html">
                     <button type="button" class="btn-detail">
                         Selengkapnya
                     </button>

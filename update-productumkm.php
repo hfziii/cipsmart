@@ -10,6 +10,16 @@ function input($data) {
     return $data;
 }
 
+// Fetch seller data
+$sellers = [];
+$seller_query = "SELECT id_seller, seller_name, no_whatsapp FROM seller_umkm";
+$seller_result = mysqli_query($connection, $seller_query);
+if ($seller_result) {
+    while ($row = mysqli_fetch_assoc($seller_result)) {
+        $sellers[] = $row;
+    }
+}
+
 // Inisialisasi variabel $data dengan data buku dari database berdasarkan id_product
 if (isset($_GET['id_product'])) {
     $id_product = input($_GET['id_product']);
@@ -175,8 +185,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="form-group" style="margin-top: -105px">
-                    <label>Id Seller</label>
-                    <input type="text" name="id_seller" class="form-control" value="<?php echo isset($data['id_seller']) ? $data['id_seller'] : ''; ?>" required />
+                <label>Penjual</label>
+                <select name="id_seller" class="form-control" required>
+                    <option value="">Pilih Penjual</option>
+                    <?php foreach ($sellers as $seller): ?>
+                        <option value="<?php echo $seller['id_seller']; ?>" <?php echo ($seller['id_seller'] == $data['id_seller']) ? 'selected' : ''; ?>>
+                            <?php echo $seller['seller_name']; ?> (<?php echo $seller['no_whatsapp']; ?>)
+                        </option>
+                    <?php endforeach; ?>
+                </select>
                 </div>
 
                 <div class="form-group">

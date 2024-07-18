@@ -13,6 +13,16 @@ function input($data) {
     return $data;
 }
 
+// Fetch seller data
+$sellers = [];
+$seller_query = "SELECT id_seller, seller_name, no_whatsapp FROM seller_umkm";
+$seller_result = mysqli_query($connection, $seller_query);
+if ($seller_result) {
+    while ($row = mysqli_fetch_assoc($seller_result)) {
+        $sellers[] = $row;
+    }
+}
+
 // Cek kiriman form dari method post
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -158,8 +168,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="form-group" style="margin-top: -105px">
-                    <label>Id Seller</label>
-                    <input type="text" name="id_seller" class="form-control" required />
+                    <label>Penjual</label>
+                    <select name="id_seller" class="form-control" required>
+                        <option value="">Pilih Penjual</option>
+                        <?php foreach ($sellers as $seller): ?>
+                            <option value="<?php echo $seller['id_seller']; ?>"><?php echo $seller['seller_name']; ?> (<?php echo $seller['no_whatsapp']; ?>)</option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
 
                 <div class="form-group">
