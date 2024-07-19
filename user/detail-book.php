@@ -285,7 +285,9 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
                         <h1 style="color: #fff;"><?php echo $data['title_book']; ?></h1>
 
                         <div class="linked">
-                            <p class="sipnopsis">Sipnopsis Buku</p>
+                            <a href="#sipnopsis">
+                                <p class="sipnopsis">Sipnopsis Buku</p>
+                            </a>
                             <p class="detailbook">Detail Buku</p>
 
                             <?php if ($data['status'] == 'Tersedia') : ?>

@@ -64,18 +64,21 @@
                 </div>
 
                 <div class="search-bar">
-                    <input type="text">
-                    <div class="search-icon">
-                        <a href="#">
-                            <img src="../img/navbar/search-nav-icon.png" alt="Search">
-                        </a>
-                    </div>
+                    <form action="catalog-umkm.php" method="GET">
+                        <input type="text" name="search" placeholder="Cari Produk..." class="input-src">
+                        <div class="search-icon">
+                            <button type="submit" class="submit-src">
+                                <img src="../img/navbar/search-nav-icon.png" alt="Search">
+                            </button>
+                        </div>
+                    </form>
                 </div>
+
                 <div class="navigator">
                     <a href="../homepage.php"><p class="home">Beranda</p></a>
                     <div class="login user-dropdown">
                         <?php if (!isset($_SESSION['username'])): ?>
-                            <a href="login.php" class="login-btn" id="loginBtn">
+                            <a href="../login.php" class="login-btn" id="loginBtn">
                             <p style="color: #fff">
                             Login    
                             </p>    
@@ -136,7 +139,15 @@
                 <?php
                     include("koneksi.php");
 
-                    $query = mysqli_query($connection, "SELECT * FROM product_umkm");
+                    $search = isset($_GET['search']) ? mysqli_real_escape_string($connection, $_GET['search']) : '';
+
+                    if ($search) {
+                        $query = mysqli_query($connection, "SELECT * FROM product_umkm WHERE product_name LIKE '%$search%' OR product_category LIKE '%$search%'");
+                    } else {
+                        $query = mysqli_query($connection, "SELECT * FROM product_umkm");
+                    }
+
+                    // $query = mysqli_query($connection, "SELECT * FROM product_umkm");
                     if ($query && mysqli_num_rows($query) > 0) {
                         while ($data = mysqli_fetch_assoc($query)) {
                             $imagePath = '../' . $data["product_photo_1"];

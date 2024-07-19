@@ -63,13 +63,16 @@
                 </div>
 
                 <div class="search-bar">
-                    <input type="text">
-                    <div class="search-icon">
-                        <a href="#">
-                            <img src="../img/navbar/search-nav-icon.png" alt="Search">
-                        </a>
-                    </div>
+                    <form action="catalog-ebook.php" method="GET">
+                        <input type="text" name="search" placeholder="Cari E-Book..." class="input-src">
+                        <div class="search-icon">
+                            <button type="submit" class="submit-src">
+                                <img src="../img/navbar/search-nav-icon.png" alt="Search">
+                            </button>
+                        </div>
+                    </form>
                 </div>
+
                 <div class="navigator">
                     <a href="../homepage.php"><p class="home">Beranda</p></a>
                     <div class="login user-dropdown">
@@ -120,7 +123,14 @@
                     <?php
                     include("koneksi.php");
 
-                    $query = mysqli_query($connection, "SELECT * FROM ebook");
+                    $search = isset($_GET['search']) ? mysqli_real_escape_string($connection, $_GET['search']) : '';
+
+                    if ($search) {
+                        $query = mysqli_query($connection, "SELECT * FROM ebook WHERE judul_ebook LIKE '%$search%' OR penulis_ebook LIKE '%$search%'");
+                    } else {
+                        $query = mysqli_query($connection, "SELECT * FROM ebook");
+                    }
+
                     if ($query && mysqli_num_rows($query) > 0) {
                         while ($data = mysqli_fetch_assoc($query)) {
                             $imagePath = '../' . $data["sampul_ebook"];
@@ -136,7 +146,7 @@
                             </div>';
                         }
                     } else {
-                        echo "0 results";
+                        echo "E-Book tidak ditemukan";
                     }
                     ?>
                 </div>

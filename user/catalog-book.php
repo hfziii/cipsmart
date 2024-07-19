@@ -139,10 +139,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
             <p>Pojok Baca</p>
             <form action="catalog-book.php" method="POST">
                 <label for="name_member" class="labelborrow">Nama</label>
-                <input type="text" id="name_member" name="name_member" placeholder="Nama" required>
+                <input type="text" class="input_absen" id="name_member" name="name_member" placeholder="Nama" required>
 
                 <label for="name_corner" class="labelborrow">Pojok Baca</label>
-                <select name="name_corner" class="form-control" required>
+                <select name="name_corner" class="input_absen" required>
                     <option value="Literasi Imajinatif">Literasi Imajinatif</option>
                     <option value="Social Connect">Social Connect</option>
                     <option value="Bisnis Berdaya">Bisnis Berdaya</option>
@@ -151,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                 </select>
 
                 <label for="date" class="labelborrow">Tanggal</label>
-                <input type="date" id="date" name="date" required>
+                <input type="date" class="input_absen" id="date" name="date" required>
 
                 <input type="submit" class="submit-btn" name="borrow" value="Absen">
             </form>
@@ -186,12 +186,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                 </div>
 
                 <div class="search-bar">
-                    <input type="text">
-                    <div class="search-icon">
-                        <a href="#">
-                            <img src="../img/navbar/search-nav-icon.png" alt="Search">
-                        </a>
-                    </div>
+                    <form action="catalog-book.php" method="GET">
+                        <input type="text" name="search" placeholder="Cari Buku..." class="input-src">
+                        <div class="search-icon">
+                            <button type="submit" class="submit-src">
+                                <img src="../img/navbar/search-nav-icon.png" alt="Search">
+                            </button>
+                        </div>
+                    </form>
                 </div>
 
                <div class="navigator">
@@ -260,7 +262,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                     <?php
                         include("koneksi.php");
 
-                        $query = mysqli_query($connection, "SELECT * FROM book");
+                        $search = isset($_GET['search']) ? mysqli_real_escape_string($connection, $_GET['search']) : '';
+
+                        if ($search) {
+                            $query = mysqli_query($connection, "SELECT * FROM book WHERE title_book LIKE '%$search%' OR author_name LIKE '%$search%'");
+                        } else {
+                            $query = mysqli_query($connection, "SELECT * FROM book");
+                        }
+
                         if ($query && mysqli_num_rows($query) > 0) {
                             while ($data = mysqli_fetch_assoc($query)) {
                                 $imagePath = '../' . $data["photo"];
@@ -277,10 +286,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                                 </div>';
                             }
                         } else {
-                            echo "0 results";
+                            echo "Buku tidak ditemukan";
                         }
                     ?>
                 </div>
+
             </div>
                 
 
