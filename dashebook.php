@@ -41,7 +41,7 @@
             <li><a href="./dashadmin.html"><i class="fa fa-user"></i> Admin</a></li>
             <li><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.html"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li><a href="#"><i class="fa fa-book"></i> Buku</a></li>
+            <li><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
             <li><a href="./dashborrow.php"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li class="active"><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
             <li><a href="./dash-productumkm.php"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
@@ -81,7 +81,7 @@
                         <th>Total Halaman</th>
                         <th>Tahun Terbit</th>
                         <th>ISBN</th>
-                        <th>Sipnopsis</th>
+                        <th>Sinopsis</th>
                         <th>Sampul</th>
                         <th>File</th>
                         <th>Tindakan</th>

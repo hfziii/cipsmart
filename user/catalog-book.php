@@ -187,7 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
 
                 <div class="search-bar">
                     <form action="catalog-book.php" method="GET">
-                        <input type="text" name="search" placeholder="Cari Buku..." class="input-src">
+                        <input type="text" name="search" placeholder="Cari Buku" class="input-src">
                         <div class="search-icon">
                             <button type="submit" class="submit-src">
                                 <img src="../img/navbar/search-nav-icon.png" alt="Search">

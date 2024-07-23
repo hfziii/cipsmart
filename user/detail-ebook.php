@@ -138,30 +138,22 @@ $pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';
                     </a>
                 </div>
                 
-                <div class="select-container">
-                    <select name="corner" class="corner-lib" required>
-                        <option value="Literasi Imajinatif">Literasi Imajinatif</option>
-                        <option value="Social Connect">Social Connect</option>
-                        <option value="Bisnis Berdaya">Bisnis Berdaya</option>
-                        <option value="Kreatif Kids Corner">Kreatif Kids Corner</option>
-                        <option value="Pena Inspirasi Gemilang">Pena Inspirasi Gemilang</option>
-                    </select>
-                </div>
-                
                 <div class="search-bar">
-                    <input type="text">
-                    <div class="search-icon">
-                        <a href="#">
-                            <img src="../img/navbar/search-nav-icon.png" alt="Search">
-                        </a>
-                    </div>
+                    <form action="catalog-ebook.php" method="GET">
+                        <input type="text" name="search" placeholder="Cari E-Book" class="input-src">
+                        <div class="search-icon">
+                            <button type="submit" class="submit-src">
+                                <img src="../img/navbar/search-nav-icon.png" alt="Search">
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 
                 <div class="navigator">
                     <a href="../homepage.php"><p class="home">Beranda</p></a>
                     <div class="login user-dropdown">
                         <?php if (!isset($_SESSION['username'])): ?>
-                            <a href="login.php" class="login-btn" id="loginBtn">
+                            <a href="../login.php" class="login-btn" id="loginBtn">
                             <p style="color: #fff">
                             Login    
                             </p>    

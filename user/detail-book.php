@@ -167,12 +167,16 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
                 <input type="hidden" name="id_book" value="<?php echo $id_book; ?>">
                 <input type="hidden" name="id_user" value="<?php echo $id_user; ?>">
                 <label for="borrow_date" class="labelborrow">Nama Peminjam</label>
-                <input type="text" id="borrower_name" name="borrower_name" placeholder="Nama Peminjam" required>
+                <input type="text" class="input_borrow" id="borrower_name" name="borrower_name" placeholder="Nama Peminjam" required>
+
                 <input type="hidden" name="title_book" value="<?php echo $data['title_book']; ?>">
+
                 <label for="borrow_date" class="labelborrow">Tanggal Pinjam</label>
-                <input type="date" id="borrow_date" name="borrow_date" required>
+                <input type="date" class="input_borrow" id="borrow_date" name="borrow_date" required>
+
                 <label for="return_date" class="labelborrow">Tanggal Kembali</label>
-                <input type="date" id="return_date" name="return_date" required>
+                <input type="date" class="input_borrow" id="return_date" name="return_date" required>
+
                 <input type="submit" class="submit-btn" name="borrow" value="Pinjam">
             </form>
         </div>
@@ -206,19 +210,21 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
                 </div>
                 
                 <div class="search-bar">
-                    <input type="text">
-                    <div class="search-icon">
-                        <a href="#">
-                            <img src="../img/navbar/search-nav-icon.png" alt="Search">
-                        </a>
-                    </div>
+                    <form action="catalog-book.php" method="GET">
+                        <input type="text" name="search" placeholder="Cari Buku" class="input-src">
+                        <div class="search-icon">
+                            <button type="submit" class="submit-src">
+                                <img src="../img/navbar/search-nav-icon.png" alt="Search">
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 
                 <div class="navigator">
                     <a href="../homepage.php"><p class="home">Beranda</p></a>
                     <div class="login user-dropdown">
                         <?php if (!isset($_SESSION['username'])): ?>
-                            <a href="login.php" class="login-btn" id="loginBtn">
+                            <a href="../login.php" class="login-btn" id="loginBtn">
                             <p style="color: #fff">
                             Login    
                             </p>    

@@ -157,21 +157,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <img src="./img/dashboard/logo-cipsmart-profile.png" alt="Logo">
     </div>
     <ul>
-        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li><a href="./dashadmin.html"><i class="fa fa-user"></i> Admin</a></li>
-        <li><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
-        <li><a href="./dashcorner.html"><i class="fa fa-book"></i> Pojok Baca</a></li>
-        <li><a href="#"><i class="fa fa-book"></i> Buku</a></li>
-        <li><a href="./dashborrow.html"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
-        <li class="active"><a href="#"><i class="fa fa-book"></i> E-Book</a></li>
-        <li><a href="#"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
-        <li><a href="#"><i class="fa fa-users"></i> Penjual UMKM</a></li>
-        <li><a href="./dashuser.html"><i class="fa fa-users"></i> Pengguna</a></li>
-        <li><a href="./logout.php"><i class="fa fa-sign-out"></i> Keluar</a></li>
+        <li class="disabled"><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="disabled"><a href="./dashadmin.html"><i class="fa fa-user"></i> Admin</a></li>
+        <li class="disabled"><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
+        <li class="disabled"><a href="./dashcorner.html"><i class="fa fa-book"></i> Pojok Baca</a></li>
+        <li class="disabled"><a href="#"><i class="fa fa-book"></i> Buku</a></li>
+        <li class="disabled"><a href="./dashborrow.html"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
+        <li class="active"><a href="#"><i class="fa fa-book"></i> Update Data E-Book</a></li>
+        <li class="disabled"><a href="#"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
+        <li class="disabled"><a href="#"><i class="fa fa-users"></i> Penjual UMKM</a></li>
+        <li class="disabled"><a href="./dashuser.html"><i class="fa fa-users"></i> Pengguna</a></li>
+        <li class="disabled"><a href="./logout.php"><i class="fa fa-sign-out"></i> Keluar</a></li>
     </ul>
 </div>
-<div class="main-content">
-    <p class="title-content">Update E-Book</p>
+
+<div class="container">
+
     <?php
     if (!empty($errorMessages)) {
         echo '<div class="alert alert-danger">';
@@ -181,62 +182,145 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '</div>';
     }
     ?>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id_ebook=" . $id_ebook); ?>" method="post" enctype="multipart/form-data">
-        <div class="container-form">
-            <input type="hidden" name="id_ebook" value="<?php echo $data['id_ebook']; ?>" required readonly />
-            <div class="form-group">
-                <label>Judul</label>
-                <input type="text" name="judul_ebook" class="form-control" value="<?php echo isset($data['judul_ebook']) ? $data['judul_ebook'] : ''; ?>" required />
+
+    <div class="main-body">
+        <div class="row">
+            <div class="col-lg-8 mt-5">
+                <form id="updateForm" action="update-ebook.php?id_ebook=<?php echo $id_ebook; ?>" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="id_ebook" value="<?php echo $data['id_ebook']; ?>">
+                    <div class="card">
+                        <div class="card-body">
+                                                       
+                            <!-- Judul -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h5 class="mb-0">Judul E-Book</h5>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="judul_ebook" class="form-control" value="<?php echo isset($data['judul_ebook']) ? $data['judul_ebook'] : ''; ?>" required />
+                                </div>
+                            </div>
+
+                            <!-- Kategori -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h5 class="mb-0">Judul E-Book</h5>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="kategori_ebook" class="form-control" value="<?php echo isset($data['kategori_ebook']) ? $data['kategori_ebook'] : ''; ?>" required />
+                                </div>
+                            </div>
+                            <!-- Nama Penulis -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h5 class="mb-0">Penulis</h5>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="penulis_ebook" class="form-control" value="<?php echo isset($data['penulis_ebook']) ? $data['penulis_ebook'] : ''; ?>" required />
+                                </div>
+                            </div>
+                            <!-- Nama Penerbit -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h5 class="mb-0">Penerbit</h5>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="penerbit_ebook" class="form-control" value="<?php echo isset($data['penerbit_ebook']) ? $data['penerbit_ebook'] : ''; ?>" required />
+                                </div>
+                            </div>
+                            <!-- Tahun Terbit -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h5 class="mb-0">Tahun Terbit</h5>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="tahun_ebook" class="form-control" value="<?php echo isset($data['tahun_ebook']) ? $data['tahun_ebook'] : ''; ?>" required />
+                                </div>
+                            </div>
+                            <!-- ISBN -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h5 class="mb-0">ISBN</h5>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="isbn_ebook" class="form-control" value="<?php echo isset($data['isbn_ebook']) ? $data['isbn_ebook'] : ''; ?>" required />
+                                </div>
+                            </div>
+                            <!-- Sinopsis -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h5 class="mb-0">Sinopsis</h5>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <textarea name="sipnopsis_ebook" style="height: 100px; width: 100%;" class="form-control form-sipnopsis" required><?php echo isset($data['sipnopsis_ebook']) ? $data['sipnopsis_ebook'] : ''; ?></textarea>
+                                </div>
+                            </div>
+                            <!-- Total Halaman -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h5 class="mb-0">Total Halaman</h5>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="jumlah_halaman_ebook" class="form-control" value="<?php echo isset($data['jumlah_halaman_ebook']) ? $data['jumlah_halaman_ebook'] : ''; ?>" required />
+                                </div>
+                            </div>
+                           
+                            <!-- Upload Sampul E-Book -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h5 class="mb-0">Upload Sampul</h5>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="file" name="sampul_ebook" class="form-control" />
+                                </div>
+                            </div>
+                            
+                            <!-- File -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h5 class="mb-0">Upload File</h5>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="file" name="file_ebook" class="form-control" accept="application/pdf" />
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label>Kategori</label>
-                <input type="text" name="kategori_ebook" class="form-control" value="<?php echo isset($data['kategori_ebook']) ? $data['kategori_ebook'] : ''; ?>" required />
-            </div>
-            <div class="form-group">
-                <label>Penulis</label>
-                <input type="text" name="penulis_ebook" class="form-control" value="<?php echo isset($data['penulis_ebook']) ? $data['penulis_ebook'] : ''; ?>" required />
-            </div>
-            <div class="form-group">
-                <label>Penerbit</label>
-                <input type="text" name="penerbit_ebook" class="form-control" value="<?php echo isset($data['penerbit_ebook']) ? $data['penerbit_ebook'] : ''; ?>" required />
-            </div>
-            <div class="form-group">
-                <label>Jumlah Halaman</label>
-                <input type="text" name="jumlah_halaman_ebook" class="form-control" value="<?php echo isset($data['jumlah_halaman_ebook']) ? $data['jumlah_halaman_ebook'] : ''; ?>" required />
-            </div>
-            <div class="form-group">
-                <label>Tahun Terbit</label>
-                <input type="text" name="tahun_ebook" class="form-control" value="<?php echo isset($data['tahun_ebook']) ? $data['tahun_ebook'] : ''; ?>" required />
-            </div>
-            <div class="form-group">
-                <label>ISBN</label>
-                <input type="text" name="isbn_ebook" class="form-control" value="<?php echo isset($data['isbn_ebook']) ? $data['isbn_ebook'] : ''; ?>" required />
-            </div>
-            <div class="form-group">
-                <label>Sampul E-Book (jpg/jpeg/png/gif)</label>
-                <input type="file" name="sampul_ebook" class="form-control" />
-                <?php if (isset($data['sampul_ebook']) && !empty($data['sampul_ebook'])) { ?>
-                    <img src="<?php echo $data['sampul_ebook']; ?>" alt="<?php echo $data['judul_ebook']; ?>" style="width: 100px; height: auto; margin-top: 10px;">
-                <?php } ?>
-            </div>
-            <div class="form-group">
-                <label>File E-Book (PDF)</label>
-                <input type="file" name="file_ebook" class="form-control" accept="application/pdf" />
-                <?php if (isset($data['file_ebook']) && !empty($data['file_ebook'])) { ?>
-                    <a href="<?php echo $data['file_ebook']; ?>" target="_blank" class="link-read">Lihat E-Book</a>
-                <?php } ?>
-            </div>
-            <div class="form-group">
-                <label>Sipnopsis</label>
-                <textarea name="sipnopsis_ebook" style="height: 200px; width: 100%; border-radius: 15px;" class="form-control form-sipnopsis" required><?php echo isset($data['sipnopsis_ebook']) ? $data['sipnopsis_ebook'] : ''; ?></textarea>
+            <!-- Foto Buku Sebelumnya dan Tombol Kembali -->
+            <div class="col-lg-4 mt-5">
+                <div class="card">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="mb-3">Sampul E-Book Sebelumnya</h5>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <img src="<?php echo htmlspecialchars($data['sampul_ebook']); ?>" alt="Sampul E-Book" class="img-thumbnail" style="max-width: 100%;">
+                                <?php if (isset($data['file_ebook']) && !empty($data['file_ebook'])) { ?>
+                                    <a href="<?php echo $data['file_ebook']; ?>" target="_blank" class="link-read">
+                                        <img src="../img/detail/read-pdf.png" alt="Read">
+                                    </a>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                        
+                <div class="btn-container">
+                    <a href="dashebook.php" class="btn btn-secondary mt-3"><i class="fa fa-arrow-left"></i> Kembali ke Dashboard</a>
+                    <input type="submit" class="btn btn-primary px-4 mt-3" value="Update" onclick="submitForm()">
+                </div>
             </div>
         </div>
-        <div class="button-group">
-            <button type="button" onclick="window.location.href='dashebook.php';" class="btn-back">Kembali</button>
-            <button type="submit" name="submit" class="btn-input">Simpan</button>
-        </div>
-    </form>
+    </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script>
+function submitForm() {
+    document.getElementById("updateForm").submit();
+}
+</script>
 </body>
 </html>

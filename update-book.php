@@ -4,20 +4,55 @@ include "koneksi.php";
 
 // Fungsi untuk mencegah inputan karakter yang tidak sesuai
 function input($data) {
+    if (!isset($data)) {
+        return "";
+    }
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
 }
 
+// Fungsi untuk mengambil data buku dari tabel
+function getBookById($id_book, $table_name) {
+    global $connection;
+    $sql = "SELECT * FROM $table_name WHERE id_book = ?";
+    $stmt = mysqli_prepare($connection, $sql);
+    mysqli_stmt_bind_param($stmt, 's', $id_book);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    return mysqli_fetch_assoc($result);
+}
+
+// Mengambil data buku dari semua tabel
+$tables = [
+    'book_literasi_imajinatif' => 'Literasi Imajinatif',
+    'book_social_connect' => 'Social Connect',
+    'book_pena_inspirasi_gemilang' => 'Pena Inspirasi Gemilang',
+    'book_kreatif_kids_corner' => 'Kreatif Kids Corner',
+    'book_bisnis_berdaya' => 'Bisnis Berdaya',
+];
+
 // Inisialisasi variabel $data dengan data buku dari database berdasarkan id_book
-if (isset($_GET['id_book'])) {
+$data = [];
+$table_name = "";
+
+if (isset($_GET['id_book']) && isset($_GET['table_name'])) {
     $id_book = input($_GET['id_book']);
-    $sql = "SELECT * FROM book WHERE id_book = '$id_book'";
-    $result = mysqli_query($connection, $sql);
-    $data = mysqli_fetch_assoc($result);
+    $table_name = input($_GET['table_name']);
+    
+    if (!array_key_exists($table_name, $tables)) {
+        echo "Invalid table_name.";
+        exit();
+    }
+
+    $data = getBookById($id_book, $table_name);
+    if (!$data) {
+        echo "Data buku tidak ditemukan.";
+        exit();
+    }
 } else {
-    echo "ID Book tidak ditemukan!";
+    echo "ID Book atau Table Name tidak ditemukan!";
     exit();
 }
 
@@ -32,13 +67,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $isbn = input($_POST["isbn"]);
     $sipnopsis = input($_POST["sipnopsis"]);
     $total_page = input($_POST["total_page"]);
-    $corner_education = input($_POST["corner_education"]);
     $status = input($_POST["status"]);
+    $id_corner = $table_name;
 
-    // Proses upload photo
+    // Menentukan target directory berdasarkan id_corner
     $target_dir = "uploads/";
-    $photo = $data['photo']; // Default photo if not updated
-    if ($_FILES["photo"]["error"] == 0) {
+    switch ($id_corner) {
+        case 'book_literasi_imajinatif':
+            $target_dir .= "BOOK_CE-1/";
+            break;
+        case 'book_social_connect':
+            $target_dir .= "BOOK_CE-2/";
+            break;
+        case 'book_bisnis_berdaya':
+            $target_dir .= "BOOK_CE-3/";
+            break;
+        case 'book_kreatif_kids_corner':
+            $target_dir .= "BOOK_CE-4/";
+            break;
+        case 'book_pena_inspirasi_gemilang':
+            $target_dir .= "BOOK_CE-5/";
+            break;
+        default:
+            echo "Invalid id_corner.";
+            exit();
+    }
+
+    // Buat folder jika belum ada
+    if (!file_exists($target_dir)) {
+        mkdir($target_dir, 0777, true);
+    }
+
+    // Update foto buku jika ada yang diunggah
+    if (!empty($_FILES["photo"]["name"])) {
         $target_file = $target_dir . basename($_FILES["photo"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -72,7 +133,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Check if $uploadOk is set to 0 by an error
         if ($uploadOk == 0) {
             echo "Sorry, your file was not uploaded.";
-        // if everything is ok, try to upload file
         } else {
             if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
                 $photo = $target_file;
@@ -80,28 +140,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "Sorry, there was an error uploading your file.";
             }
         }
+    } else {
+        // Jika tidak ada file baru diunggah, gunakan foto yang sudah ada
+        $photo = $data['photo'];
     }
 
-    // Query untuk memperbarui data dalam tabel
-    $sql = "UPDATE book SET 
-            photo = '$photo', 
-            title_book = '$title_book', 
-            author_name = '$author_name', 
-            publisher_name = '$publisher_name', 
-            year_publish = '$year_publish', 
-            isbn = '$isbn', 
-            sipnopsis = '$sipnopsis', 
-            total_page = '$total_page', 
-            corner_education = '$corner_education', 
-            status = '$status' 
-            WHERE id_book = '$id_book'";
+    // Menentukan tabel berdasarkan id_corner
+    $table_name = $id_corner;
 
-    // Mengeksekusi query
-    $hasil = mysqli_query($connection, $sql);
+    // Query update untuk memperbarui data buku
+    $sql = "UPDATE $table_name SET 
+            title_book = ?,
+            author_name = ?,
+            publisher_name = ?,
+            year_publish = ?,
+            isbn = ?,
+            sipnopsis = ?,
+            total_page = ?,
+            status = ?,
+            photo = ?
+            WHERE id_book = ?";
+
+    $stmt = mysqli_prepare($connection, $sql);
+    mysqli_stmt_bind_param($stmt, 'ssssssssss', $title_book, $author_name, $publisher_name, $year_publish, $isbn, $sipnopsis, $total_page, $status, $photo, $id_book);
+
+    // Eksekusi query update
+    $result = mysqli_stmt_execute($stmt);
 
     // Kondisi apakah berhasil atau tidak dalam mengeksekusi query
-    if ($hasil) {
-        header("Location: dashbook.php");
+    if ($result) {
+        header("Location: dashbook.php?table_name=$table_name");
         exit(); // untuk menghentikan eksekusi skrip
     } else {
         echo "<div class='alert alert-danger'> Data Gagal diperbarui. Error: " . mysqli_error($connection) . "</div>";
@@ -127,108 +195,173 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-
-<div class="sidebar">
+    <div class="sidebar">
         <div class="logo">
             <img src="./img/dashboard/logo-cipsmart-profile.png" alt="Logo">
         </div>
         <ul>
-            <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="./dashadmin.html"><i class="fa fa-user"></i> Admin</a></li>
-            <li><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
-            <li><a href="./dashcorner.html"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li class="active"><a href="#"><i class="fa fa-book"></i> Buku</a></li>
-            <li><a href="./dashborrow.html"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
-            <li><a href="#"><i class="fa fa-book"></i> E-Book</a></li>
-            <li><a href="#"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
-            <li><a href="#"><i class="fa fa-users"></i> Penjual UMKM</a></li>
-            <li><a href="./dashuser.html"><i class="fa fa-users"></i> Pengguna</a></li>
-            <li><a href="./logout.php"><i class="fa fa-sign-out"></i> Keluar</a></li>
+            <li class="disabled"><a href="./newdashboard.html"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li class="disabled"><a href="./dashadmin.html"><i class="fa fa-user"></i> Admin</a></li>
+            <li class="disabled"><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
+            <li class="disabled"><a href="./dashcorner.php"><i class="fa fa-book"></i> Pojok Baca</a></li>
+            <li class="active"><a href=""><i class="fa fa-book"></i> Update Data Buku</a></li>
+            <li class="disabled"><a href="./dashborrow.php"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
+            <li class="disabled"><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
+            <li class="disabled"><a href="./dash-productumkm.php"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
+            <li class="disabled"><a href="#"><i class="fa fa-users"></i> Penjual UMKM</a></li>
+            <li class="disabled"><a href="./dashuser.html"><i class="fa fa-users"></i> Pengguna</a></li>
+            <li class="disabled"><a href="./logout.php"><i class="fa fa-sign-out"></i> Keluar</a></li>
         </ul>
     </div>
-    <div class="main-content">
-        <p class="title-content">Update Buku</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id_book=' . $data['id_book'];?>" method="post" enctype="multipart/form-data">
-        
-            <div class="form-group-container">
 
-                <div class="form-group">
-                    <label>ID Book</label>
-                    <input type="text" name="id_book" class="form-control" value="<?php echo isset($data['id_book']) ? $data['id_book'] : ''; ?>" required readonly />
+    <div class="container">
+        <div class="main-body">
+            <div class="row">
+                <div class="col-lg-8 mt-5">
+                    <form id="updateForm" method="post" enctype="multipart/form-data">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- ID Buku -->
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h5 class="mb-0">ID Buku</h5>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control" name="id_book" value="<?php echo htmlspecialchars($data['id_book']); ?>" readonly>
+                                    </div>
+                                </div>
+                                <!-- Judul Buku -->
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h5 class="mb-0">Judul Buku</h5>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control" name="title_book" value="<?php echo htmlspecialchars($data['title_book']); ?>" required>
+                                    </div>
+                                </div>
+                                <!-- Nama Penulis -->
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h5 class="mb-0">Penulis</h5>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control" name="author_name" value="<?php echo htmlspecialchars($data['author_name']); ?>" required>
+                                    </div>
+                                </div>
+                                <!-- Nama Penerbit -->
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h5 class="mb-0">Penerbit</h5>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control" name="publisher_name" value="<?php echo htmlspecialchars($data['publisher_name']); ?>" required>
+                                    </div>
+                                </div>
+                                <!-- Tahun Terbit -->
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h5 class="mb-0">Tahun Terbit</h5>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="number" class="form-control" name="year_publish" value="<?php echo htmlspecialchars($data['year_publish']); ?>" required>
+                                    </div>
+                                </div>
+                                <!-- ISBN -->
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h5 class="mb-0">ISBN</h5>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control" name="isbn" value="<?php echo htmlspecialchars($data['isbn']); ?>" required>
+                                    </div>
+                                </div>
+                                <!-- Sinopsis -->
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h5 class="mb-0">Sinopsis</h5>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <textarea class="form-control" name="sipnopsis" style="height: 80px; width: 100%;" required><?php echo htmlspecialchars($data['sipnopsis']); ?></textarea>
+                                    </div>
+                                </div>
+                                <!-- Total Halaman -->
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h5 class="mb-0">Total Halaman</h5>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="number" class="form-control" name="total_page" value="<?php echo htmlspecialchars($data['total_page']); ?>" required>
+                                    </div>
+                                </div>
+                                <!-- Status -->
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h5 class="mb-0">Status</h5>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <select class="form-control" name="status" required>
+                                            <option value="Tersedia" <?php if ($data['status'] == 'Tersedia') echo 'selected'; ?>>Tersedia</option>
+                                            <option value="Dipinjam" <?php if ($data['status'] == 'Dipinjam') echo 'selected'; ?>>Dipinjam</option>
+                                            <option value="Rusak" <?php if ($data['status'] == 'Rusak') echo 'selected'; ?>>Rusak</option>
+                                            <option value="Hilang" <?php if ($data['status'] == 'Hilang') echo 'selected'; ?>>Hilang</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- Pojok Baca -->
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h5 class="mb-0">Pojok Baca</h5>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <select class="form-control" name="id_corner" disabled>
+                                            <?php
+                                            foreach ($tables as $key => $value) {
+                                                $selected = ($table_name == $key) ? 'selected' : '';
+                                                echo "<option value='$key' $selected>$value</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- Upload Foto Buku Baru -->
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h5 class="mb-0">Upload Foto Baru</h5>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="file" class="form-control" name="photo">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-
-                <div class="form-group">
-                    <label>Foto Buku </label>
-                    <input type="file" name="photo" class="form-control" />
-                    <?php if (isset($data['photo']) && !empty($data['photo'])) { ?>
-                        <img src="<?php echo $data['photo']; ?>" alt="<?php echo $data['title_book']; ?>" style="width: 100px; height: auto; margin-top: 10px;">
-                    <?php } ?>
+                <!-- Foto Buku Sebelumnya dan Tombol Kembali -->
+                <div class="col-lg-4 mt-5">
+                    <div class="card">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="mb-3">Foto Buku Sebelumnya</h5>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <img src="<?php echo htmlspecialchars($data['photo']); ?>" alt="Foto Buku" class="img-thumbnail" style="max-width: 100%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-container">
+                        <a href="dashbook.php?table_name=<?php echo $table_name; ?>" class="btn btn-secondary mt-3"><i class="fa fa-arrow-left"></i> Kembali ke Dashboard</a>
+                        <input type="submit"  class="btn btn-primary px-4 mt-3" value="Update" onclick="submitForm()">
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label>Judul Buku</label>
-                    <input type="text" name="title_book" class="form-control" value="<?php echo isset($data['title_book']) ? $data['title_book'] : ''; ?>" required  />
-                </div>
-
-                <div class="form-group">
-                    <label>Penulis</label>
-                    <input type="text" name="author_name" class="form-control" value="<?php echo isset($data['author_name']) ? $data['author_name'] : ''; ?>" required  />
-                </div>
-
-                <div class="form-group">
-                    <label>Penerbit</label>
-                    <input type="text" name="publisher_name" class="form-control" value="<?php echo isset($data['publisher_name']) ? $data['publisher_name'] : ''; ?>" required  />
-                </div>
-
-                <div class="form-group">
-                    <label>Tahun Terbit</label>
-                    <input type="text" name="year_publish" class="form-control" value="<?php echo isset($data['year_publish']) ? $data['year_publish'] : ''; ?>" required  />
-                </div>
-
-                <div class="form-group">
-                    <label>ISBN</label>
-                    <input type="text" name="isbn" class="form-control" value="<?php echo isset($data['isbn']) ? $data['isbn'] : ''; ?>" required  />
-                </div>
-
-                <div class="form-group">
-                    <label>Total Halaman</label>
-                    <input type="text" name="total_page" class="form-control" value="<?php echo isset($data['total_page']) ? $data['total_page'] : ''; ?>" required  />
-                </div>
-
-                <div class="form-group">
-                    <label>Status</label>
-                    <select name="status" class="form-control" required>
-                        <option value="Tersedia" <?php echo isset($data['status']) && $data['status'] == 'Tersedia' ? 'selected' : ''; ?>>Tersedia</option>
-                        <option value="Dipinjam" <?php echo isset($data['status']) && $data['status'] == 'Dipinjam' ? 'selected' : ''; ?>>Dipinjam</option>
-                        <option value="Rusak" <?php echo isset($data['status']) && $data['status'] == 'Rusak' ? 'selected' : ''; ?>>Rusak</option>
-                        <option value="Hilang" <?php echo isset($data['status']) && $data['status'] == 'Hilang' ? 'selected' : ''; ?>>Hilang</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>sipnopsis</label>
-                    <textarea name="sipnopsis" class="form-control" style="height: 200px; width: 100%; border-radius: 15px;" required><?php echo isset($data['sipnopsis']) ? htmlspecialchars($data['sipnopsis']) : ''; ?></textarea>
-                </div>
-
-                <div class="form-group box-last">
-                    <label>Pojok Baca</label>
-                    <input type="text" name="corner_education" class="form-control" value="<?php echo isset($data['corner_education']) ? $data['corner_education'] : ''; ?>" required/>
-                </div>
-                
             </div>
-
-            <div class="button-group">
-                <button type="button" onclick="window.location.href='dashbook.php';"
-                    class="btn-back">Kembali</button>
-                <button type="submit" name="submit" class="btn-input">Simpan</button>
-            </div>
-        </form>
+        </div>
     </div>
-    
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    <script>
+    function submitForm() {
+        document.getElementById("updateForm").submit();
+    }
     </script>
-
 </body>
 
 </html>

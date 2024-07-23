@@ -1,0 +1,203 @@
+<div class="container">
+
+    <?php
+    if (!empty($errorMessages)) {
+        echo '<div class="alert alert-danger">';
+        foreach ($errorMessages as $message) {
+            echo "<p>$message</p>";
+        }
+        echo '</div>';
+    }
+    ?>
+
+    <div class="main-body">
+        <div class="row">
+            <div class="col-lg-8 mt-5">
+                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id_ebook=" . $id_ebook); ?>" method="post" enctype="multipart/form-data">
+                    <div class="card">
+                        <div class="card-body">
+                           
+                            <!-- Judul -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Judul E-Book</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="judul_ebook" class="form-control" value="<?php echo isset($data['judul_ebook']) ? $data['judul_ebook'] : ''; ?>" required />
+                                </div>
+                            </div>
+
+                            <!-- Kategori -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Judul E-Book</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="kategori_ebook" class="form-control" value="<?php echo isset($data['kategori_ebook']) ? $data['kategori_ebook'] : ''; ?>" required />
+                                </div>
+                            </div>
+                            <!-- Nama Penulis -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Penulis</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="penulis_ebook" class="form-control" value="<?php echo isset($data['penulis_ebook']) ? $data['penulis_ebook'] : ''; ?>" required />
+                                </div>
+                            </div>
+                            <!-- Nama Penerbit -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Penerbit</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="penerbit_ebook" class="form-control" value="<?php echo isset($data['penerbit_ebook']) ? $data['penerbit_ebook'] : ''; ?>" required />
+                                </div>
+                            </div>
+                            <!-- Tahun Terbit -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Tahun Terbit</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="tahun_ebook" class="form-control" value="<?php echo isset($data['tahun_ebook']) ? $data['tahun_ebook'] : ''; ?>" required />
+                                </div>
+                            </div>
+                            <!-- ISBN -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">ISBN</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="isbn_ebook" class="form-control" value="<?php echo isset($data['isbn_ebook']) ? $data['isbn_ebook'] : ''; ?>" required />
+                                </div>
+                            </div>
+                            <!-- Sinopsis -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Sinopsis</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <textarea name="sipnopsis_ebook" style="height: 200px; width: 100%; border-radius: 15px;" class="form-control form-sipnopsis" required><?php echo isset($data['sipnopsis_ebook']) ? $data['sipnopsis_ebook'] : ''; ?></textarea>
+                                </div>
+                            </div>
+                            <!-- Total Halaman -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Total Halaman</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" name="jumlah_halaman_ebook" class="form-control" value="<?php echo isset($data['jumlah_halaman_ebook']) ? $data['jumlah_halaman_ebook'] : ''; ?>" required />
+                                </div>
+                            </div>
+                           
+                            <!-- Upload Sampul E-Book -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Upload Foto Buku</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="file" name="sampul_ebook" class="form-control" />
+                                    <?php if (isset($data['sampul_ebook']) && !empty($data['sampul_ebook'])) { ?>
+                                        <img src="<?php echo $data['sampul_ebook']; ?>" alt="<?php echo $data['judul_ebook']; ?>" style="width: 100px; height: auto; margin-top: 10px;">
+                                    <?php } ?>
+                                </div>
+                            </div>
+                            
+                            <!-- File -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Status</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="file" name="file_ebook" class="form-control" accept="application/pdf" />
+                                    <?php if (isset($data['file_ebook']) && !empty($data['file_ebook'])) { ?>
+                                        <a href="<?php echo $data['file_ebook']; ?>" target="_blank" class="link-read">Lihat E-Book</a>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Foto Buku Sebelumnya dan Tombol Kembali -->
+            <div class="col-lg-4 mt-5">
+              
+                <div class="btn-container">
+                    <a href="dashebook.php" class="btn btn-secondary mt-3"><i class="fa fa-arrow-left"></i> Kembali ke Dashboard</a>
+                    <button type="submit" name="submit" class="btn btn-primary px-4 mt-3" value="Simpan"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ---------------------------------------------------------- -->
+<div class="main-content">
+    <?php
+    if (!empty($errorMessages)) {
+        echo '<div class="alert alert-danger">';
+        foreach ($errorMessages as $message) {
+            echo "<p>$message</p>";
+        }
+        echo '</div>';
+    }
+    ?>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id_ebook=" . $id_ebook); ?>" method="post" enctype="multipart/form-data">
+
+        <div class="form-group-container">
+
+            <div class="form-group">
+                <label>Judul</label>
+                <input type="text" name="judul_ebook" class="form-control" value="<?php echo isset($data['judul_ebook']) ? $data['judul_ebook'] : ''; ?>" required />
+            </div>
+            <div class="form-group">
+                <label>Kategori</label>
+                <input type="text" name="kategori_ebook" class="form-control" value="<?php echo isset($data['kategori_ebook']) ? $data['kategori_ebook'] : ''; ?>" required />
+            </div>
+            <div class="form-group">
+                <label>Penulis</label>
+                <input type="text" name="penulis_ebook" class="form-control" value="<?php echo isset($data['penulis_ebook']) ? $data['penulis_ebook'] : ''; ?>" required />
+            </div>
+            <div class="form-group">
+                <label>Penerbit</label>
+                <input type="text" name="penerbit_ebook" class="form-control" value="<?php echo isset($data['penerbit_ebook']) ? $data['penerbit_ebook'] : ''; ?>" required />
+            </div>
+            <div class="form-group">
+                <label>Jumlah Halaman</label>
+                <input type="text" name="jumlah_halaman_ebook" class="form-control" value="<?php echo isset($data['jumlah_halaman_ebook']) ? $data['jumlah_halaman_ebook'] : ''; ?>" required />
+            </div>
+            <div class="form-group">
+                <label>Tahun Terbit</label>
+                <input type="text" name="tahun_ebook" class="form-control" value="<?php echo isset($data['tahun_ebook']) ? $data['tahun_ebook'] : ''; ?>" required />
+            </div>
+            <div class="form-group">
+                <label>ISBN</label>
+                <input type="text" name="isbn_ebook" class="form-control" value="<?php echo isset($data['isbn_ebook']) ? $data['isbn_ebook'] : ''; ?>" required />
+            </div>
+            <div class="form-group">
+                <label>Sampul E-Book (jpg/jpeg/png/gif)</label>
+                <input type="file" name="sampul_ebook" class="form-control" />
+                <?php if (isset($data['sampul_ebook']) && !empty($data['sampul_ebook'])) { ?>
+                    <img src="<?php echo $data['sampul_ebook']; ?>" alt="<?php echo $data['judul_ebook']; ?>" style="width: 100px; height: auto; margin-top: 10px;">
+                <?php } ?>
+            </div>
+            <div class="form-group">
+                <label>File E-Book (PDF)</label>
+                <input type="file" name="file_ebook" class="form-control" accept="application/pdf" />
+                <?php if (isset($data['file_ebook']) && !empty($data['file_ebook'])) { ?>
+                    <a href="<?php echo $data['file_ebook']; ?>" target="_blank" class="link-read">Lihat E-Book</a>
+                <?php } ?>
+            </div>
+            <div class="form-group">
+                <label>Sipnopsis</label>
+                <textarea name="sipnopsis_ebook" style="height: 200px; width: 100%; border-radius: 15px;" class="form-control form-sipnopsis" required><?php echo isset($data['sipnopsis_ebook']) ? $data['sipnopsis_ebook'] : ''; ?></textarea>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button type="button" onclick="window.location.href='dashebook.php';" class="btn-back">Kembali</button>
+            <button type="submit" name="submit" class="btn-input">Simpan</button>
+        </div>
+    </form>
+</div>

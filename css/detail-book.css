@@ -104,6 +104,7 @@ select.corner-lib:focus {
     display: block;
 }
 
+/* SEARCH */
 .search-bar {
     display: flex;
     align-items: center;
@@ -112,17 +113,7 @@ select.corner-lib:focus {
     background: #E4E4E4;
     border: 0px solid #0D344B;
     border-radius: 30px;
-    overflow: hidden; /* Ensure elements do not overflow the rounded corners */
-}
-
-.search-bar input {
-    flex-grow: 1; /* Allow input to take up available space */
-    height: 100%;
-    border: none;
-    padding: 0 20px;
-    border-radius: 30px 0 0 30px;
-    background: #E4E4E4;
-    outline: none; /* Remove default outline */
+    overflow: hidden;
 }
 
 .search-icon {
@@ -132,8 +123,33 @@ select.corner-lib:focus {
     width: 50px;
     height: 100%;
     background: #E4E4E4;
+    margin-left: 83%;
 }
 
+.submit-src{
+    border: none;
+    background: #E4E4E4;
+    cursor: pointer;
+}
+
+.search-bar input {
+    height: 100%;
+    width: 245%;
+    border: none;
+    padding: 0 20px;
+    border-radius: 30px 0 0 30px;
+    background: #E4E4E4;
+    outline: none;
+    font-family: Montserrat;
+    font-size: 20px;
+    color: #63AFBD; /* Text color */
+}
+
+.search-bar input::placeholder {
+    color: #63AFBD; /* Placeholder color */
+}
+
+/* NAVIGATOR */
 .navigator {
     display: flex;
     align-items: center;
@@ -551,9 +567,7 @@ form label {
     margin-bottom: 8px;
 }
 
-form input[type="text"],
-form input[type="date"],
-form input[type="submit"] {
+.input_borrow {
     padding: 8px;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -695,7 +709,7 @@ form input[type="submit"] {
 
 .recomend {
     display: grid;
-    grid-template-columns: 0.7fr 4fr;
+    grid-template-columns: 0.5fr 3fr;
     position: relative;
     margin-top: -570px;
 }

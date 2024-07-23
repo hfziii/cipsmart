@@ -30,11 +30,10 @@ body, html {
     background-color: #FFF;
     margin-top: 15px;
     display: flex;
-    align-items: center; /* Align items vertically in the center */
-    justify-content: space-between; /* Space out items evenly */
-    padding: 0 85px; /* Add padding for spacing */
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 85px;
     box-sizing: border-box;
-    gap: 15px;
 }
 /* Apply styles to the select element */
 select.corner-lib {
@@ -104,25 +103,17 @@ select.corner-lib:focus {
     display: block;
 }
 
+/* SEARCH */
 .search-bar {
     display: flex;
     align-items: center;
-    width: 639px;
+    width: 860px;
     height: 43px;
     background: #E4E4E4;
     border: 0px solid #0D344B;
     border-radius: 30px;
-    overflow: hidden; /* Ensure elements do not overflow the rounded corners */
-}
-
-.search-bar input {
-    flex-grow: 1; /* Allow input to take up available space */
-    height: 100%;
-    border: none;
-    padding: 0 20px;
-    border-radius: 30px 0 0 30px;
-    background: #E4E4E4;
-    outline: none; /* Remove default outline */
+    overflow: hidden;
+    margin-left: 40px;
 }
 
 .search-icon {
@@ -132,8 +123,35 @@ select.corner-lib:focus {
     width: 50px;
     height: 100%;
     background: #E4E4E4;
+    margin-left: 280%;
+    margin-top: -30px;
 }
 
+.submit-src{
+    border: none;
+    background: #E4E4E4;
+    cursor: pointer;
+}
+
+.search-bar input {
+    height: 100%;
+    width: 245%;
+    border: none;
+    padding: 0 20px;
+    border-radius: 30px 0 0 30px;
+    background: #E4E4E4;
+    outline: none;
+    font-family: Montserrat;
+    font-size: 20px;
+    color: #63AFBD; /* Text color */
+    margin-top: 10px;
+}
+
+.search-bar input::placeholder {
+    color: #63AFBD; /* Placeholder color */
+}
+
+/* NAVIGATOR */
 .navigator {
     display: flex;
     align-items: center;
@@ -549,7 +567,7 @@ select.corner-lib:focus {
 
 .recomend {
     display: grid;
-    grid-template-columns: 0.7fr 4fr;
+    grid-template-columns: 0.5fr 3fr;
     position: relative;
     margin-top: -570px;
 }
@@ -615,7 +633,7 @@ select.corner-lib:focus {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 20px; /* Adjust gap between columns as needed */
-    width: 130%;
+    width: 110%;
     max-width: 1200px;
     margin-bottom: 20px; /* Space between columns and copyright */
     color: #FFF;

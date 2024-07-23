@@ -64,7 +64,7 @@
 
                 <div class="search-bar">
                     <form action="catalog-ebook.php" method="GET">
-                        <input type="text" name="search" placeholder="Cari E-Book..." class="input-src">
+                        <input type="text" name="search" placeholder="Cari E-Book" class="input-src">
                         <div class="search-icon">
                             <button type="submit" class="submit-src">
                                 <img src="../img/navbar/search-nav-icon.png" alt="Search">

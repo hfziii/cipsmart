@@ -65,7 +65,7 @@
 
                 <div class="search-bar">
                     <form action="catalog-umkm.php" method="GET">
-                        <input type="text" name="search" placeholder="Cari Produk..." class="input-src">
+                        <input type="text" name="search" placeholder="Cari Produk" class="input-src">
                         <div class="search-icon">
                             <button type="submit" class="submit-src">
                                 <img src="../img/navbar/search-nav-icon.png" alt="Search">

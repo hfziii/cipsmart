@@ -125,30 +125,22 @@ $result = mysqli_query($connection, $query);
                     </a>
                 </div>
                 
-                <div class="select-container">
-                    <select name="corner" class="corner-lib" required>
-                        <option value="Literasi Imajinatif">Literasi Imajinatif</option>
-                        <option value="Social Connect">Social Connect</option>
-                        <option value="Bisnis Berdaya">Bisnis Berdaya</option>
-                        <option value="Kreatif Kids Corner">Kreatif Kids Corner</option>
-                        <option value="Pena Inspirasi Gemilang">Pena Inspirasi Gemilang</option>
-                    </select>
-                </div>
-                
                 <div class="search-bar">
-                    <input type="text">
-                    <div class="search-icon">
-                        <a href="#">
-                            <img src="../img/navbar/search-nav-icon.png" alt="Search">
-                        </a>
-                    </div>
+                    <form action="catalog-umkm.php" method="GET">
+                        <input type="text" name="search" placeholder="Cari Produk" class="input-src">
+                        <div class="search-icon">
+                            <button type="submit" class="submit-src">
+                                <img src="../img/navbar/search-nav-icon.png" alt="Search">
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 
                 <div class="navigator">
-                    <a href="../homepage.php"><p class="home">Beranda</p></a>
+                    <a href="../homepage.php"><p class="home" style="margin-left:10px;">Beranda</p></a>
                     <div class="login user-dropdown">
                         <?php if (!isset($_SESSION['username'])): ?>
-                            <a href="login.php" class="login-btn" id="loginBtn">
+                            <a href="../login.php" class="login-btn" id="loginBtn">
                             <p style="color: #fff">
                             Login    
                             </p>    
@@ -217,7 +209,7 @@ $result = mysqli_query($connection, $query);
 
                         <div class="linked">
                             <p class="sipnopsis">Deskripsi Produk</p>
-                            <p class="detailbook">Penjual Produk</p>
+                            <p class="detailbook">Foto Produk</p>
 
                             <a href="https://api.whatsapp.com/send?phone=<?php echo urlencode($data['no_whatsapp']); ?>" class="download-btn" target="_blank">
                                 <img src="../img/footer/wa-icon.png" alt="WhatsApp">
@@ -234,10 +226,9 @@ $result = mysqli_query($connection, $query);
                             <p><?php echo $data['product_description']; ?></p>
                         </div>
                         <div class="title-1">
-                            <h2 class="t1" style="color: #fff;">Penjual Produk</h2>
-                            <p><?php echo $data['seller_name']; ?></p>
+                            <h2 class="t1" style="color: #fff;">Foto Produk</h2>
                         </div>
-
+ 
                         <div class="photobook">
                             <img src="<?php echo '../' . $data['product_photo_1']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 170px; height: 130px; margin: 30px 5px 30px 0px;">
                             <img src="<?php echo '../' . $data['product_photo_2']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 170px; height: 130px; margin: 30px 5px 30px 0px;">
