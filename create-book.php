@@ -21,11 +21,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $isbn = input($_POST["isbn"]);
     $sipnopsis = input($_POST["sipnopsis"]);
     $total_page = input($_POST["total_page"]);
-    $corner_education = input($_POST["corner_education"]);
     $status = input($_POST["status"]);
+    $id_corner = input($_POST["id_corner"]);
 
-    // Proses upload photo
+    // Menentukan target directory berdasarkan id_corner
     $target_dir = "uploads/";
+    switch ($id_corner) {
+        case 'CE-1':
+            $target_dir .= "BOOK_CE-1/";
+            break;
+        case 'CE-2':
+            $target_dir .= "BOOK_CE-2/";
+            break;
+        case 'CE-3':
+            $target_dir .= "BOOK_CE-3/";
+            break;
+        case 'CE-4':
+            $target_dir .= "BOOK_CE-4/";
+            break;
+        case 'CE-5':
+            $target_dir .= "BOOK_CE-5/";
+            break;
+        default:
+            echo "Invalid id_corner.";
+            exit();
+    }
+
+    // Buat folder jika belum ada
+    if (!file_exists($target_dir)) {
+        mkdir($target_dir, 0777, true);
+    }
+
     $target_file = $target_dir . basename($_FILES["photo"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
@@ -64,8 +90,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
             $photo = $target_file;
 
-            // Query input menginput data kedalam tabel
-            $sql = "INSERT INTO book (id_book, photo, title_book, author_name, publisher_name, year_publish, isbn, sipnopsis, total_page, corner_education, status) VALUES ('$id_book', '$photo', '$title_book', '$author_name', '$publisher_name', '$year_publish', '$isbn', '$sipnopsis', '$total_page', '$corner_education', '$status')";
+            // Menentukan tabel berdasarkan id_corner
+            $table_name = "";
+            switch ($id_corner) {
+                case 'CE-1':
+                    $table_name = "book_literasi_imajinatif";
+                    break;
+                case 'CE-2':
+                    $table_name = "book_social_connect";
+                    break;
+                case 'CE-3':
+                    $table_name = "book_bisnis_berdaya";
+                    break;
+                case 'CE-4':
+                    $table_name = "book_kreatif_kids_corner";
+                    break;
+                case 'CE-5':
+                    $table_name = "book_pena_inspirasi_gemilang";
+                    break;
+                default:
+                    echo "Invalid id_corner.";
+                    exit();
+            }
+
+            // Query input menginput data kedalam tabel yang sesuai
+            $sql = "INSERT INTO $table_name (id_book, photo, title_book, author_name, publisher_name, year_publish, isbn, sipnopsis, total_page, status) VALUES ('$id_book', '$photo', '$title_book', '$author_name', '$publisher_name', '$year_publish', '$isbn', '$sipnopsis', '$total_page', '$status')";
 
             // Mengeksekusi query
             $hasil = mysqli_query($connection, $sql);
@@ -106,26 +155,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+
     <div class="sidebar">
         <div class="logo">
             <img src="./img/dashboard/logo-cipsmart-profile.png" alt="Logo">
         </div>
         <ul>
-            <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="./dashadmin.html"><i class="fa fa-user"></i> Admin</a></li>
-            <li><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
-            <li><a href="./dashcorner.html"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li class="active"><a href="#"><i class="fa fa-book"></i> Buku</a></li>
-            <li><a href="./dashborrow.html"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
-            <li><a href="#"><i class="fa fa-book"></i> E-Book</a></li>
-            <li><a href="#"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
-            <li><a href="#"><i class="fa fa-users"></i> Penjual UMKM</a></li>
-            <li><a href="./dashuser.html"><i class="fa fa-users"></i> Pengguna</a></li>
-            <li><a href="./logout.php"><i class="fa fa-sign-out"></i> Keluar</a></li>
+            <li class="disabled"><a href="./newdashboard.html"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li class="disabled"><a href="./dashadmin.html"><i class="fa fa-user"></i> Admin</a></li>
+            <li class="disabled"><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
+            <li class="disabled"><a href="./dashcorner.php"><i class="fa fa-book"></i> Pojok Baca</a></li>
+            <li class="active"><a href=""><i class="fa fa-book"></i> Tambah Data Buku</a></li>
+            <li class="disabled"><a href="./dashborrow.php"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
+            <li class="disabled"><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
+            <li class="disabled"><a href="./dash-productumkm.php"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
+            <li class="disabled"><a href="#"><i class="fa fa-users"></i> Penjual UMKM</a></li>
+            <li class="disabled"><a href="./dashuser.html"><i class="fa fa-users"></i> Pengguna</a></li>
+            <li class="disabled"><a href="./logout.php"><i class="fa fa-sign-out"></i> Keluar</a></li>
         </ul>
     </div>
+   
     <div class="main-content">
-        <p class="title-content">Tambah Buku Baru</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
             enctype="multipart/form-data">
             <div class="form-group-container">
@@ -181,26 +231,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="form-group">
-                    <label>Sipnopsis</label>
-                    <textarea name="sipnopsis" style="height: 200px; width: 100%; border-radius: 15px;" class="form-control form-sipnopsis" required></textarea>
+                    <label>Sinopsis</label>
+                    <textarea name="sipnopsis" style="height: 135px; width: 100%; border-radius: 15px;" class="form-control form-sipnopsis" required></textarea>
                 </div>
 
-                <div class="form-group box-last">
+                <div class="form-group" style="margin-top: -80px">
                     <label>Pojok Baca</label>
-                    <input type="text" name="corner_education" class="form-control" required />
+                    <select name="id_corner" class="form-control" required>
+                        <option value="CE-1">Literasi Imajinatif</option>
+                        <option value="CE-2">Social Connect</option>
+                        <option value="CE-3">Bisnis Berdaya</option>
+                        <option value="CE-4">Kreatif Kids Corner</option>
+                        <option value="CE-5">Pena Inspirasi Gemilang</option>
+                    </select>
                 </div>
-                
+
             </div>
 
             <div class="button-group">
-                <button type="button" onclick="window.location.href='dashbook.php';"
-                    class="btn-back">Kembali</button>
+                <button type="button" onclick="window.location.href='dashbook.php';" class="btn-back">Kembali</button>
                 <button type="submit" name="submit" class="btn-input">Simpan</button>
             </div>
         </form>
     </div>
-
-           
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">

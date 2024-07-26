@@ -1,24 +1,23 @@
-<!-- SCRIPT UNTUK DELETE DATA -->
 <?php
-    ob_start();
-    include("koneksi.php");
+ob_start();
+include("koneksi.php");
 
-    // Cek apakah ada kiriman form dari method GET
-    if (isset($_GET['id_product'])) {
-        $id_product = mysqli_real_escape_string($connection, htmlspecialchars($_GET["id_product"]));
+// Cek apakah ada kiriman form dari method GET
+if (isset($_GET['id_product'])) {
+    $id_product = mysqli_real_escape_string($connection, htmlspecialchars($_GET["id_product"]));
 
-        $sql = "DELETE FROM product_umkm WHERE id_product='$id_product'";
-        $hasil = mysqli_query($connection, $sql);
+    $sql = "DELETE FROM product_umkm WHERE id_product='$id_product'";
+    $hasil = mysqli_query($connection, $sql);
 
-        // Kondisi apakah berhasil atau tidak
-        if ($hasil) {
-            header("Location: dash-productumkm.php");
-            exit(); // untuk menghentikan eksekusi skrip
-        } else {
-            echo "<div class='alert alert-danger'> Data Gagal dihapus.</div>";
-        }
+    // Kondisi apakah berhasil atau tidak
+    if ($hasil) {
+        header("Location: dash-productumkm.php");
+        exit(); // untuk menghentikan eksekusi skrip
+    } else {
+        echo "<div class='alert alert-danger'> Data Gagal dihapus.</div>";
     }
-    ob_end_flush();
+}
+ob_end_flush();
 ?>
 
 <!DOCTYPE html>
@@ -39,13 +38,13 @@
         <ul>
             <li><a href="./newdashboard.html"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li><a href="./dashadmin.html"><i class="fa fa-user"></i> Admin</a></li>
-            <li><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
+            <li><a href="./dashboard_kelurahan.html"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.html"><i class="fa fa-book"></i> Pojok Baca</a></li>
             <li><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
             <li><a href="./dashborrow.php"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
             <li class="active"><a href="./dash-productumkm.php"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
-            <li><a href="#"><i class="fa fa-users"></i> Penjual UMKM</a></li>
+            <li><a href="./dash-sellerumkm.php"><i class="fa fa-users"></i> Penjual UMKM</a></li>
             <li><a href="./dashuser.html"><i class="fa fa-users"></i> Pengguna</a></li>
             <li><a href="./logout.php"><i class="fa fa-sign-out"></i> Keluar</a></li>
         </ul>
@@ -64,7 +63,7 @@
         <div class="content">
 
             <div class="titletable">
-                <h2>Katalog E-Book</h2>
+                <h2>Produk UMKM</h2>
                 <a href="create-productumkm.php">
                     <img src="./img/dashboard/add-btn.png" alt="" class="add-data-btn">
                 </a>
@@ -75,8 +74,8 @@
                     <tr>
                         <th>ID Produk</th>
                         <th>Foto</th>
-                        <th>Kategori </th>
-                        <th>Nama Product</th>
+                        <th>Kategori</th>
+                        <th>Nama Produk</th>
                         <th>Harga</th>
                         <th>Deskripsi</th>
                         <th>ID Penjual</th>
@@ -87,12 +86,19 @@
                 </thead>
                 <tbody>
                     <?php
-                        include("koneksi.php");
+                    include("koneksi.php");
 
-                        $query = mysqli_query($connection, "SELECT * FROM product_umkm");
-                        while ($data = mysqli_fetch_array ($query)) {
+                    // Query to fetch product and seller data
+                    $query = "
+                        SELECT p.*, s.seller_name, s.no_whatsapp
+                        FROM product_umkm p
+                        JOIN seller_umkm s ON p.id_seller = s.id_seller
+                    ";
+                    $result = mysqli_query($connection, $query);
+
+                    while ($data = mysqli_fetch_array($result)) {
                     ?>
-                   <tr>
+                    <tr>
                         <td><?php echo $data['id_product']; ?></td>
                         <td>
                             <img src="<?php echo $data['product_photo_1']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 50px; height: auto;">
@@ -107,22 +113,18 @@
                         <td><?php echo $data['id_seller']; ?></td>
                         <td><?php echo $data['seller_name']; ?></td>
                         <td><?php echo $data['no_whatsapp']; ?></td>
-                        
                         <td>
                             <a href="update-productumkm.php?id_product=<?php echo htmlspecialchars($data['id_product']); ?>">
                                 <i class="fa fa-pencil edit-btn"></i>
                             </a>
-                            <a href="#" onclick="confirmDeleteEbook('<?php echo $data['id_product']; ?>');">
+                            <a href="#" onclick="confirmDeleteProduct('<?php echo $data['id_product']; ?>');">
                                 <i class="fa fa-trash delete-btn"></i>
-                            </a>    
+                            </a>
                         </td>
                     </tr>
-
-
                     <?php 
-                      }
+                    }
                     ?>
-                    
                 </tbody>
             </table>
         </div>
@@ -134,10 +136,10 @@
             crossorigin="anonymous">
     </script>
     <script>
-        // KONFIRMASI HAPUS DATA E-BOOK
-        function confirmDeleteEbook(id_product) {
-            if (confirm("Anda yakin ingin Hapus Data E-Book ini?")) {
-                window.location.href = "dashebook.php?id_product=" + id_product;
+        // KONFIRMASI HAPUS DATA PRODUK UMKM
+        function confirmDeleteProduct(id_product) {
+            if (confirm("Anda yakin ingin menghapus produk UMKM ini?")) {
+                window.location.href = "dash-productumkm.php?id_product=" + id_product;
             }
         }
     </script>

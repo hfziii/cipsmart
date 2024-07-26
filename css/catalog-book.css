@@ -18,7 +18,6 @@ html {
     flex-direction: column;
 }
 
-
 .bg-navbar {
     width: 100%;
     height: 86px;
@@ -106,6 +105,7 @@ select.corner-lib:focus {
     display: block;
 }
 
+/* SEARCH */
 .search-bar {
     display: flex;
     align-items: center;
@@ -115,18 +115,6 @@ select.corner-lib:focus {
     border: 0px solid #0D344B;
     border-radius: 30px;
     overflow: hidden;
-
-}
-
-.search-bar input {
-    flex-grow: 1;
-
-    height: 100%;
-    border: none;
-    padding: 0 20px;
-    border-radius: 30px 0 0 30px;
-    background: #E4E4E4;
-    outline: none;
 }
 
 .search-icon {
@@ -136,8 +124,33 @@ select.corner-lib:focus {
     width: 50px;
     height: 100%;
     background: #E4E4E4;
+    margin-left: 83%;
 }
 
+.submit-src{
+    border: none;
+    background: #E4E4E4;
+    cursor: pointer;
+}
+
+.search-bar input {
+    height: 100%;
+    width: 245%;
+    border: none;
+    padding: 0 20px;
+    border-radius: 30px 0 0 30px;
+    background: #E4E4E4;
+    outline: none;
+    font-family: Montserrat;
+    font-size: 20px;
+    color: #63AFBD; /* Text color */
+}
+
+.search-bar input::placeholder {
+    color: #63AFBD; /* Placeholder color */
+}
+
+/* NAVIGATOR */
 .navigator {
     display: flex;
     align-items: center;
@@ -581,7 +594,6 @@ select.corner-lib:focus {
     cursor: pointer;
     font-size: 50px;
     color: #fff;
-
 }
 
 .popup-form .submit-btn {
@@ -594,7 +606,7 @@ select.corner-lib:focus {
     cursor: pointer;
     width: 150px;
     height: 40px;
-    margin: 170px 0px 0px 230px;
+    margin: 180px 0px 0px 230px;
     display: block;
     font-size: 20px;
 }
@@ -629,14 +641,13 @@ form label {
     margin-bottom: 8px;
 }
 
-form input[type="text"],
-form input[type="date"],
-form input[type="submit"] {
+.input_absen{
     padding: 8px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    width: 100%; /* Biarkan input mengisi lebar grid item */
-    box-sizing: border-box; /* Pastikan padding tidak mempengaruhi lebar total */
+    width: 100%;
+    box-sizing: border-box;
+    height: 45px;
 }
 
 .labelborrow{

@@ -45,6 +45,7 @@
                     <tr>
                         <th>ID Pojok Baca</th>
                         <th>Nama Pojok Baca</th>
+                        <th>Lokasi Pojok Baca</th>
                         <th>Total Buku Semua</th>
                         <th>Total Buku Pinjaman</th>
                         <th>Total Buku Tersedia</th>
@@ -52,51 +53,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Example row -->
+                <?php
+                        include("koneksi.php");
+
+                        $query = mysqli_query($connection, "SELECT * FROM corner_education");
+                        while ($data = mysqli_fetch_array ($query)) {
+                    ?>
                     <tr>
-                        <td>1</td>
-                        <td>Example Name 1</td>
-                        <td>100</td>
-                        <td>30</td>
-                        <td>70</td>
+                        <td><?php echo $data['id_corner']; ?></td>
+                        <td><?php echo $data['name_corner']; ?></td>
+                        <td><?php echo $data['location_corner']; ?></td>
+                        <td><?php echo $data['total_book']; ?></td>
+                        <td><?php echo $data['total_book_ready']; ?></td>
+                        <td><?php echo $data['total_book_borrow']; ?></td>
+                        
                         <td>
+                        <a href="update-corner.php?id_cornerk=<?php echo htmlspecialchars($data['id_corner']); ?>">
                             <i class="fa fa-pencil edit-btn"></i>
-                            <i class="fa fa-trash delete-btn"></i>
+                        </a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Example Name 2</td>
-                        <td>150</td>
-                        <td>50</td>
-                        <td>100</td>
-                        <td>
-                            <i class="fa fa-pencil edit-btn"></i>
-                            <i class="fa fa-trash delete-btn"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Example Name 3</td>
-                        <td>200</td>
-                        <td>60</td>
-                        <td>140</td>
-                        <td>
-                            <i class="fa fa-pencil edit-btn"></i>
-                            <i class="fa fa-trash delete-btn"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Example Name 4</td>
-                        <td>250</td>
-                        <td>80</td>
-                        <td>170</td>
-                        <td>
-                            <i class="fa fa-pencil edit-btn"></i>
-                            <i class="fa fa-trash delete-btn"></i>
-                        </td>
-                    </tr>
+
+                    <?php 
+                      }
+                    ?>
                 </tbody>
             </table>
         </div>

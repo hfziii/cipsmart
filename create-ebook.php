@@ -136,21 +136,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <img src="./img/dashboard/logo-cipsmart-profile.png" alt="Logo">
         </div>
         <ul>
-            <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="./dashadmin.html"><i class="fa fa-user"></i> Admin</a></li>
-            <li><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
-            <li><a href="./dashcorner.html"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li><a href="#"><i class="fa fa-book"></i> Buku</a></li>
-            <li><a href="./dashborrow.html"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
-            <li class="active"><a href="#"><i class="fa fa-book"></i> E-Book</a></li>
-            <li><a href="#"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
-            <li><a href="#"><i class="fa fa-users"></i> Penjual UMKM</a></li>
-            <li><a href="./dashuser.html"><i class="fa fa-users"></i> Pengguna</a></li>
-            <li><a href="./logout.php"><i class="fa fa-sign-out"></i> Keluar</a></li>
+            <li class="disabled"><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li class="disabled"><a href="./dashadmin.html"><i class="fa fa-user"></i> Admin</a></li>
+            <li class="disabled"><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
+            <li class="disabled"><a href="./dashcorner.html"><i class="fa fa-book"></i> Pojok Baca</a></li>
+            <li class="disabled"><a href="#"><i class="fa fa-book"></i> Buku</a></li>
+            <li class="disabled"><a href="./dashborrow.html"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
+            <li class="active"><a href="#"><i class="fa fa-book"></i> Tambah Data E-Book</a></li>
+            <li class="disabled"><a href="#"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
+            <li class="disabled"><a href="#"><i class="fa fa-users"></i> Penjual UMKM</a></li>
+            <li class="disabled"><a href="./dashuser.html"><i class="fa fa-users"></i> Pengguna</a></li>
+            <li class="disabled"><a href="./logout.php"><i class="fa fa-sign-out"></i> Keluar</a></li>
         </ul>
     </div>
     <div class="main-content">
-        <p class="title-content">Tambah E-Book Baru</p>
+        <p class="title-content"></p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
             enctype="multipart/form-data">
             <div class="form-group-container">
@@ -201,8 +201,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="form-group">
-                    <label>Sipnopsis</label>
-                    <textarea name="sipnopsis_ebook" style="height: 200px; width: 100%; border-radius: 15px;" class="form-control form-sipnopsis" required></textarea>
+                    <label>Sinopsis</label>
+                    <textarea name="sipnopsis_ebook" style="height: 120px; width: 100%; border-radius: 15px;" class="form-control form-sipnopsis" required></textarea>
                 </div>
 
             </div>
