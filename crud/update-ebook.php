@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Proses upload sampul ebook
     $sampul_ebook = $data['sampul_ebook']; // Default to existing file
     if (!empty($_FILES["sampul_ebook"]["name"])) {
-        $target_dir_sampul = "uploads/ebook/";
+        $target_dir_sampul = "../uploads/ebook/";
         $target_file_sampul = $target_dir_sampul . basename($_FILES["sampul_ebook"]["name"]);
         $uploadOkSampul = 1;
         $imageFileType = strtolower(pathinfo($target_file_sampul, PATHINFO_EXTENSION));
@@ -126,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 WHERE id_ebook='$id_ebook'";
 
         if (mysqli_query($connection, $sql)) {
-            header("Location: dashebook.php");
+            header("Location: ../admin/dashebook.php");
             exit();
         } else {
             $errorMessages[] = "Data Gagal disimpan. Error: " . mysqli_error($connection);
@@ -143,9 +143,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Data E Book-Cipsmart</title>
-    <link href="./css/create-book.css?v=<?php echo time(); ?>" rel="stylesheet">
+    <link href="../css/create-book.css?v=<?php echo time(); ?>" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="icon" href="img/favicon_io/favicon.ico" type="image/png">
+    <link rel="icon" href="../img/favicon/favicon.ico" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -154,20 +154,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 <div class="sidebar">
     <div class="logo">
-        <img src="./img/dashboard/logo-cipsmart-profile.png" alt="Logo">
+        <img src="../img/dashboard/logo-cipsmart-profile.png" alt="Logo">
     </div>
     <ul>
         <li class="disabled"><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="disabled"><a href="./dashadmin.html"><i class="fa fa-user"></i> Admin</a></li>
+        <li class="disabled"><a href="#"><i class="fa fa-user"></i> Admin</a></li>
         <li class="disabled"><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
-        <li class="disabled"><a href="./dashcorner.html"><i class="fa fa-book"></i> Pojok Baca</a></li>
-        <li class="disabled"><a href="#"><i class="fa fa-book"></i> Buku</a></li>
-        <li class="disabled"><a href="./dashborrow.html"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
+        <li class="disabled"><a href="#"><i class="fa fa-book"></i> Pojok Baca</a></li>
+        <li class="disabled"><a href="#"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
+        <li class="disabled"><a href=""><i class="fa fa-book"></i> Buku</a></li>
+        <li class="disabled"><a href="#"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
         <li class="active"><a href="#"><i class="fa fa-book"></i> Update Data E-Book</a></li>
         <li class="disabled"><a href="#"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
         <li class="disabled"><a href="#"><i class="fa fa-users"></i> Penjual UMKM</a></li>
-        <li class="disabled"><a href="./dashuser.html"><i class="fa fa-users"></i> Pengguna</a></li>
-        <li class="disabled"><a href="./logout.php"><i class="fa fa-sign-out"></i> Keluar</a></li>
+        <li class="disabled"><a href="#"><i class="fa fa-sign-out"></i> Keluar</a></li>
     </ul>
 </div>
 
@@ -296,9 +296,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="card-body text-center">
                             <h5 class="mb-3">Sampul E-Book Sebelumnya</h5>
                             <div class="d-flex justify-content-center align-items-center">
-                                <img src="<?php echo htmlspecialchars($data['sampul_ebook']); ?>" alt="Sampul E-Book" class="img-thumbnail" style="max-width: 100%;">
+                                <img src="../<?php echo htmlspecialchars($data['sampul_ebook']); ?>" alt="Sampul E-Book" class="img-thumbnail" style="max-width: 100%;">
                                 <?php if (isset($data['file_ebook']) && !empty($data['file_ebook'])) { ?>
-                                    <a href="<?php echo $data['file_ebook']; ?>" target="_blank" class="link-read">
+                                    <a href="../<?php echo $data['file_ebook']; ?>" target="_blank" class="link-read">
                                         <img src="../img/detail/read-pdf.png" alt="Read">
                                     </a>
                                 <?php } ?>
@@ -308,7 +308,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                                         
                 <div class="btn-container">
-                    <a href="dashebook.php" class="btn btn-secondary mt-3"><i class="fa fa-arrow-left"></i> Kembali ke Dashboard</a>
+                    <a href="../admin/dashebook.php" class="btn btn-secondary mt-3"><i class="fa fa-arrow-left"></i> Kembali ke Dashboard</a>
                     <input type="submit" class="btn btn-primary px-4 mt-3" value="Update" onclick="submitForm()">
                 </div>
             </div>

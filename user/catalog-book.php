@@ -235,7 +235,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                         <?php else: ?>
                             <a href="#" class="login-btn username-btn" id="loginBtn"><?php echo $_SESSION['username']; ?></a>
                             <div class="dropdown-content" id="dropdownContent">
-                                <a href="../newdashboard.html">Dashboard</a>
+                                <a href="../admin/dashboard.php">Dashboard</a>
                                 <!-- The logout link will be added dynamically via JavaScript -->
                             </div>
                         <?php endif; ?>

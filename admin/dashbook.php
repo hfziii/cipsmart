@@ -74,27 +74,27 @@ $query = mysqli_query($connection, "SELECT * FROM " . mysqli_real_escape_string(
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Katalog Buku-Cipsmart</title>
-    <link rel="stylesheet" href="./css/dashcorner.css">
+    <link rel="stylesheet" href="../css/dashcorner.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="img/favicon/android-chrome-192x192.png" type="image/png">
+    <link rel="icon" href="../img/favicon/android-chrome-192x192.png" type="image/png">
 </head>
 <body>
     <div class="sidebar">
         <div class="logo">
-            <img src="./img/dashboard/logo-cipsmart-profile.png" alt="Logo">
+            <img src="../img/dashboard/logo-cipsmart-profile.png" alt="Logo">
         </div>
         <ul>
-            <li><a href="./newdashboard.html"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="./dashadmin.html"><i class="fa fa-user"></i> Admin</a></li>
-            <li><a href="./dashboard_kelurahan.html"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
+            <li><a href="./dashboard.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="./dashadmin.php"><i class="fa fa-user"></i> Admin</a></li>
+            <li><a href="./dashboard_kelurahan.php"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.php"><i class="fa fa-book"></i> Pojok Baca</a></li>
+            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
             <li class="active"><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
             <li><a href="./dashborrow.php"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
             <li><a href="./dash-productumkm.php"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
             <li><a href="./dash-sellerumkm.php"><i class="fa fa-users"></i> Penjual UMKM</a></li>
-            <li><a href="./dashuser.html"><i class="fa fa-users"></i> Pengguna</a></li>
-            <li><a href="./logout.php"><i class="fa fa-sign-out"></i> Keluar</a></li>
+            <li><a href="../logout.php"><i class="fa fa-sign-out"></i> Keluar</a></li>
         </ul>
     </div>
     <div class="main-content">
@@ -103,7 +103,7 @@ $query = mysqli_query($connection, "SELECT * FROM " . mysqli_real_escape_string(
             <div class="header-icons">
                 <i class="fa fa-search"></i>
                 <i class="fa fa-bell"></i>
-                <a href="./homepage.php">
+                <a href="../homepage.php">
                     <i class="fa fa-home"></i>
                 </a>
             </div>
@@ -112,8 +112,8 @@ $query = mysqli_query($connection, "SELECT * FROM " . mysqli_real_escape_string(
         <div class="content">
             <div class="titletable">
                 <h2>Katalog Buku</h2>
-                <a href="create-book.php">
-                    <img src="./img/dashboard/add-btn.png" alt="" class="add-data-btn">
+                <a href="../crud/create-book.php">
+                    <img src="../img/dashboard/add-btn.png" alt="" class="add-data-btn">
                 </a>
             </div>
 
@@ -150,7 +150,7 @@ $query = mysqli_query($connection, "SELECT * FROM " . mysqli_real_escape_string(
                     ?>
                     <tr>
                         <td><?php echo $data['id_book']; ?></td>
-                        <td><img src="<?php echo $data['photo']; ?>" alt="<?php echo $data['title_book']; ?>" style="width: 50px; height: auto;"></td>
+                        <td><img src="../<?php echo $data['photo']; ?>" alt="<?php echo $data['title_book']; ?>" style="width: 50px; height: auto;"></td>
                         <td><?php echo $data['title_book']; ?></td>
                         <td><?php echo $data['author_name']; ?></td>
                         <td><?php echo $data['publisher_name']; ?></td>
@@ -161,7 +161,7 @@ $query = mysqli_query($connection, "SELECT * FROM " . mysqli_real_escape_string(
                         <td><?php echo $data['status']; ?></td>
 
                         <td>
-                            <a href="update-book.php?id_book=<?php echo htmlspecialchars($data['id_book']); ?>&table_name=<?php echo htmlspecialchars($table_name); ?>">
+                            <a href="../crud/update-book.php?id_book=<?php echo htmlspecialchars($data['id_book']); ?>&table_name=<?php echo htmlspecialchars($table_name); ?>">
                                 <i class="fa fa-pencil edit-btn"></i>
                             </a>
                             <a href="#" onclick="confirmDelete('<?php echo $data['id_book']; ?>', '<?php echo $table_name; ?>');">
