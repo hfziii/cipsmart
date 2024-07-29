@@ -1,0 +1,323 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background: url('../img/dashboard/bg-dashboard.png') no-repeat center center/cover;
+    position: relative;
+}
+
+/* Scrollbar */
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background: rgb(118, 118, 118);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #FFF;
+    border-radius: 20px;
+    border: 3px solid rgb(118, 118, 118);
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 250px;
+    background-color: rgba(99, 175, 189, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px; /* Reduce padding to move items up */
+    padding-bottom: 10px;
+    border-top-right-radius: 50px;
+}
+
+.sidebar .logo img {
+    width: 80px; /* Adjust logo size if needed */
+    margin-bottom: 5px; /* Reduce margin to move items up */
+}
+
+.sidebar ul {
+    list-style: none;
+    width: 100%;
+    padding-left: 0;
+}
+
+.sidebar ul li {
+    width: 100%;
+    text-align: center;
+}
+
+.sidebar ul li a {
+    display: flex;
+    justify-content: flex-start; /* Align text to the left */
+    align-items: center;
+    padding: 10px 20px; /* Reduce padding to fit more items */
+    color: white;
+    text-decoration: none;
+    font-size: 12px; /* Reduce font size */
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+    font-size: 18px; /* Adjust icon size if needed */
+}
+
+.sidebar ul li a:hover, .sidebar ul li.active a {
+    background-color: white;
+    color: #63AFBD;
+    border-radius: 50px; /* Adjust for rounded effect */
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 24px;
+}
+
+.header-icons i {
+    font-size: 24px;
+    margin-left: 20px;
+    cursor: pointer;
+    text-decoration: none; /* Menghapus dekorasi teks dari tautan */
+    color: #1CB1D6; /* Mengatur warna ikon menjadi putih */
+}
+
+.content {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.content h2 {
+    margin-bottom: 20px;
+    color: #63AFBD;
+    display: inline-block;
+}
+
+.add-data-btn {
+    max-width: 35px;
+}
+
+.titletable{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #63AFBD;
+    padding: 10px;
+    text-align: center;
+}
+
+table th {
+    background-color: #63AFBD;
+    color: white;
+}
+
+table td i {
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+table th, table td {
+    border: 1px solid #63AFBD !important;
+    padding: 2px !important;
+    text-align: center !important;
+    font-size: 10px !important;
+}
+
+/* POP UP PINJAM */
+.popup-form form{
+    display: grid;
+    grid-gap: 10px;
+    width: 100%;
+    max-width: 600px;
+    margin: 25px auto 25px auto;
+}
+
+.popup-form {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 240px;
+    border-radius: 20px;
+    background: #1C7EA5;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.popup-form h2{
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin: 25px 0px 25px 0px;
+}
+
+.popup-form p {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin: -15px 0px 30px 0px;
+}
+
+.popup-form input select[type="text"]{
+    width: calc(100% - 0px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+.popup-form .close-btn {
+    position: absolute;
+    right: 15px;
+    top: 0px;
+    cursor: pointer;
+    font-size: 50px;
+    color: #fff;
+}
+
+.popup-form .submit-btn {
+    position: absolute;
+    background-color: #7CFF00;
+    color: white;
+    padding: 0px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 150px;
+    height: 40px;
+    margin: 80px 0px 0px 230px;
+    display: block;
+    font-size: 20px;
+}
+
+.labelborrow {
+    margin-top: 10px;
+    color: #fff;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.input-update{
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+    height: 40px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sidebar ul li {
+        width: auto;
+    }
+
+    .sidebar ul li a {
+        padding: 10px;
+        font-size: 12px;
+        text-align: left;
+    }
+
+    .main-content {
+        margin-top: 200px; /* Adjust if needed */
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 18px;
+    }
+
+    .header-icons i {
+        font-size: 18px;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    table th, table td {
+        padding: 5px;
+        font-size: 12px;
+    }
+}
+
+/* DROPDOWN */
+.corner-education{
+    margin-bottom: 20px;
+}
+
+.title-ce{
+    margin-bottom: 20px;
+    margin-right: 10px;
+    color: #63AFBD;
+}
+
+.drop-ce{
+    color: #63AFBD;
+    border-color: #63AFBD;
+}

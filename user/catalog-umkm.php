@@ -165,7 +165,10 @@
                             </div>';
                         }
                     } else {
-                        echo "0 results";
+                        echo 
+                        '<div style="text-align: center;">
+                                 <img src="../img/catalog/notfound.png" alt="Not Found" style="max-width: 500px; display: block; margin: 20px 0px 0px 300px;">
+                        </div>';
                     }
                 ?>
 

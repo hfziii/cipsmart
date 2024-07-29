@@ -51,6 +51,7 @@ select.corner-lib {
     font-weight: 800;
     line-height: normal;
     cursor: pointer; /* Change cursor to pointer */
+    margin-left: -45px;
 }
 
 /* Add a custom dropdown arrow */

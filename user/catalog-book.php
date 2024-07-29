@@ -1,6 +1,35 @@
 <?php
-session_start(); // Pindahkan ini ke baris paling awal
+session_start();
 include("koneksi.php");
+
+// Fungsi untuk mengambil data buku dari tabel
+function getBooksFromTable($table, $search = '') {
+    global $connection;
+    if ($search) {
+        $sql = "SELECT * FROM $table WHERE title_book LIKE '%$search%' OR author_name LIKE '%$search%'";
+    } else {
+        $sql = "SELECT * FROM $table";
+    }
+    $result = mysqli_query($connection, $sql);
+    $books = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $books[] = $row;
+    }
+    return $books;
+}
+
+$tables = [
+    'Literasi Imajinatif' => 'book_literasi_imajinatif',
+    'Social Connect' => 'book_social_connect',
+    'Bisnis Berdaya' => 'book_bisnis_berdaya',
+    'Kreatif Kids Corner' => 'book_kreatif_kids_corner',
+    'Pena Inspirasi Gemilang' => 'book_pena_inspirasi_gemilang',
+];
+
+$search = isset($_GET['search']) ? mysqli_real_escape_string($connection, $_GET['search']) : '';
+$corner = isset($_GET['corner']) ? $_GET['corner'] : 'Literasi Imajinatif';
+$table_name = $tables[$corner];
+$books = getBooksFromTable($table_name, $search);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
     $name_member = mysqli_real_escape_string($connection, $_POST['name_member']);
@@ -10,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
     $query = "INSERT INTO absen (name_member, name_corner, date) VALUES ('$name_member', '$name_corner', '$date')";
 
     if (mysqli_query($connection, $query)) {
-        // Redirect to the same page with a success flag
         header("Location: catalog-book.php?success=1");
         exit();
     } else {
@@ -176,27 +204,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                 </div>
 
                 <div class="select-container">
-                    <select name="corner" class="corner-lib" required>
-                        <option value="Literasi Imajinatif">Literasi Imajinatif</option>
-                        <option value="Social Connect">Social Connect</option>
-                        <option value="Bisnis Berdaya">Bisnis Berdaya</option>
-                        <option value="Kreatif Kids Corner">Kreatif Kids Corner</option>
-                        <option value="Pena Inspirasi Gemilang">Pena Inspirasi Gemilang</option>
-                    </select>
-                </div>
-
-                <div class="search-bar">
-                    <form action="catalog-book.php" method="GET">
-                        <input type="text" name="search" placeholder="Cari Buku" class="input-src">
-                        <div class="search-icon">
-                            <button type="submit" class="submit-src">
-                                <img src="../img/navbar/search-nav-icon.png" alt="Search">
-                            </button>
-                        </div>
+                    <form action="catalog-book.php" method="get">
+                        <select name="corner" class="corner-lib" onchange="this.form.submit()" required>
+                            <option value="Literasi Imajinatif" <?php if ($table_name == 'book_literasi_imajinatif') echo 'selected'; ?>>Literasi Imajinatif</option>
+                            <option value="Social Connect" <?php if ($table_name == 'book_social_connect') echo 'selected'; ?>>Social Connect</option>
+                            <option value="Bisnis Berdaya" <?php if ($table_name == 'book_bisnis_berdaya') echo 'selected'; ?>>Bisnis Berdaya</option>
+                            <option value="Kreatif Kids Corner" <?php if ($table_name == 'book_kreatif_kids_corner') echo 'selected'; ?>>Kreatif Kids Corner</option>
+                            <option value="Pena Inspirasi Gemilang" <?php if ($table_name == 'book_pena_inspirasi_gemilang') echo 'selected'; ?>>Pena Inspirasi Gemilang</option>
+                        </select>
                     </form>
                 </div>
 
-               <div class="navigator">
+                <div class="search-bar">
+                    <form action="catalog-book.php" method="get" class="form-search">
+                        <input type="hidden" name="corner" value="<?php echo htmlspecialchars($corner); ?>">
+                        <input type="text" name="search" placeholder="Cari Buku">
+                        <button type="submit" class="submit-src">
+                            <img src="../img/navbar/search-nav-icon.png" alt="Search">
+                        </button>
+                    </form>
+                </div>
+
+                <div class="navigator">
                     <a href="../homepage.php"><p class="home">Beranda</p></a>
                     <div class="login user-dropdown">
                         <?php if (!isset($_SESSION['username'])): ?>
@@ -216,7 +245,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                 </div>
 
             </nav>
-        </header>        
+        </header>       
 
         <div class="content">
             <div class="sidebar">
@@ -259,36 +288,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                 </p>
 
                 <div class="frame-container">
-                    <?php
-                        include("koneksi.php");
-
-                        $search = isset($_GET['search']) ? mysqli_real_escape_string($connection, $_GET['search']) : '';
-
-                        if ($search) {
-                            $query = mysqli_query($connection, "SELECT * FROM book WHERE title_book LIKE '%$search%' OR author_name LIKE '%$search%'");
-                        } else {
-                            $query = mysqli_query($connection, "SELECT * FROM book");
-                        }
-
-                        if ($query && mysqli_num_rows($query) > 0) {
-                            while ($data = mysqli_fetch_assoc($query)) {
-                                $imagePath = '../' . $data["photo"];
-                                echo '<div class="frame-card">
-                                    <a href="detail-book.php?id_book=' . $data['id_book'] . '">
-                                        <div class="cardd">
-                                            <img class="img-p" src="' . $imagePath . '" alt="' . $data["title_book"] . '">
-                                        </div>
-                                    </a>
-                            
-                                    <h1 class="name-book" style="font-size: 22px;">' . $data["title_book"] . '</h1>
-                                    <h1 class="name-author">' . $data["author_name"] . '</h1>
-                                    <h1 class="status">' . $data["status"] . '</h1>
-                                </div>';
-                            }
-                        } else {
-                            echo "Buku tidak ditemukan";
-                        }
-                    ?>
+                    <?php if ($books): ?>
+                        <?php foreach ($books as $data): ?>
+                            <div class="frame-card">
+                                <a href="detail-book.php?id_book=<?php echo htmlspecialchars($data['id_book']); ?>&table_name=<?php echo htmlspecialchars($table_name); ?>">
+                                    <div class="cardd">
+                                        <img class="img-p" src="<?= '../' . $data["photo"] ?>" alt="<?= $data["title_book"] ?>">
+                                    </div>
+                                </a>
+                                <h1 class="name-book" style="font-size: 22px;"><?= $data["title_book"] ?></h1>
+                                <h1 class="name-author"><?= $data["author_name"] ?></h1>
+                                <h1 class="status"><?= $data["status"] ?></h1>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                       <img src="../img/catalog/notfound.png" alt="Not Found" style="max-width: 500px; display: block; margin: 20px 0px 0px 300px;">
+                    <?php endif; ?>
                 </div>
 
             </div>

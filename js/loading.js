@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
             clearInterval(interval);
             setTimeout(() => {
                 console.log('Redirecting to homepage.php'); // Debugging line
-                window.location.href = 'homepage.html';
+                window.location.href = 'homepage.php';
             }, 500); // Redirects after 0.5 second
         }
     }, 20); // 20ms interval for 2 seconds animation
