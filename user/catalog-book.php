@@ -241,7 +241,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                         <?php endif; ?>
                     </div>
 
-                    <a href="#" class="absen-btn absen-pb"><p>Absen</p></a>
+                    <a href="#" class="<?php echo isset($_SESSION['username']) ? 'absen-btn' : 'absen-btn-disable'; ?> absen-pb">
+                        <p>Absen</p>
+                    </a>
                 </div>
 
             </nav>

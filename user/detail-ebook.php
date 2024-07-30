@@ -59,21 +59,9 @@ $pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            <?php if ($showSuccessPopup): ?>
-                document.querySelector('#successPopupForm').style.display = 'block';
-            <?php endif; ?>
-
-            var okBtn = document.querySelector('#successPopupForm .success-ok-btn');
-            if (okBtn) {
-                okBtn.addEventListener('click', function () {
-                    document.getElementById('successPopupForm').style.display = 'none';
-                });
-            }
-
             var loginBtn = document.getElementById("loginBtn");
             var dropdownContent = document.getElementById("dropdownContent");
-            var borrowForm = document.getElementById("borrowForm");
-
+            
             <?php if (isset($_SESSION['username'])): ?>
                 loginBtn.classList.add("username-btn");
                 loginBtn.style.cursor = "pointer";
@@ -94,15 +82,6 @@ $pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';
                     }
                 };
                 dropdownContent.appendChild(logoutItem);
-
-                // Event listener untuk pinjam ebook
-                var borrowBtn = document.querySelector('.wa');
-                if (borrowBtn) {
-                    borrowBtn.addEventListener('click', function(event) {
-                        event.preventDefault();
-                        document.querySelector('.popup-form').style.display = 'block';
-                    });
-                }
             <?php else: ?>
                 loginBtn.href = "../login.php"; // Link ke halaman login.php jika belum login
             <?php endif; ?>
@@ -120,9 +99,7 @@ $pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';
                 if (event.target.matches('.popup-form .close-btn')) {
                     document.querySelector('.popup-form').style.display = 'none';
                 }
-            }
-
-            
+            }            
         });
     </script>
 
