@@ -59,21 +59,9 @@ $pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            <?php if ($showSuccessPopup): ?>
-                document.querySelector('#successPopupForm').style.display = 'block';
-            <?php endif; ?>
-
-            var okBtn = document.querySelector('#successPopupForm .success-ok-btn');
-            if (okBtn) {
-                okBtn.addEventListener('click', function () {
-                    document.getElementById('successPopupForm').style.display = 'none';
-                });
-            }
-
             var loginBtn = document.getElementById("loginBtn");
             var dropdownContent = document.getElementById("dropdownContent");
-            var borrowForm = document.getElementById("borrowForm");
-
+            
             <?php if (isset($_SESSION['username'])): ?>
                 loginBtn.classList.add("username-btn");
                 loginBtn.style.cursor = "pointer";
@@ -94,15 +82,6 @@ $pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';
                     }
                 };
                 dropdownContent.appendChild(logoutItem);
-
-                // Event listener untuk pinjam ebook
-                var borrowBtn = document.querySelector('.wa');
-                if (borrowBtn) {
-                    borrowBtn.addEventListener('click', function(event) {
-                        event.preventDefault();
-                        document.querySelector('.popup-form').style.display = 'block';
-                    });
-                }
             <?php else: ?>
                 loginBtn.href = "../login.php"; // Link ke halaman login.php jika belum login
             <?php endif; ?>
@@ -120,9 +99,7 @@ $pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';
                 if (event.target.matches('.popup-form .close-btn')) {
                     document.querySelector('.popup-form').style.display = 'none';
                 }
-            }
-
-            
+            }            
         });
     </script>
 
@@ -138,30 +115,22 @@ $pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';
                     </a>
                 </div>
                 
-                <div class="select-container">
-                    <select name="corner" class="corner-lib" required>
-                        <option value="Literasi Imajinatif">Literasi Imajinatif</option>
-                        <option value="Social Connect">Social Connect</option>
-                        <option value="Bisnis Berdaya">Bisnis Berdaya</option>
-                        <option value="Kreatif Kids Corner">Kreatif Kids Corner</option>
-                        <option value="Pena Inspirasi Gemilang">Pena Inspirasi Gemilang</option>
-                    </select>
-                </div>
-                
                 <div class="search-bar">
-                    <input type="text">
-                    <div class="search-icon">
-                        <a href="#">
-                            <img src="../img/navbar/search-nav-icon.png" alt="Search">
-                        </a>
-                    </div>
+                    <form action="catalog-ebook.php" method="GET">
+                        <input type="text" name="search" placeholder="Cari E-Book" class="input-src">
+                        <div class="search-icon">
+                            <button type="submit" class="submit-src">
+                                <img src="../img/navbar/search-nav-icon.png" alt="Search">
+                            </button>
+                        </div>
+                    </form>
                 </div>
                 
                 <div class="navigator">
                     <a href="../homepage.php"><p class="home">Beranda</p></a>
                     <div class="login user-dropdown">
                         <?php if (!isset($_SESSION['username'])): ?>
-                            <a href="login.php" class="login-btn" id="loginBtn">
+                            <a href="../login.php" class="login-btn" id="loginBtn">
                             <p style="color: #fff">
                             Login    
                             </p>    
@@ -169,7 +138,7 @@ $pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';
                         <?php else: ?>
                             <a href="#" class="login-btn username-btn" id="loginBtn"><?php echo $_SESSION['username']; ?></a>
                             <div class="dropdown-content" id="dropdownContent">
-                                <a href="../newdashboard.html">Dashboard</a>
+                                <a href="../admin/dashboard.php">Dashboard</a>
                                 <!-- The logout link will be added dynamically via JavaScript -->
                             </div>
                         <?php endif; ?>

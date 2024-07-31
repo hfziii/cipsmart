@@ -87,7 +87,7 @@
                         <?php else: ?>
                             <a href="#" class="login-btn username-btn" id="loginBtn"><?php echo $_SESSION['username']; ?></a>
                             <div class="dropdown-content" id="dropdownContent">
-                                <a href="newdashboard.html">Dashboard</a>
+                                <a href="./admin/dashboard.php">Dashboard</a>
                                 <!-- The logout link will be added dynamically via JavaScript -->
                             </div>
                         <?php endif; ?>
@@ -137,27 +137,27 @@
     
                 <div class="content" id="content">
                     <div class="corner">
-                        <a href="./catalog-book.html">
+                        <a href="./user/catalog-book.php?corner=Literasi+Imajinatif">
                             <p class="cornerteks-1">Literasi Imajinatif</p>
                             <img src="./img/homepage/pin2.png" alt="" class="corner-1">
                         </a>
 
-                        <a href="#">
+                        <a href="./user/catalog-book.php?corner=Social+Connect">
                             <p class="cornerteks-2">Social Connect</p>
                             <img src="./img/homepage/pin2.png" alt="" class="corner-2">
                         </a>
                         
-                        <a href="#">
+                        <a href="./user/catalog-book.php?corner=Bisnis+Berdaya">
                             <p class="cornerteks-3">Bisnis Berdaya</p>
                             <img src="./img/homepage/pin2.png" alt="" class="corner-3">
                         </a>
 
-                        <a href="#">
+                        <a href="./user/catalog-book.php?corner=Kreatif+Kids+Corner">
                             <p class="cornerteks-4">Kreatifitas Kids Corner</p>
                             <img src="./img/homepage/pin2.png" alt="" class="corner-4">
                         </a>
                         
-                        <a href="#">
+                        <a href="./user/catalog-book.php?corner=Pena+Inspirasi+Gemilang">
                             <p class="cornerteks-5">Pena Inspirasi Gemilang</p>
                             <img src="./img/homepage/pin2.png" alt="" class="corner-5">
                         </a>
@@ -183,7 +183,7 @@
                     Cipsmart dilaksanakan di Kelurahan Cipaku, Bogor Selatan, Kota Bogor, Jawa Barat. 
                 </p>
 
-                <a href="#">
+                <a href="./user/aboutppk.html">
                     <button type="button" class="btn-detail">
                         Selengkapnya
                     </button>
