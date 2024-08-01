@@ -13,40 +13,25 @@ function input($data) {
     return $data;
 }
 
-// Fungsi untuk mendapatkan id_seller berikutnya
-function getNextIdSeller($connection) {
-    $sql = "SELECT id_seller FROM seller_umkm ORDER BY id_seller DESC LIMIT 1";
-    $result = mysqli_query($connection, $sql);
-    $lastIdSeller = mysqli_fetch_assoc($result)['id_seller'];
-    
-    if ($lastIdSeller) {
-        $lastNumber = intval(str_replace('UMKM-', '', $lastIdSeller));
-        $newNumber = $lastNumber + 1;
-    } else {
-        $newNumber = 1;
-    }
-
-    return 'UMKM-' . $newNumber;
-}
-
 // Cek kiriman form dari method post
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $id_seller = getNextIdSeller($connection);
-    $seller_name = input($_POST["seller_name"]);
-    $no_whatsapp = input($_POST["no_whatsapp"]);
-    $address_seller = input($_POST["address_seller"]);
+    $name = input($_POST["name"]);
+    $nohp = input($_POST["nohp"]);
+    $username = input($_POST["username"]);
+    $password = input($_POST["password"]);
+    $privileges = input($_POST["privileges"]);
 
     // Query input menginput data kedalam tabel
-    $sql = "INSERT INTO seller_umkm (id_seller, seller_name, no_whatsapp, address_seller) 
-            VALUES ('$id_seller', '$seller_name', '$no_whatsapp', '$address_seller')";
+    $sql = "INSERT INTO admin (name, nohp, username, password, privileges) 
+            VALUES ('$name', '$nohp', '$username', '$password', '$privileges')";
 
     // Mengeksekusi query
     $hasil = mysqli_query($connection, $sql);
 
     // Kondisi apakah berhasil atau tidak dalam mengeksekusi query
     if ($hasil) {
-        header("Location: ../admin/dash-sellerumkm.php");
+        header("Location: ../admin/dashadmin.php");
         exit(); // untuk menghentikan eksekusi skrip
     } else {
         echo "<div class='alert alert-danger'> Data Gagal disimpan. Error: " . mysqli_error($connection) . "</div>";
@@ -56,12 +41,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Data Penjual UMKM-Cipsmart</title>
+    <title>Tambah Admin - Cipsmart</title>
     <link href="../css/create-book.css?v=<?php echo time(); ?>" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -75,7 +58,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Google Fonts link for Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <div class="sidebar">
         <div class="logo">
@@ -83,52 +65,66 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <ul>
             <li class="disabled"><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="disabled"><a href="#"><i class="fa fa-user"></i> Admin</a></li>
+            <li class="active"><a href="#"><i class="fa fa-user"></i> Tambah Admin</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-book"></i> Pojok Baca</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
-            <li class="disabled"><a href=""><i class="fa fa-book"></i> Buku</a></li>
+            <li class="disabled"><a href=""><i class="fa fa-book"></i> Data Buku</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-book"></i> E-Book</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
-            <li class="active"><a href="#"><i class="fa fa-users"></i> Tambah Penjual UMKM</a></li>
+            <li class="disabled"><a href="#"><i class="fa fa-users"></i> Penjual UMKM</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-sign-out"></i> Keluar</a></li>
         </ul>
     </div>
     <div class="main-content" style="margin-top: 8%;">
-        <p class="title-content">Tambah Penjual UMKM Baru</p>
+        <p class="title-content">Tambah Admin Baru</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"
             enctype="multipart/form-data">
             <div class="form-group-container">
 
                 <div class="form-group">
-                    <label>Nama Penjual</label>
-                    <input type="text" name="seller_name" class="form-control" required />
+                    <label>Nama Admin</label>
+                    <input type="text" name="name" class="form-control" required />
                 </div>
 
                 <div class="form-group">
-                    <label>No Whatsapp</label>
-                    <input type="text" name="no_whatsapp" class="form-control" required />
+                    <label>No Hp</label>
+                    <input type="text" name="nohp" class="form-control" required />
                 </div>
 
                 <div class="form-group">
-                    <label>Alamat</label>
-                    <input type="text" name="address_seller" class="form-control" required />
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="text" name="password" class="form-control" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Hak Akses</label>
+                    <select name="privileges" class="form-control" required>
+                        <option value="Super-Admin">Super-Admin</option>
+                        <option value="Kelurahan">Kelurahan</option>
+                        <option value="CE-1">CE-1 (Literasi Imajinatif)</option>
+                        <option value="CE-2">CE-2 (Social Connect)</option>
+                        <option value="CE-3">CE-3 (Bisnis Berdaya)</option>
+                        <option value="CE-4">CE-4 (Kreatif Kids Corner)</option>
+                        <option value="CE-5">CE-5 (Pena Inspirasi Gemilang)</option>
+                        <option value="UMKM">UMKM</option>
+                    </select>
                 </div>
 
             </div>
 
             <div class="button-group">
-                <button type="button" onclick="window.location.href='../admin/dash-sellerumkm.php';"
+                <button type="button" onclick="window.location.href='../admin/dashadmin.php';"
                     class="btn-back">Kembali</button>
                 <button type="submit" name="submit" class="btn-input">Simpan</button>
             </div>
         </form>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
-    </script>
 </body>
-
 </html>

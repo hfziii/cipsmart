@@ -255,6 +255,22 @@ table th, table td {
     height: 40px;
 }
 
+/*ICON */
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0; /* Ensures no extra space between icons */
+}
+
+.icon-container a {
+    text-decoration: none;
+}
+
+.icon-container i {
+    display: inline-block;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
     .sidebar {

@@ -10,7 +10,6 @@ body, html {
 
 .bg-base-body {
     background: #63AFBD;
-    position: relative;
     width: 100%;
     min-height: 100vh; /* Ensure it takes at least the full viewport height */
     display: flex;
@@ -19,7 +18,6 @@ body, html {
 
 .head-homepage{
     width: 1360px;
-    height: 1263px;
 }
 
 .bg-body-item{
@@ -173,7 +171,7 @@ body, html {
 }
 
 .tittlefilosofi {
-    width: 220px;
+    width: 240px;
     height: 10px;
     font-size: 13px;
     color: #FFEC00;

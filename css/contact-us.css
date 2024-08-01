@@ -19,7 +19,6 @@ body, html {
 
 .head-homepage{
     width: 1360px;
-    height: 900px;
 }
 
 .bg-body-item{
@@ -65,7 +64,7 @@ body, html {
     color: #fff;
     text-decoration: none;
     font-size: 16px;
-    font-family: Montserrat, sans-serif;
+    font-family: Montserrat;
     font-weight: 800;
     line-height: normal;
 }
@@ -91,7 +90,7 @@ body, html {
     color: #fff;
     text-decoration: none;
     font-size: 16px;
-    font-family: Montserrat, sans-serif;
+    font-family: Montserrat;
     font-weight: 800;
     line-height: normal;
 }
@@ -230,7 +229,7 @@ body, html {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    margin-left: -240px;
+    margin-left: -284px;
     margin-top: 30px;
 }
 
@@ -258,7 +257,7 @@ body, html {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    margin-left: -240px;
+    margin-left: -284px;
     margin-top: 30px;
 }
 
@@ -286,7 +285,7 @@ body, html {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    margin-left: -240px;
+    margin-left: -284px;
     margin-top: 30px;
 }
 
@@ -313,7 +312,8 @@ body, html {
     gap: 20px; /* Adjust gap between columns as needed */
     width: 100%;
     max-width: 1200px;
-    margin-bottom: 20px; /* Space between columns and copyright */
+    margin-bottom: 20px; 
+    margin-top: 35px;
     color: #FFF;
     font-family: Montserrat;
     font-size: 15px;

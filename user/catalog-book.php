@@ -54,7 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Katalog Buku-Cipsmart</title>
     <link href="../css/catalog-book.css" rel="stylesheet">
+    <link href="../css/popup-user.css" rel="stylesheet">
     <link rel="icon" href="../img/favicon/android-chrome-192x192.png" type="image/png">
+    <!-- Google Fonts link for Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -104,15 +107,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
 
                 var logoutItem = document.createElement('a');
                 logoutItem.textContent = "Logout";
-                logoutItem.href = "../logout.php";
-                logoutItem.onclick = function(event) {
-                    if (!confirm("Anda Yakin Ingin Logout?")) {
-                        event.preventDefault();
+                logoutItem.href = "#";
+                logoutItem.classList.add("cd-popup-trigger");
+                dropdownContent.appendChild(logoutItem);
+
+                // Open logout popup
+                logoutItem.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    document.getElementById('logoutPopup').classList.add('is-visible');
+                });
+
+                // Confirm logout
+                document.getElementById("confirmLogoutBtn").addEventListener("click", function(event) {
+                    event.preventDefault();
+                    window.location.href = "../logout.php";
+                });
+
+                // Cancel logout
+                document.getElementById("cancelLogoutBtn").addEventListener("click", function(event) {
+                    event.preventDefault();
+                    document.getElementById('logoutPopup').classList.remove('is-visible');
+                });
+
+                // Close popup on outside click
+                document.getElementById('logoutPopup').addEventListener("click", function(event) {
+                    if (event.target === this) {
+                        this.classList.remove('is-visible');
                     }
-                };
-                if (dropdownContent) {
-                    dropdownContent.appendChild(logoutItem);
-                }
+                });
 
                 var borrowBtn = document.querySelector('.absen-pb');
                 if (borrowBtn) {
@@ -160,7 +182,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
 <body>
     <div class="bg-base-body">
 
-         <!-- Pop-up form -->
+        <!-- Logout Confirmation Popup -->
+        <div class="cd-popup" role="alert" id="logoutPopup">
+            <div class="cd-popup-container">
+                <p>Anda yakin ingin Keluar?</p>
+                <ul class="cd-buttons">
+                    <li><a href="#" class="cd-popup-yes" id="confirmLogoutBtn">Ya</a></li>
+                    <li><a href="#" class="cd-popup-close" id="cancelLogoutBtn">Tidak</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Pop-up Absen -->
         <div class="popup-form" id="popupForm">
             <span class="close-btn">&times;</span>
             <h2>Absen</h2>
@@ -313,8 +346,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
 
         </div>
 
-        <!--  -->
-        <div class="footer" >
+        <div class="footer">
             
             <div class="linked">
                 
@@ -323,30 +355,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                 </div>
 
                 <div class="perpusfot">
-                    <a href="#">
+                    <a href="./catalog-book.php">
                         <p class="title-perpusfot">Perpustakaan Digital</p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-book.php?corner=Literasi+Imajinatif">
                         <p class="linked-1">
                             Literasi Imajinatif
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-book.php?corner=Social+Connect">
                         <p class="linked-1">
                             Social Connect
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-book.php?corner=Bisnis+Berdaya">
                         <p class="linked-1">
                             Bisnis Berdaya
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-book.php?corner=Kreatif+Kids+Corner">
                         <p class="linked-1">
-                            Kreatifitas Kids Corner
+                            Kreatif Kids Corner
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-book.php?corner=Pena+Inspirasi+Gemilang">
                         <p class="linked-1">
                             Pena Inspirasi Gemilang
                         </p>
@@ -354,53 +386,64 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                 </div>
 
                 <div class="ebookfot">
-                    <a href="#">
+                    <a href="./catalog-ebook.php">
                         <p class="title-ebookfot">E-Book</p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-ebook.php?search=cerpen">
                         <p class="linked-1">
-                            Teks K-13
+                            Cerita Pendek
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-ebook.php?search=novel">
                         <p class="linked-1">
-                            Teks Kurikulum Merdeka
+                            Novel
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-ebook.php?search=umum">
                         <p class="linked-1">
-                            Non Teks
+                            Umum
                         </p>
                     </a>
                 </div>
 
                 <div class="umkmfot">
-                    <a href="#">
+                    <a href="./catalog-umkm.php">
                         <p class="title-umkmfot">UMKM Cipaku</p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-umkm.php?search=makanan">
                         <p class="linked-1">
-                            Katalog Produk
+                            Makanan & Minuman
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-umkm.php?search=fashion">
                         <p class="linked-1">
-                            Penjual UMKM
+                            Fashion & Aksesoris
+                        </p>
+                    </a>
+                    <a href="./catalog-umkm.php?search=kerajinan">
+                        <p class="linked-1">
+                            Kerajinan Tangan
                         </p>
                     </a>
             
                 </div>
                 
                 <div class="callfot">
-                    <a href="#">
+                    <a href="./contact-us.php">
                         <p class="title-callfot">Hubungi Kami</p>
                     </a>
                     <p class="linked-1">
                         Jalan Raya, RT.01/RW.03, Cipaku, Bogor Selatan, Kota Bogor, Jawa Barat 16137
                     </p>
-                    <img src="../img/footer/ig-icon.png" alt="" class="iconcs">
-                    <img src="../img/footer/wa-icon.png" alt="" class="iconcs">
-                    <img src="../img/footer/gmail-icon.png" alt="" class="iconcs">
+                    <a href="https://www.instagram.com/cipsmart.ppkormawa2024" target="_blank">                            
+                        <img src="../img/footer/ig-icon.png" alt="" class="iconcs">
+                    </a>
+                    <a href="https://wa.me/6285732185809" target="_blank">
+                        <img src="../img/footer/wa-icon.png" alt="" class="iconcs">
+                    </a>
+                    <a href="mailto:cipsmartppkormawablmfeb@gmail.com" target="_blank">
+                        <img src="../img/footer/gmail-icon.png" alt="" class="iconcs">
+                    </a>
                 </div>
 
             </div>

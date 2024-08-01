@@ -386,22 +386,23 @@ html {
 
 /* FOOTER */
 .footer {
-    height: 250px;
+    height: 278px;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
-    background: #63AFBD;
-    margin-top: 50px;
+    margin-top: 20px;
+    background-color: #63AFBD;
 }
 
 .linked {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
+    gap: 20px; /* Adjust gap between columns as needed */
     width: 100%;
     max-width: 1200px;
-    margin-bottom: 20px;
+    margin-bottom: 20px; 
+    margin-top: 35px;
     color: #FFF;
     font-family: Montserrat;
     font-size: 15px;
@@ -410,26 +411,25 @@ html {
     line-height: normal;
 }
 
-.linked a,
-.linked p {
+.linked a, .linked p {
     margin: 5px 0;
 }
 
 .linked a {
     color: #FFF;
-    text-decoration: none;
+    text-decoration: none; /* Remove underline */
 }
 
-.linked a {
-    color: #FFF;
-    text-decoration: underline;
+.linked a:hover {
+    color: #FFF; /* Ensure hover color stays white */
+    text-decoration: underline; /* Optional: underline on hover */
 }
 
 .callfot img {
-    width: 30px;
+    width: 30px; /* Adjust icon size as needed */
 }
 
-.copy {
+.copyright {
     text-align: center;
     color: #FFF;
     font-family: Montserrat;
@@ -438,7 +438,10 @@ html {
     font-weight: 600;
     line-height: normal;
     margin-top: 30px;
-    margin-bottom: 0;
+}
+
+.copy {
+    margin: 0;
 }
 
 /* Responsive styles */

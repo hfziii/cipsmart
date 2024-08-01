@@ -27,8 +27,11 @@ ob_end_flush();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produk UMKM - Cipsmart</title>
     <link rel="stylesheet" href="../css/dashcorner.css">
+    <link rel="stylesheet" href="../css/popup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../img/favicon/android-chrome-192x192.png" type="image/png">
+    <!-- Google Fonts link for Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="sidebar">
@@ -46,7 +49,7 @@ ob_end_flush();
             <li><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
             <li class="active"><a href="./dash-productumkm.php"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
             <li><a href="./dash-sellerumkm.php"><i class="fa fa-users"></i> Penjual UMKM</a></li>
-            <li><a href="../logout.php"><i class="fa fa-sign-out"></i> Keluar</a></li>
+            <li><a href="#" class="cd-popup-trigger"><i class="fa fa-sign-out"></i> Keluar</a></li>
         </ul>
     </div>
     <div class="main-content">
@@ -72,7 +75,7 @@ ob_end_flush();
             <table id="pojokBacaTable">
                 <thead>
                     <tr>
-                        <th>ID Produk</th>
+                        <th>No</th>
                         <th>Foto</th>
                         <th>Kategori</th>
                         <th>Nama Produk</th>
@@ -81,7 +84,7 @@ ob_end_flush();
                         <th>ID Penjual</th>
                         <th>Penjual</th>
                         <th>No Whatsapp</th>
-                        <th>Tindakan</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -115,10 +118,10 @@ ob_end_flush();
                         <td><?php echo $data['no_whatsapp']; ?></td>
                         <td>
                             <a href="../crud/update-productumkm.php?id_product=<?php echo htmlspecialchars($data['id_product']); ?>">
-                                <i class="fa fa-pencil edit-btn"></i>
+                                <i class="fa fa-pencil-square-o edit-btn" style="font-size: 20px"></i>                            
                             </a>
-                            <a href="#" onclick="confirmDeleteProduct('<?php echo $data['id_product']; ?>');">
-                                <i class="fa fa-trash delete-btn"></i>
+                            <a href="#" class="cd-popup-trigger-del" onclick="showDeletePopup('<?php echo $data['id_product']; ?>');">
+                                <i class="fa fa-trash delete-btn" style="font-size: 20px"></i>
                             </a>
                         </td>
                     </tr>
@@ -130,18 +133,71 @@ ob_end_flush();
         </div>
     </div>
 
+    <!-- Delete Confirmation Popup -->
+    <div class="cd-popup-del" role="alert">
+        <div class="cd-popup-container-del">
+            <p>Anda Yakin Ingin Hapus Produk ini?</p>
+            <ul class="cd-buttons-del">
+                <li><a href="#" class="cd-popup-yes-del" onclick="confirmDelete()">Ya</a></li>
+                <li><a href="#" class="cd-popup-close-del">Tidak</a></li>
+            </ul>            
+        </div>
+    </div>
+
+    <!-- Logout Confirmation Popup -->
+    <div class="cd-popup" role="alert">
+        <div class="cd-popup-container">
+            <p>Anda yakin ingin Keluar?</p>
+            <ul class="cd-buttons">
+                <li><a href="#" class="cd-popup-yes" onclick="confirmLogout()">Ya</a></li>
+                <li><a href="#" class="cd-popup-close">Tidak</a></li>
+            </ul>            
+        </div>
+    </div>
+
     <!-- JAVASCRIPT -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
             crossorigin="anonymous">
     </script>
     <script>
-        // KONFIRMASI HAPUS DATA PRODUK UMKM
-        function confirmDeleteProduct(id_product) {
-            if (confirm("Anda yakin ingin menghapus produk UMKM ini?")) {
-                window.location.href = "dash-productumkm.php?id_product=" + id_product;
+        // KONFIRMASI HAPUS DATA        
+        document.addEventListener('DOMContentLoaded', function() {
+            var popup = document.querySelector('.cd-popup-del');
+            var popupCloseButtons = document.querySelectorAll('.cd-popup-close-del');
+            var deleteId = null;
+
+            // Function to show delete popup and set the id_ebook
+            window.showDeletePopup = function(id_ebook) {
+                deleteId = id_ebook;
+                popup.classList.add('is-visible');
             }
-        }
+
+            // Attach event listeners to close buttons
+            if (popupCloseButtons) {
+                popupCloseButtons.forEach(function (button) {
+                    button.addEventListener('click', function (event) {
+                        event.preventDefault();
+                        popup.classList.remove('is-visible');
+                    });
+                });
+            }
+
+            // Close popup when clicking outside of it
+            popup.addEventListener('click', function (event) {
+                if (event.target === popup) {
+                    popup.classList.remove('is-visible');
+                }
+            });
+
+            // Function to handle delete confirmation
+            window.confirmDelete = function() {
+                if (deleteId) {
+                    window.location.href = "dash-productumkm.php?id_product=" + deleteId;
+                }
+            }
+        });
     </script>
+    <script src="../js/logout.js"></script>
 </body>
 </html>

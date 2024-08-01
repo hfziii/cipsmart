@@ -102,72 +102,95 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Buku</title>
     <link rel="stylesheet" href="../css/detail-book.css">
+    <link rel="stylesheet" href="../css/popup-user.css">
     <link rel="icon" href="../img/favicon/android-chrome-192x192.png" type="image/png">
+    <!-- Google Fonts link for Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
    
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Show success popup if success parameter is in the URL
-            var urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('success')) {
-                document.querySelector('#successPopupForm').style.display = 'block';
-            }
+    document.addEventListener("DOMContentLoaded", function () {
+        // Show success popup if success parameter is in the URL
+        var urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('success')) {
+            document.querySelector('#successPopupForm').style.display = 'block';
+        }
 
-            var okBtn = document.querySelector('#successPopupForm .success-ok-btn');
-            if (okBtn) {
-                okBtn.addEventListener('click', function () {
-                    document.getElementById('successPopupForm').style.display = 'none';
-                });
-            }
+        var okBtn = document.querySelector('#successPopupForm .success-ok-btn');
+        if (okBtn) {
+            okBtn.addEventListener('click', function () {
+                document.getElementById('successPopupForm').style.display = 'none';
+            });
+        }
 
-            var loginBtn = document.getElementById("loginBtn");
-            var dropdownContent = document.getElementById("dropdownContent");
-            var borrowForm = document.getElementById("borrowForm");
+        var loginBtn = document.getElementById("loginBtn");
+        var dropdownContent = document.getElementById("dropdownContent");
 
-            <?php if (isset($_SESSION['username'])): ?>
-                loginBtn.classList.add("username-btn");
-                loginBtn.style.cursor = "pointer";
+        <?php if (isset($_SESSION['username'])): ?>
+            loginBtn.classList.add("username-btn");
+            loginBtn.style.cursor = "pointer";
 
-                loginBtn.addEventListener("click", function (event) {
+            loginBtn.addEventListener("click", function (event) {
+                event.preventDefault();
+                dropdownContent.classList.toggle("show");
+            });
+
+            var logoutItem = document.createElement('a');
+            logoutItem.textContent = "Logout";
+            logoutItem.href = "#";
+            logoutItem.classList.add("cd-popup-trigger");
+            dropdownContent.appendChild(logoutItem);
+
+            // Open logout popup
+            logoutItem.addEventListener("click", function(event) {
+                event.preventDefault();
+                document.getElementById('logoutPopup').classList.add('is-visible');
+            });
+
+            // Confirm logout
+            document.getElementById("confirmLogoutBtn").addEventListener("click", function(event) {
+                event.preventDefault();
+                window.location.href = "../logout.php";
+            });
+
+            // Cancel logout
+            document.getElementById("cancelLogoutBtn").addEventListener("click", function(event) {
+                event.preventDefault();
+                document.getElementById('logoutPopup').classList.remove('is-visible');
+            });
+
+            // Close popup on outside click
+            document.getElementById('logoutPopup').addEventListener("click", function(event) {
+                if (event.target === this) {
+                    this.classList.remove('is-visible');
+                }
+            });
+
+            var borrowBtn = document.querySelector('.wa');
+            if (borrowBtn) {
+                borrowBtn.addEventListener('click', function(event) {
                     event.preventDefault();
-                    dropdownContent.classList.toggle("show");
+                    document.querySelector('.popup-form').style.display = 'block';
                 });
+            }
+        <?php else: ?>
+            loginBtn.href = "../login.php";
+        <?php endif; ?>
 
-                var logoutItem = document.createElement('a');
-                logoutItem.textContent = "Logout";
-                logoutItem.href = "../logout.php";
-                logoutItem.onclick = function(event) {
-                    if (!confirm("Anda Yakin Ingin Logout?")) {
-                        event.preventDefault();
+        window.onclick = function (event) {
+            if (!event.target.matches('.login-btn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
                     }
-                };
-                dropdownContent.appendChild(logoutItem);
-
-                var borrowBtn = document.querySelector('.wa');
-                if (borrowBtn) {
-                    borrowBtn.addEventListener('click', function(event) {
-                        event.preventDefault();
-                        document.querySelector('.popup-form').style.display = 'block';
-                    });
-                }
-            <?php else: ?>
-                loginBtn.href = "../login.php";
-            <?php endif; ?>
-
-            window.onclick = function (event) {
-                if (!event.target.matches('.login-btn')) {
-                    var dropdowns = document.getElementsByClassName("dropdown-content");
-                    for (var i = 0; i < dropdowns.length; i++) {
-                        var openDropdown = dropdowns[i];
-                        if (openDropdown.classList.contains('show')) {
-                            openDropdown.classList.remove('show');
-                        }
-                    }
-                }
-                if (event.target.matches('.popup-form .close-btn')) {
-                    document.querySelector('.popup-form').style.display = 'none';
                 }
             }
-        });
+            if (event.target.matches('.popup-form .close-btn')) {
+                document.querySelector('.popup-form').style.display = 'none';
+            }
+        }
+    });
     </script>
 
 </head>
@@ -175,7 +198,18 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
 <body>
     <div class="bg-base-body">
 
-        <!-- Pop-up form -->
+        <!-- Logout Confirmation Popup -->
+        <div class="cd-popup" role="alert" id="logoutPopup">
+            <div class="cd-popup-container">
+                <p>Anda yakin ingin Keluar?</p>
+                <ul class="cd-buttons">
+                    <li><a href="#" class="cd-popup-yes" id="confirmLogoutBtn">Ya</a></li>
+                    <li><a href="#" class="cd-popup-close" id="cancelLogoutBtn">Tidak</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Pop-up Pinjam Buku -->
         <div class="popup-form" id="popupForm">
             <span class="close-btn">&times;</span>
             <h2>Pinjam Buku</h2>
@@ -301,9 +335,11 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
 
                         <div class="linked">
                             <a href="#sipnopsis">
-                                <p class="sipnopsis">Sipnopsis Buku</p>
+                                <p class="sipnopsis">Sinopsis Buku</p>
                             </a>
-                            <p class="detailbook">Detail Buku</p>
+                            <a href="#detail">
+                                <p class="detailbook">Detail Buku</p>
+                            </a>
 
                             <?php if ($data['status'] == 'Tersedia') : ?>
                                 <div class="sb">
@@ -332,13 +368,13 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
 
                         <hr class="white-line">
 
-                        <div class="title-1">
-                            <h2 class="t1" style="color: #fff;">Sipnopsis Buku</h2>
+                        <div class="title-1" id="sipnopsis">
+                            <h2 class="t1" style="color: #fff;">Sinopsis Buku</h2>
                         </div>
                         <div class="sipnopsis-desc">
                             <p><?php echo $data['sipnopsis']; ?></p>
                         </div>
-                        <div class="title-1">
+                        <div class="title-1" id="detail">
                             <h2 class="t1" style="color: #fff;">Detail Buku</h2>
                         </div>
                         <div class="book-desc">
@@ -377,13 +413,13 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
 
                 <div class="frame-container-wrapper">
                     <div class="frame-container">
-                        <?php while ($table_name = mysqli_fetch_assoc($recommendationResult)): ?>
-                            <a href="detail-book.php?id_book=<?php echo $table_name['id_book']; ?>" class="frame-card-link">
+                        <?php while ($book = mysqli_fetch_assoc($recommendationResult)): ?>
+                            <a href="detail-book.php?id_book=<?php echo $book['id_book']; ?>&table_name=<?php echo $table_name; ?>" class="frame-card-link">
                                 <div class="frame-card">
-                                    <img src="<?php echo '../' . $table_name['photo']; ?>" alt="<?php echo $table_name['title_book']; ?>" class="img-p">
-                                    <h1 class="name-book"><?php echo $table_name['title_book']; ?></h1>
-                                    <h1 class="name-author"><?php echo $table_name['author_name']; ?></h1>
-                                    <h1 class="status"><?php echo $table_name['status']; ?></h1>
+                                    <img src="<?php echo '../' . $book['photo']; ?>" alt="<?php echo $book['title_book']; ?>" class="img-p">
+                                    <h1 class="name-book"><?php echo $book['title_book']; ?></h1>
+                                    <h1 class="name-author"><?php echo $book['author_name']; ?></h1>
+                                    <h1 class="status"><?php echo $book['status']; ?></h1>
                                 </div>
                             </a>
                         <?php endwhile; ?>
@@ -396,7 +432,6 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
             </div>
         </div>
 
-
         <!--  -->
         <div class="footer">
             
@@ -407,30 +442,30 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
                 </div>
 
                 <div class="perpusfot">
-                    <a href="#">
+                    <a href="./catalog-book.php">
                         <p class="title-perpusfot">Perpustakaan Digital</p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-book.php?corner=Literasi+Imajinatif">
                         <p class="linked-1">
                             Literasi Imajinatif
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-book.php?corner=Social+Connect">
                         <p class="linked-1">
                             Social Connect
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-book.php?corner=Bisnis+Berdaya">
                         <p class="linked-1">
                             Bisnis Berdaya
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-book.php?corner=Kreatif+Kids+Corner">
                         <p class="linked-1">
-                            Kreatifitas Kids Corner
+                            Kreatif Kids Corner
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-book.php?corner=Pena+Inspirasi+Gemilang">
                         <p class="linked-1">
                             Pena Inspirasi Gemilang
                         </p>
@@ -438,53 +473,64 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
                 </div>
 
                 <div class="ebookfot">
-                    <a href="#">
+                    <a href="./catalog-ebook.php">
                         <p class="title-ebookfot">E-Book</p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-ebook.php?search=cerpen">
                         <p class="linked-1">
-                            Teks K-13
+                            Cerita Pendek
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-ebook.php?search=novel">
                         <p class="linked-1">
-                            Teks Kurikulum Merdeka
+                            Novel
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-ebook.php?search=umum">
                         <p class="linked-1">
-                            Non Teks
+                            Umum
                         </p>
                     </a>
                 </div>
 
                 <div class="umkmfot">
-                    <a href="#">
+                    <a href="./catalog-umkm.php">
                         <p class="title-umkmfot">UMKM Cipaku</p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-umkm.php?search=makanan">
                         <p class="linked-1">
-                            Katalog Produk
+                            Makanan & Minuman
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-umkm.php?search=fashion">
                         <p class="linked-1">
-                            Penjual UMKM
+                            Fashion & Aksesoris
+                        </p>
+                    </a>
+                    <a href="./catalog-umkm.php?search=kerajinan">
+                        <p class="linked-1">
+                            Kerajinan Tangan
                         </p>
                     </a>
             
                 </div>
                 
                 <div class="callfot">
-                    <a href="#">
+                    <a href="./contact-us.php">
                         <p class="title-callfot">Hubungi Kami</p>
                     </a>
                     <p class="linked-1">
                         Jalan Raya, RT.01/RW.03, Cipaku, Bogor Selatan, Kota Bogor, Jawa Barat 16137
                     </p>
-                    <img src="./img/footer/ig-icon.png" alt="" class="iconcs">
-                    <img src="./img/footer/wa-icon.png" alt="" class="iconcs">
-                    <img src="./img/footer/gmail-icon.png" alt="" class="iconcs">
+                    <a href="https://www.instagram.com/cipsmart.ppkormawa2024" target="_blank">                            
+                        <img src="../img/footer/ig-icon.png" alt="" class="iconcs">
+                    </a>
+                    <a href="https://wa.me/6285732185809" target="_blank">
+                        <img src="../img/footer/wa-icon.png" alt="" class="iconcs">
+                    </a>
+                    <a href="mailto:cipsmartppkormawablmfeb@gmail.com" target="_blank">
+                        <img src="../img/footer/gmail-icon.png" alt="" class="iconcs">
+                    </a>
                 </div>
 
             </div>

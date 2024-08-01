@@ -764,12 +764,13 @@ form label {
 
 /* FOOTER */
 .footer {
-    height: 250px;
+    height: 278px;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
-    margin-top: 125px;
+    margin-top: 20px;
+    background-color: #63AFBD;
 }
 
 .linked {
@@ -778,7 +779,8 @@ form label {
     gap: 20px; /* Adjust gap between columns as needed */
     width: 100%;
     max-width: 1200px;
-    margin-bottom: 20px; /* Space between columns and copyright */
+    margin-bottom: 20px; 
+    margin-top: 35px;
     color: #FFF;
     font-family: Montserrat;
     font-size: 15px;

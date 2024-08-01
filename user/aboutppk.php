@@ -1,54 +1,18 @@
-<?php
-session_start();
-include 'koneksi.php';
-
-if (!isset($_GET['id_product'])) {
-    header("Location: catalog-ebook.php");
-    exit();
-}
-$id_product = $_GET['id_product'];
-$sql = "
-    SELECT p.*, s.seller_name, s.no_whatsapp
-    FROM product_umkm p
-    JOIN seller_umkm s ON p.id_seller = s.id_seller
-    WHERE p.id_product='$id_product'
-";
-$query = mysqli_query($connection, $sql);
-$data = mysqli_fetch_assoc($query);
-if (!$data) {
-    echo "Produk tidak ditemukan";
-    exit();
-}
-
-$username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
-$userNameQuery = "SELECT name, id_user FROM user WHERE username='$username'";
-$userNameResult = mysqli_query($connection, $userNameQuery);
-$userData = mysqli_fetch_assoc($userNameResult);
-$name = isset($userData['name']) ? $userData['name'] : 'Guest';
-$id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
-$pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';  
-
-// Query to fetch product and seller data
-$query = "
-    SELECT p.*, s.seller_name, s.no_whatsapp
-    FROM product_umkm p
-    JOIN seller_umkm s ON p.id_seller = s.id_seller
-";
-$result = mysqli_query($connection, $query);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Produk</title>
-    <link rel="stylesheet" href="../css/detail-umkm.css">
+    <title>Tim Cipsmart</title>
+    <link rel="stylesheet" href="../css/aboutppk.css">
     <link rel="stylesheet" href="../css/popup-user.css">
     <link rel="icon" href="../img/favicon/android-chrome-192x192.png" type="image/png">
     <!-- Google Fonts link for Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
+    <?php
+    session_start();
+    ?>
     <script>
     document.addEventListener("DOMContentLoaded", function () {
         var loginBtn = document.getElementById("loginBtn");
@@ -117,7 +81,6 @@ $result = mysqli_query($connection, $query);
         };
     });
     </script>
-
 </head>
 <body>
     <div class="bg-base-body">
@@ -133,33 +96,33 @@ $result = mysqli_query($connection, $query);
             </div>
         </div>
 
-        <header class="bg-navbar">
-            <nav class="navbar">
-                <div class="logo-nav">
-                    <a href="../homepage.php">
-                        <img src="../img/navbar/logo-cipsmart-nav.png" alt="" class="logonav">
-                    </a>
-                </div>
-                
-                <div class="search-bar">
-                    <form action="catalog-umkm.php" method="GET">
-                        <input type="text" name="search" placeholder="Cari Produk" class="input-src">
-                        <div class="search-icon">
-                            <button type="submit" class="submit-src">
-                                <img src="../img/navbar/search-nav-icon.png" alt="Search">
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                
-                <div class="navigator">
-                    <a href="../homepage.php"><p class="home" style="margin-left:10px;">Beranda</p></a>
+        <header class="head-homepage">
+
+            <!-- NAVBAR -->
+            <div class="nav">
+                <nav class="navbar">
+
+                    <div class="navigation">
+                        <a href="../homepage.php">
+                            <p class="home">Beranda</p>
+                        </a>
+                        <a href="./aboutppk.php">
+                            <p class="ppk">PPK Ormawa</p>
+                        </a>
+                        <a href="#">
+                            <p class="cipaku">Kelurahan Cipaku</p>
+                        </a>
+                        <a href="./contact-us.php">
+                            <p class="contact">Hubungi Kami</p>
+                        </a>
+                    </div>
+                    
                     <div class="login user-dropdown">
                         <?php if (!isset($_SESSION['username'])): ?>
-                            <a href="../login.php" class="login-btn" id="loginBtn">
-                            <p style="color: #fff">
-                            Login    
-                            </p>    
+                            <a href="login.php" class="login-btn" id="loginBtn">
+                                <p style="color: #fff">
+                                    Login    
+                                </p>
                             </a>
                         <?php else: ?>
                             <a href="#" class="login-btn username-btn" id="loginBtn"><?php echo $_SESSION['username']; ?></a>
@@ -169,132 +132,137 @@ $result = mysqli_query($connection, $query);
                             </div>
                         <?php endif; ?>
                     </div>
-                </div>
-            </nav>
-        </header>        
 
-        <div class="main">
-
-            <div class="content">
-
-                <div class="sidebar">
-                    <div class="front-sidebar">
-                        <div class="perpus">
-                            <a href="../user/catalog-book.php">
-                                <img src="../img/catalog/lib-btn.png" alt="">
-                            </a>
-                            <p class="perpustext">
-                                Perpustakaan
-                            </p>
-                        </div>
-
-                        <div class="ebook">
-                            <a href="../user/catalog-ebook.php">
-                                <img src="../img/catalog/ebook-btn.png" alt="">
-                            </a>
-                            <p class="ebooktext">
-                                E-Book
-                            </p>
-                        </div>
-
-                        <div class="umkm">
-                            <a href="../user/catalog-umkm.php">
-                                <img src="../img/catalog/umkm-btn.png" alt="">
-                            </a>
-                            <p class="umkmtext">
-                                UMKM
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="box-bg"></div>
-                </div>
-
-                <div class="detailframe">
-
-                    <div class="detail-1">
-                        <div class="photobook">
-                            <img src="<?php echo '../' . $data['product_photo_1']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 300px; height: 280px; margin: 30px 30px 30px 30px;">
-                        </div>
-                    </div> 
-
-                    <div class="detail-2">
-
-                        <h2 style="color: #fff;"><?php echo $data['product_name']; ?></h2>
-                        <h1 style="color: #fff;"><?php echo 'Rp' . number_format($data["product_price"], 0, ',', '.'); ?></h1>
-
-                        <div class="linked">
-                            <p class="sipnopsis">Deskripsi Produk</p>
-                            <p class="detailbook">Foto Produk</p>
-
-                            <a href="https://api.whatsapp.com/send?phone=<?php echo urlencode($data['no_whatsapp']); ?>" class="download-btn" target="_blank">
-                                <img src="../img/footer/wa-icon.png" alt="WhatsApp">
-                                <span class="rentbutton">Hubungi Penjual</span>
-                            </a>
-                        </div>
-
-                        <hr class="white-line">
-
-                        <div class="title-1">
-                            <h2 class="t1" style="color: #fff;">Deskripsi Produk</h2>
-                        </div>
-                        <div class="sipnopsis-desc">
-                            <p><?php echo $data['product_description']; ?></p>
-                        </div>
-                        <div class="title-1">
-                            <h2 class="t1" style="color: #fff;">Foto Produk</h2>
-                        </div>
- 
-                        <div class="photobook">
-                            <img src="<?php echo '../' . $data['product_photo_1']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 170px; height: 130px; margin: 30px 5px 30px 0px;">
-                            <img src="<?php echo '../' . $data['product_photo_2']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 170px; height: 130px; margin: 30px 5px 30px 0px;">
-                            <img src="<?php echo '../' . $data['product_photo_3']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 170px; height: 130px; margin: 30px 5px 30px 0px;">
-                            <img src="<?php echo '../' . $data['product_photo_4']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 170px; height: 130px; margin: 30px 5px 30px 0px;">
-                        </div>
-                        
-                    </div>
-                </div>
-
+                </nav>
             </div>
-        </div>
+        </header>
 
-        <?php
-        // Mengambil 10 ebook secara acak dari tabel book
-        $recommendationQuery = "SELECT * FROM product_umkm ORDER BY RAND() LIMIT 10";
-        $recommendationResult = mysqli_query($connection, $recommendationQuery);
-        ?>
+        <div class="bg-body-item">
 
-        <div class="recomend">
-            <div class="box-1">
-                <!-- Content for the first box -->
+            <div class="sidebar">
+
+                <div class="cipsmart">
+                    <a href="./logo-filosofi.php">
+                        <img src="../img/homepage/logo-cipsmart-sidebar.png" alt="">
+                    </a>
+                    <p class="logotext">
+                        Filosofi Logo
+                    </p>
+                </div>
+
+                <div class="ormawa">
+                    <a href="./aboutppk.php">
+                        <img src="../img/aboutppk/tim-ppk.png" alt="">
+                    </a>
+                    <p class="ormawateks">
+                        Tim PPK Ormawa
+                    </p>
+                </div>
             </div>
 
-            <div class="box-2">
-                <h1 class="title-rec">Rekomendasi Produk</h1>
+            <div class="title">
+                <p class="titleppk">
+                    Yuk, Kenalan Dengan
+                </p>
+                <p class="sub-title">
+                    TIM PPK ORMAWA <br> BLM FEB Universitas Pakuan
+                </p>
+            </div>
 
-                <a href="#" class="other-btn other-btn-1">
-                    <img src="../img/detail/prev-recommend.png" alt="" class="other-btn-1">
-                </a>
-
-                <div class="frame-container-wrapper">
-                    <div class="frame-container">
-                        <?php while ($ebook = mysqli_fetch_assoc($recommendationResult)): ?>
-                            <a href="detail-umkm.php?id_product=<?php echo $ebook['id_product']; ?>" class="frame-card-link">
-                                <div class="frame-card">
-                                    <img src="<?php echo '../' . $ebook['product_photo_1']; ?>" alt="<?php echo $ebook['product_name']; ?>" class="img-p">
-                                    <h1 class="judul_ebook"><?php echo $ebook['product_name']; ?></h1>
-                                    <h1 class="penulis_ebook"><?php echo 'Rp' . number_format($data["product_price"], 0, ',', '.'); ?></h1>
-                                    <h1 class="kategori_ebook"><?php echo $ebook['product_category']; ?></h1>
-                                </div>
-                            </a>
-                        <?php endwhile; ?>
+            <div class="anggota">
+                <div class="box1">
+                    <div class="pa-agus">
+                        <img src="../img/aboutppk/prof-agus-new.png" alt="" class="detail-gambar">
+                        <h1>Assoc. Prof. Dr. Agus Setyo Pranowo, S.E.M.M</h1>
+                        <p>Dosen Pendamping</p>
                     </div>
                 </div>
-
-                <a href="#" class="other-btn other-btn-2">
-                    <img src="../img/detail/next-recommend.png" alt="" class="other-btn-2">
-                </a>
-            </div>
+                <div class="box2">
+                    <div class="salwa">
+                        <img src="../img/aboutppk/salwa-new.png" alt="" class="detail-gambar">
+                        <h1>Salwa Salsabil</h1>
+                        <p>Ketua Pelaksana</p>
+                    </div>
+                    <div class="angga">
+                        <img src="../img/aboutppk/angga-new.png" alt="" class="detail-gambar">  
+                        <h1>Angga Budi Pratama</h1>
+                        <p>Ketua Ormawa</p>
+                    </div>
+                    <div class="rifki">
+                        <img src="../img/aboutppk/rifki-new.png" alt="" class="detail-gambar">
+                        <h1>Rifki Rizqullah</h1>
+                        <p>Sekretaris Umum</p>
+                    </div>
+                    </div>
+                <div class="box3">
+                    <div class="intan">
+                        <img src="../img/aboutppk/intan-new.png" alt="" class="detail-gambar">
+                        <h1>Intania Permata P.N.</h1>
+                        <p>Bendahara Umum</p>
+                    </div>
+                    <div class="nono">
+                        <img src="../img/aboutppk/nono-new.png" alt="" class="detail-gambar">
+                        <h1>Noviana Solehatunnisa</h1>
+                        <p>Bendahara Umum II</p>
+                    </div>
+                    <div>
+                        <img src="../img/aboutppk/alifff-new.png" alt="" class="detail-gambar">
+                        <h1>Alifia Putri Salimah</h1>
+                        <p>Kepala  Divisi Pendidikan dan Pelatihan</p>
+                    </div>
+                </div>     
+                <div class="box4">
+                    <div class="fizi">
+                        <img src="../img/aboutppk/fizi-new.png" alt="" class="detail-gambar">
+                        <h1>Muhammad Hafizi</h1>
+                        <p>Kepala Divisi  Koordinator Web dan Sosial Digital</p>
+                    </div>
+                    <div class="septian">
+                        <img src="../img/aboutppk/septian-new.png" alt="" class="detail-gambar">
+                        <h1>M. Rizki Septian Ramdani</h1>
+                        <p>Kepala Divisi Komunitas dan Kemitraan</p>
+                    </div>    
+                    <div>    
+                        <img src="../img/aboutppk/ojetz-new.png" alt="" class="detail-gambar">
+                        <h1>Hauzan Muqsith</h1>
+                        <p>Anggota Divisi Komunitas dan Kemitraan</p>
+                    </div>
+                </div>               
+                <div class="box5">
+                    <div>
+                        <img src="../img/aboutppk/daffa-new.png" alt="" class="detail-gambar">
+                        <h1>M Daffa Zakyanto</h1>
+                        <p>Anggota Divisi Pendidikan dan Pelatihan</p>
+                    </div>
+                    <div>
+                        <img src="../img/aboutppk/haifan-new.png" alt="" class="detail-gambar">
+                        <h1>Haifan Sakhi</h1>
+                        <p>Anggota Divisi Pendidikan dan Pelatihan</p>
+                    </div>
+                    <div>
+                        <img src="../img/aboutppk/milzam-new.png" alt="" class="detail-gambar">
+                        <h1>M. Rifqi Milzam Januar</h1>
+                        <p>Anggota Divisi Web dan Sosial Digital</p>
+                    </div>
+                </div>
+                <div class="box6">
+                    <div>
+                        <img src="../img/aboutppk/syauqi-new.png" alt="" class="detail-gambar">
+                        <h1>Syauqi Abyan Hafiz</h1>
+                        <p>Anggota Divisi Web dan Sosial Digital</p>
+                    </div>
+                    <div>
+                        <img src="../img/aboutppk/fatur-new.png" alt="" class="detail-gambar">
+                        <h1>Syaifa Turrohman</h1>
+                        <p>Anggota Divisi Web dan Sosial Digital</p>
+                    </div>
+                    <div>
+                        <img src="../img/aboutppk/bambang-new.png" alt="" class="detail-gambar">
+                        <h1>Bambang Sugiharto</h1>
+                        <p>Anggota Divisi Web dan Sosial Digital</p>
+                    </div>
+                </div>
+            </div>    
         </div>
 
         <div class="footer">
@@ -405,9 +373,6 @@ $result = mysqli_query($connection, $query);
         
         </div>
 
+            
     </div>
-
-    <script src="../js/carousel.js"></script>
-
-</body>
-</html>
+</body>        

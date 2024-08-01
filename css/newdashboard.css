@@ -21,14 +21,17 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 10px; /* Reduce padding to move items up */
+    padding-top: 10px;
+    /* Reduce padding to move items up */
     padding-bottom: 10px;
     border-top-right-radius: 50px;
 }
 
 .sidebar .logo img {
-    width: 80px; /* Adjust logo size if needed */
-    margin-bottom: 5px; /* Reduce margin to move items up */
+    width: 80px;
+    /* Adjust logo size if needed */
+    margin-bottom: 5px;
+    /* Reduce margin to move items up */
 }
 
 .sidebar ul {
@@ -44,23 +47,29 @@ body {
 
 .sidebar ul li a {
     display: flex;
-    justify-content: flex-start; /* Align text to the left */
+    justify-content: flex-start;
+    /* Align text to the left */
     align-items: center;
-    padding: 10px 20px; /* Reduce padding to fit more items */
+    padding: 10px 20px;
+    /* Reduce padding to fit more items */
     color: white;
     text-decoration: none;
-    font-size: 12px; /* Reduce font size */
+    font-size: 12px;
+    /* Reduce font size */
 }
 
 .sidebar ul li a i {
     margin-right: 10px;
-    font-size: 18px; /* Adjust icon size if needed */
+    font-size: 18px;
+    /* Adjust icon size if needed */
 }
 
-.sidebar ul li a:hover, .sidebar ul li.active a {
+.sidebar ul li a:hover,
+.sidebar ul li.active a {
     background-color: white;
     color: #63AFBD;
-    border-radius: 50px; /* Adjust for rounded effect */
+    border-radius: 50px;
+    /* Adjust for rounded effect */
 }
 
 .main-content {
@@ -87,8 +96,10 @@ body {
     font-size: 24px;
     margin-left: 20px;
     cursor: pointer;
-    text-decoration: none; /* Menghapus dekorasi teks dari tautan */
-    color: #1CB1D6; /* Mengatur warna ikon menjadi putih */
+    text-decoration: none;
+    /* Menghapus dekorasi teks dari tautan */
+    color: #1CB1D6;
+    /* Mengatur warna ikon menjadi putih */
 }
 
 
@@ -160,7 +171,7 @@ body {
     line-height: normal;
 }
 
-.content .widget-1 .padding-1{
+.content .widget-1 .padding-1 {
     color: #FFF;
     font-family: Montserrat;
     font-size: 15px;
@@ -190,7 +201,7 @@ body {
     background: #ffffff;
 }
 
-.content .widget-1 .padding-2{
+.content .widget-1 .padding-2 {
     color: #FFF;
     font-family: Montserrat;
     font-size: 15px;
@@ -220,7 +231,7 @@ body {
     background: #ffffff;
 }
 
-.content .widget-1 .padding-3{
+.content .widget-1 .padding-3 {
     color: #FFF;
     font-family: Montserrat;
     font-size: 15px;
@@ -250,7 +261,7 @@ body {
     background: #ffffff;
 }
 
-.content .widget-1 .padding-4{
+.content .widget-1 .padding-4 {
     color: #FFF;
     font-family: Montserrat;
     font-size: 15px;
@@ -479,7 +490,8 @@ body {
     margin-top: -15px;
     margin-left: 85px;
 }
-.ebook-1 .ebook-no-1{
+
+.ebook-1 .ebook-no-1 {
     color: #FFF;
     font-size: 40px;
     font-style: normal;
@@ -524,3 +536,4 @@ body {
     background: #63AFBD;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
+

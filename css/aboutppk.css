@@ -19,7 +19,6 @@ body, html {
 
 .head-homepage{
     width: 1360px;
-    height: 2146px;
 }
 
 .bg-body-item{
@@ -51,7 +50,7 @@ body, html {
     color: #fff;
     text-decoration: none;
     font-size: 16px;
-    font-family: Montserrat, sans-serif;
+    font-family: Montserrat;
     font-weight: 800;
     line-height: normal;
 }
@@ -217,7 +216,7 @@ body, html {
     border-radius: 20px;
     background: #FFF;
     margin-right: 50px;
-    margin-top: 0px;
+    margin-top: -235px;
     width: 312px;
     height: 234px;
     flex-shrink: 0;
@@ -478,7 +477,7 @@ body, html {
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
-    margin-top: 900px;
+    margin-top: 750px;
 }
 
 .linked {
@@ -562,12 +561,3 @@ body, html {
 .show {
     display: block;
 }
-
-
-
-
-
-
-
-
-

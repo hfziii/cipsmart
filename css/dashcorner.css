@@ -171,6 +171,38 @@ table th, table td {
     font-size: 10px !important;
 }
 
+/* DROPDOWN */
+.corner-education{
+    margin-bottom: 20px;
+}
+
+.title-ce{
+    margin-bottom: 20px;
+    margin-right: 10px;
+    color: #63AFBD;
+}
+
+.drop-ce{
+    color: #63AFBD;
+    border-color: #63AFBD;
+}
+
+/*ICON */
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0; /* Ensures no extra space between icons */
+}
+
+.icon-container a {
+    text-decoration: none;
+}
+
+.icon-container i {
+    display: inline-block;
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
     .sidebar {
@@ -222,18 +254,3 @@ table th, table td {
     }
 }
 
-/* DROPDOWN */
-.corner-education{
-    margin-bottom: 20px;
-}
-
-.title-ce{
-    margin-bottom: 20px;
-    margin-right: 10px;
-    color: #63AFBD;
-}
-
-.drop-ce{
-    color: #63AFBD;
-    border-color: #63AFBD;
-}

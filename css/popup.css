@@ -1,0 +1,268 @@
+/* popup (RETURN DATA) */
+.cd-popup-update {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s 0s, visibility 0s 0.3s;
+    z-index: 9999;
+}
+
+.cd-popup-update.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s 0s, visibility 0s 0s;
+}
+
+.cd-popup-container-update {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    margin: 10em auto;
+    background: #FFF;
+    border-radius: 20px;
+    text-align: center;
+    padding: 2em 1em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.cd-popup-update p {
+    margin: 0;
+    padding: 0;
+    color: rgba(99, 175, 189, 0.95);
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.cd-popup-update .cd-buttons-update {
+    list-style: none;
+    padding: 0;
+    margin: 2em 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px
+}
+
+.cd-popup-update .cd-buttons-update li {
+    margin: 0 0.5em;
+}
+
+.cd-popup-yes-update {
+    display: inline-block;
+    min-width: 140px;
+    padding: 1em;
+    border-radius: .25em;
+    background: rgba(99, 175, 189, 0.95);
+    color: #FFF;
+    font-size: 20px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    text-align: center;
+    height: 60px;
+}
+
+.cd-popup-close-update {
+    display: inline-block;
+    min-width: 140px;
+    padding: 0.8em;
+    border-radius: .25em;
+    background: #fff;
+    border: 3px solid rgba(99, 175, 189, 0.95);
+    color: rgba(99, 175, 189, 0.95);
+    font-size: 20px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    text-align: center;
+    height: 60px;
+}
+
+/* popup (DELETE DATA) */
+.cd-popup-del {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s 0s, visibility 0s 0.3s;
+    z-index: 9999;
+}
+
+.cd-popup-del.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s 0s, visibility 0s 0s;
+}
+
+.cd-popup-container-del {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    margin: 10em auto;
+    background: #FFF;
+    border-radius: 20px;
+    text-align: center;
+    padding: 2em 1em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.cd-popup-del p {
+    margin: 0;
+    padding: 0;
+    color: rgba(99, 175, 189, 0.95);
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.cd-popup-del .cd-buttons-del {
+    list-style: none;
+    padding: 0;
+    margin: 2em 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px
+}
+
+.cd-popup-del .cd-buttons-del li {
+    margin: 0 0.5em;
+}
+
+.cd-popup-yes-del {
+    display: inline-block;
+    min-width: 140px;
+    padding: 1em;
+    border-radius: .25em;
+    background: rgba(99, 175, 189, 0.95);
+    color: #FFF;
+    font-size: 20px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    text-align: center;
+    height: 60px;
+}
+
+.cd-popup-close-del {
+    display: inline-block;
+    min-width: 140px;
+    padding: 0.8em;
+    border-radius: .25em;
+    background: #fff;
+    border: 3px solid rgba(99, 175, 189, 0.95);
+    color: rgba(99, 175, 189, 0.95);
+    font-size: 20px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    text-align: center;
+    height: 60px;
+}
+
+/* popup (LOGOUT)*/
+.cd-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s 0s, visibility 0s 0.3s;
+    z-index: 9999;
+}
+
+.cd-popup.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s 0s, visibility 0s 0s;
+}
+
+.cd-popup-container {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    margin: 10em auto;
+    background: #FFF;
+    border-radius: 20px;
+    text-align: center;
+    padding: 2em 1em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.cd-popup p {
+    margin: 0;
+    padding: 0;
+    color: rgba(99, 175, 189, 0.95);
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.cd-popup .cd-buttons {
+    list-style: none;
+    padding: 0;
+    margin: 2em 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+.cd-popup .cd-buttons li {
+    margin: 0 0.5em;
+}
+
+.cd-popup-yes {
+    display: inline-block;
+    min-width: 140px;
+    padding: 1em;
+    border-radius: .25em;
+    background: rgba(99, 175, 189, 0.95);
+    color: #FFF;
+    font-size: 20px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    text-align: center;
+    height: 60px;
+}
+
+.cd-popup-close {
+    display: inline-block;
+    min-width: 140px;
+    padding: 0.8em;
+    border-radius: .25em;
+    background: #fff;
+    border: 3px solid rgba(99, 175, 189, 0.95);
+    color: rgba(99, 175, 189, 0.95);
+    font-size: 20px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    text-decoration: none;
+    text-align: center;
+    height: 60px;
+}
+
+/* Trigger styles */
+.cd-popup-trigger {
+    display: block;
+    line-height: normal;
+    margin: 2em auto;
+    text-align: center;
+    color: #FFF;
+    font-size: 14px;
+    font-size: 0.875rem;
+    border-radius: 50em;
+}
+
+@media only screen and (min-width: 1170px) {
+    .cd-popup-trigger {
+        margin: 2em auto;
+    }
+}

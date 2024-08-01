@@ -122,42 +122,72 @@ if (!$query) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peminjaman Buku - Cipsmart</title>
     <link rel="stylesheet" href="../css/dashborrow.css">
+    <link rel="stylesheet" href="../css/popup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../img/favicon/android-chrome-192x192.png" type="image/png">
+    <!-- Google Fonts link for Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('.edit-btn').forEach(function(btn) {
+        // Existing delete confirmation code
+        document.querySelectorAll('.delete-btn').forEach(function(btn) {
             btn.addEventListener('click', function(event) {
                 event.preventDefault();
                 const idBorrow = this.dataset.id;
                 const tableName = this.dataset.table;
 
-                // Dapatkan elemen baris yang mengandung data
-                const row = this.closest('tr');
-                const borrowerName = row.querySelector('.name').textContent;
-                const bookTitle = row.querySelector('.title-book').textContent;
-                const status = row.querySelector('.status').textContent;
+                // Show the delete confirmation popup
+                document.querySelector('.cd-popup-del').classList.add('is-visible');
 
-                const form = document.getElementById('borrowForm');
-                form.id_borrow.value = idBorrow;
-                form.table_name.value = tableName;
-                form.borrower_name.value = borrowerName;
-                form.book_title.value = bookTitle;
-                form.status.value = status;
-
-                document.querySelector('.popup-overlay').classList.add('active');
-                document.querySelector('.popup-form').classList.add('active');
+                // Set the confirm button URL
+                document.querySelector('.cd-popup-yes-del').dataset.id = idBorrow;
+                document.querySelector('.cd-popup-yes-del').dataset.table = tableName;
             });
         });
 
-        document.querySelector('.popup-overlay').addEventListener('click', function() {
-            document.querySelector('.popup-overlay').classList.remove('active');
-            document.querySelector('.popup-form').classList.remove('active');
+        document.querySelector('.cd-popup-close-del').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.querySelector('.cd-popup-del').classList.remove('is-visible');
+        });
+
+        document.querySelector('.cd-popup-yes-del').addEventListener('click', function(event) {
+            event.preventDefault();
+            const idBorrow = this.dataset.id;
+            const tableName = this.dataset.table;
+            window.location.href = `dashborrow.php?delete_borrow=1&id_borrow=${idBorrow}&table_name=${tableName}`;
+        });
+
+        // New update confirmation code
+        document.querySelectorAll('.update-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(event) {
+                event.preventDefault();
+                const idBorrow = this.dataset.id;
+                const tableName = this.dataset.table;
+
+                // Show the update confirmation popup
+                document.querySelector('.cd-popup-update').classList.add('is-visible');
+
+                // Set the confirm button URL
+                document.querySelector('.cd-popup-yes-update').dataset.id = idBorrow;
+                document.querySelector('.cd-popup-yes-update').dataset.table = tableName;
+            });
+        });
+
+        document.querySelector('.cd-popup-close-update').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.querySelector('.cd-popup-update').classList.remove('is-visible');
+        });
+
+        document.querySelector('.cd-popup-yes-update').addEventListener('click', function(event) {
+            event.preventDefault();
+            const idBorrow = this.dataset.id;
+            const tableName = this.dataset.table;
+            window.location.href = `dashborrow.php?update_status=1&id_borrow=${idBorrow}&table_name=${tableName}`;
         });
     });
-
     </script>
+
 </head>
 <body>
     
@@ -176,7 +206,7 @@ if (!$query) {
             <li><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
             <li><a href="./dash-productumkm.php"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
             <li><a href="./dash-sellerumkm.php"><i class="fa fa-users"></i> Penjual UMKM</a></li>
-            <li><a href="../logout.php"><i class="fa fa-sign-out"></i> Keluar</a></li>
+            <li><a href="#" class="cd-popup-trigger"><i class="fa fa-sign-out"></i> Keluar</a></li>
         </ul>
     </div>
     <div class="main-content">
@@ -185,7 +215,7 @@ if (!$query) {
             <div class="header-icons">
                 <i class="fa fa-search"></i>
                 <i class="fa fa-bell"></i>
-                <a href="./homepage.php">
+                <a href="../homepage.php">
                     <i class="fa fa-home"></i>
                 </a>
             </div>
@@ -207,7 +237,7 @@ if (!$query) {
             <table id="PinjamTable">
                 <thead>
                     <tr>
-                        <th>ID Pinjam</th>
+                        <th>No</th>
                         <th>ID Buku</th>
                         <th>Judul Buku</th>
                         <th>Nama Peminjam</th>
@@ -227,14 +257,14 @@ if (!$query) {
                             <td><?= htmlspecialchars($book['borrow_date']) ?></td>
                             <td><?= htmlspecialchars($book['return_date']) ?></td>
                             <td><?= htmlspecialchars($book['status']) ?></td>
-                            <td>
+                            <td class="icon-container">
                                 <?php if ($book['status'] === 'Dipinjam') : ?>
-                                    <a href="dashborrow.php?update_status=1&id_borrow=<?= htmlspecialchars($book['id_borrow']) ?>&table_name=<?= htmlspecialchars($table_name) ?>" onclick="return confirm('Apakah Anda yakin ingin mengubah status buku ini menjadi Tersedia?');">
-                                        <i class="fa fa-check"></i> Update Status
+                                    <a href="#" class="update-btn" data-id="<?= htmlspecialchars($book['id_borrow']) ?>" data-table="<?= htmlspecialchars($table_name) ?>">
+                                        <i class="fa fa-check" style="font-size: 20px"></i>
                                     </a>
                                 <?php endif; ?>
-                                <a href="dashborrow.php?delete_borrow=1&id_borrow=<?= htmlspecialchars($book['id_borrow']) ?>&table_name=<?= htmlspecialchars($table_name) ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
-                                    <i class="fa fa-trash"></i> Hapus
+                                <a href="#" class="delete-btn" data-id="<?= htmlspecialchars($book['id_borrow']) ?>" data-table="<?= htmlspecialchars($table_name) ?>">
+                                    <i class="fa fa-trash" style="font-size: 20px"></i>
                                 </a>
                             </td>
                         </tr>
@@ -243,6 +273,46 @@ if (!$query) {
             </table>
         </div>
     </div>
-   
+
+    <!-- Update Confirmation Popup -->
+    <div class="cd-popup-update" role="alert">
+        <div class="cd-popup-container-update">
+            <p>Apakah Buku Telah Dikembalikan?</p>
+            <ul class="cd-buttons-update">
+                <li><a href="#" class="cd-popup-yes-update" onclick="confirmUpdate()">Ya</a></li>
+                <li><a href="#" class="cd-popup-close-update">Tidak</a></li>
+            </ul>            
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Popup -->
+    <div class="cd-popup-del" role="alert">
+        <div class="cd-popup-container-del">
+            <p>Anda Yakin Ingin Hapus Data ini?</p>
+            <ul class="cd-buttons-del">
+                <li><a href="#" class="cd-popup-yes-del" onclick="confirmDelete()">Ya</a></li>
+                <li><a href="#" class="cd-popup-close-del">Tidak</a></li>
+            </ul>            
+        </div>
+    </div>
+
+    <!-- Logout Confirmation Popup -->
+    <div class="cd-popup" role="alert">
+        <div class="cd-popup-container">
+            <p>Anda Yakin ingin Keluar?</p>
+            <ul class="cd-buttons">
+                <li><a href="#" class="cd-popup-yes" onclick="confirmLogout()">Ya</a></li>
+                <li><a href="#" class="cd-popup-close">Tidak</a></li>
+            </ul>            
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous">
+    </script>
+        
+   <script src="../js/logout.js"></script>
 </body>
 </html>
