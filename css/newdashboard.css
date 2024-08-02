@@ -13,196 +13,102 @@ body {
     position: relative;
 }
 
-.icon-sidebar{
+
+/* SIDEBAR */
+.sidebar {
     width: 250px;
+<<<<<<< HEAD
     height: 800px;
     background-color: #63AFBD;
+=======
+    background-color: rgba(99, 175, 189, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    /* Reduce padding to move items up */
+    padding-bottom: 10px;
+>>>>>>> 975fe77186c03dc7f0cc1593692028e51bc52fd5
     border-top-right-radius: 50px;
 }
 
-.icon-sidebar .logo {
-    margin-top: 20px;
-    margin-right: 50px;
-    margin-bottom: 10px;
-    margin-left: 60px;
+.sidebar .logo img {
+    width: 80px;
+    /* Adjust logo size if needed */
+    margin-bottom: 5px;
+    /* Reduce margin to move items up */
+}
+
+.sidebar ul {
+    list-style: none;
+    width: 100%;
+    padding-left: 0;
+}
+
+.sidebar ul li {
+    width: 100%;
+    text-align: center;
+}
+
+.sidebar ul li a {
+    display: flex;
+    justify-content: flex-start;
+    /* Align text to the left */
+    align-items: center;
+    padding: 10px 20px;
+    /* Reduce padding to fit more items */
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    /* Reduce font size */
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+    font-size: 18px;
+    /* Adjust icon size if needed */
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li.active a {
+    background-color: white;
+    color: #63AFBD;
+    border-radius: 50px;
+    /* Adjust for rounded effect */
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    position: relative;
     z-index: 1;
-    width: 26.153px;
-    height: 26.191px;
-    flex-shrink: 0; 
 }
 
-.icon-sidebar .menu-1 {
-    margin-top: 80px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 30px;
-    flex-shrink: 0;
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    margin-bottom: 20px;
 }
 
-.menu-1 .title-1 {
-    margin-top: -25px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 50px;
+.header h1 {
+    font-size: 24px;
 }
 
-.icon-sidebar .menu-2 {
-    margin-top: -185px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 27px;
-    flex-shrink: 0;
+.header-icons i {
+    font-size: 24px;
+    margin-left: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    /* Menghapus dekorasi teks dari tautan */
+    color: #1CB1D6;
+    /* Mengatur warna ikon menjadi putih */
 }
 
-.menu-2 .title-2 {
-    margin-top: -30px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 55px;
-}
 
-.icon-sidebar .menu-3 {
-    margin-top: -185px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 27px;
-    flex-shrink: 0;
-}
-
-.menu-3 .title-3 {
-    margin-top: -30px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 55px;
-}
-.icon-sidebar .menu-4 {
-    margin-top: -185px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 30px;
-    flex-shrink: 0;
-}
-
-.menu-4 .title-4 {
-    margin-top: -30px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 55px;
-}
-.icon-sidebar .menu-5 {
-    margin-top: -185px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 30px;
-    flex-shrink: 0;
-}
-
-.menu-5 .title-5 {
-    margin-top: -30px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 55px;
-}
-.icon-sidebar .menu-6 {
-    margin-top: -185px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 30px;
-    flex-shrink: 0;
-}
-
-.menu-6 .title-6 {
-    margin-top: -30px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 55px;
-}
-.icon-sidebar .menu-7 {
-    margin-top: -185px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 34px;
-    flex-shrink: 0;
-}
-
-.menu-7 .title-7 {
-    margin-top: -30px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 55px;
-}
-.icon-sidebar .menu-8 {
-    margin-top: -185px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 32px;
-    flex-shrink: 0;
-}
-
-.menu-8 .title-8 {
-    margin-top: -30px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 55px;
-}
-.icon-sidebar .menu-9 {
-    margin-top: -185px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 32px;
-    flex-shrink: 0;
-}
-
-.menu-9 .title-9 {
-    margin-top: -30px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 55px;
-}
-.icon-sidebar .menu-10 {
-    margin-top: -185px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 35px;
-    flex-shrink: 0;
-}
-
-.menu-10 .title-10 {
-    margin-top: -30px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 55px;
-}
-.icon-sidebar .menu-11 {
-    margin-top: -185px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 40px;
-    flex-shrink: 0;
-}
-
-.menu-11 .title-11 {
-    margin-top: -30px;
-    margin-right: 1000px;
-    margin-bottom: 200px;
-    margin-left: 55px;
-}
-
-.title-1,
-.title-2,
-.title-3,
-.title-4,
-.title-5,
-.title-6,
-.title-7,
-.title-8,
-.title-9,
-.title-10,
-.title-11 {
-    display: inline-block;
-    position: absolute; 
-}
-
+/* CONTENT */
 .content {
     position: relative;
     z-index: 1;
@@ -270,7 +176,7 @@ body {
     line-height: normal;
 }
 
-.content .widget-1 .padding-1{
+.content .widget-1 .padding-1 {
     color: #FFF;
     font-family: Montserrat;
     font-size: 15px;
@@ -300,7 +206,7 @@ body {
     background: #ffffff;
 }
 
-.content .widget-1 .padding-2{
+.content .widget-1 .padding-2 {
     color: #FFF;
     font-family: Montserrat;
     font-size: 15px;
@@ -330,7 +236,7 @@ body {
     background: #ffffff;
 }
 
-.content .widget-1 .padding-3{
+.content .widget-1 .padding-3 {
     color: #FFF;
     font-family: Montserrat;
     font-size: 15px;
@@ -360,7 +266,7 @@ body {
     background: #ffffff;
 }
 
-.content .widget-1 .padding-4{
+.content .widget-1 .padding-4 {
     color: #FFF;
     font-family: Montserrat;
     font-size: 15px;
@@ -589,7 +495,8 @@ body {
     margin-top: -15px;
     margin-left: 85px;
 }
-.ebook-1 .ebook-no-1{
+
+.ebook-1 .ebook-no-1 {
     color: #FFF;
     font-size: 40px;
     font-style: normal;
@@ -634,3 +541,4 @@ body {
     background: #63AFBD;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
+

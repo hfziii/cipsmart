@@ -31,10 +31,12 @@ $pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail E-Book</title>
     <link rel="stylesheet" href="../css/detail-ebook.css">
+    <link rel="stylesheet" href="../css/popup-user.css">
     <link rel="icon" href="../img/favicon/android-chrome-192x192.png" type="image/png">
+    <!-- Google Fonts link for Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
     <?php
-    // session_start();
-    // include 'koneksi.php';
     if (!isset($_GET['id_ebook'])) {
         header("Location: catalog-ebook.php");
         exit();
@@ -58,77 +60,87 @@ $pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';
     ?>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            <?php if ($showSuccessPopup): ?>
-                document.querySelector('#successPopupForm').style.display = 'block';
-            <?php endif; ?>
+    document.addEventListener("DOMContentLoaded", function () {
+        var loginBtn = document.getElementById("loginBtn");
+        var dropdownContent = document.getElementById("dropdownContent");
+        var logoutPopup = document.getElementById("logoutPopup");
+        var confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
+        var cancelLogoutBtn = document.getElementById("cancelLogoutBtn");
 
-            var okBtn = document.querySelector('#successPopupForm .success-ok-btn');
-            if (okBtn) {
-                okBtn.addEventListener('click', function () {
-                    document.getElementById('successPopupForm').style.display = 'none';
-                });
-            }
+        <?php if (isset($_SESSION['username'])): ?>
+            loginBtn.classList.add("username-btn");
+            loginBtn.style.cursor = "pointer";
 
-            var loginBtn = document.getElementById("loginBtn");
-            var dropdownContent = document.getElementById("dropdownContent");
-            var borrowForm = document.getElementById("borrowForm");
+            // Toggle dropdown menu
+            loginBtn.addEventListener("click", function (event) {
+                event.preventDefault();
+                dropdownContent.classList.toggle("show");
+            });
 
-            <?php if (isset($_SESSION['username'])): ?>
-                loginBtn.classList.add("username-btn");
-                loginBtn.style.cursor = "pointer";
+            // Create logout item
+            var logoutItem = document.createElement('a');
+            logoutItem.textContent = "Logout";
+            logoutItem.href = "#";
+            logoutItem.classList.add("cd-popup-trigger");
+            dropdownContent.appendChild(logoutItem);
 
-                // Tambahkan event listener untuk menampilkan dropdown
-                loginBtn.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    dropdownContent.classList.toggle("show");
-                });
+            // Open logout popup
+            logoutItem.addEventListener("click", function(event) {
+                event.preventDefault();
+                logoutPopup.classList.add('is-visible');
+            });
 
-                // Event listener untuk logout
-                var logoutItem = document.createElement('a');
-                logoutItem.textContent = "Logout";
-                logoutItem.href = "../logout.php";
-                logoutItem.onclick = function(event) {
-                    if (!confirm("Anda Yakin Ingin Logout?")) {
-                        event.preventDefault();
+            // Confirm logout
+            confirmLogoutBtn.addEventListener("click", function(event) {
+                event.preventDefault();
+                window.location.href = "../logout.php";
+            });
+
+            // Cancel logout
+            cancelLogoutBtn.addEventListener("click", function(event) {
+                event.preventDefault();
+                logoutPopup.classList.remove('is-visible');
+            });
+
+            // Close popup on outside click
+            logoutPopup.addEventListener("click", function(event) {
+                if (event.target === logoutPopup) {
+                    logoutPopup.classList.remove('is-visible');
+                }
+            });
+
+        <?php else: ?>
+            loginBtn.href = "../login.php"; // Link to login page if not logged in
+        <?php endif; ?>
+
+        // Close dropdown if clicking outside
+        window.onclick = function (event) {
+            if (!event.target.matches('.username-btn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
                     }
-                };
-                dropdownContent.appendChild(logoutItem);
-
-                // Event listener untuk pinjam ebook
-                var borrowBtn = document.querySelector('.wa');
-                if (borrowBtn) {
-                    borrowBtn.addEventListener('click', function(event) {
-                        event.preventDefault();
-                        document.querySelector('.popup-form').style.display = 'block';
-                    });
-                }
-            <?php else: ?>
-                loginBtn.href = "../login.php"; // Link ke halaman login.php jika belum login
-            <?php endif; ?>
-
-            window.onclick = function (event) {
-                if (!event.target.matches('.login-btn')) {
-                    var dropdowns = document.getElementsByClassName("dropdown-content");
-                    for (var i = 0; i < dropdowns.length; i++) {
-                        var openDropdown = dropdowns[i];
-                        if (openDropdown.classList.contains('show')) {
-                            openDropdown.classList.remove('show');
-                        }
-                    }
-                }
-                if (event.target.matches('.popup-form .close-btn')) {
-                    document.querySelector('.popup-form').style.display = 'none';
                 }
             }
-
-            
-        });
+        };
+    });
     </script>
-
 </head>
 <body>
     <div class="bg-base-body">
+
+        <!-- Logout Confirmation Popup -->
+        <div class="cd-popup" role="alert" id="logoutPopup">
+            <div class="cd-popup-container">
+                <p>Anda yakin ingin Keluar?</p>
+                <ul class="cd-buttons">
+                    <li><a href="#" class="cd-popup-yes" id="confirmLogoutBtn">Ya</a></li>
+                    <li><a href="#" class="cd-popup-close" id="cancelLogoutBtn">Tidak</a></li>
+                </ul>
+            </div>
+        </div>
 
         <header class="bg-navbar">
             <nav class="navbar">
@@ -161,7 +173,7 @@ $pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';
                         <?php else: ?>
                             <a href="#" class="login-btn username-btn" id="loginBtn"><?php echo $_SESSION['username']; ?></a>
                             <div class="dropdown-content" id="dropdownContent">
-                                <a href="../newdashboard.html">Dashboard</a>
+                                <a href="../admin/dashboard.php">Dashboard</a>
                                 <!-- The logout link will be added dynamically via JavaScript -->
                             </div>
                         <?php endif; ?>
@@ -220,8 +232,12 @@ $pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';
                         <h1 style="color: #fff;"><?php echo $data['judul_ebook']; ?></h1>
 
                         <div class="linked">
-                            <p class="sipnopsis">Sipnopsis E-Book</p>
-                            <p class="detailbook">Detail E-Bbook</p>
+                            <a href="#sipnopsis">
+                                <p class="sipnopsis">Sinopsis</p>
+                            </a>
+                            <a href="#detail">
+                                <p class="detailbook">Detail</p>
+                            </a>
 
                             <a href="<?php echo $pdf_url; ?>" class="download-btn" download>
                                 <img src="../img/detail/download-pdf.png" alt="Download">
@@ -237,12 +253,12 @@ $pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';
                         <hr class="white-line">
 
                         <div class="title-1">
-                            <h2 class="t1" style="color: #fff;">Sipnopsis E-Book</h2>
+                            <h2 class="t1" style="color: #fff;">Sinopsis E-Book</h2>
                         </div>
-                        <div class="sipnopsis-desc">
+                        <div class="sipnopsis-desc" id="sipnopsis">
                             <p><?php echo $data['sipnopsis_ebook']; ?></p>
                         </div>
-                        <div class="title-1">
+                        <div class="title-1" id="detail">
                             <h2 class="t1" style="color: #fff;">Detail E-Book</h2>
                         </div>
                         <div class="book-desc">
@@ -300,8 +316,6 @@ $pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';
             </div>
         </div>
 
-
-        <!--  -->
         <div class="footer">
             
             <div class="linked">
@@ -311,30 +325,30 @@ $pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';
                 </div>
 
                 <div class="perpusfot">
-                    <a href="#">
+                    <a href="./catalog-book.php">
                         <p class="title-perpusfot">Perpustakaan Digital</p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-book.php?corner=Literasi+Imajinatif">
                         <p class="linked-1">
                             Literasi Imajinatif
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-book.php?corner=Social+Connect">
                         <p class="linked-1">
                             Social Connect
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-book.php?corner=Bisnis+Berdaya">
                         <p class="linked-1">
                             Bisnis Berdaya
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-book.php?corner=Kreatif+Kids+Corner">
                         <p class="linked-1">
-                            Kreatifitas Kids Corner
+                            Kreatif Kids Corner
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-book.php?corner=Pena+Inspirasi+Gemilang">
                         <p class="linked-1">
                             Pena Inspirasi Gemilang
                         </p>
@@ -342,53 +356,64 @@ $pdf_url = isset($data['file_ebook']) ? '../' . $data['file_ebook'] : '';
                 </div>
 
                 <div class="ebookfot">
-                    <a href="#">
+                    <a href="./catalog-ebook.php">
                         <p class="title-ebookfot">E-Book</p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-ebook.php?search=cerpen">
                         <p class="linked-1">
-                            Teks K-13
+                            Cerita Pendek
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-ebook.php?search=novel">
                         <p class="linked-1">
-                            Teks Kurikulum Merdeka
+                            Novel
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-ebook.php?search=umum">
                         <p class="linked-1">
-                            Non Teks
+                            Umum
                         </p>
                     </a>
                 </div>
 
                 <div class="umkmfot">
-                    <a href="#">
+                    <a href="./catalog-umkm.php">
                         <p class="title-umkmfot">UMKM Cipaku</p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-umkm.php?search=makanan">
                         <p class="linked-1">
-                            Katalog Produk
+                            Makanan & Minuman
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./catalog-umkm.php?search=fashion">
                         <p class="linked-1">
-                            Penjual UMKM
+                            Fashion & Aksesoris
+                        </p>
+                    </a>
+                    <a href="./catalog-umkm.php?search=kerajinan">
+                        <p class="linked-1">
+                            Kerajinan Tangan
                         </p>
                     </a>
             
                 </div>
                 
                 <div class="callfot">
-                    <a href="#">
+                    <a href="./contact-us.php">
                         <p class="title-callfot">Hubungi Kami</p>
                     </a>
                     <p class="linked-1">
                         Jalan Raya, RT.01/RW.03, Cipaku, Bogor Selatan, Kota Bogor, Jawa Barat 16137
                     </p>
-                    <img src="./img/footer/ig-icon.png" alt="" class="iconcs">
-                    <img src="./img/footer/wa-icon.png" alt="" class="iconcs">
-                    <img src="./img/footer/gmail-icon.png" alt="" class="iconcs">
+                    <a href="https://www.instagram.com/cipsmart.ppkormawa2024" target="_blank">                            
+                        <img src="../img/footer/ig-icon.png" alt="" class="iconcs">
+                    </a>
+                    <a href="https://wa.me/6285732185809" target="_blank">
+                        <img src="../img/footer/wa-icon.png" alt="" class="iconcs">
+                    </a>
+                    <a href="mailto:cipsmartppkormawablmfeb@gmail.com" target="_blank">
+                        <img src="../img/footer/gmail-icon.png" alt="" class="iconcs">
+                    </a>
                 </div>
 
             </div>

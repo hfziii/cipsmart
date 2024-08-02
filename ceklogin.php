@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($password == $row_admin['password']) {
                 // Password is correct, start a session
                 $_SESSION['username'] = $username;
-                header("Location: dashbook.php");
+                header("Location: ./admin/dashboard.php");
                 exit();
             } else {
                 // Password is incorrect

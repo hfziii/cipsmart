@@ -50,7 +50,6 @@ body {
 .switch-button {
     display: flex;
     justify-content: space-around;
-    background-color: #fff;
     border-radius: 40px;
     width: 230px;
     height: 60px;
@@ -77,7 +76,6 @@ body {
 }
 
 .switch-button button.active {
-    background-color: #1C7EA5;
     color: #fff;
 }
 

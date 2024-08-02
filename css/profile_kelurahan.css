@@ -1,0 +1,435 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #63AFBD;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.bg-base-body {
+    background-image: url('../img/profil-kelurahan/bg-profile-kelurahan.png');
+    position: relative;
+    width: 1366px;
+    height: 658px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.head-homepage{
+    width: 1360px;
+    height: 900px;
+}
+
+.bg-body-item{
+    grid-template-columns: 0.8fr 4fr;
+    display: grid;
+}
+
+.nav {
+    padding: 10px 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px; /* Adjust the gap as needed */
+}
+
+.logo-navbar {
+    width: 67px;
+    height: 60px;
+    flex-shrink: 0;
+    margin-right: 460px;
+    margin-top: -15px;
+}
+
+.logo-navbar img {
+    width: 60px;
+    height: 70px;
+    margin-top: 5px;
+}
+
+.logo-navbar h1 {
+    width: 204px;
+    height: 18px;
+    flex-shrink: 0;
+    color: #FFEC00;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-top: -57px;
+    margin-left: 80px;
+    text-decoration: none;
+}
+
+.logo-navbar p{
+    width: 617px;
+    height: 36px;
+    flex-shrink: 0; 
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-left: 80px;
+    margin-top: -10px;
+}
+
+.navigation {
+    display: flex;
+    background-color: #63AFBD;
+    border-radius: 10px;
+    width: 709px;
+    height: 52px;
+    flex-shrink: 0;
+    gap: 20px; /* Adjust the gap as needed */
+    margin-right: -26px;
+}
+
+.navigation a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.navigation a p {
+    margin-top: 12px;
+    margin-left: 15px;
+    padding: 0;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #FFFEFE;
+    background: #63AFBD;
+    width: 65px;
+    height: 20px;
+    text-align: center;
+    margin-top: 12px;
+    margin-left: 10px;
+}
+
+.login a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.login a p {
+    margin: 0;
+    padding: 0;
+}
+
+.main-content {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.content {
+    padding: 20px;
+    color: white;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 320px;
+    gap: 10px;
+}
+
+.items {
+    border-radius: 10px;
+    border: 1px solid #FFF;
+    background: rgba(28, 177, 214, 0.80);
+    margin-left: 22px;
+    justify-content: center;  /* Center the text horizontally */
+    align-items: center;      /* Center the text vertically */
+}
+
+.container-1{
+    display: flex;
+    width: 134px;
+    height: 68px;
+    flex-shrink: 0;
+}
+
+.container-1 h1{
+    width: 118px;
+    height: 22px;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.container-1 p{
+    width: 126px;
+    height: 22px;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: -10px;
+}
+
+.container-2 {
+    display: flex;
+    width: 134px;
+    height: 68px;
+    flex-shrink: 0;
+}
+
+.container-2 h1{
+    width: 118px;
+    height: 22px;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.container-2 p{
+    width: 126px;
+    height: 22px;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: -10px;
+}
+
+.container-3 {
+    display: flex;
+    width: 134px;
+    height: 68px;
+    flex-shrink: 0;
+}
+
+.container-3 h1{
+    width: 118px;
+    height: 22px;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.container-3 p{
+    width: 126px;
+    height: 22px;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: -10px;
+}
+
+.maps {
+    width: 287px;
+    height: 292px;
+    flex-shrink: 0;
+    margin-left: 800px;
+    margin-top: -550px;
+}
+
+.maps img {
+    width: 240px;
+    height: 250px;
+    margin-top: 10px;
+    flex-shrink: 0;
+}
+
+.contact {
+    margin-left: 1100px;
+    margin-top: -80px;
+}
+
+.contact h1 {
+    width: 176px;
+    height: 19px;
+    flex-shrink: 0;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-left: 8px;
+}
+
+.contact img {
+    width: 35px;
+    height: 35px;
+    flex-shrink: 0;
+    margin-left: 10px;
+}
+
+.profile-desc {
+    width: 609px;
+    height: 222px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid #FFF;
+    background: rgba(28, 177, 214, 0.80);
+    margin-left: 650px;
+    margin-top: 35px;
+}
+
+.profile-desc p{
+    width: 548.497px;
+    height: 188.618px;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: justify;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+/* FOOTER */
+.footer {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    margin-top: 25px;
+}
+
+.linked {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px; /* Adjust gap between columns as needed */
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px; /* Space between columns and copyright */
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.linked a, .linked p {
+    margin: 5px 0;
+}
+
+.linked a {
+    color: #FFF;
+    text-decoration: none; /* Remove underline */
+}
+
+.linked a:hover {
+    color: #FFF; /* Ensure hover color stays white */
+    text-decoration: underline; /* Optional: underline on hover */
+}
+
+.callfot img {
+    width: 30px; /* Adjust icon size as needed */
+}
+
+.copyright {
+    text-align: center;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 30px;
+}
+
+.copy {
+    margin: 0;
+}
+
+/* BUTTON USERNAME */
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 90px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    margin: 10px 0px 0px -30px;
+    border-radius: 10px;
+}
+
+.dropdown-content a {
+    color: #3EB9F7;
+    padding: 0px 15px;
+    text-decoration: none;
+    display: block;
+    height: 25px;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+}
+
+.show {
+    display: block;
+}

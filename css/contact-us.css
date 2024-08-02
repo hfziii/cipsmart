@@ -1,0 +1,392 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #63AFBD;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.bg-base-body {
+    background-image: url('../img/contact-us/bg-contact-us.png');
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* Ensure it takes at least the full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
+.head-homepage{
+    width: 1360px;
+}
+
+.bg-body-item{
+    grid-template-columns: 0.8fr 4fr;
+    display: grid;
+}
+
+.nav {
+    background-color: #63AFBD;
+    padding: 10px 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px; /* Adjust the gap as needed */
+}
+
+.logo-navbar {
+    width: 67px;
+    height: 60px;
+    flex-shrink: 0;
+    margin-right: 530px;
+    margin-top: -15px;
+}
+
+.logo-navbar img {
+    width: 60px;
+    height: 70px;
+    margin-top: 5px;
+}
+
+.navigation {
+    display: flex;
+    gap: 20px; /* Adjust the gap as needed */
+}
+
+.navigation a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: Montserrat;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.navigation a p {
+    margin: 0;
+    padding: 0;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #FFFEFE;
+    background: #63AFBD;
+    width: 65px;
+    height: 20px;
+    text-align: center;
+}
+
+.login a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: Montserrat;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.login a p {
+    margin: 0;
+    padding: 0;
+}
+
+.main-content {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 110.000px;
+    height: 350.000px;
+    flex-shrink: 0;
+    border-radius: 50px;
+    border: 3px solid #63AFBD;
+    margin-left: 60px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Adjust the gap between icons as needed */
+}
+
+.sidebar a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    text-decoration: none;
+}
+
+.sidebar a img {
+    height: 100%; /* Adjust based on the actual icon size */
+    object-fit: cover;
+}
+
+.perpustext{
+    color: #63AFBD;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.ebooktext{
+    color: #63AFBD;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.umkmtext{
+    color: #63AFBD;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.content {
+    width: 547px;
+    height: 465px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #63AFBD;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-left: 190px;
+    margin-top: 50px;
+}
+
+.title-contact {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrats;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.teks-contact {
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-top: -15px;
+}
+
+.whatsapp {
+    display: flex;
+    margin-top: 40px;
+    margin-left: 110px;
+}
+
+.teks-whatsapp {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 40px;
+    margin-top: -5px;
+}
+
+.teks-whatsapp-1 {
+    color: #FFEC00;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: -284px;
+    margin-top: 30px;
+}
+
+.instagram {
+    display: flex;
+    margin-top: 40px;
+    margin-left: 110px;
+}
+
+.teks-instagram {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 40px;
+    margin-top: -5px;
+}
+
+.teks-instagram-1 {
+    color: #FFEC00;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: -284px;
+    margin-top: 30px;
+}
+
+.email {
+    display: flex;
+    margin-top: 40px;
+    margin-left: 110px;
+}
+
+.teks-email {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 40px;
+    margin-top: -5px;
+}
+
+.teks-email-1 {
+    color: #FFEC00;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: -284px;
+    margin-top: 30px;
+}
+
+.detail-gambar{
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+/* FOOTER */
+.footer {
+    height: 278px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    margin-top: 20px;
+    background-color: #63AFBD;
+}
+
+.linked {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px; /* Adjust gap between columns as needed */
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px; 
+    margin-top: 35px;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.linked a, .linked p {
+    margin: 5px 0;
+}
+
+.linked a {
+    color: #FFF;
+    text-decoration: none; /* Remove underline */
+}
+
+.linked a:hover {
+    color: #FFF; /* Ensure hover color stays white */
+    text-decoration: underline; /* Optional: underline on hover */
+}
+
+.callfot img {
+    width: 30px; /* Adjust icon size as needed */
+}
+
+.copyright {
+    text-align: center;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 30px;
+}
+
+.copy {
+    margin: 0;
+}
+
+/* BUTTON USERNAME */
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 90px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    margin: 10px 0px 0px -30px;
+    border-radius: 10px;
+}
+
+.dropdown-content a {
+    color: #3EB9F7;
+    padding: 0px 15px;
+    text-decoration: none;
+    display: block;
+    height: 25px;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+}
+
+.show {
+    display: block;
+}
+
+

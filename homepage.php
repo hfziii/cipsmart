@@ -5,42 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beranda Cipsmart</title>
     <link rel="stylesheet" href="./css/homepage.css">
+    <link rel="stylesheet" href="./css/popup-user.css">
     <link rel="icon" href="img/favicon/android-chrome-192x192.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     <?php
     session_start();
     ?>
-  <script>
+    <script>
     document.addEventListener("DOMContentLoaded", function () {
         var loginBtn = document.getElementById("loginBtn");
         var dropdownContent = document.getElementById("dropdownContent");
+        var logoutPopup = document.getElementById("logoutPopup");
+        var confirmLogoutBtn = document.getElementById("confirmLogoutBtn");
+        var cancelLogoutBtn = document.getElementById("cancelLogoutBtn");
 
         <?php if (isset($_SESSION['username'])): ?>
             loginBtn.classList.add("username-btn");
             loginBtn.style.cursor = "pointer";
 
-            // Tambahkan event listener untuk menampilkan dropdown
+            // Toggle dropdown menu
             loginBtn.addEventListener("click", function (event) {
                 event.preventDefault();
                 dropdownContent.classList.toggle("show");
             });
 
-            // Event listener untuk logout
+            // Create logout item
             var logoutItem = document.createElement('a');
             logoutItem.textContent = "Logout";
-            logoutItem.href = "logout.php";
-            logoutItem.onclick = function(event) {
-                if (!confirm("Anda Yakin Ingin Logout?")) {
-                    event.preventDefault();
-                }
-            };
+            logoutItem.href = "#";
+            logoutItem.classList.add("cd-popup-trigger");
             dropdownContent.appendChild(logoutItem);
+
+            // Open logout popup
+            logoutItem.addEventListener("click", function(event) {
+                event.preventDefault();
+                logoutPopup.classList.add('is-visible');
+            });
+
+            // Confirm logout
+            confirmLogoutBtn.addEventListener("click", function(event) {
+                event.preventDefault();
+                window.location.href = "logout.php";
+            });
+
+            // Cancel logout
+            cancelLogoutBtn.addEventListener("click", function(event) {
+                event.preventDefault();
+                logoutPopup.classList.remove('is-visible');
+            });
+
+            // Close popup on outside click
+            logoutPopup.addEventListener("click", function(event) {
+                if (event.target === logoutPopup) {
+                    logoutPopup.classList.remove('is-visible');
+                }
+            });
+
         <?php else: ?>
-            loginBtn.href = "./login.php"; // Link ke halaman login.php jika belum login
+            loginBtn.href = "./login.php"; // Link to login page if not logged in
         <?php endif; ?>
 
+        // Close dropdown if clicking outside
         window.onclick = function (event) {
-            if (!event.target.matches('.login-btn')) {
+            if (!event.target.matches('.username-btn')) {
                 var dropdowns = document.getElementsByClassName("dropdown-content");
                 for (var i = 0; i < dropdowns.length; i++) {
                     var openDropdown = dropdowns[i];
@@ -49,12 +77,25 @@
                     }
                 }
             }
-        }
+        };
     });
     </script>
+
+
 </head>
 <body>
     <div class="bg-base-body">
+
+        <!-- Logout Confirmation Popup -->
+        <div class="cd-popup" role="alert" id="logoutPopup">
+            <div class="cd-popup-container">
+                <p>Anda yakin ingin Keluar?</p>
+                <ul class="cd-buttons">
+                    <li><a href="#" class="cd-popup-yes" id="confirmLogoutBtn">Ya</a></li>
+                    <li><a href="#" class="cd-popup-close" id="cancelLogoutBtn">Tidak</a></li>
+                </ul>
+            </div>
+        </div>
 
         <header class="head-homepage">
 
@@ -72,7 +113,7 @@
                         <a href="#cipaku">
                             <p class="cipaku">Kelurahan Cipaku</p>
                         </a>
-                        <a href="#">
+                        <a href="./user/contact-us.php">
                             <p class="contact">Hubungi Kami</p>
                         </a>
                     </div>
@@ -87,7 +128,7 @@
                         <?php else: ?>
                             <a href="#" class="login-btn username-btn" id="loginBtn"><?php echo $_SESSION['username']; ?></a>
                             <div class="dropdown-content" id="dropdownContent">
-                                <a href="newdashboard.html">Dashboard</a>
+                                <a href="./admin/dashboard.php">Dashboard</a>
                                 <!-- The logout link will be added dynamically via JavaScript -->
                             </div>
                         <?php endif; ?>
@@ -101,7 +142,7 @@
                 <div class="sidebar">
     
                     <div class="cipsmart">
-                        <a href="#">
+                        <a href="./user/logo-filosofi.php">
                             <img src="./img/homepage/logo-cipsmart-sidebar.png" alt="">
                         </a>
                     </div>
@@ -137,27 +178,27 @@
     
                 <div class="content" id="content">
                     <div class="corner">
-                        <a href="./catalog-book.html">
+                        <a href="./user/catalog-book.php?corner=Literasi+Imajinatif">
                             <p class="cornerteks-1">Literasi Imajinatif</p>
                             <img src="./img/homepage/pin2.png" alt="" class="corner-1">
                         </a>
 
-                        <a href="#">
+                        <a href="./user/catalog-book.php?corner=Social+Connect">
                             <p class="cornerteks-2">Social Connect</p>
                             <img src="./img/homepage/pin2.png" alt="" class="corner-2">
                         </a>
                         
-                        <a href="#">
+                        <a href="./user/catalog-book.php?corner=Bisnis+Berdaya">
                             <p class="cornerteks-3">Bisnis Berdaya</p>
                             <img src="./img/homepage/pin2.png" alt="" class="corner-3">
                         </a>
 
-                        <a href="#">
+                        <a href="./user/catalog-book.php?corner=Kreatif+Kids+Corner">
                             <p class="cornerteks-4">Kreatifitas Kids Corner</p>
                             <img src="./img/homepage/pin2.png" alt="" class="corner-4">
                         </a>
                         
-                        <a href="#">
+                        <a href="./user/catalog-book.php?corner=Pena+Inspirasi+Gemilang">
                             <p class="cornerteks-5">Pena Inspirasi Gemilang</p>
                             <img src="./img/homepage/pin2.png" alt="" class="corner-5">
                         </a>
@@ -183,7 +224,7 @@
                     Cipsmart dilaksanakan di Kelurahan Cipaku, Bogor Selatan, Kota Bogor, Jawa Barat. 
                 </p>
 
-                <a href="./user/aboutppk.html">
+                <a href="./user/aboutppk.php">
                     <button type="button" class="btn-detail">
                         Selengkapnya
                     </button>
@@ -271,30 +312,30 @@
                 </div>
 
                 <div class="perpusfot">
-                    <a href="#">
+                    <a href="./user/catalog-book.php">
                         <p class="title-perpusfot">Perpustakaan Digital</p>
                     </a>
-                    <a href="#">
+                    <a href="./user/catalog-book.php?corner=Literasi+Imajinatif">
                         <p class="linked-1">
                             Literasi Imajinatif
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./user/catalog-book.php?corner=Social+Connect">
                         <p class="linked-1">
                             Social Connect
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./user/catalog-book.php?corner=Bisnis+Berdaya">
                         <p class="linked-1">
                             Bisnis Berdaya
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./user/catalog-book.php?corner=Kreatif+Kids+Corner">
                         <p class="linked-1">
-                            Kreatifitas Kids Corner
+                            Kreatif Kids Corner
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./user/catalog-book.php?corner=Pena+Inspirasi+Gemilang">
                         <p class="linked-1">
                             Pena Inspirasi Gemilang
                         </p>
@@ -302,53 +343,64 @@
                 </div>
 
                 <div class="ebookfot">
-                    <a href="#">
+                    <a href="./user/catalog-ebook.php">
                         <p class="title-ebookfot">E-Book</p>
                     </a>
-                    <a href="#">
+                    <a href="./user/catalog-ebook.php?search=cerpen">
                         <p class="linked-1">
-                            Teks K-13
+                            Cerita Pendek
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./user/catalog-ebook.php?search=novel">
                         <p class="linked-1">
-                            Teks Kurikulum Merdeka
+                            Novel
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./user/catalog-ebook.php?search=umum">
                         <p class="linked-1">
-                            Non Teks
+                            Umum
                         </p>
                     </a>
                 </div>
 
                 <div class="umkmfot">
-                    <a href="#">
+                    <a href="./user/catalog-umkm.php">
                         <p class="title-umkmfot">UMKM Cipaku</p>
                     </a>
-                    <a href="#">
+                    <a href="./user/catalog-umkm.php?search=makanan">
                         <p class="linked-1">
-                            Katalog Produk
+                            Makanan & Minuman
                         </p>
                     </a>
-                    <a href="#">
+                    <a href="./user/catalog-umkm.php?search=fashion">
                         <p class="linked-1">
-                            Penjual UMKM
+                            Fashion & Aksesoris
+                        </p>
+                    </a>
+                    <a href="./user/catalog-umkm.php?search=kerajinan">
+                        <p class="linked-1">
+                            Kerajinan Tangan
                         </p>
                     </a>
             
                 </div>
                 
                 <div class="callfot">
-                    <a href="#">
+                    <a href="./user/contact-us.php">
                         <p class="title-callfot">Hubungi Kami</p>
                     </a>
                     <p class="linked-1">
                         Jalan Raya, RT.01/RW.03, Cipaku, Bogor Selatan, Kota Bogor, Jawa Barat 16137
                     </p>
-                    <img src="./img/footer/ig-icon.png" alt="" class="iconcs">
-                    <img src="./img/footer/wa-icon.png" alt="" class="iconcs">
-                    <img src="./img/footer/gmail-icon.png" alt="" class="iconcs">
+                    <a href="https://www.instagram.com/cipsmart.ppkormawa2024" target="_blank">                            
+                        <img src="./img/footer/ig-icon.png" alt="" class="iconcs">
+                    </a>
+                    <a href="https://wa.me/6285732185809" target="_blank">
+                        <img src="./img/footer/wa-icon.png" alt="" class="iconcs">
+                    </a>
+                    <a href="mailto:cipsmartppkormawablmfeb@gmail.com" target="_blank">
+                        <img src="./img/footer/gmail-icon.png" alt="" class="iconcs">
+                    </a>
                 </div>
 
             </div>
@@ -360,5 +412,6 @@
         </div>
 
     </div>
+
 </body>
 </html>

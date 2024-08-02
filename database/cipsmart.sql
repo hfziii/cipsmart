@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 23, 2024 at 07:20 PM
+-- Generation Time: Jul 30, 2024 at 08:09 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -44,7 +44,9 @@ INSERT INTO `absen` (`id_absen`, `name_member`, `name_corner`, `date`) VALUES
 (3, 'Bambang', 'Pena Inspirasi Gemilang', '2024-07-13'),
 (4, 'danang', 'Literasi Imajinatif', '2024-07-15'),
 (5, 'budi', 'Social Connect', '2024-07-15'),
-(6, 'Hafizi', 'Literasi Imajinatif', '2024-07-19');
+(6, 'Hafizi', 'Literasi Imajinatif', '2024-07-19'),
+(7, 'Agus', 'Literasi Imajinatif', '2024-07-24'),
+(8, 'Dayat', 'Pena Inspirasi Gemilang', '2024-07-30');
 
 -- --------------------------------------------------------
 
@@ -58,36 +60,16 @@ CREATE TABLE `admin` (
   `nohp` varchar(20) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `acsess` varchar(20) NOT NULL
+  `privileges` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id_admin`, `name`, `nohp`, `username`, `password`, `acsess`) VALUES
+INSERT INTO `admin` (`id_admin`, `name`, `nohp`, `username`, `password`, `privileges`) VALUES
 (1, 'Muhamad Hafizi', '085157181162', 'hafiziadmin', 'masuk372', 'super admin'),
 (2, 'admin', '085122890190', 'admin', 'admin', 'super admin');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `book`
---
-
-CREATE TABLE `book` (
-  `id_book` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `photo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `title_book` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `author_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `publisher_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `year_publish` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `isbn` varchar(50) NOT NULL,
-  `sipnopsis` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `total_page` varchar(10) NOT NULL,
-  `corner_education` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `status` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -113,43 +95,8 @@ CREATE TABLE `book_bisnis_berdaya` (
 --
 
 INSERT INTO `book_bisnis_berdaya` (`id_book`, `photo`, `title_book`, `author_name`, `publisher_name`, `year_publish`, `isbn`, `sipnopsis`, `total_page`, `status`) VALUES
-('BC3-001', 'uploads/BOOK_CE-3/G1.png', 'Tales of Two Planets', 'Valerie', 'Penguin Publishing Group', '2022', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies, ante sed suscipit tincidunt, nisl urna tempor neque, et facilisis metus ipsum mollis orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec luctus tortor. Mauris rhoncus leo suscipit aliquam venenatis. Vivamus nec convallis mi. Proin felis nisl, ornare eget pretium ac, pellentesque nec risus. Nunc porta augue id rutrum tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Etiam scelerisque at ligula sed sodales. Fusce dui leo, auctor non congue nec, fringilla id dolor. Nunc id cursus enim. Pellentesque tincidunt cursus mi eu hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed eleifend vitae mi vitae pulvinar. Etiam et tortor sed lacus tincidunt varius.', '320', 'Tersedia');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `book_borrowing`
---
-
-CREATE TABLE `book_borrowing` (
-  `id_borrow` int NOT NULL,
-  `id_book` varchar(10) NOT NULL,
-  `id_user` int NOT NULL,
-  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `title_book` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `borrow_date` date NOT NULL,
-  `return_date` date DEFAULT NULL,
-  `status` varchar(20) NOT NULL DEFAULT 'Pinjam'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `book_borrowing`
---
-
-INSERT INTO `book_borrowing` (`id_borrow`, `id_book`, `id_user`, `name`, `title_book`, `borrow_date`, `return_date`, `status`) VALUES
-(1, 'BC-017', 0, 'Putri', 'Yes! Aku Lolos SBMPTN IPS/SAINTEK', '2024-07-09', '2024-07-12', 'Pinjam'),
-(2, 'BC-006', 0, 'Putri Dwi Yanti', 'Dongeng Negeri 1001 Malam', '2024-07-09', '2024-07-25', 'Pinjam'),
-(3, 'BC-021', 0, 'Sarip', 'Man Tiger', '2024-07-13', '2024-07-14', 'Pinjam'),
-(4, 'BC-008', 0, 'Salwa', 'Dongeng Lengkap Kancil', '2024-07-13', '2024-07-14', 'Pinjam'),
-(5, 'BC-008', 0, 'Salwa', 'Dongeng Lengkap Kancil', '2024-07-13', '2024-07-14', 'Pinjam'),
-(6, 'BC-009', 0, 'Angga', 'Petualangan Di Negeri Dongeng', '2024-07-13', '2024-07-31', 'Pinjam'),
-(7, 'BC-010', 0, 'Syauqi', 'Dahsyatnya Dongeng', '2024-07-13', '2024-07-20', 'Pinjam'),
-(8, 'BC-011', 0, 'Bambang', 'Petualangan Rhino Kumbang dan Kumpulan Dongeng Karakter Anak', '2024-07-13', '2024-07-22', 'Pinjam'),
-(9, 'BC-012', 0, 'Fatur', 'Sella Cerita Anak', '2024-07-13', '2024-07-14', 'Pinjam'),
-(10, 'BC-013', 0, 'Algra', 'Dongeng Pembangun Karakter Anak', '2024-07-13', '2024-07-14', 'Pinjam'),
-(11, 'BC-014', 0, 'Danang', 'Dongeng Kerajaan Nusantara', '2024-07-13', '2024-07-14', 'Pinjam'),
-(12, 'BC-015', 0, 'Rasyid', 'Dongeng Bantala Satwa Dalam Bingkai Folklor Lingkungan Nusantara', '2024-07-13', '2024-07-15', 'Pinjam'),
-(13, 'BC-002', 0, 'Bambang', 'Bittersweet', '2024-07-14', '2024-07-20', 'Pinjam');
+('BC3-001', 'uploads/BOOK_CE-3/G1.png', 'Tales of Two Planets', 'Valerie', 'Penguin Publishing Group', '2022', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies, ante sed suscipit tincidunt, nisl urna tempor neque, et facilisis metus ipsum mollis orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec luctus tortor. Mauris rhoncus leo suscipit aliquam venenatis. Vivamus nec convallis mi. Proin felis nisl, ornare eget pretium ac, pellentesque nec risus. Nunc porta augue id rutrum tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Etiam scelerisque at ligula sed sodales. Fusce dui leo, auctor non congue nec, fringilla id dolor. Nunc id cursus enim. Pellentesque tincidunt cursus mi eu hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed eleifend vitae mi vitae pulvinar. Etiam et tortor sed lacus tincidunt varius.', '320', 'Tersedia'),
+('BC3-002', 'uploads/BOOK_CE-3/G8.png', 'Dongeng Banten', 'Maman', 'Gramedia', '2020', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '320', 'Tersedia');
 
 -- --------------------------------------------------------
 
@@ -175,7 +122,7 @@ CREATE TABLE `book_kreatif_kids_corner` (
 --
 
 INSERT INTO `book_kreatif_kids_corner` (`id_book`, `photo`, `title_book`, `author_name`, `publisher_name`, `year_publish`, `isbn`, `sipnopsis`, `total_page`, `status`) VALUES
-('BC4-001', 'uploads/BOOK_CE-4/G25.png', 'The Subtle Art Of Not Giving a Fuck', 'Mark', 'Gramedia', '2020', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies, ante sed suscipit tincidunt, nisl urna tempor neque, et facilisis metus ipsum mollis orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec luctus tortor. Mauris rhoncus leo suscipit aliquam venenatis. Vivamus nec convallis mi. Proin felis nisl, ornare eget pretium ac, pellentesque nec risus. Nunc porta augue id rutrum tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Etiam scelerisque at ligula sed sodales. Fusce dui leo, auctor non congue nec, fringilla id dolor. Nunc id cursus enim. Pellentesque tincidunt cursus mi eu hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed eleifend vitae mi vitae pulvinar. Etiam et tortor sed lacus tincidunt varius.', '320', 'Dipinjam');
+('BC4-001', 'uploads/BOOK_CE-4/G9.png', 'Dongeng Kancil', 'Maman', 'Gramedia', '2020', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '320', 'Tersedia');
 
 -- --------------------------------------------------------
 
@@ -201,7 +148,8 @@ CREATE TABLE `book_literasi_imajinatif` (
 --
 
 INSERT INTO `book_literasi_imajinatif` (`id_book`, `photo`, `title_book`, `author_name`, `publisher_name`, `year_publish`, `isbn`, `sipnopsis`, `total_page`, `status`) VALUES
-('BC1-001', 'uploads/BOOK_CE-1/G17.png', 'Tales of Two Planets', 'Valerie', 'Gramedia', '2019', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies, ante sed suscipit tincidunt, nisl urna tempor neque, et facilisis metus ipsum mollis orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec luctus tortor. Mauris rhoncus leo suscipit aliquam venenatis. Vivamus nec convallis mi. Proin felis nisl, ornare eget pretium ac, pellentesque nec risus. Nunc porta augue id rutrum tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Etiam scelerisque at ligula sed sodales. Fusce dui leo, auctor non congue nec, fringilla id dolor. Nunc id cursus enim. Pellentesque tincidunt cursus mi eu hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed eleifend vitae mi vitae pulvinar. Etiam et tortor sed lacus tincidunt varius.', '320', 'Tersedia');
+('BC1-001', '../uploads/BOOK_CE-1/G1.png', 'Tales of Two Planets', 'Valerie', 'Gramedia', '2020', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '320', 'Dipinjam'),
+('BC1-002', 'uploads/BOOK_CE-1/G2.png', 'Bitterswet', 'Valerie', 'Penguin Publishing Group', '2020', '978-052-55057-1-1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '120', 'Tersedia');
 
 -- --------------------------------------------------------
 
@@ -227,8 +175,7 @@ CREATE TABLE `book_pena_inspirasi_gemilang` (
 --
 
 INSERT INTO `book_pena_inspirasi_gemilang` (`id_book`, `photo`, `title_book`, `author_name`, `publisher_name`, `year_publish`, `isbn`, `sipnopsis`, `total_page`, `status`) VALUES
-('BC5-001', 'uploads/BOOK_CE-5/G7-5.png', 'Dongeng 1001 Malam', 'asep', 'Gramedia', '2020', '978-052-55057-1-6', 'lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum', '100', 'Tersedia'),
-('BC5-002', 'uploads/BOOK_CE-5/G23.png', 'Sarah Morgan', 'morgan', 'Gramedia', '2020', '978-052-55057-1-6', 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum', '320', 'Tersedia');
+('BC5-001', '../uploads/BOOK_CE-5/G17.png', 'Novel Anak', 'Unknown', 'Gramedia-Widiasarana-Indonesia', '2020', '978-979-02500-6-2', 'Lorem ipsum, atau ringkasnya lipsum, adalah teks standar yang ditempatkan untuk mendemostrasikan elemen grafis atau presentasi visual seperti font, tipografi, dan tata letak.', '320', 'Tersedia');
 
 -- --------------------------------------------------------
 
@@ -254,7 +201,123 @@ CREATE TABLE `book_social_connect` (
 --
 
 INSERT INTO `book_social_connect` (`id_book`, `photo`, `title_book`, `author_name`, `publisher_name`, `year_publish`, `isbn`, `sipnopsis`, `total_page`, `status`) VALUES
-('BC2-001', 'uploads/BOOK_CE-2/G2.png', 'Bitterswet', 'John Freeman', 'Gramedia', '2021', '978-052-55057-1-1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies, ante sed suscipit tincidunt, nisl urna tempor neque, et facilisis metus ipsum mollis orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec luctus tortor. Mauris rhoncus leo suscipit aliquam venenatis. Vivamus nec convallis mi. Proin felis nisl, ornare eget pretium ac, pellentesque nec risus. Nunc porta augue id rutrum tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Etiam scelerisque at ligula sed sodales. Fusce dui leo, auctor non congue nec, fringilla id dolor. Nunc id cursus enim. Pellentesque tincidunt cursus mi eu hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed eleifend vitae mi vitae pulvinar. Etiam et tortor sed lacus tincidunt varius.', '120', 'Tersedia');
+('BC2-001', 'uploads/BOOK_CE-2/G6.png', 'Buku Dongen Paling Populer', 'Maman', 'Penguin Publishing Group', '2020', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '120', 'Tersedia'),
+('BC2-002', 'uploads/BOOK_CE-2/G7.png', 'Dongen 1001 Malam', 'Maman', 'Gramedia', '2020', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '320', 'Tersedia');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `borrowing_bisnis_berdaya`
+--
+
+CREATE TABLE `borrowing_bisnis_berdaya` (
+  `id_borrow` int NOT NULL,
+  `id_book` varchar(10) NOT NULL,
+  `id_user` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `title_book` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `borrow_date` date NOT NULL,
+  `return_date` date DEFAULT NULL,
+  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'Dipinjam'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `borrowing_bisnis_berdaya`
+--
+
+INSERT INTO `borrowing_bisnis_berdaya` (`id_borrow`, `id_book`, `id_user`, `name`, `title_book`, `borrow_date`, `return_date`, `status`) VALUES
+(1, 'BC3-002', 0, 'Maman', 'Dongeng Banten', '2024-07-30', '2024-09-30', 'Tersedia');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `borrowing_kreatif_kids_corner`
+--
+
+CREATE TABLE `borrowing_kreatif_kids_corner` (
+  `id_borrow` int NOT NULL,
+  `id_book` varchar(10) NOT NULL,
+  `id_user` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `title_book` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `borrow_date` date NOT NULL,
+  `return_date` date DEFAULT NULL,
+  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'Dipinjam'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `borrowing_literasi_imajinatif`
+--
+
+CREATE TABLE `borrowing_literasi_imajinatif` (
+  `id_borrow` int NOT NULL,
+  `id_book` varchar(10) NOT NULL,
+  `id_user` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `title_book` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `borrow_date` date NOT NULL,
+  `return_date` date DEFAULT NULL,
+  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'Dipinjam'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `borrowing_literasi_imajinatif`
+--
+
+INSERT INTO `borrowing_literasi_imajinatif` (`id_borrow`, `id_book`, `id_user`, `name`, `title_book`, `borrow_date`, `return_date`, `status`) VALUES
+(1, 'BC1-001', 0, 'Opay', 'Tales of Two Planets', '2024-07-30', '2024-07-31', 'Tersedia'),
+(2, 'BC1-002', 0, 'Bambang', 'Bitterswet', '2024-07-30', '2024-08-05', 'Tersedia'),
+(3, 'BC1-001', 0, 'Angga', 'Tales of Two Planets', '2024-07-30', '2024-08-10', 'Dipinjam');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `borrowing_pena_inspirasi_gemilang`
+--
+
+CREATE TABLE `borrowing_pena_inspirasi_gemilang` (
+  `id_borrow` int NOT NULL,
+  `id_book` varchar(10) NOT NULL,
+  `id_user` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `title_book` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `borrow_date` date NOT NULL,
+  `return_date` date DEFAULT NULL,
+  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'Dipinjam'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `borrowing_pena_inspirasi_gemilang`
+--
+
+INSERT INTO `borrowing_pena_inspirasi_gemilang` (`id_borrow`, `id_book`, `id_user`, `name`, `title_book`, `borrow_date`, `return_date`, `status`) VALUES
+(1, 'BC5-001', 0, 'Salwa', 'Novel Anak', '2024-07-30', '2024-07-31', 'Tersedia');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `borrowing_social_connect`
+--
+
+CREATE TABLE `borrowing_social_connect` (
+  `id_borrow` int NOT NULL,
+  `id_book` varchar(10) NOT NULL,
+  `id_user` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `title_book` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `borrow_date` date NOT NULL,
+  `return_date` date DEFAULT NULL,
+  `status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'Dipinjam'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `borrowing_social_connect`
+--
+
+INSERT INTO `borrowing_social_connect` (`id_borrow`, `id_book`, `id_user`, `name`, `title_book`, `borrow_date`, `return_date`, `status`) VALUES
+(1, 'BC2-001', 0, 'Opay', 'Buku Dongen Paling Populer', '2024-07-30', '2024-08-01', 'Tersedia');
 
 -- --------------------------------------------------------
 
@@ -276,11 +339,11 @@ CREATE TABLE `corner_education` (
 --
 
 INSERT INTO `corner_education` (`id_corner`, `name_corner`, `location_corner`, `total_book`, `total_book_ready`, `total_book_borrow`) VALUES
-('CE-1', 'Literasi Imajinatif', 'RW 6, Kelurahan Cipaku', 100, 50, 50),
-('CE-2', 'Social Connect', 'RW 15, Kelurahan Cipaku', 100, 50, 50),
-('CE-3', 'Bisnis Berdaya', 'RW 4, Kelurahan Cipaku', 100, 50, 50),
-('CE-4', 'Kreatif Kids Corner', 'RW 17, Kelurahan Cipaku', 100, 50, 50),
-('CE-5', 'Pena Inspirasi Gemilang', 'RW 3, Kelurahan Cipaku', 100, 50, 50);
+('CE-1', 'Literasi Imajinatif', 'RW 6, Kelurahan Cipaku', 0, 0, 0),
+('CE-2', 'Social Connect', 'RW 15, Kelurahan Cipaku', 0, 0, 0),
+('CE-3', 'Bisnis Berdaya', 'RW 9, Kelurahan Cipaku', 0, 0, 0),
+('CE-4', 'Kreatif Kids Corner', 'RW 17, Kelurahan Cipaku', 0, 0, 0),
+('CE-5', 'Pena Inspirasi Gemilang', 'RW 4, Kelurahan Cipaku', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -357,9 +420,11 @@ CREATE TABLE `product_umkm` (
 --
 
 INSERT INTO `product_umkm` (`id_product`, `product_photo_1`, `product_photo_2`, `product_photo_3`, `product_photo_4`, `product_category`, `product_name`, `product_price`, `product_description`, `id_seller`) VALUES
-(1, 'uploads/umkm/kue bangkit.jpeg', 'uploads/umkm/kue bangkit 2.jpg', 'uploads/umkm/kue bangkit 3.jpg', 'uploads/umkm/kue bangkit 4.jpg', 'Makanan', 'Kue Bangkit', '20000', 'salah satu kue tradisional indonesia khas masyarakat Melayu yang berasal dari Pulau Sumatera(Riau)', 'UMKM-7'),
+(1, 'uploads/umkm/kue bangkit.jpeg', 'uploads/umkm/kue bangkit 2.jpg', 'uploads/umkm/kue bangkit 3.jpg', 'uploads/umkm/kue bangkit 4.jpg', 'Makanan', 'Kue Coklat', '40000', 'salah satu kue tradisional indonesia khas masyarakat Melayu yang berasal dari Pulau Sumatera(Riau)', 'UMKM-5'),
 (2, 'uploads/umkm/4-jenis-jamu-tradisional-dan-manfaatnya-untuk-kesehatan.jpg', 'uploads/umkm/1662011925820-cara-membuat-jamu-tradisional-di-rumah-dengan-bahan-yang-simple.jpg', 'uploads/umkm/thumbnail_93.jpg', 'uploads/umkm/X-Jamu-Tradisional-Indonesia-dengan-Segudang-Manfaat.jpg', 'Obat Herbal', 'Jamu', '45000', 'Jamu Sehat Alami adalah minuman herbal tradisional yang diracik dari bahan-bahan alami berkualitas tinggi untuk menjaga kesehatan dan kebugaran tubuh Anda. Diperkaya dengan rempah-rempah pilihan seperti kunyit, jahe, temulawak, dan serai, jamu ini memberikan manfaat kesehatan yang optimal dengan rasa yang khas dan menyegarkan', 'UMKM-2'),
-(3, 'uploads/umkm/aneka sambal.jpg', 'uploads/umkm/aneka sambal 2.jpg', 'uploads/umkm/aneka sambal 3.jpeg', 'uploads/umkm/aneka sambal 4.jpg', 'Makanan', 'Sambal Pak Bambang', '30000', 'Nikmati sensasi pedas yang autentik dengan Sambal Pak Jarwo! Terbuat dari bahan-bahan pilihan berkualitas tinggi, sambal ini menghadirkan cita rasa pedas yang khas dan lezat. Setiap sendoknya merupakan perpaduan sempurna antara cabai segar, bawang putih, bawang merah, dan rempah-rempah tradisional Indonesia, yang diolah dengan penuh cinta dan keahlian.', 'UMKM-4');
+(3, 'uploads/umkm/aneka sambal.jpg', 'uploads/umkm/aneka sambal 2.jpg', 'uploads/umkm/aneka sambal 3.jpeg', 'uploads/umkm/aneka sambal 4.jpg', 'Makanan', 'Sambal Pak Bambang', '30000', 'Nikmati sensasi pedas yang autentik dengan Sambal Pak Jarwo! Terbuat dari bahan-bahan pilihan berkualitas tinggi, sambal ini menghadirkan cita rasa pedas yang khas dan lezat. Setiap sendoknya merupakan perpaduan sempurna antara cabai segar, bawang putih, bawang merah, dan rempah-rempah tradisional Indonesia, yang diolah dengan penuh cinta dan keahlian.', 'UMKM-4'),
+(4, '../uploads/umkm/Cuplikan layar 2024-07-29 190510.png', '../uploads/umkm/Cuplikan layar 2024-07-29 190459.png', '../uploads/umkm/Cuplikan layar 2024-07-29 190448.png', '../uploads/umkm/Cuplikan layar 2024-07-29 190437.png', 'Camilan', 'Somay', '10000', 'Somay enak Somay enakSomay enakSomay enakSomay enakSomay enakSomay enakSomay enakSomay enakSomay enakSomay enakSomay enakSomay enak', 'UMKM-6'),
+(5, '../uploads/umkm/Cuplikan layar 2024-07-29 190510.png', '../uploads/umkm/Cuplikan layar 2024-07-29 190459.png', '../uploads/umkm/Cuplikan layar 2024-07-29 190448.png', '../uploads/umkm/Cuplikan layar 2024-07-29 190437.png', 'Camilan', 'Somay', '10000', 'Somay enak sekali', 'UMKM-6');
 
 -- --------------------------------------------------------
 
@@ -405,9 +470,23 @@ INSERT INTO `seller_umkm` (`id_seller`, `seller_name`, `no_whatsapp`, `address_s
 ('UMKM-2', 'Syauqi', '051228280909', 'Kp. Cipaku Skip, Kelurahan Cipaku, Kota Bogor'),
 ('UMKM-3', 'Fatur', '0861700709898', 'Kp. Cipaku Skip, Kelurahan Cipaku, Kota Bogor'),
 ('UMKM-4', 'Bambang', '086720201010', 'Kp. Sukaasih, Kelurahan Cipaku, Kota Bogor'),
-('UMKM-5', 'Salwa', '085732185809', 'Kp. Cipaku Skip, Kelurahan Cipaku, Kota Bogor'),
-('UMKM-6', 'Hafizi', '085157181162', 'Kp. Cipaku Skip, Kelurahan Cipaku, Kota Bogor'),
+('UMKM-5', 'Salwa Salsabil', '085732185809', 'Kp. Cipaku Skip, Kelurahan Cipaku, Kota Bogor'),
+('UMKM-6', 'Hafizi', '085157181163', 'Kp. Cipaku Skip, Kelurahan Cipaku, Kota Bogor'),
 ('UMKM-7', 'Haifan', '081920202024', 'Kp. Sukaasih, Kelurahan Cipaku, Kota Bogor');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id_user` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Indexes for dumped tables
@@ -426,22 +505,10 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indexes for table `book`
---
-ALTER TABLE `book`
-  ADD PRIMARY KEY (`id_book`);
-
---
 -- Indexes for table `book_bisnis_berdaya`
 --
 ALTER TABLE `book_bisnis_berdaya`
   ADD PRIMARY KEY (`id_book`);
-
---
--- Indexes for table `book_borrowing`
---
-ALTER TABLE `book_borrowing`
-  ADD PRIMARY KEY (`id_borrow`);
 
 --
 -- Indexes for table `book_kreatif_kids_corner`
@@ -468,16 +535,40 @@ ALTER TABLE `book_social_connect`
   ADD PRIMARY KEY (`id_book`);
 
 --
+-- Indexes for table `borrowing_bisnis_berdaya`
+--
+ALTER TABLE `borrowing_bisnis_berdaya`
+  ADD PRIMARY KEY (`id_borrow`);
+
+--
+-- Indexes for table `borrowing_kreatif_kids_corner`
+--
+ALTER TABLE `borrowing_kreatif_kids_corner`
+  ADD PRIMARY KEY (`id_borrow`);
+
+--
+-- Indexes for table `borrowing_literasi_imajinatif`
+--
+ALTER TABLE `borrowing_literasi_imajinatif`
+  ADD PRIMARY KEY (`id_borrow`);
+
+--
+-- Indexes for table `borrowing_pena_inspirasi_gemilang`
+--
+ALTER TABLE `borrowing_pena_inspirasi_gemilang`
+  ADD PRIMARY KEY (`id_borrow`);
+
+--
+-- Indexes for table `borrowing_social_connect`
+--
+ALTER TABLE `borrowing_social_connect`
+  ADD PRIMARY KEY (`id_borrow`);
+
+--
 -- Indexes for table `corner_education`
 --
 ALTER TABLE `corner_education`
   ADD PRIMARY KEY (`id_corner`);
-
---
--- Indexes for table `ebook`
---
-ALTER TABLE `ebook`
-  ADD PRIMARY KEY (`id_ebook`);
 
 --
 -- Indexes for table `product_umkm`
@@ -499,7 +590,7 @@ ALTER TABLE `seller_umkm`
 -- AUTO_INCREMENT for table `absen`
 --
 ALTER TABLE `absen`
-  MODIFY `id_absen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_absen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `admin`
@@ -508,22 +599,40 @@ ALTER TABLE `admin`
   MODIFY `id_admin` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `book_borrowing`
+-- AUTO_INCREMENT for table `borrowing_bisnis_berdaya`
 --
-ALTER TABLE `book_borrowing`
-  MODIFY `id_borrow` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+ALTER TABLE `borrowing_bisnis_berdaya`
+  MODIFY `id_borrow` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `ebook`
+-- AUTO_INCREMENT for table `borrowing_kreatif_kids_corner`
 --
-ALTER TABLE `ebook`
-  MODIFY `id_ebook` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+ALTER TABLE `borrowing_kreatif_kids_corner`
+  MODIFY `id_borrow` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `borrowing_literasi_imajinatif`
+--
+ALTER TABLE `borrowing_literasi_imajinatif`
+  MODIFY `id_borrow` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `borrowing_pena_inspirasi_gemilang`
+--
+ALTER TABLE `borrowing_pena_inspirasi_gemilang`
+  MODIFY `id_borrow` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `borrowing_social_connect`
+--
+ALTER TABLE `borrowing_social_connect`
+  MODIFY `id_borrow` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `product_umkm`
 --
 ALTER TABLE `product_umkm`
-  MODIFY `id_product` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_product` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
