@@ -109,7 +109,7 @@
                         <a href="./aboutppk.php">
                             <p class="ppk">PPK Ormawa</p>
                         </a>
-                        <a href="#">
+                        <a href="./profile_kelurahan.php">
                             <p class="cipaku">Kelurahan Cipaku</p>
                         </a>
                         <a href="./contact-us.php">

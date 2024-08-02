@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -6,54 +7,70 @@ body, html {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
+    font-size: 16px;
+    /* Tetapkan ukuran font dasar */
 }
 
 .bg-base-body {
     background: #63AFBD;
     position: relative;
     width: 100%;
-    min-height: 100vh; /* Ensure it takes at least the full viewport height */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-.head-homepage{
-    width: 1360px;
-    height: 663px;
+.head-homepage {
+    width: 100%;
+    max-width: 1360px;
+    height: auto;
+    padding: 20px 0px 35px 0px;
 }
 
-.bg-body-item{
-    grid-template-columns: 0.8fr 4fr;
+.bg-body-item {
     display: grid;
+    grid-template-columns: 1fr;
+    /* Default ke satu kolom */
+    width: 100%;
+    max-width: 1360px;
+    padding: 20px;
+    gap: 20px;
 }
 
 .nav {
     background-color: #63AFBD;
-    padding: 10px 50px;
+    padding: 10px 5%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    width: 90%;
+    margin-top: -1%;
 }
 
 .navbar {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 20px; /* Adjust the gap as needed */
+    gap: 20px;
+    /* Adjust the gap as needed */
 }
 
 .navigation {
     display: flex;
-    gap: 20px; /* Adjust the gap as needed */
+    gap: 20px;
+    /* Adjust the gap as needed */
 }
 
 .navigation a {
     color: #fff;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 1em;
     font-family: Montserrat, sans-serif;
     font-weight: 800;
     line-height: normal;
+    margin: 0 10px;
+    /* Tambahkan margin antar elemen */
 }
 
 .navigation a p {
@@ -87,28 +104,65 @@ body, html {
     padding: 0;
 }
 
-.main-content {
-    display: flex;
-    flex-grow: 1;
-    justify-content: center;
-    align-items: center;
+/* BUTTON USERNAME */
+.user-dropdown {
     position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100%;
+    box-shadow: 0px 0.5em 1em rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    margin: 0.5em 0 0 -2em;
+    border-radius: 0.625em;
+    /* 10px */
+}
+
+.dropdown-content a {
+    color: #3EB9F7;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    display: block;
+    height: 1em;
+    /* 16px */
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    border-radius: 0.625em;
+    /* 10px */
+}
+
+.show {
+    display: block;
 }
 
 /* SIDEBAR */
 .sidebar {
-    width: 110.000px;
-    height: 490.000px;
+    width: 20%;
+    max-width: 110px;
+    /* fallback untuk ukuran layar besar */
+    height: auto;
+    min-height: 490px;
+    /* fallback untuk ukuran layar besar */
     flex-shrink: 0;
-    border-radius: 50px;
+    border-radius: 2.5em;
+    /* 50px */
     border: 1px solid #FFF;
-    margin-left: 60px;
-    margin-top: 30px;
+    margin-left: 3em;
+    /* 60px */
+    margin-top: 1em;
+    /* 30px */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px; /* Adjust the gap between icons as needed */
+    gap: 0.625em;
+    /* 10px */
 }
 
 .sidebar a {
@@ -120,44 +174,33 @@ body, html {
 }
 
 .sidebar a img {
-    height: 100%; /* Adjust based on the actual icon size */
+    height: 100%;
+    width: 120%;
     object-fit: cover;
 }
 
-.perpustext{
+.perpustext,
+.ebooktext,
+.umkmtext {
     color: #FFF;
     text-align: center;
-    font-family: Montserrat;
-    font-size: 13px;
+    font-family: Montserrat, sans-serif;
+    font-size: 0.8125em;
+    /* 13px */
     font-style: normal;
     font-weight: 800;
     line-height: normal;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin: 0;
 }
 
-.ebooktext{
-    color: #FFF;
-    text-align: center;
-    font-family: Montserrat;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-    margin-top: 0;
-    margin-bottom: 0;
-}
+/* CONTENT */
 
-.umkmtext{
-    color: #FFF;
-    text-align: center;
-    font-family: Montserrat;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-    margin-top: 0;
-    margin-bottom: 0;
+.main-content {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 /* VILLAGE */
@@ -167,6 +210,8 @@ body, html {
     width: 100%;
     height: auto;
     display: block;
+    position: relative;
+    z-index: -1;
 }
 
 .content {
@@ -174,6 +219,7 @@ body, html {
     top: 10%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 0;
 }
 
 .corner {
@@ -206,59 +252,39 @@ body, html {
 }
 
 .cornerteks-1 {
-    margin: 110px 850px 0px 90px;
-    position: absolute;
-    color: #FFF;
-    text-align: center;
-    font-family: Montserrat;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
+    top: 100px;
+    left: 90px;
 }
 
 .cornerteks-2 {
-    margin: 180px 850px 0px 200px;
-    position: absolute;
-    color: #FFF;
-    text-align: center;
-    font-family: Montserrat;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
+    top: 165px;
+    left: 200px;
 }
 
 .cornerteks-3 {
-    margin: 90px 850px 0px 370px;
-    position: absolute;
-    color: #FFF;
-    text-align: center;
-    font-family: Montserrat;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
+    top: 80px;
+    left: 370px;
 }
 
 .cornerteks-4 {
-    margin: -25px 850px 0px 405px;
-    position: absolute;
-    color: #FFF;
-    text-align: center;
-    font-family: Montserrat;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
+    top: -38px;
+    left: 405px;
 }
 
 .cornerteks-5 {
-    margin: 85px 850px 0px 563px;
+    top: 75px;
+    left: 563px;
+}
+
+.cornerteks-1,
+.cornerteks-2,
+.cornerteks-3,
+.cornerteks-4,
+.cornerteks-5 {
     position: absolute;
     color: #FFF;
     text-align: center;
-    font-family: Montserrat;
+    font-family: Montserrat, sans-serif;
     font-size: 15px;
     font-style: normal;
     font-weight: 800;
@@ -266,51 +292,56 @@ body, html {
 }
 
 /* PROFILE CIPSMART */
-.btn-detail{
+.btn-detail {
     color: #FFF;
     text-align: center;
     font-family: Montserrat;
-    font-size: 18px;
+    font-size: 1em; /* Change to em for better responsiveness */
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    width: 210.000px;
-    height: 50.000px;
+    width: 210px;
+    height: 50px;
     border-radius: 10px;
     background: #3EB9F7;
+    cursor: pointer;
 }
 
 .profilecipsmart {
     background-image: url('../img/homepage/bg-1.png');
-    width: 1360px;
-    height: 448px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%; /* Change to 100% for responsiveness */
+    height: auto;
     grid-template-columns: 3fr 1fr;
     display: grid;
+    padding: 20px; /* Add padding to avoid content touching the edges */
 }
 
-.desc1{
-    padding: 0px 100px 0px 60px;
+.desc1 {
+    padding: 0 60px;
 }
 
-.titlecipsmart{
+.titlecipsmart {
     color: #FFF;
     font-family: Montserrat;
-    font-size: 40px;
+    font-size: 2em;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
 }
 
-.tekscipsmart{
+.tekscipsmart {
     color: #FFF;
     font-family: Montserrat;
-    font-size: 18px;
+    font-size: 1em; 
     font-style: normal;
     font-weight: 700;
     line-height: normal;
 }
 
-.logocipsmart{
+.logocipsmart {
     width: 239px;
     height: 303px;
     margin-top: 75px;
@@ -319,91 +350,148 @@ body, html {
 
 /* PROFILE CIPAKU */
 .profilecipaku {
-    width: 1360px;
-    height: 448px;
+    width: 100%; /* Change to 100% for responsiveness */
+    height: 360px;
     grid-template-columns: 1fr 3fr;
     display: grid;
+    padding: 20px;
 }
 
-.desc2{
-    padding: 0px 100px 0px 90px;
+.desc2 {
+    padding: 0 90px;
 }
 
-.logocipaku{
+.logocipaku {
     width: 171px;
     height: 214px;
     margin-top: 60px;
     margin-left: 30px;
 }
 
-.titlecipaku{
+.titlecipaku {
     color: #FFF;
     text-align: right;
     font-family: Montserrat;
-    font-size: 40px;
+    font-size: 2em;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
 }
 
-.tekscipaku{
+.tekscipaku {
     color: #FFF;
     text-align: right;
     font-family: Montserrat;
-    font-size: 18px;
+    font-size: 1em;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     margin-left: 100px;
 }
 
-.detail-cipaku{
+.detail-cipaku {
     margin-left: 815px;
 }
 
 /*  */
-.titledocmitloc{
+.titledocmitloc {
     color: #FFF;
     text-align: center;
     font-family: Montserrat;
-    font-size: 40px;
+    font-size: 2em;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
 }
 
 /* DOC CIPSMART */
-.documentation{
+.documentation {
     background-image: url(../img/homepage/bg-2.png);
-    width: 1360px;
-    height: 600px;
+    background-size: cover; /* Ensure background image covers entire section */
+    width: 100%; /* Make section full width */
+    height: auto; /* Make height flexible */
+    padding: 20px; /* Add padding for spacing */
 }
 
-
-.pic-doc-1{
+.pic-doc-1 {
     margin-left: 50px;
     margin-bottom: 25px;
 }
 
-.pic-doc-3{
+.pic-doc-3 {
     margin-bottom: 25px;
 }
 
-.back, .next{
+.back,
+.next {
     margin-bottom: 100px;
+}
+
+/* corousel dokumentasi */
+.carousel-container {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 400px;
+    /* Set a fixed height for the carousel */
+}
+
+.carousel {
+    display: flex;
+    align-items: center;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel img {
+    max-height: 100%;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 0.6;
+}
+
+.carousel img.middle {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.carousel img.small {
+    transform: scale(0.7);
+}
+
+.back,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0.7;
+}
+
+.back {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
 }
 
 /* MITRA CIPSMART */
 .mitra {
-    height: 500px;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 20px;
 }
 
-.title-mit{
+.title-mit {
     margin-top: 0;
+    text-align: center;
 }
 
 .boxmit {
@@ -411,15 +499,20 @@ body, html {
     justify-content: center;
     align-items: center;
     gap: 50px;
+    flex-wrap: wrap;
+    margin-top: 20px;
 }
 
 .boxmit img {
     display: block;
+    max-width: 200px;
+    height: auto;
 }
 
 /* LOKASI CIPSMART */
 .loc {
     height: 600px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -428,10 +521,10 @@ body, html {
 }
 
 .maps iframe {
-    width: 862px;
+    width: 1000px;
     height: 323px;
     border-radius: 25px;
-    border: 0; /* Ensure no border */
+    border: 0;
 }
 
 /* FOOTER */
@@ -447,34 +540,41 @@ body, html {
 .linked {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 20px; /* Adjust gap between columns as needed */
+    gap: 20px;
+    /* Adjust gap between columns as needed */
     width: 100%;
     max-width: 1200px;
-    margin-bottom: 20px; /* Space between columns and copyright */
+    margin-bottom: 20px;
+    /* Space between columns and copyright */
     color: #FFF;
     font-family: Montserrat;
-    font-size: 15px;
+    font-size: 1em;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
 }
 
-.linked a, .linked p {
+.linked a,
+.linked p {
     margin: 5px 0;
 }
 
 .linked a {
     color: #FFF;
-    text-decoration: none; /* Remove underline */
+    text-decoration: none;
+    /* Remove underline */
 }
 
 .linked a:hover {
-    color: #FFF; /* Ensure hover color stays white */
-    text-decoration: underline; /* Optional: underline on hover */
+    color: #FFF;
+    /* Ensure hover color stays white */
+    text-decoration: none;
+    /* Optional: underline on hover */
 }
 
 .callfot img {
-    width: 30px; /* Adjust icon size as needed */
+    width: 30px;
+    /* Adjust icon size as needed */
 }
 
 .copyright {
@@ -492,37 +592,619 @@ body, html {
     margin: 0;
 }
 
-/* BUTTON USERNAME */
-.user-dropdown {
-    position: relative;
-    display: inline-block;
+/* ------------------------------------------------------------------------------------------------------- */
+/* Media queries untuk responsivitas */
+@media (max-width: 1200px) {
+    html {
+        font-size: 15px;
+    }
+    .corner {
+        position: absolute;
+        display: none;
+    }
+    .desc1 {
+        padding: 0 40px;
+    }
+    .titlecipsmart {
+        font-size: 1.8em;
+    }
+    .tekscipsmart {
+        font-size: 0.9em;
+        padding: 3em;
+    }
+    .desc2 {
+        padding: 0 70px;
+    }
+    .titlecipaku {
+        font-size: 1.8em;
+    }
+    .tekscipaku {
+        font-size: 0.9em;
+    }
+    .profilecipaku{
+        padding: 20px;
+    }
+    .documentation {
+        padding: 15px;
+    }
+    .carousel-container {
+        width: 90%;
+    }
+    .mitra {
+        padding: 15px;
+    }
+    .boxmit img {
+        max-width: 200px;
+    }
+    .maps iframe {
+        max-width: 750px;
+    }
+
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 90px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    margin: 10px 0px 0px -30px;
-    border-radius: 10px;
+@media (max-width: 1080px) {
+    .sidebar {
+        width: 25%;
+        margin-left: 2em;
+    }
+    .sidebar a img {
+        height: 90%;
+        width: 110%;
+        object-fit: cover;
+    }
+    .corner {
+        position: absolute;
+        display: none;
+    }
+    .desc1 {
+        padding: 0 30px;
+    }
+    .titlecipsmart {
+        font-size: 1.6em;
+    }
+    .tekscipsmart {
+        font-size: 0.85em;
+        padding: 3em;
+    }
+    .desc2 {
+        padding: 0 50px;
+    }
+    .titlecipaku {
+        font-size: 1.6em;
+    }
+    .tekscipaku {
+        font-size: 0.85em;
+    }
+    .detail-cipaku {
+        margin-left: 600px;
+    }
+    .profilecipaku{
+        padding: 20px;
+    }
+    .documentation {
+        padding: 15px;
+    }
+    .carousel-container {
+        width: 90%;
+    }
+    .mitra {
+        padding: 15px;
+    }
+    .boxmit img {
+        max-width: 190px;
+    }
+    .maps iframe {
+        max-width: 650px;
+    }
 }
 
-.dropdown-content a {
-    color: #3EB9F7;
-    padding: 0px 15px;
-    text-decoration: none;
-    display: block;
-    height: 25px;
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 25%;
+        margin-left: 2em;
+    }
+    .sidebar a img {
+        height: 80%;
+        width: 100%;
+        object-fit: cover;
+    }
+    .corner {
+        position: absolute;
+        display: none;
+    }
+    .desc1 {
+        padding: 0 30px;
+    }
+    .titlecipsmart {
+        font-size: 1.6em;
+    }
+    .tekscipsmart {
+        font-size: 0.85em;
+        padding: 3em;
+    }
+    .desc2 {
+        padding: 0 40px;
+    }
+    .titlecipaku {
+        font-size: 1.5em;
+    }
+    .tekscipaku {
+        font-size: 0.8em;
+    }
+    .detail-cipaku {
+        margin-left: 500px;
+    }
+    .profilecipaku{
+        padding: 20px;
+    }
+    .documentation {
+        padding: 10px;
+    }
+    .carousel-container {
+        width: 95%;
+    }
+    .mitra {
+        padding: 10px;
+    }
+    .boxmit img {
+        max-width: 190px;
+    }
+    .maps iframe {
+        max-width: 600px;
+    }
 }
 
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
-    border-radius: 10px;
+@media (max-width: 992px) {
+    html {
+        font-size: 14px;
+    }
+    .bg-body-item {
+        grid-template-columns: 1fr;
+        /* Ubah ke satu kolom */
+    }
+    .nav {
+        padding: 10px 5%;
+    }
+    .sidebar a img {
+        height: 70%;
+        width: 90%;
+        object-fit: cover;
+    }
+    .corner {
+        position: absolute;
+        display: none;
+    }
+    .desc1 {
+        padding: 0 10px;
+    }
+    .titlecipsmart {
+        font-size: 1.4em;
+    }
+    .tekscipsmart {
+        font-size: 0.75em;
+        padding: 3em;
+    }
+    .desc2 {
+        padding: 0 30px;
+    }
+    .titlecipaku {
+        font-size: 1.4em;
+    }
+    .tekscipaku {
+        font-size: 0.75em;
+    }
+    .detail-cipaku {
+        margin-left: 400px;
+    }
+    .profilecipaku{
+        padding: 20px;
+    }
+    .documentation {
+        padding: 10px;
+    }
+    .carousel-container {
+        width: 95%;
+    }
+    .mitra {
+        padding: 10px;
+    }
+    .boxmit img {
+        max-width: 190px;
+    }
+    .maps iframe {
+        max-width: 550px;
+    }
+    .callfot img {
+        width: 25px;
+    }
 }
 
-.show {
-    display: block;
+@media (max-width: 768px) {
+    html {
+        font-size: 13px;
+    }
+    .head-homepage {
+        padding: 10px;
+    }
+    .nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .sidebar {
+        width: 30%;
+        margin-left: 1em;
+        margin-top: 1em;
+        min-height: 390px;
+    }
+    .sidebar a img {
+        height: 60%;
+        width: 80%;
+        object-fit: cover;
+    }
+    .isometric-village {
+        margin-left: 2em;
+        margin-bottom: 8em;
+        width: 120%;
+    }
+    .dropdown-content {
+        min-width: 100%;
+        margin: 0.5em 0 0 -1em;
+    }
+    .dropdown-content a {
+        padding: 0.5em;
+        height: auto;
+    }
+    .corner {
+        position: absolute;
+        display: none;
+    }
+    .perpustext,
+    .ebooktext,
+    .umkmtext {
+        font-size: 0.7em;
+        /* Menyesuaikan ukuran teks */
+    }
+    .profilecipsmart {
+        grid-template-columns: 1fr;
+        text-align: center; /* Center text for smaller screens */
+        padding: 20px;
+        height: auto;
+    }
+    .logocipsmart {
+        margin: -533px -90px auto;
+        width: 180px;
+        height: auto;
+        position: absolute;
+    }
+    .titlecipsmart {
+        font-size: 1.3em;
+        text-align: center;
+        margin-top: 200px;
+    }
+    .tekscipsmart {
+        font-size: 0.7em;
+        text-align: center;
+        margin: 0;
+        padding: 3em;
+    }
+    .desc1 {
+        padding: 0;
+    }
+    .btn-detail {
+        width: 180px;
+        height: 50px;
+        margin: 20px auto; /* Center button and add margin */
+    }
+    .profilecipaku {
+        grid-template-columns: 1fr;
+        text-align: center; /* Center text for smaller screens */
+        padding: 20px;
+        height: auto;
+    }
+    .logocipaku {
+        margin: 0px auto; /* Center logo for smaller screens */
+        width: 150px;
+        height: auto;
+    }
+    .titlecipaku {
+        font-size: 1.3em;
+        text-align: center;
+    }
+    .tekscipaku {
+        font-size: 0.7em;
+        text-align: center;
+        margin: 0;
+        padding: 3em;
+    }
+    .desc2 {
+        padding: 0;
+    }
+    .detail-cipaku {
+        margin-left: 0;
+        margin-top: 0px; /* Add margin-top for spacing */
+    }
+    .documentation {
+        padding: 10px;
+    }
+    .titledocmitloc {
+        text-align: center;
+    }
+    .title-doc {
+        font-size: 1.3em;
+        text-align: center;
+    }
+    .carousel-container {
+        width: 100%;
+        height: auto;
+    }
+    .carousel {
+        justify-content: center; /* Center the images in the carousel */
+    }
+    .carousel img {
+        width: auto;
+        max-height: none;
+        transform: scale(1); /* Reset scaling */
+        opacity: 1; /* Make all images fully opaque */
+    }
+    .carousel img.middle {
+        transform: scale(1); /* Ensure the middle image has the correct scale */
+    }
+    .carousel img.small {
+        transform: scale(0.7); /* Scale down the smaller images */
+    }
+    .back, .next {
+        top: auto;
+        bottom: 10px;
+        transform: translateY(0);
+    }
+    .mitra {
+        padding: 10px;
+    }
+    .title-mit {
+        font-size: 1.3em;
+    }
+    .boxmit {
+        gap: 20px; /* Reduce gap for smaller screens */
+    }
+    .boxmit img {
+        max-width: 180px;
+    }
+    .maps iframe {
+        max-width: 80%;
+        margin: 0px 70px;
+    }
+    .linked div {
+        margin-bottom: 20px;
+    }
+    .callfot img {
+        width: 20px;
+    }
 }
 
+@media (max-width: 576px) {
+    html {
+        font-size: 12px;
+    }
+    .nav {
+        padding: 10px 7%;
+    }
+    .navigation a {
+        font-size: 0.875em;
+        /* Lebih kecil pada layar kecil */
+        margin: 0 5px;
+    }
+    .sidebar {
+        width: 30%;
+        margin-left: 1em;
+        margin-top: 1em;
+        min-height: 360px;
+    }
+    .sidebar a img {
+        height: 50%;
+        width: 70%;
+        object-fit: cover;
+    }
+    .corner {
+        position: absolute;
+        display: none;
+    }
+    .perpustext,
+    .ebooktext,
+    .umkmtext {
+        font-size: 0.7em;
+        /* Menyesuaikan ukuran teks */
+    }
+    .titlecipsmart {
+        font-size: 1.2em;
+    }
+    .tekscipsmart {
+        font-size: 0.65em;
+        padding: 3em;
+    }
+    .logocipsmart {
+        margin: -533px -90px auto;
+        width: 180px;
+        height: auto;
+        position: absolute;
+    }
+    .btn-detail {
+        width: 160px;
+        height: 50px;
+    }
+    .titlecipaku {
+        font-size: 1.2em;
+        text-align: center;
+    }
+    .tekscipaku {
+        font-size: 0.65em;
+        text-align: center;
+    }
+    .btn-detail {
+        width: 160px;
+        height: 35px;
+    }
+    .profilecipaku{
+        padding: 20px;
+        height: auto;
+    }
+    .documentation {
+        padding: 10px;
+    }
+    .titledocmitloc {
+        text-align: center;
+    }
+    .title-doc {
+        font-size: 1.1em;
+        text-align: center;
+    }
+    .carousel-container {
+        width: 100%;
+        height: auto;
+    }
+    .carousel {
+        justify-content: center; /* Center the images in the carousel */
+    }
+    .carousel img {
+        width: auto;
+        max-height: none;
+        transform: scale(1); /* Reset scaling */
+        opacity: 1; /* Make all images fully opaque */
+    }
+    .carousel img.middle {
+        transform: scale(1); /* Ensure the middle image has the correct scale */
+    }
+    .carousel img.small {
+        transform: scale(0.7); /* Scale down the smaller images */
+    }
+    .back, .next {
+        top: auto;
+        bottom: 10px;
+        transform: translateY(0);
+    }
+    .mitra {
+        padding: 10px;
+    }
+    .title-mit {
+        font-size: 1.1em;
+    }
+    .boxmit img {
+        max-width: 180px;
+    }
+    .linked .copy{
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .navigation a {
+        font-size: 0.8em;
+        margin: 0px 5px;
+    }
+    .sidebar {
+        width: 20%;
+        margin-left: 0em;
+        margin-top: 1em;
+        min-height: 345px;
+        border-radius: 2em;
+    }
+    .sidebar a img {
+        height: 50%;
+        width: 70%;
+        object-fit: cover;
+    }
+    .isometric-village {
+        margin-left: 1em;
+        margin-bottom: 12em;
+        width: 130%;
+    }
+    .perpustext,
+    .ebooktext,
+    .umkmtext {
+        font-size: 0.7em;
+        /* Menyesuaikan ukuran teks */
+    }
+    .corner {
+        position: absolute;
+        display: none;
+    }
+    .logocipsmart {
+        margin: -495px -90px auto;
+        width: 180px;
+        height: auto;
+        position: absolute;
+    }
+    .titlecipsmart {
+        font-size: 1.1em;
+    }
+    .tekscipsmart {
+        font-size: 0.6em;
+        padding: 3em;
+    }
+    .btn-detail {
+        width: 140px;
+        height: 50px;
+    }
+    .titlecipaku {
+        font-size: 1.1em;
+        text-align: center;
+    }
+    .tekscipaku {
+        font-size: 0.6em;
+        text-align: center;
+        margin-left: 0;
+        padding: 3em;
+    }
+    .btn-detail {
+        width: 140px;
+        height: 30px;
+    }
+    .profilecipaku{
+        padding: 20px;
+    }
+    .documentation {
+        padding: 10px;
+    }
+    .titledocmitloc {
+        text-align: center;
+    }
+    .title-doc {
+        font-size: 1em;
+        text-align: center;
+    }
+    .carousel-container {
+        width: 100%;
+        height: auto;
+    }
+    .carousel {
+        justify-content: center; /* Center the images in the carousel */
+    }
+    .carousel img {
+        width: auto;
+        max-height: none;
+        transform: scale(0.8); /* Reset scaling */
+        opacity: 1; /* Make all images fully opaque */
+    }
+    .carousel img.middle {
+        transform: scale(0.8); /* Ensure the middle image has the correct scale */
+    }
+    .carousel img.small {
+        transform: scale(0.5); /* Scale down the smaller images */
+    }
+    .back, .next {
+        top: auto;
+        bottom: 10px;
+        transform: translateY(0);
+    }
+    .mitra {
+        padding: 10px;
+    }
+    .title-mit {
+        font-size: 1em;
+    }
+    .boxmit img {
+        max-width: 170px;
+    }
+    .linked .copy{
+        font-size: 0.5em;
+    }
+}

@@ -1,3 +1,4 @@
+// BOX REKOMENDASI (BUKU, EBOOK, UMKM)
 document.addEventListener('DOMContentLoaded', function() {
     const frameContainer = document.querySelector('.frame-container');
     const frameCards = document.querySelectorAll('.frame-card');

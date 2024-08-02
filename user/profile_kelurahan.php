@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hubungi Kami</title>
-    <link rel="stylesheet" href="../css/contact-us.css">
-    <link rel="stylesheet" href="../css/popup-user.css">
+    <title>Profile Kelurahan</title>
+    <link rel="stylesheet" href="../css/profile_kelurahan.css">
     <link rel="icon" href="../img/favicon/android-chrome-192x192.png" type="image/png">
     <!-- Google Fonts link for Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -85,23 +84,19 @@
 <body>
     <div class="bg-base-body">
 
-        <!-- Logout Confirmation Popup -->
-        <div class="cd-popup" role="alert" id="logoutPopup">
-            <div class="cd-popup-container">
-                <p>Anda yakin ingin Keluar?</p>
-                <ul class="cd-buttons">
-                    <li><a href="#" class="cd-popup-yes" id="confirmLogoutBtn">Ya</a></li>
-                    <li><a href="#" class="cd-popup-close" id="cancelLogoutBtn">Tidak</a></li>
-                </ul>
-            </div>
-        </div>
-
         <header class="head-homepage">
 
             <!-- NAVBAR -->
             <div class="nav">
                 <nav class="navbar">
-
+                    <div class="logo-navbar">
+                        <a href="../homepage.php">
+                            <img src="../img/contact-us/logo-navbar.png" alt="">
+                        </a>
+                        <h1>Cipsmart ada dimana?</h1>
+                        <p>KELURAHAN CIPAKU, KOTA BOGOR</p>
+                    </div>
+    
                     <div class="navigation">
                         <a href="../homepage.php">
                             <p class="home">Beranda</p>
@@ -109,98 +104,109 @@
                         <a href="./aboutppk.php">
                             <p class="ppk">PPK Ormawa</p>
                         </a>
-                        <a href="./profile_kelurahan.php">
+                        <a href="#">
                             <p class="cipaku">Kelurahan Cipaku</p>
                         </a>
                         <a href="./contact-us.php">
                             <p class="contact">Hubungi Kami</p>
                         </a>
-                    </div>
-                    
-                    <div class="login user-dropdown">
-                        <?php if (!isset($_SESSION['username'])): ?>
-                            <a href="login.php" class="login-btn" id="loginBtn">
-                                <p style="color: #fff">
-                                    Login    
-                                </p>
-                            </a>
-                        <?php else: ?>
-                            <a href="#" class="login-btn username-btn" id="loginBtn"><?php echo $_SESSION['username']; ?></a>
-                            <div class="dropdown-content" id="dropdownContent">
-                                <a href="../admin/dashboard.php">Dashboard</a>
-                                <!-- The logout link will be added dynamically via JavaScript -->
-                            </div>
-                        <?php endif; ?>
-                    </div>
 
+                        <div class="login user-dropdown">
+                            <?php if (!isset($_SESSION['username'])): ?>
+                                <a href="../login.php" class="login-btn" id="loginBtn">
+                                    <p style="color: #fff">
+                                        Login    
+                                    </p>
+                                </a>
+                            <?php else: ?>
+                                <a href="#" class="login-btn username-btn" id="loginBtn"><?php echo $_SESSION['username']; ?></a>
+                                <div class="dropdown-content" id="dropdownContent">
+                                    <a href="../admin/dashboard.php">Dashboard</a>
+                                    <!-- The logout link will be added dynamically via JavaScript -->
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
                 </nav>
             </div>
         </header>
 
-        <div class="bg-body-item">
 
-            <div class="sidebar">
-                <div class="front-sidebar">
-                    <div class="perpus">
-                        <a href="../user/catalog-book.php">
-                            <img src="../img/catalog/lib-btn.png" alt="">
-                        </a>
-                        <p class="perpustext">
-                            Perpustakaan
-                        </p>
+        <div class="content">
+            <div class="container">
+                <div class="container-1">
+                    <div class="items">
+                        <h1>Luas Wilayah</h1>
+                        <p>± 174 hektar</p>
                     </div>
-    
-                    <div class="ebook">
-                        <a href="../user/catalog-ebook.php">
-                            <img src="../img/catalog/ebook-btn.png" alt="">
-                        </a>
-                        <p class="ebooktext">
-                            E-Book
-                        </p>
+                    <div class="items">
+                        <h1>Jumlah Penduduk</h1>
+                        <p>12.310</p>
                     </div>
-    
-                    <div class="umkm">
-                        <a href="../user/catalog-umkm.php">
-                            <img src="../img/catalog/umkm-btn.png" alt="">
-                        </a>
-                        <p class="umkmtext">
-                            UMKM
-                        </p>
+                    <div class="items">
+                        <h1>Anak-anak (0-12 th)</h1>
+                        <p>3.386</p>
+                    </div>
+                    <div class="items">
+                        <h1>Tamat SD-SMP</h1>
+                        <p>6.139</p>
+                    </div>
+                </div>
+                <div class="container-2">
+                    <div class="items">
+                        <h1>Jumlah RW</h1>
+                        <p>12</p>
+                    </div>
+                    <div class="items">
+                        <h1>Laki-laki</h1>
+                        <p>6.181</p>
+                    </div>
+                    <div class="items">
+                        <h1>Remaja (13-19 th)</h1>
+                        <p>1.539</p>
+                    </div>
+                    <div class="items">
+                        <h1>Tamat SMA</h1>
+                        <p>5.660</p>
+                    </div>
+                </div>
+                <div class="container-3">
+                    <div class="items">
+                        <h1>Jumlah RT</h1>
+                        <p>29</p>
+                    </div>
+                    <div class="items">
+                        <h1>Perempuan</h1>
+                        <p>6.129</p>
+                    </div>
+                    <div class="items">
+                        <h1>Dewasa (>20 th)</h1>
+                        <p> 7.382</p>
+                    </div>
+                    <div class="items">
+                        <h1>Tamat Sarjana</h1>
+                        <p>200</p>
                     </div>
                 </div>
             </div>
-            
-            <div class="content">
-                <p class="title-contact">
-                    HUBUNGI KAMI
-                </p>
-
-                <P class="teks-contact">
-                    Sobat bisa menghubungi kami melalui
-                </P>
-
-                <div class="whatsapp">
-                    <a href="https://wa.me/6285732185809" target="_blank">
-                        <img src="../img/contact-us/whatsapp.png" alt="" class="detail-gambar">
-                    </a>
-                    <p class="teks-whatsapp">Whatsapp <br> Melayani Anda pada 08.00 - 17.00 WIB</p>
-                    <p class="teks-whatsapp-1">Hubungi Kami via Whatsapp</p>
-                </div>
-                <div class="instagram">
-                    <a href="https://www.instagram.com/cipsmart.ppkormawa2024" target="_blank">
-                        <img src="../img/contact-us/instagram.png" alt="" class="detail-gambar">
-                    </a>
-                    <p class="teks-instagram">Instagram <br> Melayani Anda pada 08.00 - 17.00 WIB</p>
-                    <p class="teks-instagram-1">Hubungi Kami via DM Instagram</p>
-                </div>
-                <div class="email">
-                    <a href="mailto:cipsmartppkormawablmfeb@gmail.com" target="_blank">
-                        <img src="../img/contact-us/email.png" alt="" class="detail-gambar">
-                    </a>
-                    <p class="teks-email">Email <br> Melayani Anda pada 08.00 - 17.00 WIB</p>
-                    <p class="teks-email-1">cipsmartppkormawablmfeb@gmail.com</p>
-                </div>
-
+            <div class="maps">
+                <img src="../img/profil-kelurahan/maps.png" alt="">
+            </div>
+            <div class="contact">
+                <h1>Hubungi Kelurahan</h1>
+                <img src="../img/profil-kelurahan/instagram.png" alt="">
+                <img src="../img/profil-kelurahan/whatsapp.png" alt="">
+                <img src="../img/profil-kelurahan/email.png" alt="">
+            </div>
+            <div class="profile-desc">
+                <p>Kelurahan Cipaku merupakan salah satu kelurahan yang terletak di Kecamatan Bogor Selatan. Mayoritas penduduk di Kelurahan Cipaku bekerja sebagai
+                    buruh, pedagang, pengrajin industri rumah tangga, pengusaha kecil dan menengah, pegawai swasta
+                    dan lain-lain. Karena berada di wilayah Kota Bogor. Kelurahan Cipaku sebagian besar diperuntukkan
+                    untuk Pemakaman/Kuburan Thiong Hoa/China.
+                    Masih
+                    banyak kekurangan yang dimiliki oleh kelurahan ini, masalah terbesarnya yaitu rendahnya kualitas SDM,
+                    minat literasi yang rendah, dan tingginya angka putus sekolah.
+                    </p>
             </div>
         </div>
 
@@ -311,6 +317,6 @@
             </div>
         
         </div>
-            
+    
     </div>
 </body>
