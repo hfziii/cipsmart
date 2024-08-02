@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 
+/* CSS Utama */
 * {
     margin: 0;
     padding: 0;
@@ -69,10 +70,15 @@ body::-webkit-scrollbar-thumb {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 15px;
     color: white;
     text-decoration: none;
     font-size: 12px;
+}
+
+.sidebar ul li a img {
+    width: 20px;
+    margin-right: 10px;
 }
 
 .sidebar ul li a i {
@@ -86,6 +92,7 @@ body::-webkit-scrollbar-thumb {
     border-radius: 50px;
 }
 
+/* Konten Utama */
 .main-content {
     flex-grow: 1;
     padding: 20px;
@@ -104,6 +111,7 @@ body::-webkit-scrollbar-thumb {
 
 .header h1 {
     font-size: 24px;
+    margin: 0; /* Menghapus margin default */
 }
 
 .header-icons i {
@@ -119,47 +127,101 @@ body::-webkit-scrollbar-thumb {
     color: white;
 }
 
-.profile-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 20px;
+/* Form Title Styling */
+.form-title {
+    text-align: center; /* Menyelaraskan teks ke tengah */
+    font-size: 24px; /* Ukuran font judul */
+    color: white; /* Warna teks */
+    margin-bottom: 20px; /* Menambahkan jarak di bawah judul */
+    font-weight: bold; /* Menebalkan teks */
 }
 
+/* Profil Container */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 10px; /* Menyesuaikan posisi box deskripsi */
+}
+
+/* Profile Stats */
 .profile-stats {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    flex: 1;
+    gap: 20px; /* Jarak antar box item */
+    width: 100%;
+    margin-top: 20px; /* Tambahkan margin-top untuk menurunkan posisi box item */
 }
 
+/* Stat Item Styling */
 .stat-item {
-    width: calc(33.333% - 20px);
+    width: calc(25% - 20px); /* Lebar lebih kecil agar lebih ramping */
+    min-height: 80px; /* Menambahkan sedikit panjang ke bawah */
     background-color: #63AFBD;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 8px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center; /* Menyelaraskan item ke tengah secara horizontal */
     color: white;
-    text-align: center;
+    text-align: center; /* Menyelaraskan teks ke tengah */
+    position: relative;
+}
+
+/* Stat Title Styling */
+.stat-title {
+    font-size: 12px;
+    color: white;
+    font-weight: 600;
+    position: absolute;
+    top: -20px; /* Adjust this value based on the spacing needed */
+    left: 50%;
+    transform: translateX(-50%);
+    background: none; /* Menghapus latar belakang */
+    padding: 0; /* Menghapus padding */
+    box-shadow: none; /* Menghapus bayangan */
+}
+
+/* Stat Value Styling */
+.stat-value {
+    font-size: 16px; /* Ukuran font angka yang lebih besar */
+    font-weight: bold;
+    margin-top: 5px; /* Jarak antara title dan value */
+    text-align: center; /* Menyelaraskan teks ke tengah */
 }
 
 .profile-description {
     background-color: rgba(99, 175, 189, 0.95);
-    padding: 20px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 8px;
     color: white;
-    max-width: 45%;
-    flex: 1;
+    max-width: calc(100% - 40px); /* Lebar maksimum dengan margin kiri */
+    margin-top: 20px;
+    margin-left: 10px; /* Margin kiri untuk menyesuaikan dengan box item */
+    font-size: 14px;
+    box-sizing: border-box; /* Pastikan padding termasuk dalam ukuran total */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .stat-item {
+        width: calc(20% - 10px); /* Lebar menjadi lebih besar pada perangkat kecil */
+        min-height: 60px; /* Menetapkan tinggi minimum agar box tidak terlalu kecil */
+    }
+
+    .profile-description {
+        max-width: calc(100% - 20px); /* Lebar maksimum untuk perangkat kecil */
+        padding: 10px;
+        font-size: 12px;
+        margin-left: 10px; /* Margin kiri pada perangkat kecil */
+    }
 }
 
 .form-buttons {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 10px;
+    margin-top: 20px;
 }
 
 .back-button, .save-button {
@@ -202,10 +264,9 @@ body::-webkit-scrollbar-thumb {
         width: auto;
     }
 
-    .sidebar ul li a {
-        padding: 10px;
-        font-size: 12px;
-        text-align: left;
+    .sidebar ul li a i {
+        margin-right: 10px;
+        font-size: 14px;
     }
 
     .main-content {

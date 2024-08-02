@@ -32,51 +32,51 @@ body::-webkit-scrollbar-thumb {
 
 /* SIDEBAR */
 .sidebar {
-    width: 250px;
+    width: 250px; /* Adjusted width */
     background-color: rgba(99, 175, 189, 0.95);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 20px 0;
     border-top-right-radius: 50px;
+    overflow-y: auto;
+    height: 100vh;
 }
 
 .sidebar .logo img {
-    width: 80px;
-    margin-bottom: 5px;
+    width: 70px; /* Slightly smaller logo size */
+    margin-bottom: 15px; /* Adjusted margin */
 }
 
 .sidebar ul {
     list-style: none;
     width: 100%;
-    padding-left: 0;
+    padding: 0;
 }
 
 .sidebar ul li {
     width: 100%;
-    text-align: center;
+    text-align: left;
 }
 
 .sidebar ul li a {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 20px; /* Reduced padding */
     color: white;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 14px; /* Reduced font size */
 }
 
-.sidebar ul li a i {
+.sidebar ul li a img {
     margin-right: 10px;
-    font-size: 18px;
+    width: 20px; /* Reduced icon size */
 }
 
 .sidebar ul li a:hover, .sidebar ul li.active a {
     background-color: white;
     color: #63AFBD;
-    border-radius: 50px;
+    border-radius: 25px;
 }
 
 .main-content {

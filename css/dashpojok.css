@@ -108,70 +108,55 @@ body::-webkit-scrollbar-thumb {
 }
 
 .content {
+    background-color: white;
+    border-radius: 10px;
     padding: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.form-title {
-    text-align: center;
-    color: white;
+.content h2 {
     margin-bottom: 20px;
-}
-
-.admin-form {
-       display: flex;
-       flex-wrap: wrap;
-       justify-content: space-between;
-       padding: 20px;
-       /* background-color: rgba(255, 255, 255, 1); */ /* Hapus atau comment out baris ini */
-       border-radius: 10px;
-       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-   }
-   
-
-.form-row {
-    width: 48%;
-    margin-bottom: 20px;
-}
-
-.form-row label {
-    display: block;
-    margin-bottom: 5px;
     color: #63AFBD;
-    text-align: left;
+    display: inline-block;
 }
 
-.form-row input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #63AFBD;
-    border-radius: 5px;
-    font-size: 14px;
+.add-data-btn {
+    max-width: 35px;
 }
 
-.form-buttons {
+.titletable {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+table {
     width: 100%;
+    border-collapse: collapse;
 }
 
-.back-button, .save-button {
-    width: 100px;
+table th, table td {
+    border: 1px solid #63AFBD;
     padding: 10px;
-    margin: 0 5px;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
+    text-align: center;
+}
+
+table th {
+    background-color: #63AFBD;
+    color: white;
+}
+
+table td i {
     cursor: pointer;
+    margin: 0 5px;
 }
 
-.back-button {
-    background-color: #FF4D4D;
-    color: white;
-}
-
-.save-button {
-    background-color: #4CAF50;
-    color: white;
+/* Admin Table Specific Styling */
+table th, table td {
+    border: 1px solid #63AFBD !important;
+    padding: 10px !important; /* Adjusted padding */
+    text-align: center !important;
+    font-size: 12px !important; /* Slightly reduced font size */
 }
 
 /* Responsive styles */
@@ -198,12 +183,12 @@ body::-webkit-scrollbar-thumb {
 
     .sidebar ul li a {
         padding: 10px;
-        font-size: 12px;
+        font-size: 12px; /* Reduced font size for responsiveness */
         text-align: left;
     }
 
     .main-content {
-        margin-top: 200px;
+        margin-top: 200px; /* Adjust if needed */
         padding: 10px;
     }
 
@@ -219,16 +204,24 @@ body::-webkit-scrollbar-thumb {
         padding: 10px;
     }
 
-    .admin-form {
-        flex-direction: column;
+    table th, table td {
+        padding: 5px;
+        font-size: 12px;
     }
+}
 
-    .form-row {
-        width: 100%;
-    }
+/* DROPDOWN */
+.corner-education {
+    margin-bottom: 20px;
+}
 
-    .back-button, .save-button {
-        width: 100%;
-        margin: 5px 0;
-    }
+.title-ce {
+    margin-bottom: 20px;
+    margin-right: 10px;
+    color: #63AFBD;
+}
+
+.drop-ce {
+    color: #63AFBD;
+    border-color: #63AFBD;
 }

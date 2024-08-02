@@ -1,3 +1,4 @@
+/* General Styles */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
 
 * {
@@ -7,10 +8,13 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+html, body {
+    overflow: hidden;
+}
+
 body {
     display: flex;
     height: 100vh;
-    overflow: hidden;
     background: url('../img/dashboard/bg-dashboard.png') no-repeat center center/cover;
     position: relative;
 }
@@ -32,7 +36,7 @@ body::-webkit-scrollbar-thumb {
 
 /* SIDEBAR */
 .sidebar {
-    width: 250px;
+    width: 150px; /* Perkecil lebar sidebar */
     background-color: rgba(99, 175, 189, 0.95);
     display: flex;
     flex-direction: column;
@@ -69,15 +73,20 @@ body::-webkit-scrollbar-thumb {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 15px;
     color: white;
     text-decoration: none;
     font-size: 12px;
 }
 
+.sidebar ul li a img {
+    width: 20px; /* Perkecil ukuran ikon */
+    margin-right: 8px; /* Sesuaikan margin kanan jika diperlukan */
+}
+
 .sidebar ul li a i {
-    margin-right: 10px;
-    font-size: 18px;
+    margin-right: 8px; /* Sesuaikan margin kanan jika diperlukan */
+    font-size: 18px; /* Perkecil ukuran ikon */
 }
 
 .sidebar ul li a:hover, .sidebar ul li.active a {
@@ -89,21 +98,34 @@ body::-webkit-scrollbar-thumb {
 .main-content {
     flex-grow: 1;
     padding: 20px;
-    overflow-y: auto;
     position: relative;
     z-index: 1;
 }
 
+/* Header and line styles */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: white;
-    margin-bottom: 20px;
+    color: #63AFBD;
+    margin-bottom: 10px;
 }
 
-.header h1 {
+.header-text {
+    display: flex;
+    align-items: center;
+    width: 100%; 
+}
+
+.header-text h1 {
     font-size: 24px;
+    margin-right: 10px;
+    white-space: nowrap; 
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
 }
 
 .header-icons i {
@@ -114,57 +136,99 @@ body::-webkit-scrollbar-thumb {
     color: #1CB1D6;
 }
 
+.header-line-horizontal {
+    width: 100%; /* Garis mengambil lebar penuh */
+    height: 3px; /* Sesuaikan tinggi garis */
+    background-color: #63AFBD; /* Warna garis */
+    margin-top: 5px; /* Jarak dari elemen header */
+}
+
 .content {
     padding: 20px;
     color: white;
-    text-align: center; /* Center the content */
+    text-align: center;
 }
 
 .profile-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px; /* Kurangi margin bawah */
+    padding: 0; /* Pastikan padding tidak menambah jarak */
 }
 
 .profile-stats {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 100%;
-    margin-bottom: 20px;
-}
-
-.stat-item {
-    width: 45%;
-    margin: 10px;
-    background-color: #63AFBD;
-    padding: 20px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;  /* Center the text horizontally */
-    align-items: center;      /* Center the text vertically */
-    color: white;
-    text-align: center;       /* Center the text within the box */
+    display: grid;
+    grid-template-columns: repeat(2, 4fr); /* Dua kolom */
+    gap: 8px; /* Kurangi jarak antar item */
 }
 
 .profile-map {
-    max-width: 80%; /* Make the map image larger */
-    margin: 0 auto; /* Center the map image */
+    display: block; 
+    width: 80%; /* Atur lebar sesuai kebutuhan */
+    max-width: 600px; /* Lebar maksimal */
+    height: auto; /* Sesuaikan tinggi dengan aspek rasio gambar */
+    margin: 20px auto 0; /* Kurangi margin atas, pusatkan secara horizontal */
 }
 
-.profile-map img {
-    width: 100%;
+.stat-item {
+    height: auto; /* Biarkan tinggi otomatis sesuai konten */
+    background-color: #63AFBD;
+    padding: 10px;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column; /* Atur arah konten menjadi kolom */
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    font-size: 0.8rem;
+    max-width: 150px; /* Batasi lebar maksimal */
+}
+
+.stat-title {
+    display: block;
+    font-size: 0.9rem; /* Ukuran font untuk judul */
+    margin-bottom: 5px; /* Jarak bawah untuk pemisah */
+}
+
+.stat-value {
+    font-size: 1.2rem; /* Ukuran font untuk nilai */
+}
+
+.stat-value strong {
+    font-weight: 700; /* Tebalkan angka */
+}
+
+.stat-item:nth-child(2) {
+    margin-left: 1px; /* Geser item kedua sedikit ke kanan */
 }
 
 .profile-description {
     background-color: rgba(99, 175, 189, 0.95);
-    padding: 20px;
+    padding: 10px; /* Kurangi padding */
     border-radius: 10px;
     color: white;
-    max-width: 80%;           /* Set maximum width for description box */
-    margin: 20px auto;        /* Center the description box */
+    width: 750px; /* Lebar maksimal */
+    margin-top: 5px; /* Kurangi margin atas */
+    text-align: justify;
+    position: absolute;
+    left: 75%; /* Geser lebih ke kanan */
+    bottom: 23px; /* Tempatkan tepat di bawah peta */
+    transform: translateX(-70%); /* Pusatkan secara horizontal */
+}
+
+/* Responsif untuk layar lebih kecil dari 768px */
+@media (max-width: 768px) {
+    .profile-description {
+        max-width: 100%; /* Menyesuaikan lebar dengan ukuran layar */
+        margin-top: 10px; /* Jarak atas dari elemen sebelumnya */
+        padding: 10px; /* Menyesuaikan padding jika diperlukan */
+        position: static; /* Posisi menjadi statis */
+        transform: none; /* Hilangkan transformasi */
+        bottom: auto; /* Hilangkan posisi bawah */
+        left: auto; /* Hilangkan posisi kiri */
+    }
 }
 
 /* Responsive styles */
@@ -196,7 +260,7 @@ body::-webkit-scrollbar-thumb {
     }
 
     .main-content {
-        margin-top: 200px;
+        margin-top: 150px; /* Kurangi margin atas */
         padding: 10px;
     }
 
@@ -219,7 +283,7 @@ body::-webkit-scrollbar-thumb {
 
     .profile-stats, .profile-map, .profile-description {
         max-width: 100%;
-        margin-bottom: 20px;
+        margin-bottom: 10px; /* Kurangi margin bawah */
     }
 
     .stat-item {

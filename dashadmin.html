@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-Cipsmart</title>
-    <link rel="stylesheet" href="./css/dashcorner.css">
+    <link rel="stylesheet" href="./css/dashadmin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="img/favicon/android-chrome-192x192.png" type="image/png">
 </head>
@@ -14,17 +14,17 @@
             <img src="./img/dashboard/logo-cipsmart-profile.png" alt="Logo">
         </div>
         <ul>
-            <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active"><a href="#"><i class="fa fa-user"></i> Admin</a></li>
-            <li><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
-            <li><a href="./dashcorner.html"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li><a href="./dashbook.html"><i class="fa fa-book"></i> Buku</a></li>
-            <li><a href="./dashborrow.html"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
-            <li><a href="#"><i class="fa fa-book"></i> E-Book</a></li>
-            <li><a href="#"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>
-            <li><a href="#"><i class="fa fa-users"></i> Penjual UMKM</a></li>
-            <li><a href="./dashuser.html"><i class="fa fa-users"></i> Pengguna</a></li>
-            <li><a href="./logout.php"><i class="fa fa-sign-out"></i> Keluar</a></li>
+            <li><a href="#"><img src="./img/dashboard/icon-1.png" alt="Dashboard Icon"> Dashboard</a></li>
+            <li class="active"><a href="#"><img src="./img/dashboard/icon-2.png" alt="Admin Icon"> Admin</a></li>
+            <li><a href="#"><img src="./img/dashboard/icon-3.png" alt="Profile Icon"> Profile Kelurahan</a></li>
+            <li><a href="./dashcorner.html"><img src="./img/dashboard/icon-4.png" alt="Pojok Baca Icon"> Pojok Baca</a></li>
+            <li><a href="./dashbook.html"><img src="./img/dashboard/icon-5.png" alt="Buku Icon"> Buku</a></li>
+            <li><a href="./dashborrow.html"><img src="./img/dashboard/icon-6.png" alt="Peminjaman Icon"> Peminjaman Buku</a></li>
+            <li><a href="#"><img src="./img/dashboard/icon-7.png" alt="E-Book Icon"> E-Book</a></li>
+            <li><a href="#"><img src="./img/dashboard/icon-8.png" alt="Produk UMKM Icon"> Produk UMKM</a></li>
+            <li><a href="#"><img src="./img/dashboard/icon-9.png" alt="Penjual UMKM Icon"> Penjual UMKM</a></li>
+            <li><a href="./dashuser.html"><img src="./img/dashboard/icon-10.png" alt="Pengguna Icon"> Pengguna</a></li>
+            <li><a href="./logout.php"><img src="./img/dashboard/icon-11.png" alt="Keluar Icon"> Keluar</a></li>
         </ul>
     </div>
     <div class="main-content">
@@ -33,20 +33,20 @@
             <div class="header-icons">
                 <i class="fa fa-search"></i>
                 <i class="fa fa-bell"></i>
-                <i class="fa fa-cog"></i>
-                <i class="fa fa-user"></i>
+                <i class="fa fa-home"></i>
             </div>
         </div>
         <div class="content">
-            <h2>Pojok Baca</h2>
-            <table id="pojokBacaTable">
+            <h2>Admin</h2>
+            <table id="adminTable">
                 <thead>
                     <tr>
-                        <th>ID Pojok Baca</th>
-                        <th>Nama Pojok Baca</th>
-                        <th>Total Buku Semua</th>
-                        <th>Total Buku Pinjaman</th>
-                        <th>Total Buku Tersedia</th>
+                        <th>ID</th>
+                        <th>Nama</th>
+                        <th>NO Hp</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Hak Akses</th>
                         <th>Tindakan</th>
                     </tr>
                 </thead>
@@ -54,10 +54,11 @@
                     <!-- Example row -->
                     <tr>
                         <td>1</td>
-                        <td>Example Name 1</td>
-                        <td>100</td>
-                        <td>30</td>
-                        <td>70</td>
+                        <td>Admin Name 1</td>
+                        <td>08123456789</td>
+                        <td>admin1</td>
+                        <td>password1</td>
+                        <td>Super Admin</td>
                         <td>
                             <i class="fa fa-pencil edit-btn"></i>
                             <i class="fa fa-trash delete-btn"></i>
@@ -65,10 +66,11 @@
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>Example Name 2</td>
-                        <td>150</td>
-                        <td>50</td>
-                        <td>100</td>
+                        <td>Admin Name 2</td>
+                        <td>08123456780</td>
+                        <td>admin2</td>
+                        <td>password2</td>
+                        <td>Admin</td>
                         <td>
                             <i class="fa fa-pencil edit-btn"></i>
                             <i class="fa fa-trash delete-btn"></i>
@@ -76,10 +78,11 @@
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>Example Name 3</td>
-                        <td>200</td>
-                        <td>60</td>
-                        <td>140</td>
+                        <td>Admin Name 3</td>
+                        <td>08123456781</td>
+                        <td>admin3</td>
+                        <td>password3</td>
+                        <td>Editor</td>
                         <td>
                             <i class="fa fa-pencil edit-btn"></i>
                             <i class="fa fa-trash delete-btn"></i>
@@ -87,10 +90,11 @@
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td>Example Name 4</td>
-                        <td>250</td>
-                        <td>80</td>
-                        <td>170</td>
+                        <td>Admin Name 4</td>
+                        <td>08123456782</td>
+                        <td>admin4</td>
+                        <td>password4</td>
+                        <td>User</td>
                         <td>
                             <i class="fa fa-pencil edit-btn"></i>
                             <i class="fa fa-trash delete-btn"></i>

@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
-
 * {
     margin: 0;
     padding: 0;
@@ -37,40 +35,47 @@ body::-webkit-scrollbar-thumb {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 0;
     border-top-right-radius: 50px;
+    height: 100%; /* Ensure the sidebar takes full height */
+    overflow-y: auto; /* Enable scrolling if content overflows */
 }
 
 .sidebar .logo img {
     width: 80px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .sidebar ul {
     list-style: none;
     width: 100%;
     padding-left: 0;
+    margin: 0;
 }
 
 .sidebar ul li {
     width: 100%;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    padding: 5px 0; /* Reduced padding */
+    box-sizing: border-box;
 }
 
 .sidebar ul li a {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    padding: 10px 20px;
+    padding: 8px 16px; /* Adjust padding */
     color: white;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 14px;
+    width: 100%;
 }
 
-.sidebar ul li a i {
+.sidebar ul li a img {
+    width: 24px;
+    height: 24px;
     margin-right: 10px;
-    font-size: 18px;
+    object-fit: contain;
 }
 
 .sidebar ul li a:hover, .sidebar ul li.active a {
@@ -124,39 +129,34 @@ body::-webkit-scrollbar-thumb {
     max-width: 35px;
 }
 
-.titletable{
+.titletable {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+/* Tabel */
 table {
-    width: 100%;
-    border-collapse: collapse;
+    width: 80%; /* Mengatur lebar tabel agar lebih kecil dari lebar kontainer */
+    max-width: 100%; /* Pastikan tabel tidak melampaui lebar kontainer */
+    margin: 0 auto; /* Tengah tabel secara horizontal */
+    border-collapse: collapse; /* Menghilangkan jarak antara border sel */
 }
 
+/* Judul dan sel tabel */
 table th, table td {
-    border: 1px solid #63AFBD;
-    padding: 10px;
-    text-align: center;
+    border: 1px solid #63AFBD; /* Border untuk sel tabel */
+    padding: 15px; /* Padding dalam sel tabel */
+    text-align: center; /* Menyelaraskan teks ke tengah */
+    font-size: 14px; /* Ukuran font untuk sel tabel */
 }
 
+/* Judul tabel */
 table th {
-    background-color: #63AFBD;
-    color: white;
+    background-color: #63AFBD; /* Warna latar belakang untuk header tabel */
+    color: white; /* Warna teks untuk header tabel */
 }
 
-table td i {
-    cursor: pointer;
-    margin: 0 5px;
-}
-
-table th, table td {
-    border: 1px solid #63AFBD !important;
-    padding: 2px !important;
-    text-align: center !important;
-    font-size: 10px !important;
-}
 
 /* Responsive styles */
 @media (max-width: 768px) {
