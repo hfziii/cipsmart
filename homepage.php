@@ -251,7 +251,7 @@
                     perempuan 6.129 jiwa) Kelurahan Cipaku di Kecamatan Bogor Selatan, Kota Bogor.
                 </p>
                 
-                <a href="#">
+                <a href="./user/profile_kelurahan.php">
                     <button type="button" class="btn-detail detail-cipaku">
                         Selengkapnya
                     </button>
@@ -265,13 +265,17 @@
                 <p class="title-doc">
                     DOKUMENTASI <br> CIPSMART
                 </p>
-            </div>
-            <div class="pic-doc">
-                <img src="./img/homepage/doc-1.png" alt="" class="pic-doc-1">
-                <img src="./img/homepage/btn-next-left.png" alt="" class="back">
-                <img src="./img/homepage/doc-2.png" alt="" class="pic-doc-2">
-                <img src="./img/homepage/btn-next-right.png" alt="" class="next">
-                <img src="./img/homepage/doc-3.png" alt="" class="pic-doc-3">
+            </div>                      
+            <div class="carousel-container">
+                <img src="./img/homepage/btn-next-left.png" alt="Previous" class="back">
+                <div class="carousel">
+                    <img src="./img/homepage/pic-5.png" alt="" class="small">
+                    <img src="./img/homepage/pic-1.png" alt="" class="middle">
+                    <img src="./img/homepage/pic-2.png" alt="" class="small">
+                    <img src="./img/homepage/pic-3.png" alt="" class="small">
+                    <img src="./img/homepage/pic-6.png" alt="" class="small">
+                </div>
+                <img src="./img/homepage/btn-next-right.png" alt="Next" class="next">
             </div>
         </div>
 
@@ -412,6 +416,46 @@
         </div>
 
     </div>
+
+    <script>
+    let currentIndex = 2; // Start with the middle image
+    const images = document.querySelectorAll('.carousel img');
+    const totalImages = images.length;
+    const visibleImages = 5; // The number of images to keep in the carousel view
+
+    function updateCarousel() {
+        images.forEach((img, index) => {
+            img.classList.remove('middle', 'small');
+            if (index === currentIndex) {
+                img.classList.add('middle');
+            } else {
+                img.classList.add('small');
+            }
+        });
+
+        // Update the transform to shift the images left or right
+        const shiftPercentage = (100 / visibleImages) * (2 - currentIndex);
+        document.querySelector('.carousel').style.transform = `translateX(${shiftPercentage}%)`;
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalImages;
+        updateCarousel();
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+        updateCarousel();
+    }
+
+    document.querySelector('.back').addEventListener('click', prevSlide);
+    document.querySelector('.next').addEventListener('click', nextSlide);
+
+    // Automatically move to the next slide every 3 seconds
+    setInterval(nextSlide, 3000);
+
+    updateCarousel();
+    </script>
 
 </body>
 </html>
