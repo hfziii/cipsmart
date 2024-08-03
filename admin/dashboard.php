@@ -99,6 +99,11 @@
                 <p>Total UMKM yang Tersedia: 50</p>
                 <p>Total Produk UMKM: 200</p>
             </div>
+            <div class="widget-5">
+                <h2 class="atasan-5">UMKM</h2>
+                <p>Total UMKM yang Tersedia: 50</p>
+                <p>Total Produk UMKM: 200</p>
+            </div>
         </div>
     </div>
 

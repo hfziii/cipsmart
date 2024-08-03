@@ -17,18 +17,8 @@ body {
 /* SIDEBAR */
 .sidebar {
     width: 250px;
-<<<<<<< HEAD
     height: 800px;
     background-color: #63AFBD;
-=======
-    background-color: rgba(99, 175, 189, 0.95);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 10px;
-    /* Reduce padding to move items up */
-    padding-bottom: 10px;
->>>>>>> 975fe77186c03dc7f0cc1593692028e51bc52fd5
     border-top-right-radius: 50px;
 }
 
