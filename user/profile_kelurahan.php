@@ -133,81 +133,94 @@
 
 
         <div class="content">
+
+            <?php
+                include("koneksi.php");
+
+                $query = mysqli_query($connection, "SELECT * FROM profile_kelurahan");
+                while ($data = mysqli_fetch_array ($query)) {
+            ?>
+
             <div class="container">
+
                 <div class="container-1">
                     <div class="items">
                         <h1>Luas Wilayah</h1>
-                        <p>± 174 hektar</p>
+                        <p><?php echo $data['luas_wilayah']; ?></p>
                     </div>
                     <div class="items">
                         <h1>Jumlah Penduduk</h1>
-                        <p>12.310</p>
+                        <p><?php echo $data['jumlah_penduduk']; ?></p>
                     </div>
                     <div class="items">
                         <h1>Anak-anak (0-12 th)</h1>
-                        <p>3.386</p>
+                        <p><?php echo $data['anak_anak']; ?></p>
                     </div>
                     <div class="items">
                         <h1>Tamat SD-SMP</h1>
-                        <p>6.139</p>
+                        <p><?php echo $data['tamat_sd_smp']; ?></p>
                     </div>
                 </div>
+
                 <div class="container-2">
                     <div class="items">
                         <h1>Jumlah RW</h1>
-                        <p>12</p>
+                        <p><?php echo $data['jumlah_rw']; ?></p>
                     </div>
                     <div class="items">
                         <h1>Laki-laki</h1>
-                        <p>6.181</p>
+                        <p><?php echo $data['laki_laki']; ?></p>
                     </div>
                     <div class="items">
                         <h1>Remaja (13-19 th)</h1>
-                        <p>1.539</p>
+                        <p><?php echo $data['remaja']; ?></p>
                     </div>
                     <div class="items">
                         <h1>Tamat SMA</h1>
-                        <p>5.660</p>
+                        <p><?php echo $data['tamat_sma']; ?></p>
                     </div>
                 </div>
+
                 <div class="container-3">
                     <div class="items">
                         <h1>Jumlah RT</h1>
-                        <p>29</p>
+                        <p><?php echo $data['jumlah_rt']; ?></p>
                     </div>
                     <div class="items">
                         <h1>Perempuan</h1>
-                        <p>6.129</p>
+                        <p><?php echo $data['perempuan']; ?></p>
                     </div>
                     <div class="items">
                         <h1>Dewasa (>20 th)</h1>
-                        <p> 7.382</p>
+                        <p><?php echo $data['dewasa']; ?></p>
                     </div>
                     <div class="items">
                         <h1>Tamat Sarjana</h1>
-                        <p>200</p>
+                        <p><?php echo $data['tamat_sarjana']; ?></p>
                     </div>
                 </div>
+
             </div>
+
             <div class="maps">
                 <img src="../img/profil-kelurahan/maps.png" alt="">
             </div>
+
             <div class="contact">
                 <h1>Hubungi Kelurahan</h1>
                 <img src="../img/profil-kelurahan/instagram.png" alt="">
                 <img src="../img/profil-kelurahan/whatsapp.png" alt="">
                 <img src="../img/profil-kelurahan/email.png" alt="">
             </div>
+
             <div class="profile-desc">
-                <p>Kelurahan Cipaku merupakan salah satu kelurahan yang terletak di Kecamatan Bogor Selatan. Mayoritas penduduk di Kelurahan Cipaku bekerja sebagai
-                    buruh, pedagang, pengrajin industri rumah tangga, pengusaha kecil dan menengah, pegawai swasta
-                    dan lain-lain. Karena berada di wilayah Kota Bogor. Kelurahan Cipaku sebagian besar diperuntukkan
-                    untuk Pemakaman/Kuburan Thiong Hoa/China.
-                    Masih
-                    banyak kekurangan yang dimiliki oleh kelurahan ini, masalah terbesarnya yaitu rendahnya kualitas SDM,
-                    minat literasi yang rendah, dan tingginya angka putus sekolah.
-                    </p>
+                <p><?php echo $data['deskripsi']; ?></p>
             </div>
+
+            <?php 
+                }
+            ?>
+
         </div>
 
         <div class="footer">

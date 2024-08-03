@@ -17,19 +17,6 @@
             <img src="../img/dashboard/logo-cipsmart-profile.png" alt="Logo">
         </div>
         <ul>
-<<<<<<< HEAD:dashboard_kelurahan.html
-            <li><a href="#"><img src="./img/dashboard/icon-1.png" alt="Dashboard Icon"> Dashboard</a></li>
-            <li class="active"><a href="#"><img src="./img/dashboard/icon-2.png" alt="Admin Icon"> Admin</a></li>
-            <li><a href="#"><img src="./img/dashboard/icon-3.png" alt="Profile Icon"> Profile Kelurahan</a></li>
-            <li><a href="./dashcorner.html"><img src="./img/dashboard/icon-4.png" alt="Pojok Baca Icon"> Pojok Baca</a></li>
-            <li><a href="./dashbook.html"><img src="./img/dashboard/icon-5.png" alt="Buku Icon"> Buku</a></li>
-            <li><a href="./dashborrow.html"><img src="./img/dashboard/icon-6.png" alt="Peminjaman Icon"> Peminjaman Buku</a></li>
-            <li><a href="#"><img src="./img/dashboard/icon-7.png" alt="E-Book Icon"> E-Book</a></li>
-            <li><a href="#"><img src="./img/dashboard/icon-8.png" alt="Produk UMKM Icon"> Produk UMKM</a></li>
-            <li><a href="#"><img src="./img/dashboard/icon-9.png" alt="Penjual UMKM Icon"> Penjual UMKM</a></li>
-            <li><a href="./dashuser.html"><img src="./img/dashboard/icon-10.png" alt="Pengguna Icon"> Pengguna</a></li>
-            <li><a href="./logout.php"><img src="./img/dashboard/icon-11.png" alt="Keluar Icon"> Keluar</a></li>
-=======
             <li><a href="./dashboard.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li><a href="./dashadmin.php"><i class="fa fa-user"></i> Admin</a></li>
             <li class="active"><a href="./dashboard_kelurahan.php"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
@@ -42,7 +29,6 @@
             <li><a href="./dash-sellerumkm.php"><i class="fa fa-users"></i> Penjual UMKM</a></li>
             <li><a href="#" class="cd-popup-trigger"><i class="fa fa-sign-out"></i> Keluar</a></li>
         </ul>
->>>>>>> 975fe77186c03dc7f0cc1593692028e51bc52fd5:admin/dashboard_kelurahan.php
     </div>
     <div class="main-content">
         <div class="header">
@@ -52,90 +38,86 @@
             <div class="header-icons">
                 <i class="fa fa-search"></i>
                 <i class="fa fa-bell"></i>
-<<<<<<< HEAD:dashboard_kelurahan.html
                 <i class="fa fa-home"></i>
-=======
-                <a href="../homepage.php">
-                    <i class="fa fa-home"></i>
-                </a>
->>>>>>> 975fe77186c03dc7f0cc1593692028e51bc52fd5:admin/dashboard_kelurahan.php
             </div>
         </div>
         <div class="header-line-horizontal"></div>
         <div class="content">
-<<<<<<< HEAD:dashboard_kelurahan.html
+            <?php
+                include("koneksi.php");
+
+                $query = mysqli_query($connection, "SELECT * FROM profile_kelurahan");
+                while ($data = mysqli_fetch_array ($query)) {
+            ?>
             <h2>
                 Profil Kelurahan Cipaku
-                <i class="fa fa-pencil-square-o"></i>
-=======
-            <h2>Profil Kelurahan Cipaku
-                <a href="../crud/update-kelurahan.html">
-                    <i class="fa fa-edit"></i>
+                <a href="../crud/update-kelurahan.php?id_profile=<?php echo htmlspecialchars($data['id_profile']); ?>">
+                    <i class="fa fa-pencil-square-o"  style="font-size: 30px; margin:5px; color:#fff;"></i>
                 </a>
->>>>>>> 975fe77186c03dc7f0cc1593692028e51bc52fd5:admin/dashboard_kelurahan.php
             </h2>
             <div class="profile-container">
                 <div class="profile-stats">
                     <div class="stat-item">
                         <span class="stat-title">Luas Wilayah:</span>
-                        <span class="stat-value"><strong>± 174 hektar</strong></span>
+                        <span class="stat-value"><strong><?php echo $data['luas_wilayah']; ?></strong></span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-title">Jumlah Penduduk:</span>
-                        <span class="stat-value"><strong>12.310</strong></span>
+                        <span class="stat-value"><strong><?php echo $data['jumlah_penduduk']; ?></strong></span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-title">Jumlah RW:</span>
-                        <span class="stat-value"><strong>12</strong></span>
+                        <span class="stat-value"><strong><?php echo $data['jumlah_rw']; ?></strong></span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-title">Laki-laki:</span>
-                        <span class="stat-value"><strong>6.181</strong></span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-title">Perempuan:</span>
-                        <span class="stat-value"><strong>6.129</strong></span>
+                        <span class="stat-value"><strong><?php echo $data['laki_laki']; ?></strong></span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-title">Jumlah RT:</span>
-                        <span class="stat-value"><strong>29</strong></span>
+                        <span class="stat-value"><strong><?php echo $data['jumlah_rt']; ?></strong></span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-title">Anak-anak (0-12 th):</span>
-                        <span class="stat-value"><strong>3.386</strong></span>
+                        <span class="stat-title">Perempuan:</span>
+                        <span class="stat-value"><strong><?php echo $data['perempuan']; ?></strong></span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-title">Remaja (13-19 th):</span>
-                        <span class="stat-value"><strong>1.539</strong></span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-title">Dewasa (>20 th):</span>
-                        <span class="stat-value"><strong>7.382</strong></span>
+                        <span class="stat-title">Anak-anak <br> (0-12 th):</span>
+                        <span class="stat-value"><strong><?php echo $data['anak_anak']; ?></strong></span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-title">Tamat SD-SMP:</span>
-                        <span class="stat-value"><strong>6.139</strong></span>
+                        <span class="stat-value"><strong><?php echo $data['tamat_sd_smp']; ?></strong></span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-title">Remaja <br> (13-19 th):</span>
+                        <span class="stat-value"><strong><?php echo $data['remaja']; ?></strong></span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-title">Tamat SMA:</span>
-                        <span class="stat-value"><strong>5.660</strong></span>
+                        <span class="stat-value"><strong><?php echo $data['tamat_sma']; ?></strong></span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-title">Dewasa (>20 th):</span>
+                        <span class="stat-value"><strong><?php echo $data['dewasa']; ?></strong></span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-title">Tamat Sarjana:</span>
-                        <span class="stat-value"><strong>200</strong></span>
+                        <span class="stat-value"><strong><?php echo $data['tamat_sarjana']; ?></strong></span>
                     </div>
                 </div>
-<<<<<<< HEAD:dashboard_kelurahan.html
-                                <div class="profile-map">
-                    <img src="./img/dashboard/maps-cipaku.png" alt="Map of Cipaku">
-=======
+                
                 <div class="profile-map">
                     <img src="../img/dashboard/maps-cipaku.png" alt="Map of Cipaku">
->>>>>>> 975fe77186c03dc7f0cc1593692028e51bc52fd5:admin/dashboard_kelurahan.php
                 </div>
-            </div>
-            <div class="profile-description">
-                <p>Kelurahan Cipaku merupakan salah satu kelurahan yang terletak di Kecamatan Bogor Selatan, Kota Bogor, Jawa Barat, Indonesia. Mayoritas penduduk di Kelurahan Cipaku bekerja sebagai buruh, pedagang, pengrajin industri rumah tangga, pengusaha kecil dan menengah, pegawai swasta dan lain-lain. Karena berada di wilayah Kota Bogor, kelurahan Cipaku sebagian besar diperuntukkan untuk pemakaman/kuburan Thiong Hoa/China. Masih banyak kekurangan yang dimiliki oleh kelurahan ini, masalah terbesarnya yaitu rendahnya kualitas SDM, minat literasi yang rendah, dan tingginya angka putus sekolah.</p>
+
+                <div class="profile-description">
+                    <?php echo $data['deskripsi']; ?>
+                </div>
+
+                <?php 
+                      }
+                ?>
             </div>
         </div>
     </div>

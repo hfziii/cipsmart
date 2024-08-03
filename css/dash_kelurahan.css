@@ -210,11 +210,10 @@ body::-webkit-scrollbar-thumb {
     border-radius: 10px;
     color: white;
     width: 750px; /* Lebar maksimal */
-    margin-top: 5px; /* Kurangi margin atas */
+    margin-top: 340px; /* Kurangi margin atas */
     text-align: justify;
     position: absolute;
     left: 75%; /* Geser lebih ke kanan */
-    bottom: 23px; /* Tempatkan tepat di bawah peta */
     transform: translateX(-70%); /* Pusatkan secara horizontal */
 }
 
