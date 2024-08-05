@@ -1,0 +1,301 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+/* CSS Utama */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background: url('../img/dashboard/bg-dashboard.png') no-repeat center center/cover;
+    position: relative;
+}
+
+/* Scrollbar */
+body::-webkit-scrollbar {
+    width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+    background: rgb(118, 118, 118);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #FFF;
+    border-radius: 20px;
+    border: 3px solid rgb(118, 118, 118);
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 250px;
+    background-color: rgba(99, 175, 189, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top-right-radius: 50px;
+}
+
+.sidebar .logo {
+    width: 100%;
+    text-align: center;
+}
+
+.sidebar .logo img {
+    width: 80px;
+    margin-bottom: 5px;
+}
+
+.sidebar ul {
+    list-style: none;
+    width: 100%;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar ul li {
+    width: 100%;
+}
+
+.sidebar ul li a {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.sidebar ul li a img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.sidebar ul li a:hover, .sidebar ul li.active a {
+    background-color: white;
+    color: #63AFBD;
+    border-radius: 50px;
+}
+
+/* Konten Utama */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color:#1CB1D6;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 24px;
+    margin: 0; /* Menghapus margin default */
+}
+
+.header-icons i {
+    font-size: 24px;
+    margin-left: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #1CB1D6;
+}
+
+.content {
+    padding: 5px;
+    color: white;
+}
+
+/* Form Title Styling */
+.form-title {
+    text-align: center; /* Menyelaraskan teks ke tengah */
+    font-size: 24px; /* Ukuran font judul */
+    color: white; /* Warna teks */
+    margin-bottom: 20px; /* Menambahkan jarak di bawah judul */
+    font-weight: bold; /* Menebalkan teks */
+}
+
+/* Profil Container */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 10px; /* Menyesuaikan posisi box deskripsi */
+}
+
+/* Kontainer Utama */
+.profile-stats {
+       display: flex;
+       flex-wrap: wrap;
+       column-gap: 200px; /* Jarak horizontal antar box item */
+       row-gap: 30px; /* Jarak vertikal antar box item */
+       width: 100%;
+       margin-top: 20px;
+       padding-left: 220px; /* Beri ruang untuk stat-title di sebelah kiri */
+   }
+   
+/* Stat Item Styling */
+.stat-item {
+       width: calc(10% - 20px); /* Lebar lebih kecil agar lebih ramping */
+       min-height: 80px; /* Menambahkan sedikit panjang ke bawah */
+       background-color: #63AFBD;
+       padding: 10px; /* Padding di semua sisi */
+       border-radius: 8px;
+       display: flex;
+       flex-direction: column; /* Mengatur item secara kolom */
+       justify-content: center; /* Menyelaraskan item secara vertikal */
+       align-items: center; /* Menyelaraskan item secara horizontal */
+       color: white;
+       position: relative;
+       text-align: center; /* Menyelaraskan teks ke tengah */
+   }
+   
+   /* Stat Value Styling */
+   .stat-value {
+       font-size: 16px; /* Ukuran font angka yang lebih besar */
+       font-weight: bold;
+       margin-top: 5px; /* Jarak antara title dan value */
+       text-align: center; /* Menyelaraskan teks ke tengah */
+   }
+      
+   .stat-title {
+       position: absolute;
+       left: -129px; /* Menyesuaikan jarak ke kiri dari kotak item */
+       font-size: 12px;
+       color: white;
+       font-weight: 600;
+       width: 130px; /* Lebar untuk label stat-title */
+       text-align: center; /* Menyelaraskan teks ke kiri */
+   }
+                     
+.profile-description {
+    background-color: rgba(99, 175, 189, 0.95);
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
+    max-width: calc(100% - 40px); /* Lebar maksimum dengan margin kiri */
+    margin-top: 20px;
+    margin-left: 10px; /* Margin kiri untuk menyesuaikan dengan box item */
+    font-size: 14px;
+    box-sizing: border-box; /* Pastikan padding termasuk dalam ukuran total */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .stat-item {
+        width: calc(20% - 10px); /* Lebar menjadi lebih besar pada perangkat kecil */
+        min-height: 60px; /* Menetapkan tinggi minimum agar box tidak terlalu kecil */
+    }
+
+    .profile-description {
+        max-width: calc(100% - 20px); /* Lebar maksimum untuk perangkat kecil */
+        padding: 10px;
+        font-size: 12px;
+        margin-left: 10px; /* Margin kiri pada perangkat kecil */
+    }
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.back-button, .save-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.back-button {
+    background-color: red;
+    color: white;
+}
+
+.save-button {
+    background-color: green;
+    color: white;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sidebar ul li {
+        width: auto;
+    }
+
+    .sidebar ul li a i {
+        margin-right: 10px;
+        font-size: 14px;
+    }
+
+    .main-content {
+        margin-top: 200px;
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 18px;
+    }
+
+    .header-icons i {
+        font-size: 18px;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    .profile-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-stats, .profile-description {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .stat-item {
+        width: 100%;
+    }
+}
