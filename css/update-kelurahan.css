@@ -39,51 +39,48 @@ body::-webkit-scrollbar-thumb {
     flex-direction: column;
     align-items: center;
     padding-top: 10px;
+    /* Reduce padding to move items up */
     padding-bottom: 10px;
     border-top-right-radius: 50px;
 }
 
-.sidebar .logo {
-    width: 100%;
-    text-align: center;
-}
-
 .sidebar .logo img {
     width: 80px;
-    margin-bottom: 5px;
+    /* Adjust logo size if needed */
+    margin-bottom: 10px;
+    /* Reduce margin to move items up */
+    display: block;
 }
 
 .sidebar ul {
     list-style: none;
     width: 100%;
     padding-left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .sidebar ul li {
     width: 100%;
+    text-align: center;
 }
 
 .sidebar ul li a {
     display: flex;
     justify-content: flex-start;
+    /* Align text to the left */
     align-items: center;
-    padding: 10px 15px;
+    padding: 10px 20px;
+    /* Reduce padding to fit more items */
     color: white;
     text-decoration: none;
-    font-size: 12px;
-}
-
-.sidebar ul li a img {
-    width: 20px;
-    margin-right: 10px;
+    font-size: 15px;
+    text-align: left;
+    /* Reduce font size */
 }
 
 .sidebar ul li a i {
     margin-right: 10px;
     font-size: 18px;
+    /* Adjust icon size if needed */
 }
 
 .sidebar ul li a:hover,
@@ -91,6 +88,12 @@ body::-webkit-scrollbar-thumb {
     background-color: white;
     color: #63AFBD;
     border-radius: 50px;
+    /* Adjust for rounded effect */
+}
+
+.sidebar ul li.disabled {
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 /* Konten Utama */

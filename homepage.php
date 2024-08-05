@@ -11,7 +11,23 @@
 
     <?php
     session_start();
+    include("koneksi.php");
+
+    $current_date = date('Y-m-d');
+    $sql_check = "SELECT * FROM web_traffic WHERE visit_date = '$current_date'";
+    $result_check = $connection->query($sql_check);
+
+    if ($result_check->num_rows > 0) {
+        // Update visit count for today
+        $sql_update = "UPDATE web_traffic SET visit_count = visit_count + 1 WHERE visit_date = '$current_date'";
+        $connection->query($sql_update);
+    } else {
+        // Insert new record for today
+        $sql_insert = "INSERT INTO web_traffic (visit_date, visit_count) VALUES ('$current_date', 1)";
+        $connection->query($sql_insert);
+    }
     ?>
+
     <script>
     document.addEventListener("DOMContentLoaded", function () {
         var loginBtn = document.getElementById("loginBtn");
