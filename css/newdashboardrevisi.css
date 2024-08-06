@@ -1,0 +1,419 @@
+body {
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    background: url('../img/dashboard/bg-dashboard.png') no-repeat center center/cover;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 250px;
+    background-color: rgba(99, 175, 189, 0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top-right-radius: 50px;
+}
+
+.sidebar .logo {
+    width: 100%;
+    text-align: center;
+}
+
+.sidebar .logo img {
+    width: 80px;
+    margin-bottom: 5px;
+}
+
+.sidebar ul {
+    list-style: none;
+    width: 100%;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar ul li {
+    width: 100%;
+}
+
+.sidebar ul li a {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px; /* Slightly increased font size for better readability */
+}
+
+.sidebar ul li a img {
+    width: 30px; /* Increased icon size */
+    margin-right: 15px; /* Adjusted margin for better spacing */
+}
+
+.sidebar ul li a i {
+    margin-right: 15px;
+    font-size: 24px; /* Increased font size for icons */
+}
+
+.sidebar ul li a:hover, .sidebar ul li.active a {
+    background-color: white;
+    color: #63AFBD;
+    border-radius: 50px;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background: url('img/dashboard/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: white;
+}
+
+.header .header-icons {
+    font-size: 24px;
+    color: white;
+}
+
+.content .stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Sesuaikan jarak antar box */
+    max-width: 1000px; /* Set a maximum width for the container */
+    margin: 0 auto; /* Center the container */
+    justify-content: flex-start; /* Pastikan kontainer utama menggunakan justify-content: flex-start */
+}
+
+.content .stat-box {
+    background: #63AFBD;
+    padding: 20px;
+    border-radius: 10px;
+    width: calc(28.333% - 20px); /* Adjust the width accordingly */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* Specific styling for different stat boxes */
+.stat-box.kelurahan {
+    background-color: #63AFBD;
+}
+
+.stat-box.perpustakaan {
+    background-color: #63AFBD;
+}
+
+.stat-box.ebook {
+    background-color: #63AFBD;
+    min-width: 250px;
+    max-width: 350px;
+    margin: 10px;
+    margin-right: 0; /* Menghapus margin kanan */
+}
+
+.stat-box.umkm {
+    background-color: #63AFBD;
+    min-width: 250px;
+    max-width: 350px;
+    margin: 10px;
+    margin-left: 0; /* Menghapus margin kiri */
+}
+
+.stat-box.pengunjung {
+    background-color: #63AFBD;
+}
+
+.content .stat-box h2 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #f3f4f6;
+}
+
+.content .stat-box p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.content .stat-box img {
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+.stat-box.kelurahan {
+    background-color: #63AFBD; /* Background color */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Shadow */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start */
+    text-align: left;
+    width: auto; /* Auto width */
+    min-width: 250px; /* Minimum width */
+    max-width: 350px; /* Maximum width */
+    margin: 10px;
+    color: white; /* White text */
+    position: relative; /* For positioning the edit icon */
+}
+
+.stat-box.kelurahan .stat-box-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.stat-box.kelurahan .stat-box-header img {
+    width: 40px; /* Logo size */
+    height: auto;
+    margin-right: 10px;
+}
+
+.stat-box.kelurahan .stat-box-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.stat-box.kelurahan .stat-box-header i {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+    color: white;
+}
+
+.stat-box.kelurahan p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.stat-box.kelurahan .label {
+    font-weight: bold;
+}
+
+.stat-box.kelurahan .value {
+    background-color: rgba(252, 252, 252, 0.9);
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-left: 10px;
+    font-weight: normal;
+    display: inline-block;
+    min-width: 50px; /* Ensures minimum width */
+    text-align: center;
+}
+
+.stat-box.perpustakaan {
+    background-color: #63AFBD; /* Background color */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Shadow */
+    padding: 20px 30px; /* Padding around content */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align title */
+    text-align: center;
+    width: auto; /* Auto width */
+    max-width: 600px; /* Maximum width */
+    margin: 10px auto; /* Center box horizontally */
+    color: white; /* White text for title */
+}
+
+.perpustakaan h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px; /* Space below title */
+}
+
+.stats-details {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px; /* Space between items */
+    width: 100%;
+    margin-top: 10px;
+}
+
+.detail-box {
+    background-color: white; /* Background color for detail boxes */
+    padding: 15px 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.detail-box p {
+    margin: 5px 0;
+    color: #5EB3F0; /* Text color matching main box background */
+}
+
+.detail-title {
+    font-size: 14px;
+    font-weight: bold; /* Bold for emphasis */
+    margin-bottom: 10px;
+}
+
+.detail-value {
+    font-size: 30px; /* Larger font size for values */
+    font-weight: bold;
+}
+
+.detail-box img {
+    width: 30px; /* Adjust size for icons */
+    height: auto;
+    margin-top: 10px;
+}
+
+/* Box E-Book */
+.stat-box.ebook {
+    background-color: #63AFBD; /* Warna latar belakang */
+    border-radius: 15px; /* Sudut bulat */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Bayangan */
+    padding: 20px 30px; /* Padding sekitar konten */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Sejajarkan item ke kiri */
+    text-align: left;
+    width: auto; /* Lebar otomatis */
+    min-width: 250px; /* Lebar minimum */
+    max-width: 350px; /* Lebar maksimum */
+    margin: 10px; /* Margin di sekitar kotak */
+    margin-right: 0; /* Menghapus margin kanan */
+    color: white; /* Warna teks putih */
+    position: relative; /* Untuk posisi ikon edit */
+}
+
+.stat-box.ebook .stat-box-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.stat-box.ebook .stat-box-header img {
+    width: 40px; /* Ukuran logo */
+    height: auto;
+    margin-right: 10px;
+}
+
+.stat-box.ebook .stat-box-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.stat-box.ebook .stat-box-header i {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+    color: white;
+}
+
+.stat-box.ebook p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.stat-box.ebook .label {
+    font-weight: bold;
+}
+
+.stat-box.ebook .value {
+    background-color: rgba(252, 252, 252, 0.9);
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-left: 10px;
+    font-weight: normal;
+    display: inline-block;
+    min-width: 50px; /* Memastikan lebar minimum */
+    text-align: center;
+}
+
+/* Box UMKM */
+.stat-box.umkm {
+    background-color: #63AFBD; /* Warna latar belakang */
+    border-radius: 15px; /* Sudut bulat */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Bayangan */
+    padding: 20px 30px; /* Padding sekitar konten */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Sejajarkan item ke kiri */
+    text-align: left;
+    width: auto; /* Lebar otomatis */
+    min-width: 250px; /* Lebar minimum */
+    max-width: 350px; /* Lebar maksimum */
+    margin: 10px; /* Margin di sekitar kotak */
+    margin-left: 0; /* Menghapus margin kiri */
+    color: white; /* Warna teks putih */
+    position: relative; /* Untuk posisi ikon edit */
+}
+
+.stat-box.umkm .stat-box-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.stat-box.umkm .stat-box-header img {
+    width: 40px; /* Ukuran logo */
+    height: auto;
+    margin-right: 10px;
+}
+
+.stat-box.umkm .stat-box-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.stat-box.umkm .stat-box-header i {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+    color: white;
+}
+
+.stat-box.umkm p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.stat-box.umkm .label {
+    font-weight: bold;
+}
+
+.stat-box.umkm .value {
+    background-color: rgba(252, 252, 252, 0.9);
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-left: 10px;
+    font-weight: normal;
+    display: inline-block;
+    min-width: 50px; /* Memastikan lebar minimum */
+    text-align: center;
+}
