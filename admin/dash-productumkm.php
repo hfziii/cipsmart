@@ -1,23 +1,37 @@
 <?php
-ob_start();
-include("../koneksi.php");
+    ob_start();
+    include("../koneksi.php");
 
-// Cek apakah ada kiriman form dari method GET
-if (isset($_GET['id_product'])) {
-    $id_product = mysqli_real_escape_string($connection, htmlspecialchars($_GET["id_product"]));
+    // Handle the search parameters
+    $search = isset($_GET['search']) ? mysqli_real_escape_string($connection, htmlspecialchars($_GET['search'])) : '';
 
-    $sql = "DELETE FROM product_umkm WHERE id_product='$id_product'";
-    $hasil = mysqli_query($connection, $sql);
+    // Handle delete operation
+    if (isset($_GET['id_product'])) {
+        $id_product = mysqli_real_escape_string($connection, htmlspecialchars($_GET["id_product"]));
 
-    // Kondisi apakah berhasil atau tidak
-    if ($hasil) {
-        header("Location: dash-productumkm.php");
-        exit(); // untuk menghentikan eksekusi skrip
-    } else {
-        echo "<div class='alert alert-danger'> Data Gagal dihapus.</div>";
+        $sql = "DELETE FROM product_umkm WHERE id_product='$id_product'";
+        $hasil = mysqli_query($connection, $sql);
+
+        if ($hasil) {
+            header("Location: dash-productumkm.php");
+            exit(); // Stop script execution
+        } else {
+            echo "<div class='alert alert-danger'> Data Gagal dihapus.</div>";
+        }
     }
-}
-ob_end_flush();
+
+    // Fetch data with optional search filters
+    $query = "SELECT p.*, s.seller_name, s.no_whatsapp
+              FROM product_umkm p
+              JOIN seller_umkm s ON p.id_seller = s.id_seller";
+
+    if ($search) {
+        $query .= " WHERE product_name LIKE '%$search%' OR seller_name LIKE '%$search%'";
+    }
+    $query .= " ORDER BY id_seller ASC";
+    $result = mysqli_query($connection, $query);
+
+    ob_end_flush();
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +40,7 @@ ob_end_flush();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produk UMKM - Cipsmart</title>
-    <link rel="stylesheet" href="../css/dashcorner.css">
+    <link rel="stylesheet" href="../css/dashumkm.css">
     <link rel="stylesheet" href="../css/popup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../img/favicon/android-chrome-192x192.png" type="image/png">
@@ -41,7 +55,7 @@ ob_end_flush();
         <ul>
             <li><a href="./dashboard.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li><a href="./dashadmin.php"><i class="fa fa-user"></i> Admin</a></li>
-            <li><a href="./dashboard_kelurahan.php"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
+            <li><a href="./dashboard_kelurahan.php"><i class="fa fa-university"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.php"><i class="fa fa-book"></i> Pojok Baca</a></li>
             <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
             <li><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
@@ -56,8 +70,9 @@ ob_end_flush();
         <div class="header">
             <h1>Hello, Sobat Cipsmart!</h1>
             <div class="header-icons">
-                <i class="fa fa-search"></i>
-                <i class="fa fa-bell"></i>
+                <a href="../user/catalog-umkm.php">
+                    <i class="fa fa-shopping-bag"></i>
+                </a>
                 <a href="../homepage.php">
                     <i class="fa fa-home"></i>
                 </a>
@@ -67,6 +82,14 @@ ob_end_flush();
 
             <div class="titletable">
                 <h2>Produk UMKM</h2>
+                <div class="search-bar">
+                    <form action="dash-productumkm.php" method="get" class="form-search">
+                        <input type="text" name="search" placeholder="Cari Produk/Penjual" value="<?php echo htmlspecialchars($search); ?>">
+                        <button type="submit" class="submit-src">
+                            <img src="../img/navbar/search-nav-icon.png" alt="Search">
+                        </button>
+                    </form>
+                </div>
                 <a href="../crud/create-productumkm.php">
                     <img src="../img/dashboard/add-btn.png" alt="" class="add-data-btn">
                 </a>
@@ -88,46 +111,32 @@ ob_end_flush();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    include("../koneksi.php");
-
-                    // Query to fetch product and seller data
-                    $query = "
-                        SELECT p.*, s.seller_name, s.no_whatsapp
-                        FROM product_umkm p
-                        JOIN seller_umkm s ON p.id_seller = s.id_seller
-                    ";
-                    $result = mysqli_query($connection, $query);
-
-                    while ($data = mysqli_fetch_array($result)) {
-                    ?>
-                    <tr>
-                        <td><?php echo $data['id_product']; ?></td>
-                        <td>
-                            <img src="../<?php echo $data['product_photo_1']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 50px; height: auto;">
-                            <img src="../<?php echo $data['product_photo_2']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 50px; height: auto;">
-                            <img src="../<?php echo $data['product_photo_3']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 50px; height: auto;">
-                            <img src="../<?php echo $data['product_photo_4']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 50px; height: auto;">
-                        </td>
-                        <td><?php echo $data['product_category']; ?></td>
-                        <td><?php echo $data['product_name']; ?></td>
-                        <td><?php echo 'Rp' . number_format($data['product_price'], 0, ',', '.'); ?></td>
-                        <td><?php echo $data['product_description']; ?></td>
-                        <td><?php echo $data['id_seller']; ?></td>
-                        <td><?php echo $data['seller_name']; ?></td>
-                        <td><?php echo $data['no_whatsapp']; ?></td>
-                        <td>
-                            <a href="../crud/update-productumkm.php?id_product=<?php echo htmlspecialchars($data['id_product']); ?>">
-                                <i class="fa fa-pencil-square-o edit-btn" style="font-size: 20px"></i>                            
-                            </a>
-                            <a href="#" class="cd-popup-trigger-del" onclick="showDeletePopup('<?php echo $data['id_product']; ?>');">
-                                <i class="fa fa-trash delete-btn" style="font-size: 20px"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <?php 
-                    }
-                    ?>
+                    <?php while ($data = mysqli_fetch_array($result)) { ?>
+                        <tr>
+                            <td><?php echo $data['id_product']; ?></td>
+                            <td>
+                                <img src="../<?php echo $data['product_photo_1']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 50px; height: auto;">
+                                <img src="../<?php echo $data['product_photo_2']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 50px; height: auto;">
+                                <img src="../<?php echo $data['product_photo_3']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 50px; height: auto;">
+                                <img src="../<?php echo $data['product_photo_4']; ?>" alt="<?php echo $data['product_name']; ?>" style="width: 50px; height: auto;">
+                            </td>
+                            <td><?php echo $data['product_category']; ?></td>
+                            <td><?php echo $data['product_name']; ?></td>
+                            <td><?php echo 'Rp' . number_format($data['product_price'], 0, ',', '.'); ?></td>
+                            <td><?php echo $data['product_description']; ?></td>
+                            <td><?php echo $data['id_seller']; ?></td>
+                            <td><?php echo $data['seller_name']; ?></td>
+                            <td><?php echo $data['no_whatsapp']; ?></td>
+                            <td>
+                                <a href="../crud/update-productumkm.php?id_product=<?php echo htmlspecialchars($data['id_product']); ?>">
+                                    <i class="fa fa-pencil-square-o edit-btn" style="font-size: 20px"></i>                            
+                                </a>
+                                <a href="#" class="cd-popup-trigger-del" onclick="showDeletePopup('<?php echo $data['id_product']; ?>');">
+                                    <i class="fa fa-trash delete-btn" style="font-size: 20px"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

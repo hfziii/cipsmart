@@ -93,7 +93,7 @@
         <ul>
             <li class="active"><a href="./dashboard.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li><a href="./dashadmin.php"><i class="fa fa-user"></i> Admin</a></li>
-            <li><a href="./dashboard_kelurahan.php"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
+            <li><a href="./dashboard_kelurahan.php"><i class="fa fa-university"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.php"><i class="fa fa-book"></i> Pojok Baca</a></li>
             <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
             <li><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
@@ -109,13 +109,11 @@
             <h1>Hello,<br> Sobat Cipsmart!</h1>
         </div>  
         <div class="header-icons">
-            <a href="./dashadmin.php">
-                <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: larger;"></i>
-            </a>
             <a href="../homepage.php">
-                <i class="fa fa-home" style="font-size: 41px"></i>
+                <i class="fa fa-home"></i>
             </a>
         </div>
+        <div class="header-line-horizontal"></div>
 
         <div class="widgets">
             <div class="widget widget-1">

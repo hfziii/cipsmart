@@ -136,6 +136,7 @@ body::-webkit-scrollbar-thumb {
 
 .add-data-btn {
     max-width: 35px;
+    margin: 0px 10px 10px 10px;
 }
 
 .titletable{
@@ -196,9 +197,10 @@ table th, table td {
 
 /* SEARCH BAR */
 .search-bar {
-    margin-left: auto; /* Pushes the search bar to the right */
-    display: flex;
-    align-items: center;
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-end; 
+    margin: 0px 10px 10px auto;
 }
 
 .search-bar .form-search {

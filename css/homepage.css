@@ -216,7 +216,7 @@ html {
 
 .content {
     position: absolute;
-    top: 10%;
+    top: 10.5%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 0;

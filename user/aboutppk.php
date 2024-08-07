@@ -198,7 +198,7 @@
                     <div class="intan">
                         <img src="../img/aboutppk/intan-new.png" alt="" class="detail-gambar">
                         <h1>Intania Permata P.N.</h1>
-                        <p>Bendahara Umum</p>
+                        <p>Bendahara Umum I</p>
                     </div>
                     <div class="nono">
                         <img src="../img/aboutppk/nono-new.png" alt="" class="detail-gambar">
@@ -215,7 +215,7 @@
                     <div class="fizi">
                         <img src="../img/aboutppk/fizi-new.png" alt="" class="detail-gambar">
                         <h1>Muhammad Hafizi</h1>
-                        <p>Kepala Divisi  Koordinator Web dan Sosial Digital</p>
+                        <p>Kepala Divisi  Web dan Sosial Digital</p>
                     </div>
                     <div class="septian">
                         <img src="../img/aboutppk/septian-new.png" alt="" class="detail-gambar">

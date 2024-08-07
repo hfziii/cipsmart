@@ -1,19 +1,28 @@
 <?php
 include("koneksi.php");
 
-// Fungsi untuk mengambil data pinjam dari tabel
-function getBooksFromTable($table) {
+// Fungsi untuk mengambil data pinjam dari tabel (PARAMATER PENCARIAN : id_book, judul buku, nama peminjam, status)
+function getBooksFromTable($table, $search = null) {
     global $connection;
-    $table = mysqli_real_escape_string($connection, $table);
     $sql = "SELECT id_borrow, id_book, name, title_book, borrow_date, return_date, status FROM $table";
-    $result = mysqli_query($connection, $sql);
-    if (!$result) {
-        die("Query failed: " . mysqli_error($connection));
+    if ($search) {
+        $sql .= " WHERE id_book LIKE ? OR name LIKE ? OR title_book LIKE ? OR status LIKE ?";
     }
+    
+    $stmt = mysqli_prepare($connection, $sql);
+    if ($search) {
+        $search_param = '%' . $search . '%';
+        mysqli_stmt_bind_param($stmt, 'ssss', $search_param, $search_param, $search_param, $search_param);
+    }
+    
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    
     $books = [];
     while ($row = mysqli_fetch_assoc($result)) {
         $books[] = $row;
     }
+    
     return $books;
 }
 
@@ -80,13 +89,8 @@ function updateBookStatus($id_borrow, $table_name) {
 
 // Mendapatkan data pinjam dari tabel yang dipilih
 $table_name = isset($_GET['table_name']) ? $_GET['table_name'] : 'borrowing_literasi_imajinatif';
-$tables = [
-    'borrowing_literasi_imajinatif' => getBooksFromTable('borrowing_literasi_imajinatif'),
-    'borrowing_social_connect' => getBooksFromTable('borrowing_social_connect'),
-    'borrowing_pena_inspirasi_gemilang' => getBooksFromTable('borrowing_pena_inspirasi_gemilang'),
-    'borrowing_kreatif_kids_corner' => getBooksFromTable('borrowing_kreatif_kids_corner'),
-    'borrowing_bisnis_berdaya' => getBooksFromTable('borrowing_bisnis_berdaya'),
-];
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+$books = getBooksFromTable($table_name, $search);
 
 // Menangani update status buku
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['update_status']) && isset($_GET['id_borrow']) && isset($_GET['table_name'])) {
@@ -107,12 +111,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_borrow']) && iss
     }
 }
 
-// Query untuk mendapatkan data dari tabel yang dipilih
-$query = mysqli_query($connection, "SELECT * FROM " . mysqli_real_escape_string($connection, $table_name));
-if (!$query) {
-    die("Query failed: " . mysqli_error($connection));
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -121,7 +119,7 @@ if (!$query) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Peminjaman Buku - Cipsmart</title>
-    <link rel="stylesheet" href="../css/dashborrow.css">
+    <link rel="stylesheet" href="../css/dashcorner.css">
     <link rel="stylesheet" href="../css/popup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../img/favicon/android-chrome-192x192.png" type="image/png">
@@ -198,7 +196,7 @@ if (!$query) {
         <ul>
             <li><a href="./dashboard.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li><a href="./dashadmin.php"><i class="fa fa-user"></i> Admin</a></li>
-            <li><a href="./dashboard_kelurahan.php"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
+            <li><a href="./dashboard_kelurahan.php"><i class="fa fa-university"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.php"><i class="fa fa-book"></i> Pojok Baca</a></li>
             <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
             <li><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
@@ -213,8 +211,9 @@ if (!$query) {
         <div class="header">
             <h1>Hello, Sobat Cipsmart!</h1>
             <div class="header-icons">
-                <i class="fa fa-search"></i>
-                <i class="fa fa-bell"></i>
+                <a href="../user/catalog-book.php">
+                    <i class="fa fa-book"></i>
+                </a>
                 <a href="../homepage.php">
                     <i class="fa fa-home"></i>
                 </a>
@@ -223,16 +222,30 @@ if (!$query) {
         <div class="content">
             <h2>Peminjaman Buku</h2>
 
-            <form action="dashborrow.php" method="get" class="corner-education">
-                <label for="table-dropdown" class="title-ce">Pilih Pojok Baca</label>
-                <select id="table-dropdown" class="drop-ce" name="table_name" onchange="this.form.submit()">
-                    <option value="borrowing_literasi_imajinatif" <?php if ($table_name == 'borrowing_literasi_imajinatif') echo 'selected'; ?>>Literasi Imajinatif</option>
-                    <option value="borrowing_social_connect" <?php if ($table_name == 'borrowing_social_connect') echo 'selected'; ?>>Social Connect</option>
-                    <option value="borrowing_bisnis_berdaya" <?php if ($table_name == 'borrowing_bisnis_berdaya') echo 'selected'; ?>>Bisnis Berdaya</option>
-                    <option value="borrowing_kreatif_kids_corner" <?php if ($table_name == 'borrowing_kreatif_kids_corner') echo 'selected'; ?>>Kreatif Kids Corner</option>
-                    <option value="borrowing_pena_inspirasi_gemilang" <?php if ($table_name == 'borrowing_pena_inspirasi_gemilang') echo 'selected'; ?>>Pena Inspirasi Gemilang</option>
-                </select>
-            </form>
+            <div class="filter">
+
+                <form action="dashborrow.php" method="get" class="corner-education">
+                    <label for="table-dropdown" class="title-ce">Pilih Pojok Baca</label>
+                    <select id="table-dropdown" class="drop-ce" name="table_name" onchange="this.form.submit()">
+                        <option value="borrowing_literasi_imajinatif" <?php if ($table_name == 'borrowing_literasi_imajinatif') echo 'selected'; ?>>Literasi Imajinatif</option>
+                        <option value="borrowing_social_connect" <?php if ($table_name == 'borrowing_social_connect') echo 'selected'; ?>>Social Connect</option>
+                        <option value="borrowing_bisnis_berdaya" <?php if ($table_name == 'borrowing_bisnis_berdaya') echo 'selected'; ?>>Bisnis Berdaya</option>
+                        <option value="borrowing_kreatif_kids_corner" <?php if ($table_name == 'borrowing_kreatif_kids_corner') echo 'selected'; ?>>Kreatif Kids Corner</option>
+                        <option value="borrowing_pena_inspirasi_gemilang" <?php if ($table_name == 'borrowing_pena_inspirasi_gemilang') echo 'selected'; ?>>Pena Inspirasi Gemilang</option>
+                    </select>
+                </form>
+
+                <div class="search-bar">
+                    <form action="dashborrow.php" method="get" class="form-search">
+                        <input type="hidden" name="table_name" value="<?php echo htmlspecialchars($table_name); ?>">
+                        <input type="text" name="search" placeholder="Cari Peminjaman" value="<?php echo htmlspecialchars($search); ?>">
+                        <button type="submit" class="submit-src">
+                            <img src="../img/navbar/search-nav-icon.png" alt="Search">
+                        </button>
+                    </form>
+                </div>
+
+            </div>
             
             <table id="PinjamTable">
                 <thead>
@@ -248,7 +261,7 @@ if (!$query) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($tables[$table_name] as $book) : ?>
+                    <?php foreach ($books as $index => $book) : ?>
                         <tr>
                             <td><?= htmlspecialchars($book['id_borrow']) ?></td>
                             <td><?= htmlspecialchars($book['id_book']) ?></td>

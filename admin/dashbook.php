@@ -1,15 +1,29 @@
 <?php
 include("koneksi.php");
 
-// Fungsi untuk mengambil data buku dari tabel
-function getBooksFromTable($table) {
+// Fungsi untuk mengambil data buku dari tabel (PARAMATER PENCARIAN : id_book, judul buku, penulis, status)
+function getBooksFromTable($table, $search = null) {
     global $connection;
-    $sql = "SELECT id_book, title_book FROM $table";
-    $result = mysqli_query($connection, $sql);
+    $sql = "SELECT id_book, title_book, author_name, status, photo, publisher_name, year_publish, isbn, sipnopsis, total_page FROM $table";
+    
+    if ($search) {
+        $sql .= " WHERE id_book LIKE ? OR title_book LIKE ? OR author_name LIKE ? OR status LIKE ?";
+    }
+    
+    $stmt = mysqli_prepare($connection, $sql);
+    if ($search) {
+        $search_param = '%' . $search . '%';
+        mysqli_stmt_bind_param($stmt, 'ssss', $search_param, $search_param, $search_param, $search_param);
+    }
+    
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    
     $books = [];
     while ($row = mysqli_fetch_assoc($result)) {
         $books[] = $row;
     }
+    
     return $books;
 }
 
@@ -55,8 +69,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['table_name'])) {
     $table_name = 'book_literasi_imajinatif'; // Default table
 }
 
-if (isset($_GET['id_book']) && isset($_GET['table_name'])) {
-    $id_book = $_GET['id_book'];
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+$books = getBooksFromTable($table_name, $search);
+
+if (isset($_GET['delete_book']) && isset($_GET['table_name'])) {
+    $id_book = $_GET['delete_book'];
     $table_name = $_GET['table_name'];
     if (deleteBook($table_name, $id_book)) {
         echo "<script>alert('Data buku berhasil dihapus'); window.location.href = 'dashbook.php?table_name=$table_name';</script>";
@@ -89,7 +106,7 @@ $query = mysqli_query($connection, "SELECT * FROM " . mysqli_real_escape_string(
         <ul>
             <li><a href="./dashboard.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
             <li><a href="./dashadmin.php"><i class="fa fa-user"></i> Admin</a></li>
-            <li><a href="./dashboard_kelurahan.php"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
+            <li><a href="./dashboard_kelurahan.php"><i class="fa fa-university"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.php"><i class="fa fa-book"></i> Pojok Baca</a></li>
             <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
             <li class="active"><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
@@ -104,8 +121,9 @@ $query = mysqli_query($connection, "SELECT * FROM " . mysqli_real_escape_string(
         <div class="header">
             <h1>Hello, Sobat Cipsmart!</h1>
             <div class="header-icons">
-                <i class="fa fa-search"></i>
-                <i class="fa fa-bell"></i>
+                <a href="../user/catalog-book.php">
+                    <i class="fa fa-book"></i>
+                </a>
                 <a href="../homepage.php">
                     <i class="fa fa-home"></i>
                 </a>
@@ -120,16 +138,30 @@ $query = mysqli_query($connection, "SELECT * FROM " . mysqli_real_escape_string(
                 </a>
             </div>
 
-            <form action="dashbook.php" method="post" class="corner-education">
-                <label for="table-dropdown" class="title-ce">Pilih Pojok Baca</label>
-                <select id="table-dropdown" class="drop-ce" name="table_name" onchange="this.form.submit()">
-                    <option value="book_literasi_imajinatif" <?php if ($table_name == 'book_literasi_imajinatif') echo 'selected'; ?>>Literasi Imajinatif</option>
-                    <option value="book_social_connect" <?php if ($table_name == 'book_social_connect') echo 'selected'; ?>>Social Connect</option>
-                    <option value="book_bisnis_berdaya" <?php if ($table_name == 'book_bisnis_berdaya') echo 'selected'; ?>>Bisnis Berdaya</option>
-                    <option value="book_kreatif_kids_corner" <?php if ($table_name == 'book_kreatif_kids_corner') echo 'selected'; ?>>Kreatif Kids Corner</option>
-                    <option value="book_pena_inspirasi_gemilang" <?php if ($table_name == 'book_pena_inspirasi_gemilang') echo 'selected'; ?>>Pena Inspirasi Gemilang</option>
-                </select>
-            </form>
+            <div class="filter">
+
+                <form action="dashbook.php" method="post" class="corner-education">
+                    <label for="table-dropdown" class="title-ce">Pilih Pojok Baca</label>
+                    <select id="table-dropdown" class="drop-ce" name="table_name" onchange="this.form.submit()">
+                        <option value="book_literasi_imajinatif" <?php if ($table_name == 'book_literasi_imajinatif') echo 'selected'; ?>>Literasi Imajinatif</option>
+                        <option value="book_social_connect" <?php if ($table_name == 'book_social_connect') echo 'selected'; ?>>Social Connect</option>
+                        <option value="book_bisnis_berdaya" <?php if ($table_name == 'book_bisnis_berdaya') echo 'selected'; ?>>Bisnis Berdaya</option>
+                        <option value="book_kreatif_kids_corner" <?php if ($table_name == 'book_kreatif_kids_corner') echo 'selected'; ?>>Kreatif Kids Corner</option>
+                        <option value="book_pena_inspirasi_gemilang" <?php if ($table_name == 'book_pena_inspirasi_gemilang') echo 'selected'; ?>>Pena Inspirasi Gemilang</option>
+                    </select>
+                </form>
+    
+                <div class="search-bar">
+                    <form action="dashbook.php" method="get" class="form-search">
+                        <input type="hidden" name="table_name" value="<?php echo htmlspecialchars($table_name); ?>">
+                        <input type="text" name="search" placeholder="Cari Buku" value="<?php echo htmlspecialchars($search); ?>">
+                        <button type="submit" class="submit-src">
+                            <img src="../img/navbar/search-nav-icon.png" alt="Search">
+                        </button>
+                    </form>
+                </div>
+
+            </div>
 
             <table id="pojokBacaTable">
                 <thead>
@@ -148,34 +180,28 @@ $query = mysqli_query($connection, "SELECT * FROM " . mysqli_real_escape_string(
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    while ($data = mysqli_fetch_array($query)) {
-                    ?>
-                    <tr>
-                        <td><?php echo $data['id_book']; ?></td>
-                        <td><img src="../<?php echo $data['photo']; ?>" alt="<?php echo $data['title_book']; ?>" style="width: 50px; height: auto;"></td>
-                        <td><?php echo $data['title_book']; ?></td>
-                        <td><?php echo $data['author_name']; ?></td>
-                        <td><?php echo $data['publisher_name']; ?></td>
-                        <td><?php echo $data['year_publish']; ?></td>
-                        <td><?php echo $data['isbn']; ?></td>
-                        <td><?php echo $data['sipnopsis']; ?></td>
-                        <td><?php echo $data['total_page']; ?></td>
-                        <td><?php echo $data['status']; ?></td>
-
-                        <td>
-                            <a href="../crud/update-book.php?id_book=<?php echo htmlspecialchars($data['id_book']); ?>&table_name=<?php echo htmlspecialchars($table_name); ?>">
-                                <i class="fa fa-pencil-square-o edit-btn" style="font-size: 20px"></i>
-                            </a>
-                            <a href="#" class="cd-popup-trigger-del" onclick="showDeletePopup('<?php echo $data['id_book']; ?>', '<?php echo htmlspecialchars($table_name); ?>');">
-                                <i class="fa fa-trash delete-btn" style="font-size: 20px"></i>          
-                            </a>
-                        </td>
-
-                    </tr>
-                    <?php
-                    }
-                    ?>
+                    <?php foreach ($books as $book): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($book['id_book']); ?></td>
+                            <td><img src="../<?php echo htmlspecialchars($book['photo']); ?>" alt="Foto Buku" width="50"></td>
+                            <td><?php echo htmlspecialchars($book['title_book']); ?></td>
+                            <td><?php echo htmlspecialchars($book['author_name']); ?></td>
+                            <td><?php echo htmlspecialchars($book['publisher_name']); ?></td>
+                            <td><?php echo htmlspecialchars($book['year_publish']); ?></td>
+                            <td><?php echo htmlspecialchars($book['isbn']); ?></td>
+                            <td><?php echo htmlspecialchars($book['sipnopsis']); ?></td>
+                            <td><?php echo htmlspecialchars($book['total_page']); ?></td>
+                            <td><?php echo htmlspecialchars($book['status']); ?></td>
+                            <td>
+                            <a href="../crud/update-book.php?id_book=<?php echo htmlspecialchars($book['id_book']); ?>&table_name=<?php echo htmlspecialchars($table_name); ?>">
+                                    <i class="fa fa-pencil-square-o edit-btn" style="font-size: 20px"></i>
+                                </a>
+                                <a href="#" class="cd-popup-trigger-del" onclick="showDeletePopup('<?php echo htmlspecialchars($book['id_book']); ?>', '<?php echo htmlspecialchars($table_name); ?>');">
+                                    <i class="fa fa-trash delete-btn" style="font-size: 20px"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
