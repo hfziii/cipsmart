@@ -6,13 +6,13 @@ function getBooksFromTable($table, $search = null) {
     global $connection;
     $sql = "SELECT id_borrow, id_book, name, title_book, borrow_date, return_date, status FROM $table";
     if ($search) {
-        $sql .= " WHERE id_book LIKE ? OR name LIKE ? OR title_book LIKE ? OR status LIKE ?";
+        $sql .= " WHERE id_borrow LIKE ? OR id_book LIKE ? OR name LIKE ? OR title_book LIKE ? OR borrow_date LIKE ? OR return_date LIKE ? OR status LIKE ?";
     }
     
     $stmt = mysqli_prepare($connection, $sql);
     if ($search) {
         $search_param = '%' . $search . '%';
-        mysqli_stmt_bind_param($stmt, 'ssss', $search_param, $search_param, $search_param, $search_param);
+        mysqli_stmt_bind_param($stmt, 'sssssss', $search_param, $search_param, $search_param, $search_param, $search_param, $search_param, $search_param);
     }
     
     mysqli_stmt_execute($stmt);
@@ -198,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_borrow']) && iss
             <li><a href="./dashadmin.php"><i class="fa fa-user"></i> Admin</a></li>
             <li><a href="./dashboard_kelurahan.php"><i class="fa fa-university"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.php"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
+            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Pengunjung Pojok Baca</a></li>
             <li><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
             <li class="active"><a href="./dashborrow.php"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
@@ -233,6 +233,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_borrow']) && iss
                         <option value="borrowing_kreatif_kids_corner" <?php if ($table_name == 'borrowing_kreatif_kids_corner') echo 'selected'; ?>>Kreatif Kids Corner</option>
                         <option value="borrowing_pena_inspirasi_gemilang" <?php if ($table_name == 'borrowing_pena_inspirasi_gemilang') echo 'selected'; ?>>Pena Inspirasi Gemilang</option>
                     </select>
+                    <button type="submit" formaction="../crud/export_borrow.php" class="report-btn">Unduh Laporan</button>
                 </form>
 
                 <div class="search-bar">

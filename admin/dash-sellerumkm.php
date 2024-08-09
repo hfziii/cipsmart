@@ -24,7 +24,11 @@
     // Fetch data with optional search filter
     $query = "SELECT * FROM seller_umkm";
     if ($search) {
-        $query .= " WHERE seller_name LIKE '%$search%' OR address_seller LIKE '%$search%'";
+        $query .= " WHERE 
+            id_seller LIKE '%$search%' OR 
+            seller_name LIKE '%$search%' OR 
+            no_whatsapp LIKE '%$search%' OR 
+            address_seller LIKE '%$search%'";
     }
     $query .= " ORDER BY id_seller ASC";
     $result = mysqli_query($connection, $query);
@@ -56,7 +60,7 @@
             <li><a href="./dashadmin.php"><i class="fa fa-user"></i> Admin</a></li>
             <li><a href="./dashboard_kelurahan.php"><i class="fa fa-university"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.php"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
+            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Pengunjung Pojok Baca</a></li>
             <li><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
             <li><a href="./dashborrow.php"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>

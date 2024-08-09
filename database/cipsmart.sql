@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 30, 2024 at 08:09 AM
+-- Generation Time: Aug 09, 2024 at 04:44 AM
 -- Server version: 8.0.30
--- PHP Version: 8.1.10
+-- PHP Version: 8.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -46,7 +46,9 @@ INSERT INTO `absen` (`id_absen`, `name_member`, `name_corner`, `date`) VALUES
 (5, 'budi', 'Social Connect', '2024-07-15'),
 (6, 'Hafizi', 'Literasi Imajinatif', '2024-07-19'),
 (7, 'Agus', 'Literasi Imajinatif', '2024-07-24'),
-(8, 'Dayat', 'Pena Inspirasi Gemilang', '2024-07-30');
+(8, 'Dayat', 'Pena Inspirasi Gemilang', '2024-07-30'),
+(9, 'adinda', 'Literasi Imajinatif', '2024-08-01'),
+(10, 'Veronika', 'Bisnis Berdaya', '2024-08-01');
 
 -- --------------------------------------------------------
 
@@ -56,7 +58,7 @@ INSERT INTO `absen` (`id_absen`, `name_member`, `name_corner`, `date`) VALUES
 
 CREATE TABLE `admin` (
   `id_admin` int NOT NULL,
-  `name` varchar(20) NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `nohp` varchar(20) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
@@ -68,8 +70,19 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id_admin`, `name`, `nohp`, `username`, `password`, `privileges`) VALUES
-(1, 'Muhamad Hafizi', '085157181162', 'hafiziadmin', 'masuk372', 'super admin'),
-(2, 'admin', '085122890190', 'admin', 'admin', 'super admin');
+(1, 'BLM FEB Unpak', '085157181162', 'blmfeb', 'CBFPakuan24#', 'Super-Admin'),
+(2, 'Kelurahan Cipaku', '0821', 'cipaku', 'cipaku@24', 'Kelurahan'),
+(3, 'Literasi Imajinatif 1', '0', 'literasi1', 'c11ppk24', 'CE-1'),
+(4, 'Literasi Imajinatif 2', '0', 'literasi2', 'c12ppk24', 'CE-1'),
+(5, 'Social Connect 1', '0', 'social1', 'c21ppk24', 'CE-2'),
+(6, 'Social Connect 2', '0', 'social2', 'c22ppk24', 'CE-2'),
+(7, 'Bisnis Berdaya 1', '0', 'bisnis1', 'c31ppk24', 'CE-3'),
+(8, 'Bisnis Berdaya 2', '0', 'bisnis2', 'c32ppk24', 'CE-3'),
+(9, 'Kreatif Kids Corner 1', '0', 'kreatif1', 'c41ppk24', 'CE-4'),
+(10, 'Kreatif Kids Corner 2', '0', 'kreatif2', 'c42ppk24', 'CE-4'),
+(11, 'Pena Inspirasi Gemilang 1', '0', 'pena1', 'c51ppk24', 'CE-5'),
+(12, 'Pena Inspirasi Gemilang 2', '0', 'pena2', 'c52ppk24', 'CE-5'),
+(13, 'UMKM', '085157181162', 'umkm', 'umkm24ppk', 'UMKM');
 
 -- --------------------------------------------------------
 
@@ -78,9 +91,10 @@ INSERT INTO `admin` (`id_admin`, `name`, `nohp`, `username`, `password`, `privil
 --
 
 CREATE TABLE `book_bisnis_berdaya` (
-  `id_book` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `id_book` varchar(20) NOT NULL,
   `photo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `title_book` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `category` varchar(255) DEFAULT NULL,
   `author_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `publisher_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `year_publish` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -94,9 +108,9 @@ CREATE TABLE `book_bisnis_berdaya` (
 -- Dumping data for table `book_bisnis_berdaya`
 --
 
-INSERT INTO `book_bisnis_berdaya` (`id_book`, `photo`, `title_book`, `author_name`, `publisher_name`, `year_publish`, `isbn`, `sipnopsis`, `total_page`, `status`) VALUES
-('BC3-001', 'uploads/BOOK_CE-3/G1.png', 'Tales of Two Planets', 'Valerie', 'Penguin Publishing Group', '2022', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies, ante sed suscipit tincidunt, nisl urna tempor neque, et facilisis metus ipsum mollis orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec luctus tortor. Mauris rhoncus leo suscipit aliquam venenatis. Vivamus nec convallis mi. Proin felis nisl, ornare eget pretium ac, pellentesque nec risus. Nunc porta augue id rutrum tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Etiam scelerisque at ligula sed sodales. Fusce dui leo, auctor non congue nec, fringilla id dolor. Nunc id cursus enim. Pellentesque tincidunt cursus mi eu hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed eleifend vitae mi vitae pulvinar. Etiam et tortor sed lacus tincidunt varius.', '320', 'Tersedia'),
-('BC3-002', 'uploads/BOOK_CE-3/G8.png', 'Dongeng Banten', 'Maman', 'Gramedia', '2020', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '320', 'Tersedia');
+INSERT INTO `book_bisnis_berdaya` (`id_book`, `photo`, `title_book`, `category`, `author_name`, `publisher_name`, `year_publish`, `isbn`, `sipnopsis`, `total_page`, `status`) VALUES
+('CE3-AA-002-1', 'uploads/BOOK_CE-3/G8.png', 'Dongeng Banten', 'Anak-anak', 'Maman', 'Gramedia', '2020', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '320', 'Tersedia'),
+('CE3-F-001-1', 'uploads/BOOK_CE-3/G1.png', 'Tales of Two Planets', 'Fiksi', 'Valerie', 'Penguin Publishing Group', '2022', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies, ante sed suscipit tincidunt, nisl urna tempor neque, et facilisis metus ipsum mollis orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec luctus tortor. Mauris rhoncus leo suscipit aliquam venenatis. Vivamus nec convallis mi. Proin felis nisl, ornare eget pretium ac, pellentesque nec risus. Nunc porta augue id rutrum tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Etiam scelerisque at ligula sed sodales. Fusce dui leo, auctor non congue nec, fringilla id dolor. Nunc id cursus enim. Pellentesque tincidunt cursus mi eu hendrerit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed eleifend vitae mi vitae pulvinar. Etiam et tortor sed lacus tincidunt varius.', '320', 'Tersedia');
 
 -- --------------------------------------------------------
 
@@ -105,9 +119,10 @@ INSERT INTO `book_bisnis_berdaya` (`id_book`, `photo`, `title_book`, `author_nam
 --
 
 CREATE TABLE `book_kreatif_kids_corner` (
-  `id_book` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `id_book` varchar(20) NOT NULL,
   `photo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `title_book` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `category` varchar(255) DEFAULT NULL,
   `author_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `publisher_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `year_publish` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -121,8 +136,8 @@ CREATE TABLE `book_kreatif_kids_corner` (
 -- Dumping data for table `book_kreatif_kids_corner`
 --
 
-INSERT INTO `book_kreatif_kids_corner` (`id_book`, `photo`, `title_book`, `author_name`, `publisher_name`, `year_publish`, `isbn`, `sipnopsis`, `total_page`, `status`) VALUES
-('BC4-001', 'uploads/BOOK_CE-4/G9.png', 'Dongeng Kancil', 'Maman', 'Gramedia', '2020', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '320', 'Tersedia');
+INSERT INTO `book_kreatif_kids_corner` (`id_book`, `photo`, `title_book`, `category`, `author_name`, `publisher_name`, `year_publish`, `isbn`, `sipnopsis`, `total_page`, `status`) VALUES
+('CE4-AA-001-1', 'uploads/BOOK_CE-4/G9.png', 'Dongeng Kancil', 'Anak-anak', 'Maman', 'Gramedia', '2020', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '320', 'Tersedia');
 
 -- --------------------------------------------------------
 
@@ -131,9 +146,10 @@ INSERT INTO `book_kreatif_kids_corner` (`id_book`, `photo`, `title_book`, `autho
 --
 
 CREATE TABLE `book_literasi_imajinatif` (
-  `id_book` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `id_book` varchar(20) NOT NULL,
   `photo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `title_book` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `category` varchar(255) DEFAULT NULL,
   `author_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `publisher_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `year_publish` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -147,9 +163,12 @@ CREATE TABLE `book_literasi_imajinatif` (
 -- Dumping data for table `book_literasi_imajinatif`
 --
 
-INSERT INTO `book_literasi_imajinatif` (`id_book`, `photo`, `title_book`, `author_name`, `publisher_name`, `year_publish`, `isbn`, `sipnopsis`, `total_page`, `status`) VALUES
-('BC1-001', '../uploads/BOOK_CE-1/G1.png', 'Tales of Two Planets', 'Valerie', 'Gramedia', '2020', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '320', 'Dipinjam'),
-('BC1-002', 'uploads/BOOK_CE-1/G2.png', 'Bitterswet', 'Valerie', 'Penguin Publishing Group', '2020', '978-052-55057-1-1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '120', 'Tersedia');
+INSERT INTO `book_literasi_imajinatif` (`id_book`, `photo`, `title_book`, `category`, `author_name`, `publisher_name`, `year_publish`, `isbn`, `sipnopsis`, `total_page`, `status`) VALUES
+('CE1-AA-003-1', '../uploads/BOOK_CE-1/G6.png', 'Buku Dongeng Paling Populer', 'Anak-anak', 'H.C. Anderson', 'Gagas Media', '2008', '978-979-78029-4-3', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Nulla facilisi. Ut euismod, odio non dignissim malesuada, urna erat vehicula urna, in dignissim erat sapien sit amet nulla. Suspendisse potenti. Integer dapibus, leo in gravida cursus, orci ligula fermentum risus, non ultricies ex velit id lorem. Cras at magna sit amet nisi gravida sagittis.', '184', 'Dipinjam'),
+('CE1-AA-004-1', '../uploads/BOOK_CE-1/G8.png', 'Cerita Rakyat dari Banten', 'Anak-anak', 'Endang Firdaus', 'Gransindo', '2003', '978-979-73204-3-0', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Nulla facilisi. Ut euismod, odio non dignissim malesuada, urna erat vehicula urna, in dignissim erat sapien sit amet nulla. Suspendisse potenti. Integer dapibus, leo in gravida cursus, orci ligula fermentum risus, non ultricies ex velit id lorem. Cras at magna sit amet nisi gravida sagittis.', '37', 'Tersedia'),
+('CE1-F-001-1', '../uploads/BOOK_CE-1/G1.png', 'Tales of Two Planets', 'Fiksi', 'Valerie', 'Gramedia', '2020', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '320', 'Tersedia'),
+('CE1-F-002-1', '../uploads/BOOK_CE-1/G2.png', 'Bitterswet', 'Fiksi', 'Valerie', 'Penerbit Akad Group', '2022', '978-623-97760-6-0', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Nulla facilisi. Ut euismod, odio non dignissim malesuada, urna erat vehicula urna, in dignissim erat sapien sit amet nulla. Suspendisse potenti. Integer dapibus, leo in gravida cursus, orci ligula fermentum risus, non ultricies ex velit id lorem. Cras at magna sit amet nisi gravida sagittis.', '376', 'Dipinjam'),
+('CE1-P-005-1', '../uploads/BOOK_CE-1/G18.png', 'Yes! Aku Lolos SBMPTN IPS/SAINTEK', 'Pendidikan', 'Veronika Neni', 'Bentag Pustaka', '2016', '978-602-12465-5-9', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Nulla facilisi. Ut euismod, odio non dignissim malesuada, urna erat vehicula urna, in dignissim erat sapien sit amet nulla. Suspendisse potenti. Integer dapibus, leo in gravida cursus, orci ligula fermentum risus, non ultricies ex velit id lorem. Cras at magna sit amet nisi gravida sagittis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Nulla facilisi. Ut euismod, odio non dignissim malesuada, urna erat vehicula urna, in dignissim erat sapien sit amet nulla. Suspendisse potenti. Integer dapibus, leo in gravida cursus, orci ligula fermentum risus, non ultricies ex velit id lorem. Cras at magna sit amet nisi gravida sagittis.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Nulla facilisi. Ut euismod, odio non dignissim malesuada, urna erat vehicula urna, in dignissim erat sapien sit amet nulla. Suspendisse potenti. Integer dapibus, leo in gravida cursus, orci ligula fermentum risus, non ultricies ex velit id lorem. Cras at magna sit amet nisi gravida sagittis.', '408', 'Tersedia');
 
 -- --------------------------------------------------------
 
@@ -158,9 +177,10 @@ INSERT INTO `book_literasi_imajinatif` (`id_book`, `photo`, `title_book`, `autho
 --
 
 CREATE TABLE `book_pena_inspirasi_gemilang` (
-  `id_book` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `id_book` varchar(20) NOT NULL,
   `photo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `title_book` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `category` varchar(255) DEFAULT NULL,
   `author_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `publisher_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `year_publish` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -174,8 +194,8 @@ CREATE TABLE `book_pena_inspirasi_gemilang` (
 -- Dumping data for table `book_pena_inspirasi_gemilang`
 --
 
-INSERT INTO `book_pena_inspirasi_gemilang` (`id_book`, `photo`, `title_book`, `author_name`, `publisher_name`, `year_publish`, `isbn`, `sipnopsis`, `total_page`, `status`) VALUES
-('BC5-001', '../uploads/BOOK_CE-5/G17.png', 'Novel Anak', 'Unknown', 'Gramedia-Widiasarana-Indonesia', '2020', '978-979-02500-6-2', 'Lorem ipsum, atau ringkasnya lipsum, adalah teks standar yang ditempatkan untuk mendemostrasikan elemen grafis atau presentasi visual seperti font, tipografi, dan tata letak.', '320', 'Tersedia');
+INSERT INTO `book_pena_inspirasi_gemilang` (`id_book`, `photo`, `title_book`, `category`, `author_name`, `publisher_name`, `year_publish`, `isbn`, `sipnopsis`, `total_page`, `status`) VALUES
+('CE5-AA-001-1', '../uploads/BOOK_CE-5/G17.png', 'Novel Anak', 'Anak-anak', 'Unknown', 'Gramedia-Widiasarana-Indonesia', '2020', '978-979-02500-6-2', 'Lorem ipsum, atau ringkasnya lipsum, adalah teks standar yang ditempatkan untuk mendemostrasikan elemen grafis atau presentasi visual seperti font, tipografi, dan tata letak.', '320', 'Tersedia');
 
 -- --------------------------------------------------------
 
@@ -184,9 +204,10 @@ INSERT INTO `book_pena_inspirasi_gemilang` (`id_book`, `photo`, `title_book`, `a
 --
 
 CREATE TABLE `book_social_connect` (
-  `id_book` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `id_book` varchar(20) NOT NULL,
   `photo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `title_book` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `category` varchar(255) DEFAULT NULL,
   `author_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `publisher_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `year_publish` varchar(4) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
@@ -200,9 +221,10 @@ CREATE TABLE `book_social_connect` (
 -- Dumping data for table `book_social_connect`
 --
 
-INSERT INTO `book_social_connect` (`id_book`, `photo`, `title_book`, `author_name`, `publisher_name`, `year_publish`, `isbn`, `sipnopsis`, `total_page`, `status`) VALUES
-('BC2-001', 'uploads/BOOK_CE-2/G6.png', 'Buku Dongen Paling Populer', 'Maman', 'Penguin Publishing Group', '2020', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '120', 'Tersedia'),
-('BC2-002', 'uploads/BOOK_CE-2/G7.png', 'Dongen 1001 Malam', 'Maman', 'Gramedia', '2020', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '320', 'Tersedia');
+INSERT INTO `book_social_connect` (`id_book`, `photo`, `title_book`, `category`, `author_name`, `publisher_name`, `year_publish`, `isbn`, `sipnopsis`, `total_page`, `status`) VALUES
+('CE2-AA-001-1', 'uploads/BOOK_CE-2/G6.png', 'Buku Dongeng Paling Populer', 'Anak-anak', 'Maman', 'Penguin Publishing Group', '2020', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '120', 'Tersedia'),
+('CE2-AA-002-1', 'uploads/BOOK_CE-2/G7.png', 'Dongeng 1001 Malam', 'Anak-anak', 'Maman', 'Gramedia', '2020', '978-052-55057-1-6', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '320', 'Tersedia'),
+('CE2-F-001-1', '../uploads/BOOK_CE-2/G24.png', 'A Litte Life', 'Fiksi', 'Hanya', 'Gramedia', '2020', '978-052-55057-1-6', 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum', '100', 'Tersedia');
 
 -- --------------------------------------------------------
 
@@ -267,9 +289,12 @@ CREATE TABLE `borrowing_literasi_imajinatif` (
 --
 
 INSERT INTO `borrowing_literasi_imajinatif` (`id_borrow`, `id_book`, `id_user`, `name`, `title_book`, `borrow_date`, `return_date`, `status`) VALUES
-(1, 'BC1-001', 0, 'Opay', 'Tales of Two Planets', '2024-07-30', '2024-07-31', 'Tersedia'),
-(2, 'BC1-002', 0, 'Bambang', 'Bitterswet', '2024-07-30', '2024-08-05', 'Tersedia'),
-(3, 'BC1-001', 0, 'Angga', 'Tales of Two Planets', '2024-07-30', '2024-08-10', 'Dipinjam');
+(1, 'BC1-001', 0, 'Hafizi', 'Tales of Two Planets', '2024-08-01', '2024-08-02', 'Tersedia'),
+(2, 'BC1-005', 0, 'Fatur', 'Yes! Aku Lolos SBMPTN IPS/SAINTEK', '2024-08-01', '2024-08-03', 'Tersedia'),
+(3, 'BC1-005', 0, 'ojet', 'Yes! Aku Lolos SBMPTN IPS/SAINTEK', '2024-08-06', '2024-08-07', 'Tersedia'),
+(4, 'BC1-003', 0, 'Sarip', 'Buku Dongeng Paling Populer', '2024-08-06', '2024-08-07', 'Dipinjam'),
+(5, 'BC1-001', 0, 'Fatur', 'Tales of Two Planets', '2024-08-07', '2024-08-08', 'Tersedia'),
+(6, 'BC1-002', 0, 'Fatur', 'Bitterswet', '2024-08-07', '2024-08-08', 'Dipinjam');
 
 -- --------------------------------------------------------
 
@@ -293,7 +318,8 @@ CREATE TABLE `borrowing_pena_inspirasi_gemilang` (
 --
 
 INSERT INTO `borrowing_pena_inspirasi_gemilang` (`id_borrow`, `id_book`, `id_user`, `name`, `title_book`, `borrow_date`, `return_date`, `status`) VALUES
-(1, 'BC5-001', 0, 'Salwa', 'Novel Anak', '2024-07-30', '2024-07-31', 'Tersedia');
+(1, 'BC5-001', 0, 'Salwa', 'Novel Anak', '2024-07-30', '2024-07-31', 'Tersedia'),
+(2, 'BC5-001', 0, 'Opay', 'Novel Anak', '2024-08-01', '2024-08-03', 'Tersedia');
 
 -- --------------------------------------------------------
 
@@ -370,18 +396,18 @@ CREATE TABLE `ebook` (
 --
 
 INSERT INTO `ebook` (`id_ebook`, `judul_ebook`, `kategori_ebook`, `penulis_ebook`, `penerbit_ebook`, `jumlah_halaman_ebook`, `tahun_ebook`, `isbn_ebook`, `sipnopsis_ebook`, `sampul_ebook`, `file_ebook`) VALUES
-(1, 'Namaku Kali', 'Sastra', 'Anna Farida dan Felishia', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '100', '2022', '978-602-427-921-9', 'Anak itu datang lagi! Kali selalu suka melihat anak itu. Apa yang akan dia lakukan hari ini?', 'uploads/ebook/ebook-001-namakukali.png', 'uploads/ebook/Namaku_Kali.pdf'),
-(2, 'Aku Sudah Besar', 'Sastra', 'Futri Wijayanti', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '16', '2022', '978-602-244-930-0', 'Ayah dan Ibu sibuk dengan Adik. Aku mulai iri. Namun aku sudah besar. Bolehkah aku ikut mengasuh Adik?', 'uploads/ebook/ebook-002-akusudahbesar.png', 'uploads/ebook/Aku_Sudah_Besar.pdf'),
-(3, 'Apa Itu?', 'Sastra', 'Laksmi Manohara, Aira Rumi', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '23', '2022', '978-602-244-939-3', 'Tia dan teman-temannya pergi ke Desa Cisupa. Ada pawai sisingaan di sana. Dalam perjalanan, ada sesuatu mengikuti mereka. Apa itu?', 'uploads/ebook/ebook-003-apaitu.png', 'uploads/ebook/Apa_Itu.pdf'),
-(4, 'Biji Merah Luna', 'Sastra', 'Ammy Kudo', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '17', '2022', '978-602-244-926-3', 'Biji merah itu bagus. Sayang hanya sedikit. Yuk, lihat Luna. Dia sedang apa?', 'uploads/ebook/ebook-004-bijimerahluna.png', 'uploads/ebook/Biji_Merah_Luna.pdf'),
-(5, 'Coba dulu Tora', 'Sastra', 'Sri Sarastuti', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '33', '2022', '978-602-244-942-3', 'Tora baru saja pindah ke pohon baru yang nyaman. Sayangnya, dia jadi malas bergerak. Bahkan dia sering menunda keinginan buang air besar. Akibatnya, Tora malah jadi susah buang air besar.', 'uploads/ebook/Cuplikan layar 2024-07-18 161703.png', 'uploads/ebook/Coba_Dulu_Tora.pdf'),
-(6, 'Dimana Kacang Sipet', 'Sastra', 'Aris Hartanti', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '23', '2022', '978-602-244-935-5', 'Sipet mengumpulkan kacang untuk persediaan. Namun, kacang Sipet hilang! Di mana kacang Sipet?', 'uploads/ebook/ebook-006-dimanakacangsipet.png', 'uploads/ebook/Dimana_Kacang_Sipet.pdf'),
-(7, 'Gadis Rempah', 'Sastra', 'Musrifah Medkom', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '185', '2023', '978-623-118-030-8', 'Arumi seorang gadis remaja yang sangan bermimpi menjadi seorang desainer produk. Namun, mimpi dan kenyataan sangatlah berbeda dari harapannya. Di mata Ibunya, semua yang dilakukannya', 'uploads/ebook/ebook-007-gadisrempah.png', 'uploads/ebook/Gadis_Rempah.pdf'),
-(8, 'Karena Anggrek Ibu', 'Sastra', 'Debby Lukito Goeyardi, Widyasari Hanaya', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '47', '2022', '978-602-244-944-7', 'Janu bingung dan takut. Sekolah memberi surat edaran, tapi Janu lupa menyerahkan surat itu kepada ibu. Ibu sangat disiplin, apalagi kalau menyangkut soal uang. Semua harus direncanakan. Jadi, Janu memutuskan', 'uploads/ebook/ebook-008-karenaanggrekibu.png', 'uploads/ebook/Karena_Anggrek_Ibu.pdf'),
-(9, 'Naik-naik Kepuncak Bukit', 'Sastra', 'Sarah Fauzia', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '25', '2022', '978-602-244-937-9', 'Bulan dan Sabit biasa berjalan kaki setiap pagi. Mereka ingin mencoba pengalaman baru. Kali ini mereka akan mendaki bukit! Masalahnya, keadaan di sana tidak mudah bagi Sabit. Apa yang dialami Sabit?', 'uploads/ebook/ebook-011-naiknaikkepuncakbukit.png', 'uploads/ebook/Naik_Naik_Kepuncak_Bukit.pdf'),
-(10, 'Si Cemong Coak', 'Sastra', 'Iwok Abqary', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '55', '2022', '978-602-244-922-5', 'Cemong selalu iri melihat kucing-kucing yang mengenakan kerincing. Baginya, Kerincing melambangkan rumah dan kasih sayang. Bisakah ia meiliki kerincing yang diimpikan? Ia hanyalah kucing liar tak bertuan.', 'uploads/ebook/si_cemong_coak.png', 'uploads/ebook/Si_Cemong_Coak.pdf'),
-(11, 'Misteri Drumben Tengah Malam', 'Sastra', 'Dian Kristiani', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '154', '2023', '978-623-118-008-7', 'Bagi Faben, tinggal di Yogya sungguh menyebalkan. Makanan, teman-teman, dan cuacanya sungguh berbeda dengan Bengkulu, kota kelahirannya. Namun, Faben tak punya pilihan. Dia harus', 'uploads/ebook/misteri_drumben_tengah_malam.png', 'uploads/ebook/Misteri_Drumben_Tengah_Malam.pdf'),
-(12, 'Sekolah Untuk Timur', 'Sastra', 'Muhammad Fauzi, Izzah Annisa', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '176', '2023', '978-623-118-012-4', 'Timur adalah bocah manis dari Wamena, Papua. Dia baru lulus SD dan ingin melanjutkan ke SMP. Namun, jarak rumah dengan SMP sangat jauh. Apalagi, Bapak melarang Timur melanjutkan', 'uploads/ebook/Sekolah_untuk_timur.png', 'uploads/ebook/Sekolah_Untuk_Timur.pdf'),
+(1, 'Namaku Kali', 'Cerpen', 'Anna Farida dan Felishia', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '100', '2022', '978-602-427-921-9', 'Anak itu datang lagi! Kali selalu suka melihat anak itu. Apa yang akan dia lakukan hari ini?', 'uploads/ebook/ebook-001-namakukali.png', 'uploads/ebook/Namaku_Kali.pdf'),
+(2, 'Aku Sudah Besar', 'Novel', 'Futri Wijayanti', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '16', '2022', '978-602-244-930-0', 'Ayah dan Ibu sibuk dengan Adik. Aku mulai iri. Namun aku sudah besar. Bolehkah aku ikut mengasuh Adik?', 'uploads/ebook/ebook-002-akusudahbesar.png', 'uploads/ebook/Aku_Sudah_Besar.pdf'),
+(3, 'Apa Itu?', 'Umum', 'Laksmi Manohara, Aira Rumi', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '23', '2022', '978-602-244-939-3', 'Tia dan teman-temannya pergi ke Desa Cisupa. Ada pawai sisingaan di sana. Dalam perjalanan, ada sesuatu mengikuti mereka. Apa itu?', 'uploads/ebook/ebook-003-apaitu.png', 'uploads/ebook/Apa_Itu.pdf'),
+(4, 'Biji Merah Luna', 'Pendidikan', 'Ammy Kudo', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '17', '2022', '978-602-244-926-3', 'Biji merah itu bagus. Sayang hanya sedikit. Yuk, lihat Luna. Dia sedang apa?', 'uploads/ebook/ebook-004-bijimerahluna.png', 'uploads/ebook/Biji_Merah_Luna.pdf'),
+(5, 'Coba dulu Tora', 'Cerpen', 'Sri Sarastuti', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '33', '2022', '978-602-244-942-3', 'Tora baru saja pindah ke pohon baru yang nyaman. Sayangnya, dia jadi malas bergerak. Bahkan dia sering menunda keinginan buang air besar. Akibatnya, Tora malah jadi susah buang air besar.', 'uploads/ebook/Cuplikan layar 2024-07-18 161703.png', 'uploads/ebook/Coba_Dulu_Tora.pdf'),
+(6, 'Dimana Kacang Sipet', 'Cerpen', 'Aris Hartanti', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '23', '2022', '978-602-244-935-5', 'Sipet mengumpulkan kacang untuk persediaan. Namun, kacang Sipet hilang! Di mana kacang Sipet?', 'uploads/ebook/ebook-006-dimanakacangsipet.png', 'uploads/ebook/Dimana_Kacang_Sipet.pdf'),
+(7, 'Gadis Rempah', 'Pendidikan', 'Musrifah Medkom', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '185', '2023', '978-623-118-030-8', 'Arumi seorang gadis remaja yang sangan bermimpi menjadi seorang desainer produk. Namun, mimpi dan kenyataan sangatlah berbeda dari harapannya. Di mata Ibunya, semua yang dilakukannya', 'uploads/ebook/ebook-007-gadisrempah.png', 'uploads/ebook/Gadis_Rempah.pdf'),
+(8, 'Karena Anggrek Ibu', 'Pendidikan', 'Debby Lukito Goeyardi, Widyasari Hanaya', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '47', '2022', '978-602-244-944-7', 'Janu bingung dan takut. Sekolah memberi surat edaran, tapi Janu lupa menyerahkan surat itu kepada ibu. Ibu sangat disiplin, apalagi kalau menyangkut soal uang. Semua harus direncanakan. Jadi, Janu memutuskan', 'uploads/ebook/ebook-008-karenaanggrekibu.png', 'uploads/ebook/Karena_Anggrek_Ibu.pdf'),
+(9, 'Naik-naik Kepuncak Bukit', 'Pendidikan', 'Sarah Fauzia', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '25', '2022', '978-602-244-937-9', 'Bulan dan Sabit biasa berjalan kaki setiap pagi. Mereka ingin mencoba pengalaman baru. Kali ini mereka akan mendaki bukit! Masalahnya, keadaan di sana tidak mudah bagi Sabit. Apa yang dialami Sabit?', 'uploads/ebook/ebook-011-naiknaikkepuncakbukit.png', 'uploads/ebook/Naik_Naik_Kepuncak_Bukit.pdf'),
+(10, 'Si Cemong Coak', 'Pendidikan', 'Iwok Abqary', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '55', '2022', '978-602-244-922-5', 'Cemong selalu iri melihat kucing-kucing yang mengenakan kerincing. Baginya, Kerincing melambangkan rumah dan kasih sayang. Bisakah ia meiliki kerincing yang diimpikan? Ia hanyalah kucing liar tak bertuan.', 'uploads/ebook/si_cemong_coak.png', 'uploads/ebook/Si_Cemong_Coak.pdf'),
+(11, 'Misteri Drumben Tengah Malam', 'Novel', 'Dian Kristiani', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '154', '2023', '978-623-118-008-7', 'Bagi Faben, tinggal di Yogya sungguh menyebalkan. Makanan, teman-teman, dan cuacanya sungguh berbeda dengan Bengkulu, kota kelahirannya. Namun, Faben tak punya pilihan. Dia harus', 'uploads/ebook/misteri_drumben_tengah_malam.png', 'uploads/ebook/Misteri_Drumben_Tengah_Malam.pdf'),
+(12, 'Sekolah Untuk Timur', 'Novel', 'Muhammad Fauzi, Izzah Annisa', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '176', '2023', '978-623-118-012-4', 'Timur adalah bocah manis dari Wamena, Papua. Dia baru lulus SD dan ingin melanjutkan ke SMP. Namun, jarak rumah dengan SMP sangat jauh. Apalagi, Bapak melarang Timur melanjutkan', 'uploads/ebook/Sekolah_untuk_timur.png', 'uploads/ebook/Sekolah_Untuk_Timur.pdf'),
 (13, 'Rumah Wortel', 'Sastra', 'Helga K.', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '24', '2022', '978-602-244-924-9', 'Elis suka sekali makan wortel. Namun, wortel sedang langka. Elis menanam wortel sendiri. Apakah dia akan berhasil?', 'uploads/ebook/Rumah_wortel.png', 'uploads/ebook/Rumah_Wortel.pdf'),
 (14, 'Layur Tetaplah Berlayar', 'Sastra', 'Anang YB', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '264', '2023', '978-623-118-058-2', 'Seorang remaja putri bernama Layur mengalami kecelakaan pada kakinya setelah terkena ledakan bom ikan. Dusun tersebut dulunya makmur, tetapi sejak penggunaan bom ikan menjadi kebiasaan, lautan dan terumbu karang sekitar', 'uploads/ebook/Layur_tetaplah_berlayar.png', 'uploads/ebook/Layur_Tetaplah_Berlayar.pdf'),
 (15, '5 Pandawa Penglipuran', 'Sastra', 'Sarah Fauzia', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '48', '2023', '978-623-118-022-3', 'Kondisi Bumi tidak baik-baik saja. Koloni di Mars juga membutuhkan oksigen lebih banyak lagi. Empat pemuda dari Mars pergi ke Bumi untuk memulihkan lingkungan', 'uploads/ebook/5_pandawa_penglipuran.png', 'uploads/ebook/Lima_Pandawa_Penglipuran.pdf'),
@@ -389,10 +415,10 @@ INSERT INTO `ebook` (`id_ebook`, `judul_ebook`, `kategori_ebook`, `penulis_ebook
 (17, 'Nanti Saja', 'Sastra', 'Fransisca Emilia', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '33', '2022', '978-602-244-941-6', 'Inur harus menyelesaikan prakarya hari ini karena besok harus dikumpulkan. Tapi, Abah minta tolong Inur mengantar minyak jelantah ke bank sampah. Berhasilkan Inur mengerjakan tugas sekolahnya? Apa yang ia buat?', 'uploads/ebook/Nanti_saja.png', 'uploads/ebook/Nanti_Saja_compressed.pdf'),
 (18, 'Pilus Rumput Laut Untuk Rasi', 'Sastra', 'Nabila Adani', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '47', '2022', '978-602-244-943-0', 'Berli risau karena panen rumput laut di daerahnya berkurang. Lalu, Berli mendapat ide. Ia memposting sesuatu di media sosialnya. Postingan itu ternyata membuat Berli terkenal, tetapi …. Oh, sahabatnya, Rasi,', 'uploads/ebook/Pilus_rumput_laut_untuk_rasi.png', 'uploads/ebook/Pilus_Rumput_Laut_Untuk_Rasi.pdf'),
 (19, 'Putri di Dalam Hutan', 'Sastra', 'Wiratu Emi', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '57 Halaman', '2022', '978-602-244-940-9', 'Neo dan Nara ikut orang tuanya ke Pulau Samosir. Mamanya seorang peneliti burung yang sedang meneliti burung endemik. Suatu hari saat mereka mengikuti orang tuanya di hutan mereka mencium bau wangi', 'uploads/ebook/Putri_di dalam_hutan.png', 'uploads/ebook/Putri_Didalam_Hutan.pdf'),
-(20, 'Tidak Bisa TIdak', 'Sastra', 'Lenny Puspita Ekawaty', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '33', '2022', '978-602-244-945-4', 'Dito ingin menempati peringkat teratas di gim Kota Baru bersama temantemannya. Dia bahkan sampai membuka tabungannya untuk membeli voucer gim. Saat peringkat mulai meningkat,', 'uploads/ebook/Tidak_bisa_tidak.png', 'uploads/ebook/Tidak_Bisa_Tidak.pdf'),
+(20, 'Tidak Bisa TIdak', 'Teknologi', 'Lenny Puspita Ekawaty', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '33', '2022', '978-602-244-945-4', 'Dito ingin menempati peringkat teratas di gim Kota Baru bersama temantemannya. Dia bahkan sampai membuka tabungannya untuk membeli voucer gim. Saat peringkat mulai meningkat,', 'uploads/ebook/Tidak_bisa_tidak.png', 'uploads/ebook/Tidak_Bisa_Tidak.pdf'),
 (21, 'Tiup - Tiup', 'Sastra', 'Ana Falesthin T. A.', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '24', '2022', '978-602-244-928-7', 'dengan uang tabungannya. Setiap hari, dia meniup seruling itu. Namun, Pak Kumis marah-marah. Apa yang terjadi, ya?', 'uploads/ebook/Tiup_tiup.png', 'uploads/ebook/Tiup_Tiup.pdf'),
-(22, 'Komik Rampai: Vanya dan Vino, Tiara x Jerawat, Rahasia Sehat Kakek, Kembalinya Para Lemak', 'Sastra', 'Sri Sarastuti,  dkk.', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '13', '2023', '978-623-118-024-7', 'Penampilan keren merupakan impian. Remaja pun tidak terlepas dari keinginan untuk dapat terlihat menarik dan penuh gaya. Komik Rampai ini berisi kisah Vanya dan Vino, Tiara,', 'uploads/ebook/Rahasia_kakek_sehat.png', 'uploads/ebook/Vanya_dan_Vino.pdf'),
-(23, 'Komik Rampai: Sekilas Yami, Tantangan Sinta, Rio dan Jabrik, Aji Mumpung', 'Sastra', 'Yudha Pangesti, dkk.', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '13', '2023', '978-623-118-026-1', 'Penampilan keren merupakan impian. Remaja pun tidak terlepas dari tantangan untuk dapat terlihat menarik dan penuh gaya. Tentu saja setiap remaja mempunyai deinisi', 'uploads/ebook/Rio & jabrik.png', 'uploads/ebook/Yami_Sinta_Rio_Aji.pdf'),
+(22, 'Komik Rampai:  Kembalinya Para Lemak', 'Sastra', 'Sri Sarastuti,  dkk.', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '13', '2023', '978-623-118-024-7', 'Penampilan keren merupakan impian. Remaja pun tidak terlepas dari keinginan untuk dapat terlihat menarik dan penuh gaya. Komik Rampai ini berisi kisah Vanya dan Vino, Tiara,', 'uploads/ebook/Rahasia_kakek_sehat.png', 'uploads/ebook/Vanya_dan_Vino.pdf'),
+(23, 'Komik Rampai: Sekilas Yami', 'Sastra', 'Yudha Pangesti, dkk.', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '13', '2023', '978-623-118-026-1', 'Penampilan keren merupakan impian. Remaja pun tidak terlepas dari tantangan untuk dapat terlihat menarik dan penuh gaya. Tentu saja setiap remaja mempunyai deinisi', 'uploads/ebook/Rio & jabrik.png', 'uploads/ebook/Yami_Sinta_Rio_Aji.pdf'),
 (24, 'Anak - anak Sungai Sondong', 'Sastra', 'Ramajani Sinaga', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '98', '2023', '978-623-118-767-3', 'Sungai-sungai mengalir memberi kehidupan, tapi tangan manusia menghadangnya, Warnanya menjadi pekat, hitam, dan kumuh Sungai-sungai mengalir ke kehidupan Tangan manusia mengembalikannya Warnanya kembali jernih bagai embun pagi', 'uploads/ebook/anak - anak sungai sondong.png', 'uploads/ebook/Anak_Sungai_Sondong.pdf'),
 (25, 'Pulang', 'Sastra', 'Sketsa Ultra Pelangi', 'Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi', '28', '2023', '978-623-118-713-0', 'Setelah petualangan yang melelahkan, perut terasa lapar. Makan bersama ayah dan ibu menjadi sangat menyenangkan.', 'uploads/ebook/pulang.png', 'uploads/ebook/Pulang.pdf');
 
@@ -420,11 +446,11 @@ CREATE TABLE `product_umkm` (
 --
 
 INSERT INTO `product_umkm` (`id_product`, `product_photo_1`, `product_photo_2`, `product_photo_3`, `product_photo_4`, `product_category`, `product_name`, `product_price`, `product_description`, `id_seller`) VALUES
-(1, 'uploads/umkm/kue bangkit.jpeg', 'uploads/umkm/kue bangkit 2.jpg', 'uploads/umkm/kue bangkit 3.jpg', 'uploads/umkm/kue bangkit 4.jpg', 'Makanan', 'Kue Coklat', '40000', 'salah satu kue tradisional indonesia khas masyarakat Melayu yang berasal dari Pulau Sumatera(Riau)', 'UMKM-5'),
+(1, 'uploads/umkm/kue bangkit.jpeg', 'uploads/umkm/kue bangkit 2.jpg', 'uploads/umkm/kue bangkit 3.jpg', 'uploads/umkm/kue bangkit 4.jpg', 'Makanan dan Minuman', 'Kue Coklat', '40000', 'salah satu kue tradisional indonesia khas masyarakat Melayu yang berasal dari Pulau Sumatera(Riau)', 'UMKM-5'),
 (2, 'uploads/umkm/4-jenis-jamu-tradisional-dan-manfaatnya-untuk-kesehatan.jpg', 'uploads/umkm/1662011925820-cara-membuat-jamu-tradisional-di-rumah-dengan-bahan-yang-simple.jpg', 'uploads/umkm/thumbnail_93.jpg', 'uploads/umkm/X-Jamu-Tradisional-Indonesia-dengan-Segudang-Manfaat.jpg', 'Obat Herbal', 'Jamu', '45000', 'Jamu Sehat Alami adalah minuman herbal tradisional yang diracik dari bahan-bahan alami berkualitas tinggi untuk menjaga kesehatan dan kebugaran tubuh Anda. Diperkaya dengan rempah-rempah pilihan seperti kunyit, jahe, temulawak, dan serai, jamu ini memberikan manfaat kesehatan yang optimal dengan rasa yang khas dan menyegarkan', 'UMKM-2'),
-(3, 'uploads/umkm/aneka sambal.jpg', 'uploads/umkm/aneka sambal 2.jpg', 'uploads/umkm/aneka sambal 3.jpeg', 'uploads/umkm/aneka sambal 4.jpg', 'Makanan', 'Sambal Pak Bambang', '30000', 'Nikmati sensasi pedas yang autentik dengan Sambal Pak Jarwo! Terbuat dari bahan-bahan pilihan berkualitas tinggi, sambal ini menghadirkan cita rasa pedas yang khas dan lezat. Setiap sendoknya merupakan perpaduan sempurna antara cabai segar, bawang putih, bawang merah, dan rempah-rempah tradisional Indonesia, yang diolah dengan penuh cinta dan keahlian.', 'UMKM-4'),
-(4, '../uploads/umkm/Cuplikan layar 2024-07-29 190510.png', '../uploads/umkm/Cuplikan layar 2024-07-29 190459.png', '../uploads/umkm/Cuplikan layar 2024-07-29 190448.png', '../uploads/umkm/Cuplikan layar 2024-07-29 190437.png', 'Camilan', 'Somay', '10000', 'Somay enak Somay enakSomay enakSomay enakSomay enakSomay enakSomay enakSomay enakSomay enakSomay enakSomay enakSomay enakSomay enak', 'UMKM-6'),
-(5, '../uploads/umkm/Cuplikan layar 2024-07-29 190510.png', '../uploads/umkm/Cuplikan layar 2024-07-29 190459.png', '../uploads/umkm/Cuplikan layar 2024-07-29 190448.png', '../uploads/umkm/Cuplikan layar 2024-07-29 190437.png', 'Camilan', 'Somay', '10000', 'Somay enak sekali', 'UMKM-6');
+(3, 'uploads/umkm/aneka sambal.jpg', 'uploads/umkm/aneka sambal 2.jpg', 'uploads/umkm/aneka sambal 3.jpeg', 'uploads/umkm/aneka sambal 4.jpg', 'Makanan dan Minuman', 'Sambal Pak Bambang', '30000', 'Nikmati sensasi pedas yang autentik dengan Sambal Pak Jarwo! Terbuat dari bahan-bahan pilihan berkualitas tinggi, sambal ini menghadirkan cita rasa pedas yang khas dan lezat. Setiap sendoknya merupakan perpaduan sempurna antara cabai segar, bawang putih, bawang merah, dan rempah-rempah tradisional Indonesia, yang diolah dengan penuh cinta dan keahlian.', 'UMKM-4'),
+(6, '../uploads/umkm/kain batik.jpg', '../uploads/umkm/kain batik 2.jpg', '../uploads/umkm/kain batik 3.jpg', '../uploads/umkm/kain batik 4.jpg', 'Kerajinan Tangan', 'Batik', '45000', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Nulla facilisi. Ut euismod, odio non dignissim malesuada, urna erat vehicula urna, in dignissim erat sapien sit amet nulla. Suspendisse potenti. Integer dapibus, leo in gravida cursus, orci ligula fermentum risus, non ultricies ex velit id lorem. Cras at magna sit amet nisi gravida sagittis.', 'UMKM-1'),
+(7, '../uploads/umkm/hijab.jpg', '../uploads/umkm/hijab 2.jpg', '../uploads/umkm/hijab 3.jpeg', '../uploads/umkm/hijab 4.jpeg', 'Fashion dan Aksesoris', 'Hijab', '100000', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum. Nulla facilisi. Ut euismod, odio non dignissim malesuada, urna erat vehicula urna, in dignissim erat sapien sit amet nulla. Suspendisse potenti. Integer dapibus, leo in gravida cursus, orci ligula fermentum risus, non ultricies ex velit id lorem. Cras at magna sit amet nisi gravida sagittis.', 'UMKM-5');
 
 -- --------------------------------------------------------
 
@@ -433,6 +459,7 @@ INSERT INTO `product_umkm` (`id_product`, `product_photo_1`, `product_photo_2`, 
 --
 
 CREATE TABLE `profile_kelurahan` (
+  `id_profile` int NOT NULL,
   `luas_wilayah` varchar(50) NOT NULL,
   `jumlah_rw` int NOT NULL,
   `jumlah_rt` int NOT NULL,
@@ -447,6 +474,13 @@ CREATE TABLE `profile_kelurahan` (
   `tamat_sarjana` int NOT NULL,
   `deskripsi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `profile_kelurahan`
+--
+
+INSERT INTO `profile_kelurahan` (`id_profile`, `luas_wilayah`, `jumlah_rw`, `jumlah_rt`, `anak_anak`, `remaja`, `dewasa`, `jumlah_penduduk`, `laki_laki`, `perempuan`, `tamat_sd_smp`, `tamat_sma`, `tamat_sarjana`, `deskripsi`) VALUES
+(1, '± 174 hektar', 12, 29, 3386, 1539, 738, 12310, 6181, 6129, 6139, 5660, 200, 'Kelurahan Cipaku adalah salah satu kelurahan yang terletak di Kecamatan Bogor Selatan. Mayoritas penduduk di Kelurahan Cipaku bekerja sebagai buruh, pedagang, pengrajin industri rumah tangga, pengusaha kecil dan menengah, pegawai swasta dan lain-lain. Karena berada di wilayah Kota Bogor. Kelurahan Cipaku sebagian besar diperuntukkan untuk Pemakaman/Kuburan Thiong Hoa/China. Masih banyak kekurangan yang dimiliki oleh kelurahan ini, masalah terbesarnya yaitu rendahnya kualitas SDM, minat literasi yang rendah, dan tingginya angka putus sekolah.');
 
 -- --------------------------------------------------------
 
@@ -471,8 +505,7 @@ INSERT INTO `seller_umkm` (`id_seller`, `seller_name`, `no_whatsapp`, `address_s
 ('UMKM-3', 'Fatur', '0861700709898', 'Kp. Cipaku Skip, Kelurahan Cipaku, Kota Bogor'),
 ('UMKM-4', 'Bambang', '086720201010', 'Kp. Sukaasih, Kelurahan Cipaku, Kota Bogor'),
 ('UMKM-5', 'Salwa Salsabil', '085732185809', 'Kp. Cipaku Skip, Kelurahan Cipaku, Kota Bogor'),
-('UMKM-6', 'Hafizi', '085157181163', 'Kp. Cipaku Skip, Kelurahan Cipaku, Kota Bogor'),
-('UMKM-7', 'Haifan', '081920202024', 'Kp. Sukaasih, Kelurahan Cipaku, Kota Bogor');
+('UMKM-6', 'Hafizi', '085157181163', 'Kp. Cipaku Skip, Kelurahan Cipaku, Kota Bogor');
 
 -- --------------------------------------------------------
 
@@ -487,6 +520,29 @@ CREATE TABLE `user` (
   `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `web_traffic`
+--
+
+CREATE TABLE `web_traffic` (
+  `id` int NOT NULL,
+  `visit_date` date NOT NULL,
+  `visit_count` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `web_traffic`
+--
+
+INSERT INTO `web_traffic` (`id`, `visit_date`, `visit_count`) VALUES
+(1, '2024-08-05', 5),
+(2, '2024-08-06', 26),
+(3, '2024-08-07', 26),
+(4, '2024-08-08', 15),
+(5, '2024-08-09', 6);
 
 --
 -- Indexes for dumped tables
@@ -577,10 +633,22 @@ ALTER TABLE `product_umkm`
   ADD PRIMARY KEY (`id_product`);
 
 --
+-- Indexes for table `profile_kelurahan`
+--
+ALTER TABLE `profile_kelurahan`
+  ADD PRIMARY KEY (`id_profile`);
+
+--
 -- Indexes for table `seller_umkm`
 --
 ALTER TABLE `seller_umkm`
   ADD PRIMARY KEY (`id_seller`);
+
+--
+-- Indexes for table `web_traffic`
+--
+ALTER TABLE `web_traffic`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -590,13 +658,13 @@ ALTER TABLE `seller_umkm`
 -- AUTO_INCREMENT for table `absen`
 --
 ALTER TABLE `absen`
-  MODIFY `id_absen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_absen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_admin` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `borrowing_bisnis_berdaya`
@@ -614,13 +682,13 @@ ALTER TABLE `borrowing_kreatif_kids_corner`
 -- AUTO_INCREMENT for table `borrowing_literasi_imajinatif`
 --
 ALTER TABLE `borrowing_literasi_imajinatif`
-  MODIFY `id_borrow` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_borrow` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `borrowing_pena_inspirasi_gemilang`
 --
 ALTER TABLE `borrowing_pena_inspirasi_gemilang`
-  MODIFY `id_borrow` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_borrow` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `borrowing_social_connect`
@@ -632,7 +700,19 @@ ALTER TABLE `borrowing_social_connect`
 -- AUTO_INCREMENT for table `product_umkm`
 --
 ALTER TABLE `product_umkm`
-  MODIFY `id_product` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_product` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `profile_kelurahan`
+--
+ALTER TABLE `profile_kelurahan`
+  MODIFY `id_profile` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `web_traffic`
+--
+ALTER TABLE `web_traffic`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

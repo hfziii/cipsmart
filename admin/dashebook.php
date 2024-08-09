@@ -24,7 +24,17 @@
     // Fetch data with optional search filter
     $query = "SELECT * FROM ebook";
     if ($search) {
-        $query .= " WHERE judul_ebook LIKE '%$search%'";
+        $query .= " WHERE 
+            id_ebook LIKE '%$search%' OR
+            judul_ebook LIKE '%$search%' OR
+            kategori_ebook LIKE '%$search%' OR
+            penulis_ebook LIKE '%$search%' OR
+            penerbit_ebook LIKE '%$search%' OR
+            jumlah_halaman_ebook LIKE '%$search%' OR
+            tahun_ebook LIKE '%$search%' OR
+            isbn_ebook LIKE '%$search%' OR
+            sipnopsis_ebook LIKE '%$search%' OR
+            file_ebook LIKE '%$search%'";
     }
     $query .= " ORDER BY id_ebook ASC";
     $result = mysqli_query($connection, $query);
@@ -56,7 +66,7 @@
             <li><a href="./dashadmin.php"><i class="fa fa-user"></i> Admin</a></li>
             <li><a href="./dashboard_kelurahan.php"><i class="fa fa-university"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.php"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
+            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Pengunjung Pojok Baca</a></li>
             <li><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
             <li><a href="./dashborrow.php"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li class="active"><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>

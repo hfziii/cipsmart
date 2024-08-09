@@ -6,7 +6,7 @@ include("koneksi.php");
 function getBooksFromTable($table, $search = '') {
     global $connection;
     if ($search) {
-        $sql = "SELECT * FROM $table WHERE title_book LIKE '%$search%' OR author_name LIKE '%$search%'";
+        $sql = "SELECT * FROM $table WHERE title_book LIKE '%$search%' OR author_name LIKE '%$search%' OR category LIKE '%$search%' OR status LIKE '%$search%'";
     } else {
         $sql = "SELECT * FROM $table";
     }
@@ -334,6 +334,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                                 <h1 class="name-book" style="font-size: 22px;"><?= $data["title_book"] ?></h1>
                                 <h1 class="name-author"><?= $data["author_name"] ?></h1>
                                 <h1 class="status"><?= $data["status"] ?></h1>
+                                <h1 class="status"><?= $data["category"] ?></h1>
                             </div>
                         <?php endforeach; ?>
                     <?php else: ?>

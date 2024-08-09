@@ -4,16 +4,16 @@ include("koneksi.php");
 // Fungsi untuk mengambil data buku dari tabel (PARAMATER PENCARIAN : id_book, judul buku, penulis, status)
 function getBooksFromTable($table, $search = null) {
     global $connection;
-    $sql = "SELECT id_book, title_book, author_name, status, photo, publisher_name, year_publish, isbn, sipnopsis, total_page FROM $table";
+    $sql = "SELECT id_book, title_book, author_name, status, photo, publisher_name, year_publish, isbn, sipnopsis, total_page, category FROM $table";
     
     if ($search) {
-        $sql .= " WHERE id_book LIKE ? OR title_book LIKE ? OR author_name LIKE ? OR status LIKE ?";
+        $sql .= " WHERE id_book LIKE ? OR title_book LIKE ? OR author_name LIKE ? OR status LIKE ? OR publisher_name LIKE ? OR year_publish LIKE ? OR isbn LIKE ? OR sipnopsis LIKE ? OR total_page LIKE ? OR category LIKE ?";
     }
     
     $stmt = mysqli_prepare($connection, $sql);
     if ($search) {
         $search_param = '%' . $search . '%';
-        mysqli_stmt_bind_param($stmt, 'ssss', $search_param, $search_param, $search_param, $search_param);
+        mysqli_stmt_bind_param($stmt, 'ssssssssss', $search_param, $search_param, $search_param, $search_param,$search_param, $search_param, $search_param, $search_param, $search_param, $search_param );
     }
     
     mysqli_stmt_execute($stmt);
@@ -108,7 +108,7 @@ $query = mysqli_query($connection, "SELECT * FROM " . mysqli_real_escape_string(
             <li><a href="./dashadmin.php"><i class="fa fa-user"></i> Admin</a></li>
             <li><a href="./dashboard_kelurahan.php"><i class="fa fa-university"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.php"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
+            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Pengunjung Pojok Baca</a></li>
             <li class="active"><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
             <li><a href="./dashborrow.php"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
@@ -167,8 +167,9 @@ $query = mysqli_query($connection, "SELECT * FROM " . mysqli_real_escape_string(
                 <thead>
                     <tr>
                         <th>ID Buku</th>
-                        <th>Foto Buku</th>
+                        <th>Sampul Buku</th>
                         <th>Judul Buku</th>
+                        <th>Kategori</th>
                         <th>Penulis</th>
                         <th>Penerbit</th>
                         <th>Tahun Terbit</th>
@@ -185,6 +186,7 @@ $query = mysqli_query($connection, "SELECT * FROM " . mysqli_real_escape_string(
                             <td><?php echo htmlspecialchars($book['id_book']); ?></td>
                             <td><img src="../<?php echo htmlspecialchars($book['photo']); ?>" alt="Foto Buku" width="50"></td>
                             <td><?php echo htmlspecialchars($book['title_book']); ?></td>
+                            <td><?php echo htmlspecialchars($book['category']); ?></td>
                             <td><?php echo htmlspecialchars($book['author_name']); ?></td>
                             <td><?php echo htmlspecialchars($book['publisher_name']); ?></td>
                             <td><?php echo htmlspecialchars($book['year_publish']); ?></td>

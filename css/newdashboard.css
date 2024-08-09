@@ -135,6 +135,10 @@ body {
 }
 
 /* WIDGETS */
+a {
+    text-decoration: none;
+}
+
 .widget {
     border-radius: 20px;
     background: #63AFBD;
@@ -339,6 +343,7 @@ body {
     line-height: normal;
     text-align: center;
     padding-top: 15px;
+    text-decoration: none;
 }
 
 .bungkus-1 .total-1 {
@@ -615,6 +620,17 @@ body {
         border-radius: 0;
     }
 
+    .sidebar ul {
+        list-style: none;
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .logo img {
+        width: 50px;
+        margin-bottom: 5px;
+    }
+
     .content {
         width: 100%;
     }
@@ -638,3 +654,4 @@ body {
         text-align: right;
     }
 }
+

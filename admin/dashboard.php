@@ -95,7 +95,7 @@
             <li><a href="./dashadmin.php"><i class="fa fa-user"></i> Admin</a></li>
             <li><a href="./dashboard_kelurahan.php"><i class="fa fa-university"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.php"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
+            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Pengunjung Pojok Baca</a></li>
             <li><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
             <li><a href="./dashborrow.php"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
@@ -146,31 +146,39 @@
             </div>
 
             <div class="widget widget-2">
-                <h2 class="atasan-2">Perpustakaan Digital</h2>
-                <div class="bungkus-1">
-                    <p class="teks-1">Pengunjung</p>
-                    <p class="total-1"><?php echo $total_pengunjung; ?></p>
+                <h2 class="atasan-2">Pojok Baca</h2>
+                <a href="./dashabsen.php">
+                    <div class="bungkus-1">
+                        <p class="teks-1">Pengunjung</p>
+                        <p class="total-1"><?php echo $total_pengunjung; ?></p>
                     <img src="../img/newdashboard/Mask group (4).png" alt="" class="detail-gambar">
                 </div>
-                <div class="bungkus-2">
-                    <p class="teks-1">Admin</p>
-                    <p class="total-1"><?php echo $total_admin; ?></p>
-                    <img src="../img/newdashboard/Group 525.png" alt="" class="detail-gambar">
-                </div>
-                <div class="bungkus-3">
-                    <p class="teks-1">Total Buku</p>
-                    <p class="total-1"><?php echo $total_buku; ?></p>
-                    <img src="../img/newdashboard/Group 526.png" alt="" class="detail-gambar">
-                </div>
-                <div class="bungkus-4">
-                    <p class="teks-1">Peminjaman</p>
-                    <p class="total-1"><?php echo $total_peminjaman; ?></p>
-                    <img src="../img/newdashboard/Group 527.png" alt="" class="detail-gambar">
-                </div>
+                </a>
+                <a href="./dashadmin.php">
+                    <div class="bungkus-2">
+                        <p class="teks-1">Admin</p>
+                        <p class="total-1"><?php echo $total_admin; ?></p>
+                        <img src="../img/newdashboard/Group 525.png" alt="" class="detail-gambar">
+                    </div>
+                </a>
+                <a href="./dashbook.php">
+                    <div class="bungkus-3">
+                        <p class="teks-1">Total Buku</p>
+                        <p class="total-1"><?php echo $total_buku; ?></p>
+                        <img src="../img/newdashboard/Group 526.png" alt="" class="detail-gambar">
+                    </div>
+                </a>
+                <a href="./dashborrow.php">
+                    <div class="bungkus-4">
+                        <p class="teks-1">Peminjaman</p>
+                        <p class="total-1"><?php echo $total_peminjaman; ?></p>
+                        <img src="../img/newdashboard/Group 527.png" alt="" class="detail-gambar">
+                    </div>
+                </a>
             </div>
 
             <div class="widget widget-3">
-                <h2 class="atasan-3">Pengunjung Web</h2>
+                <h2 class="atasan-3">Pengunjung <br>Perpustakaan Digital</h2>
                 <div class="visitor-1">
                     <p class="visitor-teks-1">Hari ini</p>
                     <p class="visitor-no-1"><?php echo $visitors_today; ?></p>
@@ -184,20 +192,26 @@
             <div class="widget-umkm">
                 <div class="umkm-box">
                     <h2 class="atasan-4">UMKM</h2>
-                    <div class="seller">
-                        <img src="../img/newdashboard/icon-13.png" alt="" class="detail-gambar">
-                        <p class="teks-1">Total Penjual UMKM</p>
-                        <p class="total-1"><?php echo $total_seller; ?></p>
-                    </div>
-                    <div class="product">
-                        <img src="../img/newdashboard/icon-12.png" alt="" class="detail-gambar">
-                        <p class="teks-2">Total Produk UMKM</p>
-                        <p class="total-2"><?php echo $total_product; ?></p>
-                    </div>
+                    <a href="./dash-sellerumkm.php">
+                        <div class="seller">
+                            <img src="../img/newdashboard/icon-13.png" alt="" class="detail-gambar">
+                            <p class="teks-1">Total Penjual UMKM</p>
+                            <p class="total-1"><?php echo $total_seller; ?></p>
+                        </div>
+                    </a>
+                    <a href="./dash-productumkm.php">
+                        <div class="product">
+                            <img src="../img/newdashboard/icon-12.png" alt="" class="detail-gambar">
+                            <p class="teks-2">Total Produk UMKM</p>
+                            <p class="total-2"><?php echo $total_product; ?></p>
+                        </div>
+                    </a>
                 </div>
                 <div class="ebook-box">
                     <h2 class="atasan-4">E-Book</h2>
-                    <img src="../img/newdashboard/icon-ebook.png" alt="" class="detail-gambar">
+                    <a href="./dashebook.php">
+                        <img src="../img/newdashboard/icon-ebook.png" alt="" class="detail-gambar">
+                    </a>
                     <p class="teks-ebook">Total E-Book</p>
                     <p class="total-ebook"><?php echo $total_ebook; ?></p>
                 </div>

@@ -1,3 +1,8 @@
+<?php
+session_start();
+include("koneksi.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +15,6 @@
     <!-- Google Fonts link for Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-    <?php
-    session_start();
-    ?>
     <script>
     document.addEventListener("DOMContentLoaded", function () {
         var loginBtn = document.getElementById("loginBtn");
@@ -104,6 +106,27 @@
                     </a>
                 </div>
 
+                <div class="select-container">
+                    <form action="catalog-ebook.php" method="get">
+                        <select name="category" class="category-ebook" onchange="this.form.submit()" required>
+                            <option value="">Semua E-Book</option>
+                            <?php
+                            // Fetch distinct categories from the database
+                            $categoryQuery = mysqli_query($connection, "SELECT DISTINCT kategori_ebook FROM ebook ORDER BY kategori_ebook ASC");
+                            $selectedCategory = isset($_GET['category']) ? mysqli_real_escape_string($connection, $_GET['category']) : '';
+
+                            if ($categoryQuery) {
+                                while ($row = mysqli_fetch_assoc($categoryQuery)) {
+                                    $category = htmlspecialchars($row['kategori_ebook']);
+                                    $selected = ($category == $selectedCategory) ? 'selected' : '';
+                                    echo "<option value=\"$category\" $selected>" . ucfirst($category) . "</option>";
+                                }
+                            }
+                            ?>
+                        </select>
+                    </form>
+                </div>
+
                 <div class="search-bar">
                     <form action="catalog-ebook.php" method="GET">
                         <input type="text" name="search" placeholder="Cari E-Book" class="input-src">
@@ -163,36 +186,46 @@
                 <p class="title-catalog">Katalog E-Book</p>
                 <div class="frame-container">
                     <?php
-                    include("koneksi.php");
+                        $search = isset($_GET['search']) ? mysqli_real_escape_string($connection, $_GET['search']) : '';
+                        $category = isset($_GET['category']) ? mysqli_real_escape_string($connection, $_GET['category']) : '';
 
-                    $search = isset($_GET['search']) ? mysqli_real_escape_string($connection, $_GET['search']) : '';
+                        $queryStr = "SELECT * FROM ebook";
+                        $conditions = [];
 
-                    if ($search) {
-                        $query = mysqli_query($connection, "SELECT * FROM ebook WHERE judul_ebook LIKE '%$search%' OR penulis_ebook LIKE '%$search%'");
-                    } else {
-                        $query = mysqli_query($connection, "SELECT * FROM ebook");
-                    }
+                        if ($search) {
+                            $conditions[] = "(judul_ebook LIKE '%$search%' OR penulis_ebook LIKE '%$search%')";
+                        }
 
-                    if ($query && mysqli_num_rows($query) > 0) {
-                        while ($data = mysqli_fetch_assoc($query)) {
-                            $imagePath = '../' . $data["sampul_ebook"];
-                            echo '<div class="frame-card">
-                                <a href="detail-ebook.php?id_ebook=' . htmlspecialchars($data['id_ebook']) . '">
-                                    <div class="cardd">
-                                        <img class="img-p" src="' . htmlspecialchars($imagePath) . '" alt="' . htmlspecialchars($data["judul_ebook"]) . '">
-                                    </div>
-                                </a>
-                                <h1 class="name-ebook" style="font-size: 20px;">' . htmlspecialchars($data["judul_ebook"]) . '</h1>
-                                <h1 class="name-author">' . htmlspecialchars($data["penulis_ebook"]) . '</h1>
-                                <h1 class="status">' . htmlspecialchars($data["kategori_ebook"]) . '</h1>
+                        if ($category) {
+                            $conditions[] = "kategori_ebook = '$category'";
+                        }
+
+                        if (!empty($conditions)) {
+                            $queryStr .= " WHERE " . implode(" AND ", $conditions);
+                        }
+
+                        $query = mysqli_query($connection, $queryStr);
+
+                        if ($query && mysqli_num_rows($query) > 0) {
+                            while ($data = mysqli_fetch_assoc($query)) {
+                                $imagePath = '../' . $data["sampul_ebook"];
+                                echo '<div class="frame-card">
+                                    <a href="detail-ebook.php?id_ebook=' . htmlspecialchars($data['id_ebook']) . '">
+                                        <div class="cardd">
+                                            <img class="img-p" src="' . htmlspecialchars($imagePath) . '" alt="' . htmlspecialchars($data["judul_ebook"]) . '">
+                                        </div>
+                                    </a>
+                                    <h1 class="name-ebook" style="font-size: 20px;">' . htmlspecialchars($data["judul_ebook"]) . '</h1>
+                                    <h1 class="name-author">' . htmlspecialchars($data["penulis_ebook"]) . '</h1>
+                                    <h1 class="status">' . htmlspecialchars($data["kategori_ebook"]) . '</h1>
+                                </div>';
+                            }
+                        } else {
+                            echo 
+                            '<div style="text-align: center;">
+                                    <img src="../img/catalog/notfound.png" alt="Not Found" style="max-width: 500px; display: block; margin: 20px 0px 0px 300px;">
                             </div>';
                         }
-                    } else {
-                        echo 
-                        '<div style="text-align: center;">
-                                 <img src="../img/catalog/notfound.png" alt="Not Found" style="max-width: 500px; display: block; margin: 20px 0px 0px 300px;">
-                        </div>';
-                    }
                     ?>
                 </div>
             </div>

@@ -1,3 +1,8 @@
+<?php
+session_start();
+include("koneksi.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,10 +14,6 @@
     <link rel="icon" href="../img/favicon/android-chrome-192x192.png" type="image/png">
     <!-- Google Fonts link for Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-    <?php
-    session_start();
-    ?>
     <script>
     document.addEventListener("DOMContentLoaded", function () {
         var loginBtn = document.getElementById("loginBtn");
@@ -104,6 +105,27 @@
                     </a>
                 </div>
 
+                <div class="select-container">
+                    <form action="catalog-umkm.php" method="get">
+                        <select name="category" class="category-umkm" onchange="this.form.submit()" required>
+                            <option value="">Semua Produk</option>
+                            <?php
+                                // Fetch distinct categories from the database
+                                $categoryQuery = mysqli_query($connection, "SELECT DISTINCT product_category FROM product_umkm ORDER BY product_category ASC");
+                                $selectedCategory = isset($_GET['category']) ? mysqli_real_escape_string($connection, $_GET['category']) : '';
+
+                                if ($categoryQuery) {
+                                    while ($row = mysqli_fetch_assoc($categoryQuery)) {
+                                        $category = htmlspecialchars($row['product_category']);
+                                        $selected = ($category == $selectedCategory) ? 'selected' : '';
+                                        echo "<option value=\"$category\" $selected>" . ucfirst($category) . "</option>";
+                                    }
+                                }
+                            ?>
+                        </select>
+                    </form>
+                </div>
+
                 <div class="search-bar">
                     <form action="catalog-umkm.php" method="GET">
                         <input type="text" name="search" placeholder="Cari Produk" class="input-src">
@@ -177,42 +199,51 @@
                 </p>
 
                 <div class="frame-container">
-                <?php
-                    include("koneksi.php");
+                    <?php
+                        // Menangani pencarian dan filtering kategori
+                        $search = isset($_GET['search']) ? mysqli_real_escape_string($connection, $_GET['search']) : '';
+                        $category = isset($_GET['category']) ? mysqli_real_escape_string($connection, $_GET['category']) : '';
 
-                    $search = isset($_GET['search']) ? mysqli_real_escape_string($connection, $_GET['search']) : '';
+                        $queryStr = "SELECT * FROM product_umkm";
+                        $conditions = [];
 
-                    if ($search) {
-                        $query = mysqli_query($connection, "SELECT * FROM product_umkm WHERE product_name LIKE '%$search%' OR product_category LIKE '%$search%'");
-                    } else {
-                        $query = mysqli_query($connection, "SELECT * FROM product_umkm");
-                    }
+                        if ($search) {
+                            $conditions[] = "(product_name LIKE '%$search%' OR product_category LIKE '%$search%')";
+                        }
 
-                    // $query = mysqli_query($connection, "SELECT * FROM product_umkm");
-                    if ($query && mysqli_num_rows($query) > 0) {
-                        while ($data = mysqli_fetch_assoc($query)) {
-                            $imagePath = '../' . $data["product_photo_1"];
-                            $formattedPrice = 'Rp' . number_format($data["product_price"], 0, ',', '.');
-                            echo '<div class="frame-card">
-                                <a href="detail-umkm.php?id_product=' . $data['id_product'] . '">
-                                    <div class="cardd">
-                                        <img class="img-p" src="' . $imagePath . '" alt="' . $data["product_name"] . '">
-                                    </div>
-                                </a>
-                        
-                                <h1 class="name-book">' . $data["product_name"] . '</h1>
-                                <h1 class="name-author">' . $formattedPrice . '</h1>
-                                <h1 class="status">' . $data["product_category"] . '</h1>
+                        if ($category) {
+                            $conditions[] = "product_category = '$category'";
+                        }
+
+                        if (count($conditions) > 0) {
+                            $queryStr .= " WHERE " . implode(" AND ", $conditions);
+                        }
+
+                        $query = mysqli_query($connection, $queryStr);
+
+                        if ($query && mysqli_num_rows($query) > 0) {
+                            while ($data = mysqli_fetch_assoc($query)) {
+                                $imagePath = '../' . $data["product_photo_1"];
+                                $formattedPrice = 'Rp' . number_format($data["product_price"], 0, ',', '.');
+                                echo '<div class="frame-card">
+                                    <a href="detail-umkm.php?id_product=' . $data['id_product'] . '">
+                                        <div class="cardd">
+                                            <img class="img-p" src="' . $imagePath . '" alt="' . $data["product_name"] . '">
+                                        </div>
+                                    </a>
+                            
+                                    <h1 class="name-book">' . $data["product_name"] . '</h1>
+                                    <h1 class="name-author">' . $formattedPrice . '</h1>
+                                    <h1 class="status">' . $data["product_category"] . '</h1>
+                                </div>';
+                            }
+                        } else {
+                            echo 
+                            '<div style="text-align: center;">
+                                    <img src="../img/catalog/notfound.png" alt="Not Found" style="max-width: 500px; display: block; margin: 20px 0px 0px 300px;">
                             </div>';
                         }
-                    } else {
-                        echo 
-                        '<div style="text-align: center;">
-                                 <img src="../img/catalog/notfound.png" alt="Not Found" style="max-width: 500px; display: block; margin: 20px 0px 0px 300px;">
-                        </div>';
-                    }
-                ?>
-
+                    ?>
                 </div>
             </div>
                 

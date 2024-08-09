@@ -194,6 +194,32 @@ table th, table td {
     border-color: #63AFBD;
 }
 
+.titletable button{
+    cursor: pointer;
+    background-color: #63AFBD;
+    font-family: 'Montserrat';
+    color: #FFF;
+    border: 1px solid #63AFBD;
+    border-radius: 5px;
+    height: 2em;
+    padding: 5px;
+    font-weight: 500;
+    margin-left: 10px;
+
+}
+.corner-education button{
+    cursor: pointer;
+    background-color: #63AFBD;
+    font-family: 'Montserrat';
+    color: #FFF;
+    border: 1px solid #63AFBD;
+    border-radius: 5px;
+    height: 2em;
+    padding: 5px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
 /* SEARCH BAR */
 .search-bar {
     margin-left: auto; /* Pushes the search bar to the right */
@@ -255,11 +281,17 @@ table th, table td {
         z-index: 1000;
     }
 
+    .sidebar .logo img {
+        width: 50px;
+        margin-bottom: 5px;
+    }
+
     .sidebar ul {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
+        align-items: flex-start;
     }
 
     .sidebar ul li {
