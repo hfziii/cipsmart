@@ -19,8 +19,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($password == $row_admin['password']) {
                 // Password is correct, start a session
                 $_SESSION['username'] = $username;
+                $_SESSION['role'] = $row_admin['role']; // Simpan role ke session
                 header("Location: ./admin/dashboard.php");
-                exit();
+            exit();
             } else {
                 // Password is incorrect
                 echo "<script>alert('Password admin salah!'); window.location.href='login.php';</script>";

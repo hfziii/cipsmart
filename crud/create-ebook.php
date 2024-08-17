@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sipnopsis_ebook = input($_POST["sipnopsis_ebook"]);
 
     // Proses upload sampul ebook
-    $target_dir_sampul = "../uploads/ebook/";
+    $target_dir_sampul = __DIR__ . "/../uploads/ebook/";
     $target_file_sampul = $target_dir_sampul . basename($_FILES["sampul_ebook"]["name"]);
     $uploadOkSampul = 1;
     $imageFileType = strtolower(pathinfo($target_file_sampul, PATHINFO_EXTENSION));

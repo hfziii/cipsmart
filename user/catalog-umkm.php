@@ -208,7 +208,7 @@ include("koneksi.php");
                         $conditions = [];
 
                         if ($search) {
-                            $conditions[] = "(product_name LIKE '%$search%' OR product_category LIKE '%$search%')";
+                            $conditions[] = "(product_name LIKE '%$search%' OR product_category LIKE '%$search%' OR product_price LIKE '%$search%')";
                         }
 
                         if ($category) {

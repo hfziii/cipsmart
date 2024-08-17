@@ -1,4 +1,7 @@
 <?php
+    include 'auth.php';
+    checkAccess(['Super Admin', 'Admin UMKM']);
+
     ob_start();
     include("../koneksi.php");
 
@@ -75,7 +78,7 @@
     </div>
     <div class="main-content">
         <div class="header">
-            <h1>Hello, Sobat Cipsmart!</h1>
+            <h1>Hello, <?php echo htmlspecialchars($_SESSION['role']); ?>!</h1>
             <div class="header-icons">
                 <a href="../user/catalog-umkm.php">
                     <i class="fa fa-shopping-bag"></i>

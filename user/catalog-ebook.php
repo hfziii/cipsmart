@@ -193,7 +193,7 @@ include("koneksi.php");
                         $conditions = [];
 
                         if ($search) {
-                            $conditions[] = "(judul_ebook LIKE '%$search%' OR penulis_ebook LIKE '%$search%')";
+                            $conditions[] = "(judul_ebook LIKE '%$search%' OR penulis_ebook LIKE '%$search%' OR kategori_ebook LIKE '%$search%')";
                         }
 
                         if ($category) {

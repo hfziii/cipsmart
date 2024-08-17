@@ -1,6 +1,46 @@
 <?php
 // Include file koneksi, untuk koneksikan ke database
+// Include file koneksi, untuk koneksikan ke database
 include "koneksi.php";
+session_start();
+
+// Retrieve the admin's role from session
+$admin_role = $_SESSION['role'];
+
+// Define the available options for each role
+$available_corners = [];
+
+switch ($admin_role) {
+    case 'Admin Literasi':
+        $available_corners = ['CE-1' => 'Literasi Imajinatif'];
+        break;
+    case 'Admin Social':
+        $available_corners = ['CE-2' => 'Social Connect'];
+        break;
+    case 'Admin Bisnis':
+        $available_corners = ['CE-3' => 'Bisnis Berdaya'];
+        break;
+    case 'Admin Kreatif':
+        $available_corners = ['CE-4' => 'Kreatif Kids Corner'];
+        break;
+    case 'Admin Pena':
+        $available_corners = ['CE-5' => 'Pena Inspirasi Gemilang'];
+        break;
+    case 'Super Admin':
+        $available_corners = [
+            'CE-1' => 'Literasi Imajinatif',
+            'CE-2' => 'Social Connect',
+            'CE-3' => 'Bisnis Berdaya',
+            'CE-4' => 'Kreatif Kids Corner',
+            'CE-5' => 'Pena Inspirasi Gemilang'
+        ];
+        break;
+    default:
+        echo "Invalid admin role.";
+        exit();
+}
+
+// Rest of the form processing code...
 
 // Fungsi untuk mencegah inputan karakter yang tidak sesuai
 function input($data) {
@@ -243,11 +283,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group" style="margin-top: -80px">
                     <label>Pojok Baca</label>
                     <select name="id_corner" class="form-control" required>
-                        <option value="CE-1">Literasi Imajinatif</option>
-                        <option value="CE-2">Social Connect</option>
-                        <option value="CE-3">Bisnis Berdaya</option>
-                        <option value="CE-4">Kreatif Kids Corner</option>
-                        <option value="CE-5">Pena Inspirasi Gemilang</option>
+                        <?php foreach ($available_corners as $value => $label): ?>
+                            <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
 

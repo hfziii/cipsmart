@@ -1,4 +1,8 @@
 <?php
+    
+    include 'auth.php';
+    checkAccess(['Super Admin', 'Admin Literasi', 'Admin Social', 'Admin Bisnis', 'Admin Kreatif', 'Admin Pena']);
+
     ob_start();
     include("koneksi.php");
 
@@ -77,7 +81,7 @@
     </div>
     <div class="main-content">
         <div class="header">
-            <h1>Hello, Sobat Cipsmart!</h1>
+            <h1>Hello, <?php echo htmlspecialchars($_SESSION['role']); ?>!</h1>
             <div class="header-icons">
                 <a href="../user/catalog-ebook.php">
                     <i class="fa fa-book"></i>

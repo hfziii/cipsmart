@@ -1,5 +1,8 @@
 <!-- SCRIPT UNTUK DELETE DATA -->
 <?php
+    include 'auth.php';
+    checkAccess(['Super Admin']);
+
     ob_start();
     include("koneksi.php");
 
@@ -55,7 +58,7 @@
     </div>
     <div class="main-content">
         <div class="header">
-            <h1>Hello, Sobat Cipsmart!</h1>
+            <h1>Hello, <?php echo htmlspecialchars($_SESSION['role']); ?>!</h1>
             <div class="header-icons">
                 <a href="./dashboard.php">
                     <i class="fa fa-dashboard"></i>
@@ -100,7 +103,7 @@
                         <td><?php echo $data['nohp']; ?></td>
                         <td><?php echo $data['username']; ?></td>
                         <td><?php echo $data['password']; ?></td>
-                        <td><?php echo $data['privileges']; ?></td>
+                        <td><?php echo $data['role']; ?></td>
 
                         <td class="icon-container">
                             <a href="../crud/update-admin.php?id_admin=<?php echo htmlspecialchars($data['id_admin']); ?>">

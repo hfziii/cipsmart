@@ -1,5 +1,7 @@
 <?php
 include("koneksi.php");
+include 'auth.php';
+checkAccess(['Super Admin', 'Admin Literasi', 'Admin Social', 'Admin Bisnis', 'Admin Kreatif', 'Admin Pena']);
 
 // Fungsi untuk mengambil data buku dari tabel (PARAMATER PENCARIAN : id_book, judul buku, penulis, status)
 function getBooksFromTable($table, $search = null) {
@@ -13,7 +15,7 @@ function getBooksFromTable($table, $search = null) {
     $stmt = mysqli_prepare($connection, $sql);
     if ($search) {
         $search_param = '%' . $search . '%';
-        mysqli_stmt_bind_param($stmt, 'ssssssssss', $search_param, $search_param, $search_param, $search_param,$search_param, $search_param, $search_param, $search_param, $search_param, $search_param );
+        mysqli_stmt_bind_param($stmt, 'ssssssssss', $search_param, $search_param, $search_param, $search_param, $search_param, $search_param, $search_param, $search_param, $search_param, $search_param);
     }
     
     mysqli_stmt_execute($stmt);
@@ -52,26 +54,43 @@ function deleteBook($table, $id_book) {
     return mysqli_stmt_execute($stmt);
 }
 
-// Mengambil data buku dari semua tabel
-$tables = [
-    'book_literasi_imajinatif' => getBooksFromTable('book_literasi_imajinatif'),
-    'book_social_connect' => getBooksFromTable('book_social_connect'),
-    'book_pena_inspirasi_gemilang' => getBooksFromTable('book_pena_inspirasi_gemilang'),
-    'book_kreatif_kids_corner' => getBooksFromTable('book_kreatif_kids_corner'),
-    'book_bisnis_berdaya' => getBooksFromTable('book_bisnis_berdaya'),
-];
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['table_name'])) {
-    $table_name = $_POST['table_name'];
-} elseif (isset($_GET['table_name'])) {
-    $table_name = $_GET['table_name'];
-} else {
-    $table_name = 'book_literasi_imajinatif'; // Default table
+// Determine the table based on user role
+switch ($_SESSION['role']) {
+    case 'Admin Literasi':
+        $table_name = 'book_literasi_imajinatif';
+        break;
+    case 'Admin Social':
+        $table_name = 'book_social_connect';
+        break;
+    case 'Admin Bisnis':
+        $table_name = 'book_bisnis_berdaya';
+        break;
+    case 'Admin Kreatif':
+        $table_name = 'book_kreatif_kids_corner';
+        break;
+    case 'Admin Pena':
+        $table_name = 'book_pena_inspirasi_gemilang';
+        break;
+    case 'Super Admin':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['table_name'])) {
+            $table_name = $_POST['table_name'];
+        } elseif (isset($_GET['table_name'])) {
+            $table_name = $_GET['table_name'];
+        } else {
+            $table_name = 'book_literasi_imajinatif'; // Default table
+        }
+        break;
+    default:
+        // Default table for unexpected roles (just in case)
+        $table_name = 'book_literasi_imajinatif';
+        break;
 }
 
+// Get the search query if it exists
 $search = isset($_GET['search']) ? $_GET['search'] : '';
 $books = getBooksFromTable($table_name, $search);
 
+// Delete book if delete action is triggered
 if (isset($_GET['delete_book']) && isset($_GET['table_name'])) {
     $id_book = $_GET['delete_book'];
     $table_name = $_GET['table_name'];
@@ -82,7 +101,6 @@ if (isset($_GET['delete_book']) && isset($_GET['table_name'])) {
     }
 }
 
-$query = mysqli_query($connection, "SELECT * FROM " . mysqli_real_escape_string($connection, $table_name));
 ?>
 
 <!DOCTYPE html>
@@ -119,7 +137,7 @@ $query = mysqli_query($connection, "SELECT * FROM " . mysqli_real_escape_string(
     </div>
     <div class="main-content">
         <div class="header">
-            <h1>Hello, Sobat Cipsmart!</h1>
+            <h1>Hello, <?php echo htmlspecialchars($_SESSION['role']); ?>!</h1>
             <div class="header-icons">
                 <a href="../user/catalog-book.php">
                     <i class="fa fa-book"></i>
@@ -139,14 +157,14 @@ $query = mysqli_query($connection, "SELECT * FROM " . mysqli_real_escape_string(
             </div>
 
             <div class="filter">
-
                 <form action="dashbook.php" method="post" class="corner-education">
                     <label for="table-dropdown" class="title-ce">Pilih Pojok Baca</label>
-                    <select id="table-dropdown" class="drop-ce" name="table_name" onchange="this.form.submit()">
+                    <select id="table-dropdown" class="drop-ce" name="table_name" onchange="this.form.submit()" 
+                        <?php if ($_SESSION['role'] != 'Super Admin') echo 'disabled'; ?>>
                         <option value="book_literasi_imajinatif" <?php if ($table_name == 'book_literasi_imajinatif') echo 'selected'; ?>>Literasi Imajinatif</option>
                         <option value="book_social_connect" <?php if ($table_name == 'book_social_connect') echo 'selected'; ?>>Social Connect</option>
                         <option value="book_bisnis_berdaya" <?php if ($table_name == 'book_bisnis_berdaya') echo 'selected'; ?>>Bisnis Berdaya</option>
-                        <option value="book_kreatif_kids_corner" <?php if ($table_name == 'book_kreatif_kids_corner') echo 'selected'; ?>>Kreatif Kids Corner</option>
+                        <option value="book_kreatif_kids_corner" <?php if ($table_name == 'book_kreatif_kids_corner') echo 'selected'; ?>>Kreatifitas Kids Corner</option>
                         <option value="book_pena_inspirasi_gemilang" <?php if ($table_name == 'book_pena_inspirasi_gemilang') echo 'selected'; ?>>Pena Inspirasi Gemilang</option>
                     </select>
                 </form>
@@ -160,7 +178,6 @@ $query = mysqli_query($connection, "SELECT * FROM " . mysqli_real_escape_string(
                         </button>
                     </form>
                 </div>
-
             </div>
 
             <table id="pojokBacaTable">
@@ -271,9 +288,10 @@ $query = mysqli_query($connection, "SELECT * FROM " . mysqli_real_escape_string(
         // Function to handle delete confirmation
         window.confirmDelete = function() {
             if (deleteId && deleteTable) {
-                window.location.href = "dashbook.php?id_book=" + deleteId + "&table_name=" + deleteTable;
+                window.location.href = "dashbook.php?delete_book=" + deleteId + "&table_name=" + deleteTable;
             }
         }
+
     });
     </script>
 

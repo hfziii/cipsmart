@@ -1,3 +1,8 @@
+<?php
+    include 'auth.php';
+    checkAccess(['Super Admin', 'Admin Kelurahan', 'Admin Literasi', 'Admin Social', 'Admin Bisnis', 'Admin Kreatif', 'Admin Pena', 'Admin UMKM']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,7 +111,7 @@
     </div>
     <div class="content">
         <div class="header">
-            <h1>Hello,<br> Sobat Cipsmart!</h1>
+            <h1>Hello,<br> <?php echo htmlspecialchars($_SESSION['role']); ?>!</h1>
         </div>  
         <div class="header-icons">
             <a href="../homepage.php">
@@ -126,19 +131,27 @@
                 <h2 class="atasan">Kelurahan Cipaku</h2>
                 <div class="padding-1">
                     <p class="profil-1">Luas Wilayah</p>
-                    <p class="profil-2"><?php echo $data['luas_wilayah']; ?></p>
+                    <a href="./dashboard_kelurahan.php">
+                        <p class="profil-2"><?php echo $data['luas_wilayah']; ?></p>
+                    </a>
                 </div>
                 <div class="padding-1">
                     <p class="profil-1">Jumlah Penduduk</p>
-                    <p class="profil-2"><?php echo $data['jumlah_penduduk']; ?> orang</p>
+                    <a href="./dashboard_kelurahan.php"> 
+                        <p class="profil-2"><?php echo $data['jumlah_penduduk']; ?> orang</p>
+                    </a>
                  </div>
                  <div class="padding-1">
                     <p class="profil-1">Jumlah RW</p>
-                    <p class="profil-2"><?php echo $data['jumlah_rw']; ?></p>
+                    <a href="./dashboard_kelurahan.php">
+                        <p class="profil-2"><?php echo $data['jumlah_rw']; ?></p>
+                    </a>
                 </div>
                 <div class="padding-1">
                     <p class="profil-1">Jumlah RT</p>
-                    <p class="profil-2"><?php echo $data['jumlah_rt']; ?></p>
+                    <a href="./dashboard_kelurahan.php">
+                        <p class="profil-2"><?php echo $data['jumlah_rt']; ?></p>
+                    </a>
                 </div>
                 <?php 
                       }
@@ -151,8 +164,8 @@
                     <div class="bungkus-1">
                         <p class="teks-1">Pengunjung</p>
                         <p class="total-1"><?php echo $total_pengunjung; ?></p>
-                    <img src="../img/newdashboard/Mask group (4).png" alt="" class="detail-gambar">
-                </div>
+                        <img src="../img/newdashboard/Mask group (4).png" alt="" class="detail-gambar">
+                    </div>
                 </a>
                 <a href="./dashadmin.php">
                     <div class="bungkus-2">
@@ -180,7 +193,7 @@
             <div class="widget widget-3">
                 <h2 class="atasan-3">Pengunjung <br>Perpustakaan Digital</h2>
                 <div class="visitor-1">
-                    <p class="visitor-teks-1">Hari ini</p>
+                    <p class="visitor-teks-1">Hari ini</p>                    
                     <p class="visitor-no-1"><?php echo $visitors_today; ?></p>
                 </div>
                 <div class="visitor-2">

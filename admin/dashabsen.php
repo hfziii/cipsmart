@@ -1,3 +1,8 @@
+<?php
+    include 'auth.php';
+    checkAccess(['Super Admin', 'Admin Kelurahan', 'Admin Literasi', 'Admin Social', 'Admin Bisnis', 'Admin Kreatif', 'Admin Pena']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +37,7 @@
     </div>
     <div class="main-content">
         <div class="header">
-            <h1>Hello, Sobat Cipsmart!</h1>
+            <h1>Hello, <?php echo htmlspecialchars($_SESSION['role']); ?>!</h1>
             <div class="header-icons">
                 <a href="../user/catalog-book.php">
                     <i class="fa fa-book"></i>
@@ -52,7 +57,7 @@
                         <option value="Literasi Imajinatif" <?php if (isset($_POST['table_name']) && $_POST['table_name'] == 'Literasi Imajinatif') echo 'selected'; ?>>Literasi Imajinatif</option>
                         <option value="Social Connect" <?php if (isset($_POST['table_name']) && $_POST['table_name'] == 'Social Connect') echo 'selected'; ?>>Social Connect</option>
                         <option value="Bisnis Berdaya" <?php if (isset($_POST['table_name']) && $_POST['table_name'] == 'Bisnis Berdaya') echo 'selected'; ?>>Bisnis Berdaya</option>
-                        <option value="Kreatif Kids Corner" <?php if (isset($_POST['table_name']) && $_POST['table_name'] == 'Kreatif Kids Corner') echo 'selected'; ?>>Kreatif Kids Corner</option>
+                        <option value="Kreatifitas Kids Corner" <?php if (isset($_POST['table_name']) && $_POST['table_name'] == 'Kreatifitas Kids Corner') echo 'selected'; ?>>Kreatifitas Kids Corner</option>
                         <option value="Pena Inspirasi Gemilang" <?php if (isset($_POST['table_name']) && $_POST['table_name'] == 'Pena Inspirasi Gemilang') echo 'selected'; ?>>Pena Inspirasi Gemilang</option>
                     </select>
                     <button type="submit" formaction="../crud/export_absen.php" class="report-btn">Unduh Laporan</button>

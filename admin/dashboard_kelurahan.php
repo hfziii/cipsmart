@@ -1,3 +1,8 @@
+<?php
+    include 'auth.php';
+    checkAccess(['Super Admin', 'Admin Kelurahan']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +39,7 @@
 
         <div class="header">
             <div class="header-text">
-                <h1>Hello, Sobat Cipsmart!</h1>
+                <h1>Hello, <?php echo htmlspecialchars($_SESSION['role']); ?>!</h1>
             </div>
             <div class="header-icons">
                 <a href="../user/profile_kelurahan.php">

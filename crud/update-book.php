@@ -231,7 +231,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <h5 class="mb-0">ID Buku</h5>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="text" class="form-control" name="id_book" value="<?php echo htmlspecialchars($data['id_book']); ?>">
+                                        <input type="text" class="form-control" name="id_book" value="<?php echo htmlspecialchars($data['id_book']); ?>" readonly>
                                     </div>
                                 </div>
                                 <!-- Judul Buku -->

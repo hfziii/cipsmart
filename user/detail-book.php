@@ -2,6 +2,24 @@
 session_start();
 include "koneksi.php";
 
+// Mendapatkan peran pengguna dari sesi
+$userRole = isset($_SESSION['role']) ? $_SESSION['role'] : '';
+
+// Daftar peran yang diizinkan untuk mengakses tombol absen
+$allowedRoles = [
+    'Super Admin',
+    'Admin Literasi',
+    'Admin Social',
+    'Admin Bisnis',
+    'Admin Kreatif',
+    'Admin Pena'
+];
+
+// Fungsi untuk memeriksa apakah peran termasuk dalam daftar yang diizinkan
+function isAllowedRole($role, $allowedRoles) {
+    return in_array($role, $allowedRoles);
+}
+
 $showSuccessPopup = false;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
@@ -353,17 +371,17 @@ $id_user = isset($userData['id_user']) ? $userData['id_user'] : 0;
 
                             <!-- ------------------------------------------------------ -->
                             <?php if ($data['status'] == 'Tersedia') : ?>
-                                <?php if (isset($_SESSION['username'])): ?>
+                                <?php if (isset($_SESSION['username']) && isAllowedRole($userRole, $allowedRoles)): ?>
                                     <a href="#" class="wa">
                                         <span class="rentbutton">Pinjam Buku</span>
                                     </a>
-                                <?php else: ?>
+                                <?php elseif (!isset($_SESSION['username'])): ?>
                                     <a href="../login.php" class="wa">
                                         <span class="rentbutton">Login untuk Pinjam</span>
                                     </a>
                                 <?php endif; ?>
-                                
                             <?php endif; ?>
+
                         </div>
 
                         <hr class="white-line">
