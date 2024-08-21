@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sipnopsis_ebook = input($_POST["sipnopsis_ebook"]);
 
     // Proses upload sampul ebook
-    $target_dir_sampul = "../uploads/ebook/";
+    $target_dir_sampul = __DIR__ . "/../uploads/ebook/";
     $target_file_sampul = $target_dir_sampul . basename($_FILES["sampul_ebook"]["name"]);
     $uploadOkSampul = 1;
     $imageFileType = strtolower(pathinfo($target_file_sampul, PATHINFO_EXTENSION));
@@ -142,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li class="disabled"><a href="#"><i class="fa fa-user"></i> Admin</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li class="disabled"><a href="#"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
+            <li class="disabled"><a href="#"><i class="fa fa-users"></i> Pengunjung Pojok Baca</a></li>
             <li class="disabled"><a href=""><i class="fa fa-book"></i> Buku</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li class="active"><a href="#"><i class="fa fa-book"></i> Tambah Data E-Book</a></li>

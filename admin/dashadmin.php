@@ -1,5 +1,8 @@
 <!-- SCRIPT UNTUK DELETE DATA -->
 <?php
+    include 'auth.php';
+    checkAccess(['Super Admin']);
+
     ob_start();
     include("koneksi.php");
 
@@ -44,7 +47,7 @@
             <li class="active"><a href="./dashadmin.php"><i class="fa fa-user"></i> Admin</a></li>
             <li><a href="./dashboard_kelurahan.php"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.php"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
+            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Pengunjung Pojok Baca</a></li>
             <li><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
             <li><a href="./dashborrow.php"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
@@ -55,7 +58,7 @@
     </div>
     <div class="main-content">
         <div class="header">
-            <h1>Hello, Sobat Cipsmart!</h1>
+            <h1>Hello, <?php echo htmlspecialchars($_SESSION['role']); ?>!</h1>
             <div class="header-icons">
                 <i class="fa fa-search"></i>
                 <i class="fa fa-bell"></i>
@@ -99,7 +102,7 @@
                         <td><?php echo $data['nohp']; ?></td>
                         <td><?php echo $data['username']; ?></td>
                         <td><?php echo $data['password']; ?></td>
-                        <td><?php echo $data['privileges']; ?></td>
+                        <td><?php echo $data['role']; ?></td>
 
                         <td class="icon-container">
                             <a href="../crud/update-admin.php?id_admin=<?php echo htmlspecialchars($data['id_admin']); ?>">

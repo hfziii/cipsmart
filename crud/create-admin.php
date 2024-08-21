@@ -20,11 +20,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nohp = input($_POST["nohp"]);
     $username = input($_POST["username"]);
     $password = input($_POST["password"]);
-    $privileges = input($_POST["privileges"]);
+    $role = input($_POST["role"]);
 
-    // Query input menginput data kedalam tabel
-    $sql = "INSERT INTO admin (name, nohp, username, password, privileges) 
-            VALUES ('$name', '$nohp', '$username', '$password', '$privileges')";
+    // Mendapatkan id_admin terkecil yang hilang
+    $result = mysqli_query($connection, "SELECT MIN(id_admin + 1) AS new_id FROM admin WHERE (id_admin + 1) NOT IN (SELECT id_admin FROM admin)");
+    $row = mysqli_fetch_assoc($result);
+    $new_id = $row['new_id'];
+
+    if (is_null($new_id)) {
+        $new_id = 1;
+    }
+
+    // Query input data ke dalam tabel dengan id_admin yang telah ditentukan
+    $sql = "INSERT INTO admin (id_admin, name, nohp, username, password, role) 
+            VALUES ('$new_id', '$name', '$nohp', '$username', '$password', '$role')";
 
     // Mengeksekusi query
     $hasil = mysqli_query($connection, $sql);
@@ -68,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li class="active"><a href="#"><i class="fa fa-user"></i> Tambah Admin</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li class="disabled"><a href="#"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
+            <li class="disabled"><a href="#"><i class="fa fa-users"></i> Pengunjung Pojok Baca</a></li>
             <li class="disabled"><a href=""><i class="fa fa-book"></i> Data Buku</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-book"></i> E-Book</a></li>
@@ -105,15 +114,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="form-group">
                     <label>Hak Akses</label>
-                    <select name="privileges" class="form-control" required>
-                        <option value="Super-Admin">Super-Admin</option>
-                        <option value="Kelurahan">Kelurahan</option>
-                        <option value="CE-1">CE-1 (Literasi Imajinatif)</option>
-                        <option value="CE-2">CE-2 (Social Connect)</option>
-                        <option value="CE-3">CE-3 (Bisnis Berdaya)</option>
-                        <option value="CE-4">CE-4 (Kreatif Kids Corner)</option>
-                        <option value="CE-5">CE-5 (Pena Inspirasi Gemilang)</option>
-                        <option value="UMKM">UMKM</option>
+                    <select name="role" class="form-control" required>
+                        <option value="Super Admin">Super Admin</option>
+                        <option value="Admin Kelurahan">Kelurahan</option>
+                        <option value="Admin Literasi"> Literasi Imajinatif</option>
+                        <option value="Admin Social">Social Connect</option>
+                        <option value="Admin Bisnis">Bisnis Berdaya</option>
+                        <option value="Admin Kratif">Kreatif Kids Corner</option>
+                        <option value="Admin Pena">Pena Inspirasi Gemilang</option>
+                        <option value="Admin UMKM">UMKM</option>
                     </select>
                 </div>
 

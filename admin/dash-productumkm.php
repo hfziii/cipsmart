@@ -1,6 +1,14 @@
 <?php
+<<<<<<< HEAD
 ob_start();
 include("../koneksi.php");
+=======
+    include 'auth.php';
+    checkAccess(['Super Admin', 'Admin UMKM']);
+
+    ob_start();
+    include("../koneksi.php");
+>>>>>>> 90f0e527cd54c0600733a1302764c73be801d388
 
 // Cek apakah ada kiriman form dari method GET
 if (isset($_GET['id_product'])) {
@@ -16,8 +24,31 @@ if (isset($_GET['id_product'])) {
     } else {
         echo "<div class='alert alert-danger'> Data Gagal dihapus.</div>";
     }
+<<<<<<< HEAD
 }
 ob_end_flush();
+=======
+
+    // Fetch data with optional search filters
+    $query = "SELECT p.*, s.seller_name, s.no_whatsapp
+          FROM product_umkm p
+          JOIN seller_umkm s ON p.id_seller = s.id_seller";
+
+    if ($search) {
+        $query .= " WHERE 
+            p.product_name LIKE '%$search%' OR 
+            p.product_category LIKE '%$search%' OR 
+            p.product_price LIKE '%$search%' OR 
+            p.product_description LIKE '%$search%' OR 
+            p.id_seller LIKE '%$search%' OR
+            s.seller_name LIKE '%$search%' OR
+            s.no_whatsapp LIKE '%$search%'";
+    }
+    $query .= " ORDER BY p.id_seller ASC";
+    $result = mysqli_query($connection, $query);
+
+    ob_end_flush();
+>>>>>>> 90f0e527cd54c0600733a1302764c73be801d388
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +74,7 @@ ob_end_flush();
             <li><a href="./dashadmin.php"><i class="fa fa-user"></i> Admin</a></li>
             <li><a href="./dashboard_kelurahan.php"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.php"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
+            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Pengunjung Pojok Baca</a></li>
             <li><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
             <li><a href="./dashborrow.php"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
@@ -54,7 +85,7 @@ ob_end_flush();
     </div>
     <div class="main-content">
         <div class="header">
-            <h1>Hello, Sobat Cipsmart!</h1>
+            <h1>Hello, <?php echo htmlspecialchars($_SESSION['role']); ?>!</h1>
             <div class="header-icons">
                 <i class="fa fa-search"></i>
                 <i class="fa fa-bell"></i>

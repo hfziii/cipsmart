@@ -1,5 +1,9 @@
 <!-- SCRIPT UNTUK DELETE DATA -->
 <?php
+    
+    include 'auth.php';
+    checkAccess(['Super Admin', 'Admin UMKM']);
+
     ob_start();
     include("koneksi.php");
 
@@ -18,6 +22,22 @@
             echo "<div class='alert alert-danger'> Data Gagal dihapus.</div>";
         }
     }
+<<<<<<< HEAD
+=======
+
+    // Fetch data with optional search filter
+    $query = "SELECT * FROM seller_umkm";
+    if ($search) {
+        $query .= " WHERE 
+            id_seller LIKE '%$search%' OR 
+            seller_name LIKE '%$search%' OR 
+            no_whatsapp LIKE '%$search%' OR 
+            address_seller LIKE '%$search%'";
+    }
+    $query .= " ORDER BY id_seller ASC";
+    $result = mysqli_query($connection, $query);
+
+>>>>>>> 90f0e527cd54c0600733a1302764c73be801d388
     ob_end_flush();
 ?>
 
@@ -44,7 +64,7 @@
             <li><a href="./dashadmin.php"><i class="fa fa-user"></i> Admin</a></li>
             <li><a href="./dashboard_kelurahan.php"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.php"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
+            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Pengunjung Pojok Baca</a></li>
             <li><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
             <li><a href="./dashborrow.php"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
@@ -55,7 +75,7 @@
     </div>
     <div class="main-content">
         <div class="header">
-            <h1>Hello, Sobat Cipsmart!</h1>
+            <h1>Hello, <?php echo htmlspecialchars($_SESSION['role']); ?>!</h1>
             <div class="header-icons">
                 <i class="fa fa-search"></i>
                 <i class="fa fa-bell"></i>

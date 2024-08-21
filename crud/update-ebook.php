@@ -163,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <li class="disabled"><a href="#"><i class="fa fa-user"></i> Admin</a></li>
         <li class="disabled"><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
         <li class="disabled"><a href="#"><i class="fa fa-book"></i> Pojok Baca</a></li>
-        <li class="disabled"><a href="#"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
+        <li class="disabled"><a href="#"><i class="fa fa-users"></i> Pengunjung Pojok Baca</a></li>
         <li class="disabled"><a href=""><i class="fa fa-book"></i> Buku</a></li>
         <li class="disabled"><a href="#"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
         <li class="active"><a href="#"><i class="fa fa-book"></i> Update Data E-Book</a></li>
@@ -206,7 +206,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <!-- Kategori -->
                             <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <h5 class="mb-0">Judul E-Book</h5>
+                                    <h5 class="mb-0">Kategori</h5>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="text" name="kategori_ebook" class="form-control" value="<?php echo isset($data['kategori_ebook']) ? $data['kategori_ebook'] : ''; ?>" required />

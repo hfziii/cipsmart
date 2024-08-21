@@ -34,9 +34,11 @@ html {
     justify-content: space-between;
     padding: 0 85px;
     box-sizing: border-box;
+    gap: 15px;
 }
-
-.corner-lib {
+/* Apply styles to the select element */
+select.category-ebook {
+    border: none; /* Removes the border */
     display: flex;
     align-items: center;
     gap: 10px;
@@ -48,6 +50,27 @@ html {
     font-style: normal;
     font-weight: 800;
     line-height: normal;
+    cursor: pointer; /* Change cursor to pointer */
+    margin-left: 35px;
+}
+
+/* Add a custom dropdown arrow */
+select.category-ebook::after {
+    content: '\25BC'; /* Unicode character for down arrow */
+    position: absolute;
+    right: 10px;
+    pointer-events: none; /* Allows clicking through the arrow */
+}
+
+/* Optional: style the container to position the custom arrow */
+.select-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Remove outline on focus */
+select.category-ebook:focus {
+    outline: none;
 }
 
 .corner {
@@ -102,6 +125,7 @@ html {
     border: 0px solid #0D344B;
     border-radius: 30px;
     overflow: hidden;
+    margin-right: 30px;
 }
 
 .search-icon {
@@ -111,7 +135,7 @@ html {
     width: 50px;
     height: 100%;
     background: #E4E4E4;
-    margin-left: 89%;
+    margin-left: 0;
 }
 
 .submit-src{
@@ -122,7 +146,6 @@ html {
 
 .search-bar input {
     height: 100%;
-    width: 245%;
     border: none;
     padding: 0 20px;
     border-radius: 30px 0 0 30px;
@@ -135,6 +158,15 @@ html {
 
 .search-bar input::placeholder {
     color: #63AFBD; /* Placeholder color */
+}
+
+.form-search{
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    grid-gap: 10px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 /* NAVIGATOR */
@@ -560,7 +592,7 @@ html {
 /*  */
 form {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* Membagi form menjadi 2 kolom dengan lebar yang sama */
+    grid-template-columns: 1fr 0fr; /* Membagi form menjadi 2 kolom dengan lebar yang sama */
     grid-gap: 10px; /* Jarak antara grid items */
     width: 100%;
     margin: 0 auto; /* Pusatkan form secara horizontal */

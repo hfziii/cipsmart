@@ -1,9 +1,14 @@
+<?php
+    include 'auth.php';
+    checkAccess(['Super Admin', 'Admin Kelurahan', 'Admin Literasi', 'Admin Social', 'Admin Bisnis', 'Admin Kreatif', 'Admin Pena']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Absen Pojok Baca - Cipsmart</title>
+    <title>Pengunjung Pojok Baca - Cipsmart</title>
     <link rel="stylesheet" href="../css/dashcorner.css">
     <link rel="stylesheet" href="../css/popup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -21,7 +26,7 @@
             <li><a href="./dashadmin.php"><i class="fa fa-user"></i> Admin</a></li>
             <li><a href="./dashboard_kelurahan.php"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.php"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li class="active"><a href="./dashabsen.php"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
+            <li class="active"><a href="./dashabsen.php"><i class="fa fa-users"></i> Pengunjung Pojok Baca</a></li>
             <li><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
             <li><a href="./dashborrow.php"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
@@ -32,7 +37,7 @@
     </div>
     <div class="main-content">
         <div class="header">
-            <h1>Hello, Sobat Cipsmart!</h1>
+            <h1>Hello, <?php echo htmlspecialchars($_SESSION['role']); ?>!</h1>
             <div class="header-icons">
                 <i class="fa fa-search"></i>
                 <i class="fa fa-bell"></i>
@@ -42,7 +47,7 @@
             </div>
         </div>
         <div class="content">
-            <h2>Absen Pojok Baca</h2>
+            <h2>Pengunjung Pojok Baca</h2>
             <div class="titletable">
                 <form action="dashabsen.php" method="post" class="corner-education">
                     <label for="table-dropdown" class="title-ce">Pilih Pojok Baca</label>
@@ -51,10 +56,11 @@
                         <option value="Literasi Imajinatif" <?php if (isset($_POST['table_name']) && $_POST['table_name'] == 'Literasi Imajinatif') echo 'selected'; ?>>Literasi Imajinatif</option>
                         <option value="Social Connect" <?php if (isset($_POST['table_name']) && $_POST['table_name'] == 'Social Connect') echo 'selected'; ?>>Social Connect</option>
                         <option value="Bisnis Berdaya" <?php if (isset($_POST['table_name']) && $_POST['table_name'] == 'Bisnis Berdaya') echo 'selected'; ?>>Bisnis Berdaya</option>
-                        <option value="Kreatif Kids Corner" <?php if (isset($_POST['table_name']) && $_POST['table_name'] == 'Kreatif Kids Corner') echo 'selected'; ?>>Kreatif Kids Corner</option>
+                        <option value="Kreatifitas Kids Corner" <?php if (isset($_POST['table_name']) && $_POST['table_name'] == 'Kreatifitas Kids Corner') echo 'selected'; ?>>Kreatifitas Kids Corner</option>
                         <option value="Pena Inspirasi Gemilang" <?php if (isset($_POST['table_name']) && $_POST['table_name'] == 'Pena Inspirasi Gemilang') echo 'selected'; ?>>Pena Inspirasi Gemilang</option>
                     </select>
-                </form>
+                    <button type="submit" formaction="../crud/export_absen.php" class="report-btn">Unduh Laporan</button>
+                </form>                
             </div>
             <table id="pojokBacaTable">
                 <thead>

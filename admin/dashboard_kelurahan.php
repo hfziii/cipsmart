@@ -1,3 +1,8 @@
+<?php
+    include 'auth.php';
+    checkAccess(['Super Admin', 'Admin Kelurahan']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +26,7 @@
             <li><a href="./dashadmin.php"><i class="fa fa-user"></i> Admin</a></li>
             <li class="active"><a href="./dashboard_kelurahan.php"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
             <li><a href="./dashcorner.php"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
+            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Pengunjung Pojok Baca</a></li>
             <li><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
             <li><a href="./dashborrow.php"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
@@ -33,7 +38,7 @@
     <div class="main-content">
         <div class="header">
             <div class="header-text">
-                <h1>Hello, Sobat Cipsmart!</h1>
+                <h1>Hello, <?php echo htmlspecialchars($_SESSION['role']); ?>!</h1>
             </div>
             <div class="header-icons">
                 <i class="fa fa-search"></i>

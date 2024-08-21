@@ -1,6 +1,46 @@
 <?php
 // Include file koneksi, untuk koneksikan ke database
+// Include file koneksi, untuk koneksikan ke database
 include "koneksi.php";
+session_start();
+
+// Retrieve the admin's role from session
+$admin_role = $_SESSION['role'];
+
+// Define the available options for each role
+$available_corners = [];
+
+switch ($admin_role) {
+    case 'Admin Literasi':
+        $available_corners = ['CE-1' => 'Literasi Imajinatif'];
+        break;
+    case 'Admin Social':
+        $available_corners = ['CE-2' => 'Social Connect'];
+        break;
+    case 'Admin Bisnis':
+        $available_corners = ['CE-3' => 'Bisnis Berdaya'];
+        break;
+    case 'Admin Kreatif':
+        $available_corners = ['CE-4' => 'Kreatif Kids Corner'];
+        break;
+    case 'Admin Pena':
+        $available_corners = ['CE-5' => 'Pena Inspirasi Gemilang'];
+        break;
+    case 'Super Admin':
+        $available_corners = [
+            'CE-1' => 'Literasi Imajinatif',
+            'CE-2' => 'Social Connect',
+            'CE-3' => 'Bisnis Berdaya',
+            'CE-4' => 'Kreatif Kids Corner',
+            'CE-5' => 'Pena Inspirasi Gemilang'
+        ];
+        break;
+    default:
+        echo "Invalid admin role.";
+        exit();
+}
+
+// Rest of the form processing code...
 
 // Fungsi untuk mencegah inputan karakter yang tidak sesuai
 function input($data) {
@@ -15,6 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $id_book = input($_POST["id_book"]);
     $title_book = input($_POST["title_book"]);
+    $category = input($_POST["category"]);
     $author_name = input($_POST["author_name"]);
     $publisher_name = input($_POST["publisher_name"]);
     $year_publish = input($_POST["year_publish"]);
@@ -114,7 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             // Query input menginput data kedalam tabel yang sesuai
-            $sql = "INSERT INTO $table_name (id_book, photo, title_book, author_name, publisher_name, year_publish, isbn, sipnopsis, total_page, status) VALUES ('$id_book', '$photo', '$title_book', '$author_name', '$publisher_name', '$year_publish', '$isbn', '$sipnopsis', '$total_page', '$status')";
+            $sql = "INSERT INTO $table_name (id_book, photo, title_book, category, author_name, publisher_name, year_publish, isbn, sipnopsis, total_page, status) VALUES ('$id_book', '$photo', '$title_book', '$category', '$author_name', '$publisher_name', '$year_publish', '$isbn', '$sipnopsis', '$total_page', '$status')";
 
             // Mengeksekusi query
             $hasil = mysqli_query($connection, $sql);
@@ -167,7 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li class="disabled"><a href="#"><i class="fa fa-user"></i> Admin</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li class="disabled"><a href="#"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
+            <li class="disabled"><a href="#"><i class="fa fa-users"></i> Pengunjung Pojok Baca</a></li>
             <li class="active"><a href=""><i class="fa fa-book"></i> Tambah Data Buku</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-book"></i> E-Book</a></li>
@@ -183,18 +224,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-group-container">
 
                 <div class="form-group">
-                    <label>ID Book</label>
+                    <label>ID Buku (Pojok-Kategori-No Urut-Buku Ke)</label>
                     <input type="text" name="id_book" class="form-control" required />
                 </div>
 
                 <div class="form-group">
-                    <label>Foto Buku </label>
+                    <label>Sampul Buku </label>
                     <input type="file" name="photo" class="form-control" required />
                 </div>
 
                 <div class="form-group">
                     <label>Judul Buku</label>
                     <input type="text" name="title_book" class="form-control" required />
+                </div>
+
+                <div class="form-group">
+                    <label>Kategori</label>
+                    <input type="text" name="category" class="form-control" required />
                 </div>
 
                 <div class="form-group">
@@ -222,13 +268,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="text" name="total_page" class="form-control" required />
                 </div>
                 
-                <div class="form-group">
+                <div class="form-group" style="display:none;">
                     <label>Status</label>
                     <select name="status" class="form-control" required>
                         <option value="Tersedia">Tersedia</option>
-                        <option value="Dipinjam">Dipinjam</option>
-                        <option value="Rusak">Rusak</option>
-                        <option value="Hilang">Hilang</option>
                     </select>
                 </div>
 
@@ -240,11 +283,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group" style="margin-top: -80px">
                     <label>Pojok Baca</label>
                     <select name="id_corner" class="form-control" required>
-                        <option value="CE-1">Literasi Imajinatif</option>
-                        <option value="CE-2">Social Connect</option>
-                        <option value="CE-3">Bisnis Berdaya</option>
-                        <option value="CE-4">Kreatif Kids Corner</option>
-                        <option value="CE-5">Pena Inspirasi Gemilang</option>
+                        <?php foreach ($available_corners as $value => $label): ?>
+                            <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
 

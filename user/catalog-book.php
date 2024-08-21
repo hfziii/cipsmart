@@ -2,11 +2,29 @@
 session_start();
 include("koneksi.php");
 
-// Fungsi untuk mengambil data buku dari tabel
+// Mendapatkan peran pengguna dari sesi
+$userRole = isset($_SESSION['role']) ? $_SESSION['role'] : '';
+
+// Daftar peran yang diizinkan untuk mengakses tombol absen
+$allowedRoles = [
+    'Super Admin',
+    'Admin Literasi',
+    'Admin Social',
+    'Admin Bisnis',
+    'Admin Kreatif',
+    'Admin Pena'
+];
+
+// Fungsi untuk memeriksa apakah peran termasuk dalam daftar yang diizinkan
+function isAllowedRole($role, $allowedRoles) {
+    return in_array($role, $allowedRoles);
+}
+
+// Function to get books from table
 function getBooksFromTable($table, $search = '') {
     global $connection;
     if ($search) {
-        $sql = "SELECT * FROM $table WHERE title_book LIKE '%$search%' OR author_name LIKE '%$search%'";
+        $sql = "SELECT * FROM $table WHERE title_book LIKE '%$search%' OR author_name LIKE '%$search%' OR category LIKE '%$search%' OR status LIKE '%$search%'";
     } else {
         $sql = "SELECT * FROM $table";
     }
@@ -207,7 +225,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                     <option value="Literasi Imajinatif">Literasi Imajinatif</option>
                     <option value="Social Connect">Social Connect</option>
                     <option value="Bisnis Berdaya">Bisnis Berdaya</option>
-                    <option value="Kreatif Kids Corner">Kreatif Kids Corner</option>
+                    <option value="Kreatifitas Kids Corner">Kreatifitas Kids Corner</option>
                     <option value="Pena Inspirasi Gemilang">Pena Inspirasi Gemilang</option>
                 </select>
 
@@ -242,7 +260,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                             <option value="Literasi Imajinatif" <?php if ($table_name == 'book_literasi_imajinatif') echo 'selected'; ?>>Literasi Imajinatif</option>
                             <option value="Social Connect" <?php if ($table_name == 'book_social_connect') echo 'selected'; ?>>Social Connect</option>
                             <option value="Bisnis Berdaya" <?php if ($table_name == 'book_bisnis_berdaya') echo 'selected'; ?>>Bisnis Berdaya</option>
-                            <option value="Kreatif Kids Corner" <?php if ($table_name == 'book_kreatif_kids_corner') echo 'selected'; ?>>Kreatif Kids Corner</option>
+                            <option value="Kreatif Kids Corner" <?php if ($table_name == 'book_kreatif_kids_corner') echo 'selected'; ?>>Kreatifitas Kids Corner</option>
                             <option value="Pena Inspirasi Gemilang" <?php if ($table_name == 'book_pena_inspirasi_gemilang') echo 'selected'; ?>>Pena Inspirasi Gemilang</option>
                         </select>
                     </form>
@@ -274,9 +292,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                         <?php endif; ?>
                     </div>
 
-                    <a href="#" class="<?php echo isset($_SESSION['username']) ? 'absen-btn' : 'absen-btn-disable'; ?> absen-pb">
+                    <a href="#" class="<?php echo isAllowedRole($userRole, $allowedRoles) ? 'absen-btn absen-pb' : 'absen-btn-disable'; ?> ">
                         <p>Absen</p>
                     </a>
+
                 </div>
 
             </nav>
@@ -334,6 +353,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['borrow'])) {
                                 <h1 class="name-book" style="font-size: 22px;"><?= $data["title_book"] ?></h1>
                                 <h1 class="name-author"><?= $data["author_name"] ?></h1>
                                 <h1 class="status"><?= $data["status"] ?></h1>
+                                <h1 class="status"><?= $data["category"] ?></h1>
                             </div>
                         <?php endforeach; ?>
                     <?php else: ?>

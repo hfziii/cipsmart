@@ -1,0 +1,657 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background: url("/img/dashboard/bg-dashboard.png") no-repeat center center/cover;
+    position: relative;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 250px;
+    height: 100%;
+    background-color: #63AFBD;
+    border-top-right-radius: 50px;
+}
+
+.sidebar .logo img {
+    width: 80px;
+    margin: 5px 0 5px 80px;
+}
+
+.sidebar ul {
+    list-style: none;
+    width: 100%;
+    padding-left: 0;
+}
+
+.sidebar ul li {
+    width: 100%;
+    text-align: center;
+}
+
+.sidebar ul li a {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li.active a {
+    background-color: white;
+    color: #63AFBD;
+    border-radius: 50px;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.header h1 {
+    font-size: 24px;
+    color: #FFF;
+}
+
+.header-icons i {
+    font-size: 45px;
+    margin-left: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.header-line-horizontal {
+    width: 100%; /* Garis mengambil lebar penuh */
+    height: 3px; /* Sesuaikan tinggi garis */
+    background-color: #fff; /* Warna garis */
+    margin-top: 15px; /* Jarak dari elemen header */
+}
+
+.content {
+    padding: 20px;
+    width: calc(100% - 250px);
+}
+
+.header {
+    margin-left: 20px;
+    color: powderblue;
+    font-size: 15px;
+}
+
+.header-icons {
+    font-size: 30px;
+    margin-left: 975px;
+    margin-top: -70px;
+    color: #63AFBD;
+    display: flex;
+    gap: 0;
+    align-items: center;
+}
+
+.header-icons a {
+    margin: 0;
+    border: none;
+    margin-left: 0;
+    margin-right: 0;
+    border: none;
+    padding: 0;
+}
+
+
+.widgets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 1em;
+}
+
+/* WIDGETS */
+a {
+    text-decoration: none;
+}
+
+.widget {
+    border-radius: 20px;
+    background: #63AFBD;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    color: #FFF;
+    font-family: Montserrat;
+}
+
+.widget h2 {
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.widget-1 {
+    width: 335px;
+    height: 246px;
+}
+
+.widget-2{
+    width: 700px;
+    height: 246px;
+}
+
+/* KELURAHAN */
+.content .widget-1 .padding-1 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 10px;
+}
+
+.padding-1 .profil-1 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.padding-1 .profil-2 {
+    width: 120px;
+    height: 30px;
+    color: #63AFBD;
+    margin-left: 180px;
+    margin-top: -19px;
+    border-radius: 10px;
+    background: #ffffff;
+    text-align: center;
+    padding: 6px;
+}
+
+.content .widget-1 .padding-2 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 20px;
+}
+
+.padding-2 .profil-3 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.padding-2 .profil-4 {
+    width: 70px;
+    height: 20px;
+    color: #63AFBD;
+    flex-shrink: 0;
+    margin-left: 220px;
+    margin-top: -19px;
+    border-radius: 20px;
+    background: #ffffff;
+}
+
+.content .widget-1 .padding-3 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 20px;
+}
+
+.padding-3 .profil-5 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.padding-3 .profil-6 {
+    width: 70px;
+    height: 20px;
+    color: #63AFBD;
+    flex-shrink: 0;
+    margin-left: 220px;
+    margin-top: -19px;
+    border-radius: 20px;
+    background: #ffffff;
+}
+
+.content .widget-1 .padding-4 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 20px;
+}
+
+.padding-4 .profil-7 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.padding-4 .profil-8 {
+    width: 70px;
+    height: 20px;
+    color: #63AFBD;
+    flex-shrink: 0;
+    margin-left: 220px;
+    margin-top: -19px;
+    border-radius: 20px;
+    background: #ffffff;
+}
+
+/* PERPUS */
+
+.content .widget-2 .bungkus-1 {
+    width: 126.66px;
+    height: 142px;
+    margin-top: -10px;
+    margin-left: 20px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.content .widget-2 .bungkus-2 {
+    width: 126.66px;
+    height: 142px;
+    margin-top: -142px;
+    margin-left: 180px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.content .widget-2 .bungkus-3 {
+    width: 126.66px;
+    height: 142px;
+    margin-top: -142px;
+    margin-left: 345px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.content .widget-2 .bungkus-4 {
+    width: 126.66px;
+    height: 142px;
+    margin-top: -142px;
+    margin-left: 510px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.bungkus-1 .teks-1 {
+    color: #63AFBD;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-align: center;
+    padding-top: 15px;
+    text-decoration: none;
+}
+
+.bungkus-1 .total-1 {
+    color: #63AFBD;
+    font-family: Montserrat;
+    margin-top: 20px;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-align: center;
+}
+
+.bungkus-1 .detail-gambar{
+    padding-left: 80px;
+}
+
+.bungkus-2 .teks-1 {
+    color: #63AFBD;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.bungkus-2 .total-1 {
+    color: #63AFBD;
+    font-family: Montserrat;
+    margin-top: 20px;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-align: center;
+}
+
+.bungkus-2 .detail-gambar{
+    padding-left: 80px;
+}
+
+.bungkus-3 .teks-1 {
+    color: #63AFBD;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.bungkus-3 .total-1 {
+    color: #63AFBD;
+    font-family: Montserrat;
+    margin-top: 20px;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-align: center;
+}
+
+.bungkus-3 .detail-gambar{
+    padding-left: 80px;
+}
+
+.bungkus-4 .teks-1 {
+    color: #63AFBD;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.bungkus-4 .total-1 {
+    color: #63AFBD;
+    font-family: Montserrat;
+    margin-top: 20px;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-align: center;
+}
+
+.bungkus-4  .detail-gambar{
+    padding-left: 80px;
+}
+
+/* VISITOR */
+.visitor-1 {
+    margin-bottom: 20px;
+    margin-top: 45px;
+}
+
+.visitor-1 .visitor-teks-1 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.visitor-1 .visitor-no-1 {
+    width: 120px;
+    height: 30px;
+    color: #63AFBD;
+    margin-left: 180px;
+    margin-top: -19px;
+    border-radius: 10px;
+    background: #ffffff;
+    text-align: center;
+    padding: 6px;
+    font-weight: 600;
+}
+
+.visitor-2 .visitor-teks-2 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.visitor-2 .visitor-no-2 {
+    width: 120px;
+    height: 30px;
+    color: #63AFBD;
+    margin-left: 180px;
+    margin-top: -19px;
+    border-radius: 10px;
+    background: #ffffff;
+    text-align: center;
+    padding: 6px;
+    font-weight: 600;
+}
+
+/* UMKM*/
+#corner,
+#corner-teks {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+.widget-3 {
+    width: 335px;
+    height: 246px;
+}
+
+.widget-umkm {
+    display: flex;
+    justify-content: space-between;
+}
+
+.umkm-box {
+    width: 419px;
+    height: 246px;
+    border-radius: 20px;
+    background: #63AFBD;
+    color: #fff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    text-align: center;
+}
+
+.umkm-box .teks-1 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.umkm-box .teks-2 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.umkm-box .total-1 {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.umkm-box .total-2 {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.umkm-box img {
+    width: 36px;
+    height: 32px;
+}
+
+.seller{
+    width: 298.343px;
+    height: 61px;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #63AFBD;
+    text-align: center;
+    margin: 20px 0px 20px 40px;
+    padding: 1px;
+}
+
+.seller .detail-gambar{
+    position: absolute;
+    margin-left: -130px;
+    margin-top: 10px;
+}
+
+.product{
+    width: 298.343px;
+    height: 61px;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #63AFBD;
+    text-align: center;
+    margin-left: 40px;
+    padding: 1px;
+}
+
+.product .detail-gambar{
+    position: absolute;
+    margin-left: -130px;
+    margin-top: 10px;
+}
+
+/* EBOOK */
+.ebook-box {
+    width: 254px;
+    height: 246px;
+    border-radius: 20px;
+    background: #63AFBD;
+    color: #fff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    text-align: center;
+    margin-left: 25px;
+}
+
+.ebook-box .detail-gambar{
+    position: absolute;
+    margin-left: -100px;
+    margin-top: 50px;
+}
+
+.teks-ebook, .total-ebook{
+    font-weight: 600;
+    text-align: left;
+}
+
+.teks-ebook{
+    margin:60px 0px 0px 100px;
+}
+
+.total-ebook{
+    margin:10px 0px 0px 100px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+    }
+
+    .sidebar ul {
+        list-style: none;
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .logo img {
+        width: 50px;
+        margin-bottom: 5px;
+    }
+
+    .content {
+        width: 100%;
+    }
+
+    .widgets {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .widget {
+        width: 90%;
+    }
+
+    .widget-2, .widget-umkm {
+        width: 100%;
+    }
+
+    .header-icons {
+        margin-left: 0;
+        margin-top: 0;
+        text-align: right;
+    }
+}
+

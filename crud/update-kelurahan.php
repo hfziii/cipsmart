@@ -86,8 +86,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li class="disabled"><a href="#"><i class="fa fa-user"></i> Admin</a></li>
             <li class="active"><a href="#"><i class="fa fa-home"></i> Update Profile Kelurahan</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-book"></i> Pojok Baca</a></li>
+<<<<<<< HEAD
             <li class="disabled"><a href="#"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
             <li class="disabled"><a href=""><i class="fa fa-book"></i> Update Data Buku</a></li>
+=======
+            <li class="disabled"><a href="#"><i class="fa fa-users"></i> Pengunjung Pojok Baca</a></li>
+            <li class="disabled"><a href=""><i class="fa fa-book"></i> Buku</a></li>
+>>>>>>> 90f0e527cd54c0600733a1302764c73be801d388
             <li class="disabled"><a href="#"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-book"></i> E-Book</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-shopping-bag"></i> Produk UMKM</a></li>

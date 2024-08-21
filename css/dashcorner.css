@@ -187,6 +187,69 @@ table th, table td {
     border-color: #63AFBD;
 }
 
+<<<<<<< HEAD
+=======
+.titletable button{
+    cursor: pointer;
+    background-color: #63AFBD;
+    font-family: 'Montserrat';
+    color: #FFF;
+    border: 1px solid #63AFBD;
+    border-radius: 5px;
+    height: 2em;
+    padding: 5px;
+    font-weight: 500;
+    margin-left: 10px;
+
+}
+.corner-education button{
+    cursor: pointer;
+    background-color: #63AFBD;
+    font-family: 'Montserrat';
+    color: #FFF;
+    border: 1px solid #63AFBD;
+    border-radius: 5px;
+    height: 2em;
+    padding: 5px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+/* SEARCH BAR */
+.search-bar {
+    margin-left: auto; /* Pushes the search bar to the right */
+    display: flex;
+    align-items: center;
+}
+
+.search-bar .form-search {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar .form-search input[type="text"] {
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #63AFBD;
+    font-size: 14px;
+    color: #63AFBD;
+}
+
+.search-bar .form-search button.submit-src {
+    padding: 10px;
+    border: 1px solid #63AFBD;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.search-bar .form-search button.submit-src img {
+    width: 14px;
+    height: auto;
+}
+
+>>>>>>> 90f0e527cd54c0600733a1302764c73be801d388
 /*ICON */
 .icon-container {
     display: flex;
@@ -214,11 +277,17 @@ table th, table td {
         z-index: 1000;
     }
 
+    .sidebar .logo img {
+        width: 50px;
+        margin-bottom: 5px;
+    }
+
     .sidebar ul {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
+        align-items: flex-start;
     }
 
     .sidebar ul li {

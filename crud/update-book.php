@@ -61,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $id_book = input($_POST["id_book"]);
     $title_book = input($_POST["title_book"]);
+    $category = input($_POST["category"]);
     $author_name = input($_POST["author_name"]);
     $publisher_name = input($_POST["publisher_name"]);
     $year_publish = input($_POST["year_publish"]);
@@ -151,6 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Query update untuk memperbarui data buku
     $sql = "UPDATE $table_name SET 
             title_book = ?,
+            category = ?,
             author_name = ?,
             publisher_name = ?,
             year_publish = ?,
@@ -162,7 +164,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             WHERE id_book = ?";
 
     $stmt = mysqli_prepare($connection, $sql);
-    mysqli_stmt_bind_param($stmt, 'ssssssssss', $title_book, $author_name, $publisher_name, $year_publish, $isbn, $sipnopsis, $total_page, $status, $photo, $id_book);
+    mysqli_stmt_bind_param($stmt, 'sssssssssss', $title_book, $category, $author_name, $publisher_name, $year_publish, $isbn, $sipnopsis, $total_page, $status, $photo, $id_book);
 
     // Eksekusi query update
     $result = mysqli_stmt_execute($stmt);
@@ -206,7 +208,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li class="disabled"><a href="#"><i class="fa fa-user"></i> Admin</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li class="disabled"><a href="#"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
+            <li class="disabled"><a href="#"><i class="fa fa-users"></i> Pengunjung Pojok Baca</a></li>
             <li class="active"><a href=""><i class="fa fa-book"></i> Update Data Buku</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-book"></i> E-Book</a></li>
@@ -239,6 +241,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="text" class="form-control" name="title_book" value="<?php echo htmlspecialchars($data['title_book']); ?>" required>
+                                    </div>
+                                </div>
+                                <!-- Kategori Buku -->
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h5 class="mb-0">Kategori</h5>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" class="form-control" name="category" value="<?php echo htmlspecialchars($data['category']); ?>" required>
                                     </div>
                                 </div>
                                 <!-- Nama Penulis -->
@@ -325,10 +336,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         </select>
                                     </div>
                                 </div>
-                                <!-- Upload Foto Buku Baru -->
+                                <!-- Upload sampul Buku Baru -->
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
-                                        <h5 class="mb-0">Upload Foto Baru</h5>
+                                        <h5 class="mb-0">Sampul Baru</h5>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="file" class="form-control" name="photo">
@@ -343,7 +354,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="card">
                         <div class="card">
                             <div class="card-body text-center">
-                                <h5 class="mb-3">Foto Buku Sebelumnya</h5>
+                                <h5 class="mb-3">Sampul Buku Sebelumnya</h5>
                                 <div class="d-flex justify-content-center align-items-center">
                                     <img src="../<?php echo htmlspecialchars($data['photo']); ?>" alt="Foto Buku" class="img-thumbnail" style="max-width: 100%;">
                                 </div>

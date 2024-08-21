@@ -37,10 +37,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nohp = input($_POST["nohp"]);
     $username = input($_POST["username"]);
     $password = input($_POST["password"]);
-    $privileges = input($_POST["privileges"]);
+    $role = input($_POST["role"]);
 
     // Query untuk mengupdate data di tabel admin
-    $sql = "UPDATE admin SET name='$name', nohp='$nohp', username='$username', password='$password', privileges='$privileges' WHERE id_admin='$id_admin'";
+    $sql = "UPDATE admin SET name='$name', nohp='$nohp', username='$username', password='$password', role='$role' WHERE id_admin='$id_admin'";
 
     // Mengeksekusi query
     $hasil = mysqli_query($connection, $sql);
@@ -84,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li class="active"><a href="#"><i class="fa fa-user"></i> Update Admin</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li class="disabled"><a href="#"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
+            <li class="disabled"><a href="#"><i class="fa fa-users"></i> Pengunjung Pojok Baca</a></li>
             <li class="disabled"><a href=""><i class="fa fa-book"></i> Data Buku</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li class="disabled"><a href="#"><i class="fa fa-book"></i> E-Book</a></li>
@@ -120,15 +120,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="form-group">
                     <label>Hak Akses</label>
-                    <select name="privileges" class="form-control" required>
-                        <option value="Super-Admin" <?php if ($data['privileges'] == 'Super-Admin') echo 'selected'; ?>>Super-Admin</option>
-                        <option value="Kelurahan" <?php if ($data['privileges'] == 'Kelurahan') echo 'selected'; ?>>Kelurahan</option>
-                        <option value="CE-1" <?php if ($data['privileges'] == 'CE-1') echo 'selected'; ?>>CE-1 (Literasi Imajinatif)</option>
-                        <option value="CE-2" <?php if ($data['privileges'] == 'CE-2') echo 'selected'; ?>>CE-2 (Social Connect)</option>
-                        <option value="CE-3" <?php if ($data['privileges'] == 'CE-3') echo 'selected'; ?>>CE-3 (Bisnis Berdaya)</option>
-                        <option value="CE-4" <?php if ($data['privileges'] == 'CE-4') echo 'selected'; ?>>CE-4 (Kreatif Kids Corner)</option>
-                        <option value="CE-5" <?php if ($data['privileges'] == 'CE-5') echo 'selected'; ?>>CE-5 (Pena Inspirasi Gemilang)</option>
-                        <option value="UMKM" <?php if ($data['privileges'] == 'UMKM') echo 'selected'; ?>>UMKM</option>
+                    <select name="role" class="form-control" required>
+                        <option value="Super Admin" <?php if ($data['role'] == 'Super Admin') echo 'selected'; ?>>Super Admin</option>
+                        <option value="Admin Kelurahan" <?php if ($data['role'] == 'Admin Kelurahan') echo 'selected'; ?>>Kelurahan</option>
+                        <option value="Admin Literasi" <?php if ($data['role'] == 'Admin Literasi') echo 'selected'; ?>>Literasi Imajinatif</option>
+                        <option value="Admin Social" <?php if ($data['role'] == 'Admin Social') echo 'selected'; ?>>Social Connect</option>
+                        <option value="Admin Bisnis" <?php if ($data['role'] == 'Admin Bisnis') echo 'selected'; ?>>Bisnis Berdaya</option>
+                        <option value="Admin Kreatif" <?php if ($data['role'] == 'Admin Kreatif') echo 'selected'; ?>>Kreatif Kids Corner</option>
+                        <option value="Admin Pena" <?php if ($data['role'] == 'Admin Pena') echo 'selected'; ?>>Pena Inspirasi Gemilang</option>
+                        <option value="Admin UMKM" <?php if ($data['role'] == 'Admin UMKM') echo 'selected'; ?>>UMKM</option>
                     </select>
                 </div>
 

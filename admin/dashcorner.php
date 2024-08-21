@@ -1,3 +1,8 @@
+<?php
+    include 'auth.php';
+    checkAccess(['Super Admin','Admin Kelurahan', 'Admin Literasi', 'Admin Social', 'Admin Bisnis', 'Admin Kreatif', 'Admin Pena']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +26,7 @@
             <li><a href="./dashadmin.php"><i class="fa fa-user"></i> Admin</a></li>
             <li><a href="./dashboard_kelurahan.php"><i class="fa fa-home"></i> Profile Kelurahan</a></li>
             <li class="active"><a href="./dashcorner.php"><i class="fa fa-book"></i> Pojok Baca</a></li>
-            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Absen Pojok Baca</a></li>
+            <li><a href="./dashabsen.php"><i class="fa fa-users"></i> Pengunjung Pojok Baca</a></li>
             <li><a href="./dashbook.php"><i class="fa fa-book"></i> Buku</a></li>
             <li><a href="./dashborrow.php"><i class="fa fa-exchange"></i> Peminjaman Buku</a></li>
             <li><a href="./dashebook.php"><i class="fa fa-book"></i> E-Book</a></li>
@@ -32,7 +37,7 @@
     </div>
     <div class="main-content">
         <div class="header">
-            <h1>Hello, Sobat Cipsmart!</h1>
+            <h1>Hello, <?php echo htmlspecialchars($_SESSION['role']); ?>!</h1>
             <div class="header-icons">
                 <i class="fa fa-search"></i>
                 <i class="fa fa-bell"></i>
@@ -64,27 +69,27 @@
                         c.name_corner, 
                         c.location_corner,
                         CASE
-                            WHEN c.id_corner = 'CE-1' THEN (SELECT COUNT(*) FROM book_literasi_imajinatif WHERE id_corner = c.id_corner)
-                            WHEN c.id_corner = 'CE-2' THEN (SELECT COUNT(*) FROM book_social_connect WHERE id_corner = c.id_corner)
-                            WHEN c.id_corner = 'CE-3' THEN (SELECT COUNT(*) FROM book_bisnis_berdaya WHERE id_corner = c.id_corner)
-                            WHEN c.id_corner = 'CE-4' THEN (SELECT COUNT(*) FROM book_kreatif_kids_corner WHERE id_corner = c.id_corner)
-                            WHEN c.id_corner = 'CE-5' THEN (SELECT COUNT(*) FROM book_pena_inspirasi_gemilang WHERE id_corner = c.id_corner)
+                            WHEN c.id_corner = 'CE1' THEN (SELECT COUNT(*) FROM book_literasi_imajinatif WHERE id_corner = c.id_corner)
+                            WHEN c.id_corner = 'CE2' THEN (SELECT COUNT(*) FROM book_social_connect WHERE id_corner = c.id_corner)
+                            WHEN c.id_corner = 'CE3' THEN (SELECT COUNT(*) FROM book_bisnis_berdaya WHERE id_corner = c.id_corner)
+                            WHEN c.id_corner = 'CE4' THEN (SELECT COUNT(*) FROM book_kreatif_kids_corner WHERE id_corner = c.id_corner)
+                            WHEN c.id_corner = 'CE5' THEN (SELECT COUNT(*) FROM book_pena_inspirasi_gemilang WHERE id_corner = c.id_corner)
                             ELSE 0
                         END AS total_book,
                         CASE
-                            WHEN c.id_corner = 'CE-1' THEN (SELECT COUNT(*) FROM book_literasi_imajinatif WHERE id_corner = c.id_corner AND status = 'Dipinjam')
-                            WHEN c.id_corner = 'CE-2' THEN (SELECT COUNT(*) FROM book_social_connect WHERE id_corner = c.id_corner AND status = 'Dipinjam')
-                            WHEN c.id_corner = 'CE-3' THEN (SELECT COUNT(*) FROM book_bisnis_berdaya WHERE id_corner = c.id_corner AND status = 'Dipinjam')
-                            WHEN c.id_corner = 'CE-4' THEN (SELECT COUNT(*) FROM book_kreatif_kids_corner WHERE id_corner = c.id_corner AND status = 'Dipinjam')
-                            WHEN c.id_corner = 'CE-5' THEN (SELECT COUNT(*) FROM book_pena_inspirasi_gemilang WHERE id_corner = c.id_corner AND status = 'Dipinjam')
+                            WHEN c.id_corner = 'CE1' THEN (SELECT COUNT(*) FROM book_literasi_imajinatif WHERE id_corner = c.id_corner AND status = 'Dipinjam')
+                            WHEN c.id_corner = 'CE2' THEN (SELECT COUNT(*) FROM book_social_connect WHERE id_corner = c.id_corner AND status = 'Dipinjam')
+                            WHEN c.id_corner = 'CE3' THEN (SELECT COUNT(*) FROM book_bisnis_berdaya WHERE id_corner = c.id_corner AND status = 'Dipinjam')
+                            WHEN c.id_corner = 'CE4' THEN (SELECT COUNT(*) FROM book_kreatif_kids_corner WHERE id_corner = c.id_corner AND status = 'Dipinjam')
+                            WHEN c.id_corner = 'CE5' THEN (SELECT COUNT(*) FROM book_pena_inspirasi_gemilang WHERE id_corner = c.id_corner AND status = 'Dipinjam')
                             ELSE 0
                         END AS total_book_borrow,
                         CASE
-                            WHEN c.id_corner = 'CE-1' THEN (SELECT COUNT(*) FROM book_literasi_imajinatif WHERE id_corner = c.id_corner AND status = 'Tersedia')
-                            WHEN c.id_corner = 'CE-2' THEN (SELECT COUNT(*) FROM book_social_connect WHERE id_corner = c.id_corner AND status = 'Tersedia')
-                            WHEN c.id_corner = 'CE-3' THEN (SELECT COUNT(*) FROM book_bisnis_berdaya WHERE id_corner = c.id_corner AND status = 'Tersedia')
-                            WHEN c.id_corner = 'CE-4' THEN (SELECT COUNT(*) FROM book_kreatif_kids_corner WHERE id_corner = c.id_corner AND status = 'Tersedia')
-                            WHEN c.id_corner = 'CE-5' THEN (SELECT COUNT(*) FROM book_pena_inspirasi_gemilang WHERE id_corner = c.id_corner AND status = 'Tersedia')
+                            WHEN c.id_corner = 'CE1' THEN (SELECT COUNT(*) FROM book_literasi_imajinatif WHERE id_corner = c.id_corner AND status = 'Tersedia')
+                            WHEN c.id_corner = 'CE2' THEN (SELECT COUNT(*) FROM book_social_connect WHERE id_corner = c.id_corner AND status = 'Tersedia')
+                            WHEN c.id_corner = 'CE3' THEN (SELECT COUNT(*) FROM book_bisnis_berdaya WHERE id_corner = c.id_corner AND status = 'Tersedia')
+                            WHEN c.id_corner = 'CE4' THEN (SELECT COUNT(*) FROM book_kreatif_kids_corner WHERE id_corner = c.id_corner AND status = 'Tersedia')
+                            WHEN c.id_corner = 'CE5' THEN (SELECT COUNT(*) FROM book_pena_inspirasi_gemilang WHERE id_corner = c.id_corner AND status = 'Tersedia')
                             ELSE 0
                         END AS total_book_ready
                     FROM corner_education c
