@@ -17,13 +17,75 @@ body, html {
     flex-direction: column;
 }
 
-.head-homepage{
-    width: 1360px;
+.head-homepage {
+    width: 100%; /* Ganti ukuran tetap dengan ukuran fleksibel */
+    max-width: 1360px; /* Batas maksimal lebar */
+    margin: 0 auto; /* Pusatkan elemen */
+    padding: 0 1px; /* Tambahkan padding untuk memastikan konten tidak menempel ke tepi */
 }
 
 .bg-body-item{
     grid-template-columns: 0.8fr 4fr;
     display: grid;
+}
+
+/* Tambahan CSS untuk Bagian Head Homepage */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    flex-wrap: wrap; /* Tambahkan flex-wrap untuk memungkinkan elemen bergeser ke bawah jika perlu */
+}
+
+.header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    flex-shrink: 0; /* Pastikan logo tidak mengecil terlalu banyak */
+}
+
+.header .navigation {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap; /* Memungkinkan item navigasi untuk melipat ke baris berikutnya */
+}
+
+.header .navigation a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    white-space: nowrap; /* Mencegah teks melipat dalam link */
+}
+
+.header .navigation a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Responsivitas untuk Bagian Header */
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start; /* Mengubah penempatan elemen menjadi vertikal */
+    }
+
+    .header .logo {
+        margin-bottom: 10px;
+    }
+
+    .header .navigation {
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-start; /* Menempatkan link navigasi ke kiri */
+    }
+
+    .header .navigation a {
+        width: 100%; /* Link navigasi memenuhi lebar kontainer */
+        text-align: left;
+        padding: 10px 0;
+    }
 }
 
 .nav {
@@ -110,8 +172,8 @@ body, html {
 
 /* SIDEBAR */
 .sidebar {
-    width: 110.000px;
-    height: 350.000px;
+    width: 110px;
+    height: 350px;
     flex-shrink: 0;
     border-radius: 50px;
     border: 3px solid #63AFBD;
@@ -122,6 +184,14 @@ body, html {
     justify-content: center;
     align-items: center;
     gap: 10px; /* Adjust the gap between icons as needed */
+}
+
+/* Responsive Sidebar */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 80px; /* Adjust width for smaller screens */
+        margin-left: 20px; /* Reduce margin to fit on smaller screens */
+    }
 }
 
 .sidebar a {
@@ -137,7 +207,7 @@ body, html {
     object-fit: cover;
 }
 
-.perpustext{
+.perpustext, .ebooktext, .umkmtext {
     color: #63AFBD;
     text-align: center;
     font-family: Montserrat;
@@ -149,49 +219,40 @@ body, html {
     margin-bottom: 0;
 }
 
-.ebooktext{
-    color: #63AFBD;
-    text-align: center;
-    font-family: Montserrat;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-    margin-top: 0;
-    margin-bottom: 0;
-}
+/* Further adjustments for even smaller screens */
+@media screen and (max-width: 480px) {
+    .sidebar {
+        width: 60px; /* Further reduce width for very small screens */
+        margin-left: 10px; /* Further reduce margin */
+    }
 
-.umkmtext{
-    color: #63AFBD;
-    text-align: center;
-    font-family: Montserrat;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: normal;
-    margin-top: 0;
-    margin-bottom: 0;
+    .sidebar a img {
+        width: 50%; /* Adjust icon size for very small screens */
+    }
 }
 
 .content {
-    width: 547px;
-    height: 465px;
+    width: 100%; /* Ubah dari lebar tetap menjadi lebar penuh */
+    max-width: 547px; /* Tentukan batas maksimal */
+    height: auto; /* Ubah tinggi agar otomatis */
     flex-shrink: 0;
     border-radius: 20px;
     background: #63AFBD;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    margin-left: 190px;
+    margin: 0 auto; /* Pusatkan elemen */
+    padding: 20px; /* Tambahkan padding untuk ruang di dalam box */
     margin-top: 50px;
 }
 
 .title-contact {
     color: #FFF;
     text-align: center;
-    font-family: Montserrats;
-    font-size: 30px;
+    font-family: Montserrat;
+    font-size: 24px; /* Kurangi ukuran font */
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    margin-bottom: 20px; /* Tambahkan jarak bawah */
 }
 
 .teks-contact {
@@ -203,6 +264,17 @@ body, html {
     font-weight: 500;
     line-height: normal;
     margin-top: -15px;
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        max-width: 90%; /* Kurangi batas maksimal agar muat di layar kecil */
+        margin-top: 20px; /* Kurangi margin atas */
+    }
+
+    .title-contact {
+        font-size: 20px; /* Kurangi ukuran font untuk layar kecil */
+    }
 }
 
 .whatsapp {

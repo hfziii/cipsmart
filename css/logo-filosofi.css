@@ -193,6 +193,10 @@ body, html {
     gap: 50px;
 }
 
+.cont-box1, .cont-box2 {
+    margin-bottom: 20px; /* Kurangi jarak antara Box 1 dan Box 2 dengan yang lainnya */
+}
+
 .cont-box1 {
     width: 483px;
     height: 110px;
@@ -205,7 +209,7 @@ body, html {
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    margin-left: 20px;
+    margin-left: 29px;
 }
 
 .cont-box1 p {
@@ -231,6 +235,7 @@ body, html {
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    margin-left: -9px;
 }
 
 .cont-box2 p {
@@ -460,14 +465,59 @@ body, html {
     margin-left: 25px;
 }
 
+/* Media Queries untuk menambahkan responsivitas pada content box */
+
+/* Untuk layar lebih kecil dari 1200px */
+@media (max-width: 1200px) {
+    .content {
+        display: grid;
+        grid-template-columns: 1fr; /* Semua box dalam satu kolom */
+        gap: 20px; /* Jarak antar box yang lebih kecil */
+        margin-left: 0;
+        margin-top: 20px;
+        align-items: center;
+    }
+    .cont-box1, .cont-box2, .cont-box3, .cont-box4, 
+    .cont-box5, .cont-box6, .cont-box7, .cont-box8, 
+    .cont-box9, .cont-box10 {
+        width: 100%; /* Lebar penuh untuk semua box */
+        margin: 0 auto; /* Posisikan di tengah */
+        padding: 20px; /* Padding seragam */
+    }
+}
+
+/* Untuk layar lebih kecil dari 768px */
+@media (max-width: 768px) {
+    .content {
+        grid-template-columns: 1fr; /* Tetap satu kolom */
+        gap: 15px; /* Kurangi jarak antar box */
+    }
+    .cont-box1, .cont-box2, .cont-box3, .cont-box4, 
+    .cont-box5, .cont-box6, .cont-box7, .cont-box8, 
+    .cont-box9, .cont-box10 {
+        padding: 15px; /* Padding seragam */
+        margin: 0 auto; /* Posisikan di tengah */
+    }
+}
+
+/* Untuk layar lebih kecil dari 480px */
+@media (max-width: 480px) {
+    .content {
+        gap: 10px; /* Kurangi jarak antar box */
+    }
+    .cont-box1, .cont-box2, .cont-box3, .cont-box4, 
+    .cont-box5, .cont-box6, .cont-box7, .cont-box8, 
+    .cont-box9, .cont-box10 {
+        padding: 10px; /* Padding seragam */
+        margin: 0 auto; /* Posisikan di tengah */
+    }
+}
+
 /* FOOTER */
 .footer {
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    margin-top: -200px;
+    position: relative;
+    z-index: 1; /* Pastikan footer tetap di atas jika ada elemen lain yang menutupi */
+    margin-top: 50px; /* Tambahkan jarak antara konten dan footer */
 }
 
 .linked {
@@ -553,3 +603,115 @@ body, html {
 }
 
 
+
+
+/* Base styles already defined */
+
+/* Media Queries for Responsiveness */
+
+/* For screens smaller than 1200px */
+@media (max-width: 1200px) {
+    .head-homepage {
+        width: 100%;
+        padding: 0 20px; /* Add padding for small spacing */
+    }
+    .nav {
+        padding: 10px 20px;
+    }
+    .navbar {
+        justify-content: center; /* Center navigation items */
+    }
+    .bg-body-item {
+        grid-template-columns: 1fr; /* Stack elements vertically */
+    }
+    .sidebar {
+        margin-left: 20px;
+        width: 80px; /* Adjust sidebar width */
+    }
+    .content {
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+        margin-top: -50px;
+        width: 90%;
+    }
+    .cont-box1, .cont-box2, .cont-box3, .cont-box4, .cont-box5, .cont-box6, .cont-box7, .cont-box8, .cont-box9, .cont-box10 {
+        width: 161%;
+        margin-left: 0;
+        margin-top: 54px;
+    }
+    .footer {
+        height: auto; /* Adjust footer height */
+        padding: 20px 10px;
+    }
+    .linked {
+        grid-template-columns: 1fr 1fr; /* Reduce columns */
+    }
+}
+
+/* For screens smaller than 768px */
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        align-items: center; /* Center align navigation items */
+        padding: 10px;
+    }
+    .navbar, .navigation, .login {
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .navigation a {
+        font-size: 14px; /* Adjust font size for smaller screens */
+    }
+    .sidebar {
+        width: 70px;
+        margin-left: 10px;
+        margin-top: 10px;
+        gap: 5px;
+    }
+    .content {
+        width: 95%;
+        gap: 15px;
+    }
+    .cont-box1, .cont-box2, .cont-box3, .cont-box4, .cont-box5, .cont-box6, .cont-box7, .cont-box8, .cont-box9, .cont-box10 {
+        width: 100%;
+    }
+    .footer {
+        padding: 10px 5px;
+    }
+    .linked {
+        grid-template-columns: 1fr; /* Stack columns */
+        text-align: center;
+    }
+}
+
+/* For screens smaller than 480px */
+@media (max-width: 480px) {
+    .nav {
+        flex-direction: column;
+        padding: 10px 5px; /* Less padding for very small screens */
+    }
+    .navbar, .navigation, .login {
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .navigation a {
+        font-size: 12px; /* Further adjust font size */
+    }
+    .sidebar {
+        width: 60px;
+        margin-left: 5px;
+        gap: 3px;
+    }
+    .content {
+        width: 100%;
+    }
+    .footer {
+        padding: 5px 2px;
+    }
+    .copyright {
+        font-size: 12px;
+    }
+}

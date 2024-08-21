@@ -15,6 +15,7 @@ body, html {
     min-height: 100vh; /* Ensure it takes at least the full viewport height */
     display: flex;
     flex-direction: column;
+    row-gap: 90px;
 }
 
 .head-homepage{
@@ -30,13 +31,13 @@ body, html {
     background-color: #63AFBD;
     padding: 10px 50px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: right;
     align-items: center;
 }
 
 .navbar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: right;
     align-items: center;
     gap: 20px; /* Adjust the gap as needed */
 }
@@ -86,6 +87,88 @@ body, html {
     padding: 0;
 }
 
+/* Base styles for .nav and .login */
+.nav {
+    background-color: #63AFBD;
+    padding: 10px 50px;
+    display: flex;
+    justify-content: space-between; /* Keeps items spaced out on larger screens */
+    align-items: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-end; /* Aligns items to the end (right) */
+    align-items: center;
+    gap: 20px; /* Space between navigation and login */
+}
+
+.navigation {
+    display: flex;
+    gap: 20px; /* Space between navigation links */
+}
+
+.navigation a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: Montserrat;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #FFFEFE;
+    background: #63AFBD;
+    width: 65px;
+    height: 20px;
+    text-align: center;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .nav {
+        padding: 10px; /* Adjust padding for smaller screens */
+        flex-direction: column; /* Stack navigation and login vertically */
+        align-items: flex-end; /* Align items to the right */
+    }
+
+    .navbar {
+        width: 100%; /* Make navbar full width */
+        justify-content: flex-end; /* Align items to the right */
+        margin-bottom: 10px; /* Add space below navbar */
+    }
+
+    .navigation {
+        display: flex;
+        flex-direction: column; /* Stack navigation items vertically */
+        gap: 10px; /* Space between items */
+        width: 100%; /* Make navigation take full width */
+        background-color: #63AFBD; /* Match background color */
+        padding: 10px 0; /* Padding for better spacing */
+    }
+
+    .navigation a {
+        padding: 10px; /* Increase click area */
+        font-size: 14px; /* Adjust font size for smaller screens */
+        border-bottom: 1px solid #fff; /* Separator between links */
+    }
+
+    .navigation a:last-child {
+        border-bottom: none; /* Remove border from the last item */
+    }
+
+    .login {
+        width: auto; /* Allow login button to auto-width */
+        margin-top: 10px; /* Space above login button */
+        align-self: flex-end; /* Align login button to the right */
+    }
+}
+
 .main-content {
     display: flex;
     flex-grow: 1;
@@ -93,6 +176,7 @@ body, html {
     align-items: center;
     position: relative;
 }
+
 
 /* SIDEBAR */
 .sidebar {
@@ -470,6 +554,60 @@ body, html {
     flex-shrink: 0;
 }
 
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    /* Mengatur margin dan padding menjadi 0 pada semua elemen */
+    .pa-agus,
+    .box1, .box2, .box3, .box4, .box5, .box6 {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Mengatur margin-bottom dan padding pada elemen box untuk merapatkan jarak */
+    .box1 img,
+    .box2 img,
+    .box3 img,
+    .box4 img,
+    .box5 img,
+    .box6 img {
+        margin: 0;
+    }
+
+    /* Mengatur gap antara grid items jika diperlukan */
+    .bg-body-item {
+        gap: 0;
+    }
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .box1, .box2, .box3, .box4, .box5, .box6 {
+        display: flex; /* Menggunakan flexbox untuk layout vertikal */
+        flex-direction: column; /* Menyusun elemen secara vertikal */
+        align-items: center; /* Memusatkan gambar secara horizontal */
+        margin-bottom: 30px; /* Menambahkan jarak bawah antar box lebih besar */
+    }
+
+    /* Mengatur ukuran gambar */
+    .box1 img, .box2 img, .box3 img, .box4 img, .box5 img, .box6 img {
+        width: 35%; /* Mengurangi ukuran gambar lebih kecil */
+        height: auto; /* Menjaga proporsi gambar */
+        margin-bottom: 20px; /* Menambahkan jarak bawah antar gambar lebih besar */
+    }
+
+    /* Mengatur ukuran teks jika ada */
+    .box1 h1, .box2 h1, .box3 h1, .box4 h1, .box5 h1, .box6 h1 {
+        font-size: 14px; /* Mengatur ukuran font untuk layar kecil */
+        margin-bottom: 10px; /* Menambahkan jarak bawah untuk teks lebih besar */
+    }
+
+    .box1 p, .box2 p, .box3 p, .box4 p, .box5 p, .box6 p {
+        font-size: 12px; /* Mengatur ukuran font untuk layar kecil */
+        margin-bottom: 10px; /* Menambahkan jarak bawah untuk paragraf */
+    }
+}
+
 /* FOOTER */
 .footer {
     height: 250px;
@@ -561,3 +699,4 @@ body, html {
 .show {
     display: block;
 }
+

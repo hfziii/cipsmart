@@ -51,8 +51,8 @@ html {
 }
 
 .logo-navbar img {
-    width: 60px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     margin-top: 5px;
 }
 
@@ -72,7 +72,7 @@ html {
 }
 
 .logo-navbar p {
-    width: 617px;
+    width: 355px;
     height: 36px;
 
     color: #FFF;
@@ -138,6 +138,180 @@ html {
 .login a p {
     margin: 0;
     padding: 0;
+}
+/* Media Query untuk Layar di Bawah 1024px */
+@media (max-width: 1024px) {
+    .nav {
+        padding: 10px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo-navbar {
+        margin-right: 0;
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .navbar {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .navigation {
+        width: 100%;
+        justify-content: center;
+        margin-right: 0;
+    }
+
+    .login {
+        margin-top: 10px;
+    }
+}
+
+/* Media Query untuk Layar di Bawah 768px */
+@media (max-width: 768px) {
+    .logo-navbar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .logo-navbar img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .logo-navbar h1, .logo-navbar p {
+        margin-left: 0;
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .navigation {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        gap: 10px;
+    }
+
+    .navigation a {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .login {
+        width: 100px;
+        height: 30px;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+}
+
+/* Media Query untuk Layar di Bawah 480px */
+@media (max-width: 480px) {
+    .logo-navbar {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo-navbar img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo-navbar h1 {
+        font-size: 11px;
+        margin-top: 0;
+        margin-left: 0;
+    }
+
+    .logo-navbar p {
+        font-size: 14px;
+        margin-top: 0;
+        margin-left: 0;
+    }
+
+    .navigation {
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+        gap: 5px;
+    }
+
+    .navigation a {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .login {
+        width: auto;
+        height: auto;
+        font-size: 12px;
+        padding: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        align-items: flex-start; /* Pindahkan elemen ke kiri */
+        padding: 10px;
+    }
+
+    .logo-navbar {
+        order: 1; /* Logo muncul pertama kali */
+        margin-top: 10px; /* Tambahkan margin untuk ruang */
+        margin-left: 10px; /* Pastikan logo ada di pojok kiri */
+    }
+
+    .navbar {
+        order: 2; /* Navigation muncul setelah logo */
+        flex-direction: column;
+        align-items: flex-start; /* Pindahkan navigation ke kiri */
+        gap: 10px;
+        width: 100%; /* Buat navigation memenuhi lebar layar */
+        margin-left: 10px; /* Pindahkan ke kiri */
+    }
+
+    .navigation {
+        width: auto; /* Lepaskan batas lebar */
+    }
+
+    .login {
+        order: 3; /* Login muncul terakhir */
+        margin-left: 10px; /* Pindahkan ke kiri */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-navbar {
+        width: 50px;
+        height: 50px;
+        margin-top: 15px; /* Tambahkan lebih banyak margin jika diperlukan */
+    }
+
+    .logo-navbar img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start; /* Tetap di pojok kiri */
+        gap: 5px;
+        margin-left: 10px;
+    }
+
+    .navigation {
+        width: 100%; /* Sesuaikan lebar penuh */
+        padding: 5px 0;
+    }
+}
+
+.nav::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .main-content {
@@ -310,6 +484,44 @@ html {
     margin-left: 18px;
 }
 
+/* Aturan untuk layar kecil (mobile) */
+@media (max-width: 768px) {
+    /* Menyusun ulang bagian maps */
+    .maps {
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .maps img {
+        width: 0%;
+        height: auto;
+        margin-top: 20px;
+    }
+
+    /* Menyusun ulang bagian contact */
+    .contact {
+        margin-left: 0;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .contact h1 {
+        width: 100%;
+        margin-left: 0;
+        font-size: 18px;
+    }
+
+    .contact img {
+        width: 50px;
+        height: 50px;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+
 .profile-desc {
     width: 635px;
     height: 223px;
@@ -333,6 +545,62 @@ html {
     margin-top: 0px;
     margin: 0px 30px;
     padding: 20px;
+}
+
+/* Aturan untuk layar kecil (mobile) */
+@media (max-width: 768px) {
+    /* Mengatur ulang tata letak profile desc */
+    .profile-desc {
+        width: 38%; /* Lebar 90% untuk ruang lebih */
+        margin-left: 5%; /* Geser ke kiri dengan margin 5% */
+        margin-top: 20px;
+        padding: 10px; /* Tambahkan padding untuk ruang dalam */
+        height: auto; /* Tinggi otomatis */
+    }
+
+    .profile-desc p {
+        width: 95%;
+        margin: 0;
+        padding: 10px;
+        text-align: justify;
+        font-size: 12px; /* Perkecil font */
+        line-height: 1.4; /* Jarak antar baris */
+    }
+
+    /* Mengatur ulang tata letak maps */
+    .maps {
+        width: 20%;
+        margin-left: 5%;
+        margin-top: 20px;
+        height: auto;
+    }
+
+    .maps img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Mengatur ulang tata letak contact */
+    .contact {
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 20px;
+        height: auto;
+        text-align: left;
+    }
+
+    .contact h1 {
+        width: 100%;
+        margin-left: 0;
+        font-size: 16px; /* Perkecil ukuran font */
+    }
+
+    .contact img {
+        width: 45px; /* Perkecil ukuran gambar */
+        height: 45px;
+        margin-left: 0;
+        margin-top: 10px;
+    }
 }
 
 /* FOOTER */
@@ -398,6 +666,45 @@ html {
 
 .copy {
     margin: 0;
+}
+
+/* Aturan untuk layar kecil (mobile) */
+@media (max-width: 768px) {
+    .footer {
+        padding: 10px 20px; /* Sesuaikan padding */
+        margin: 0; /* Hilangkan margin jika diperlukan */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Geser elemen ke kiri */
+    }
+
+    .linked {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Geser elemen ke kiri */
+        gap: 10px; /* Kurangi jarak antar item */
+        width: 100%; /* Pastikan footer menggunakan lebar penuh */
+        padding: 0; /* Hilangkan padding tambahan jika ada */
+        margin: 0; /* Hilangkan margin jika ada */
+    }
+
+    .linked p, .linked a {
+        font-size: 14px; /* Perkecil ukuran font */
+        text-align: left; /* Pusatkan teks ke kiri */
+    }
+
+    .callfot img {
+        width: 25px; /* Perkecil ukuran gambar */
+    }
+
+    .copyright {
+        margin: 10px 0; /* Atur jarak di sekitar copyright */
+        font-size: 13px; /* Perkecil ukuran font */
+        text-align: left; /* Pusatkan teks ke kiri */
+        width: 100%; /* Pastikan copyright menggunakan lebar penuh */
+        display: flex;
+        justify-content: flex-start; /* Geser copyright ke kiri */
+    }
 }
 
 /* BUTTON USERNAME */
