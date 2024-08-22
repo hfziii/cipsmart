@@ -37,6 +37,21 @@ html {
     box-sizing: border-box;
     gap: 15px;
 }
+
+/* Links inside navbar */
+.navbar a {
+    color: #fff;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+/* Menu icon for smaller screens */
+.menu-icon {
+    display: none;
+    font-size: 24px;
+    color: #fff;
+}
+
 /* Apply styles to the select element */
 select.category-umkm {
     border: none; /* Removes the border */
@@ -168,6 +183,25 @@ select.category-umkm:focus {
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+    .navbar a {
+        display: none;
+    }
+
+    .menu-icon {
+        display: block;
+        cursor: pointer;
+    }
+
+    .navbar.responsive .navbar a {
+        display: block;
+        text-align: left;
+        padding: 10px;
+        width: 100%;
+    }
 }
 
 /* NAVIGATOR */
@@ -352,6 +386,36 @@ select.category-umkm:focus {
     margin-left: 70px;
 }
 
+/* For larger screens */
+.content {
+    display: grid;
+    grid-template-columns: 0.5fr 3fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .content {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    /* Sidebar fixed on the left */
+    .sidebar {
+        position: unset;
+        left: 0;
+        top: 0;
+        width: 100px; /* Fixed width for sidebar */
+        height: 100%; /* Full height */
+        z-index: 1000;
+    }
+
+    .catalog {
+        margin-left: 120px; /* Ensure catalog content doesn't overlap the sidebar */
+        padding-top: 20px;
+    }
+}
+
+
 /* CATALOG */
 .catalog {
     flex: 1;
@@ -414,6 +478,154 @@ select.category-umkm:focus {
     font-size: 12px;
     margin-top: 5px;
     color: #888888;
+}
+
+/* Responsive styles for catalog */
+@media (max-width: 1024px) {
+    .content {
+        width: 100%;
+        height: auto;
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    .catalog {
+        margin: 0;
+        border-radius: 10px;
+        box-shadow: none;
+        padding: 10px;
+        max-height: none;
+    }
+
+    .frame-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+    }
+
+    .frame-card {
+        padding: 8px;
+    }
+
+    .title-catalog {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .frame-container {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 8px;
+    }
+
+    .frame-card {
+        padding: 5px;
+    }
+
+    .img-p {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .name-book {
+        font-size: 14px;
+    }
+
+    .name-author {
+        font-size: 12px;
+    }
+
+    .status {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .frame-container {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 5px;
+    }
+
+    .frame-card {
+        padding: 3px;
+    }
+
+    .img-p {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .name-book {
+        font-size: 12px;
+    }
+
+    .name-author {
+        font-size: 10px;
+    }
+
+    .status {
+        font-size: 8px;
+    }
+}
+
+/* General layout for larger screens */
+.content {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 20px;
+}
+
+/* For smaller screens */
+@media (max-width: 768px) {
+    .content {
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+    }
+
+    .sidebar {
+        order: 1; /* Sidebar appears first */
+        width: 100%; /* Full width */
+        margin-bottom: 20px; /* Space between sidebar and catalog */
+    }
+
+    .catalog {
+        order: 2; /* Catalog appears below the sidebar */
+    }
+}
+
+/* General styles */
+.content {
+    display: grid;
+    grid-template-columns: 0.5fr 3fr;
+    gap: 20px;
+}
+
+/* General styles */
+.content {
+    display: grid;
+    grid-template-columns: 0.5fr 3fr;
+    gap: 20px;
+}
+
+/* Adjusted responsive styles for sidebar and catalog */
+@media (max-width: 768px) {
+    .content {
+        grid-template-columns: 1fr; /* Make the catalog section full-width */
+        gap: 0; /* Remove gap */
+    }
+
+    .sidebar {
+        position: static;
+        width: 100%;
+        margin-left: 0;
+        margin-top: 20px; /* Add margin to separate from catalog */
+        order: 1; /* Place sidebar after the catalog */
+    }
+
+    .catalog {
+        margin-top: 0; /* Reset margin to avoid unnecessary space */
+    }
 }
 
 /* FOOTER */
@@ -481,7 +693,7 @@ select.category-umkm:focus {
     .sidebar {
         width: 100%;
         height: auto;
-        position: fixed;
+        position: relative;
         top: 0;
         left: 0;
         z-index: 1000;

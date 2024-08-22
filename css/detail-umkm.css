@@ -619,6 +619,67 @@ select.corner-lib:focus {
     right: 20px; /* Adjust the position */
 }
 
+/* Detail Frame Responsiveness */
+.detailframe {
+    grid-template-columns: 1fr 3fr;
+    width: 100%; /* Make it take the full width */
+    max-width: 1100px; /* Set a maximum width */
+    height: auto; /* Allow height to adjust based on content */
+    margin: 15px auto; /* Center it horizontally */
+}
+
+/* Adjust layout for smaller screens */
+@media (max-width: 1024px) {
+    .detailframe {
+        grid-template-columns: 1fr; /* Stack columns vertically */
+        padding: 20px; /* Add some padding */
+    }
+    
+    .title-detail {
+        margin-left: 0; /* Reset margin for smaller screens */
+        text-align: center; /* Center align text */
+    }
+
+    .picbook {
+        margin-left: 0; /* Center the book picture */
+        text-align: center; /* Center align */
+    }
+
+    .book-desc {
+        grid-template-columns: 1fr; /* Stack descriptions vertically */
+    }
+
+    .white-line {
+        width: 100%; /* Make the line span full width */
+        margin-left: 0; /* Reset margin */
+    }
+}
+
+@media (max-width: 768px) {
+    .detailframe {
+        padding: 10px; /* Reduce padding on very small screens */
+    }
+
+    .sb, .sb-none, .wa-disabled {
+        width: 100%; /* Make buttons full width */
+        margin-top: 10px; /* Add some spacing */
+    }
+}
+
+@media (max-width: 480px) {
+    .title-book {
+        font-size: 16px; /* Adjust font size for smaller screens */
+    }
+
+    .name-author {
+        font-size: 14px; /* Adjust font size */
+    }
+
+    .status {
+        font-size: 12px; /* Adjust font size */
+    }
+}
+
 /* FOOTER */
 .footer {
     height: 278px;
